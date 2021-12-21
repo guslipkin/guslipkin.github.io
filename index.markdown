@@ -28,7 +28,7 @@ I'm Gus, a Business Analyst with a few years' experience. I'd like to show you w
 - **What:** How can we make tutoring more available to students?
 - **Why:** Getting tutoring for the classes you need can be difficult, especially when trying to fit it into your schedule.
 - <a href="https://github.com/guslipkin/Fall2021/tree/main/ECO%203930%20%7E%20Contemporary%20Economics/Final%20Paper"><b>How:</b></a> ✨Math✨
-- **Conclusion:** Try going to Epcot on a Wednesday in September.
+- **Conclusion:** A hybrid model where high demand classes offer group tutoring and all classes have one-on-one tutoring would be most efficient.
 
 <h4><a href="https://github.com/guslipkin/Spring2021/blob/main/GEB%203373%20%7E%20International%20Comparative%20Dimensions/GEB%203373%20Final%20Project/Final%20Presentation.pdf">Trader Joe's Cultural and Marketing Plan</a></h4>
 
