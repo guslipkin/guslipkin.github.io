@@ -25,6 +25,8 @@ github_username:  guslipkin
 # Build settings
 markdown: kramdown
 theme: minima
+header_pages:
+  - topbar/resume.markdown
 plugins:
   - jekyll-feed
 
