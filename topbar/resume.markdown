@@ -1,5 +1,6 @@
 ---
 layout: post
+permalink: "/resume"
 title: "My Résumé"
 ---
 
