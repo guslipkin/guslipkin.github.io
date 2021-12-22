@@ -7,25 +7,20 @@ title: "My Résumé"
 <style>
 	#center { width: 70%; }
 	.noBorder { border:none !important; }
-	.container {
-		display: flex;
-	}
-	.column {
-    	flex: 1;
-}
+	.container { display: flex; }
+	.column { flex: 1; }
 </style>
 
-<table cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none;">
-    <tr>
-        <td class="noBorder"><a href="mailto:gus.lipkin@gmail.com">gus.lipkin@gmail.com</a></td>
-        <td class="noBorder"><center><h2 style="color:#e91d63">Gus Lipkin</h2></center></td>
-        <td style="text-align: right;" class="noBorder">
-        	<a href="https://linkedin.com/in/guslipkin/">linkedin.com/in/guslipkin/</a>
-        	<br>
-        	<a href="https://guslipkin.github.io">guslipkin.github.io</a>
-        </td>
-    </tr>
-</table>
+<div class="container" style="padding-left: 1.5em; font-size: 14px; align-items: center;">
+   <div class="column column-one">
+   		<a href="mailto:gus.lipkin@gmail.com">gus.lipkin@gmail.com</a>
+   	</div>
+   <div class="column column-two"><center><h2 style="color:#e91d63">Gus Lipkin</h2></center></div>
+   <div class="column column-three" style="text-align: right;">
+   		<a href="https://linkedin.com/in/guslipkin/">linkedin.com/in/guslipkin/</a>
+   		<a href="https://guslipkin.github.io">guslipkin.github.io</a>
+   </div>
+</div>
 <hr>
 ### Education
 <div style="text-indent: -1.5em; padding-left: 1.5em;">
@@ -35,28 +30,25 @@ title: "My Résumé"
 <p style="color:#666666; font-size: 12px;">August 2018 - May 2022</p>
 <p style="text-indent: 1.5em; font-size: 14px; color: #666666;"><b>Selected Courses</b></p>
 
-<table cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none; padding: 0; margin: 0; font-size: 14px;">
-    <tr style="background-color: #FFFFFF;">
-        <td class="noBorder"><ul><li>Database I & II</li></ul></td>
-        <td class="noBorder"><ul><li>Strategic Management</li></ul></td>
-        <td class="noBorder"><ul><li>Six Sigma</li></ul></td>
-        <td class="noBorder"><ul><li>Programming I</li></ul></td>
-    </tr>
-    <tr style="background-color: #FFFFFF;">
-        <td class="noBorder"><ul><li>Operations and Supply Chain & Operations Research</li></ul></td>
-        <td class="noBorder"><ul><li>Time Series Modeling and Forecasting</li></ul></td>
-        <td class="noBorder"><ul><li>Stats I & Quantitative Methods</li></ul></td>
-        <td class="noBorder"><ul><li>Benefit Cost Analysis & Economic Analysis</li></ul></td>
-    </tr>
-</table>
+<div class="container" style="padding-left: 1.5em; font-size: 14px;">
+   <div class="column column-one"><ul><li>Database I & II</li></ul></div>
+   <div class="column column-two"><ul><li>Strategic Management</li></ul></div>
+   <div class="column column-three"><ul><li>Six Sigma</li></ul></div>
+   <div class="column column-four"><ul><li>Programming I</li></ul></div>
+</div>
+<div class="container" style="padding-left: 1.5em; font-size: 14px;">
+   <div class="column column-one"><ul><li>Operations and Supply Chain & Operations Research</li></ul></div>
+   <div class="column column-two"><ul><li>Time Series Modeling and Forecasting</li></ul></div>
+   <div class="column column-three"><ul><li>Stats I & Quantitative Methods</li></ul></div>
+   <div class="column column-four"><ul><li>Benefit Cost Analysis & Economic Analysis</li></ul></div>
+</div>
+
 <p style="text-indent: 1.5em; font-size: 14px; color: #666666;"><b>Software and Programming</b></p>
-<table cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none; padding: 0; margin: 0; font-size: 14px;">
-    <tr style="background-color: #FFFFFF;">
-        <td class="noBorder"><ul><li>R and RStudio</li></ul></td>
-        <td class="noBorder"><ul><li>SQL, Redis, Neo4J</li></ul></td>
-        <td class="noBorder"><ul><li>Stata</li></ul></td>
-    </tr>
-</table>
+<div class="container" style="padding-left: 1.5em; font-size: 14px;">
+   <div class="column column-one"><ul><li>R and RStudio</li></ul></div>
+   <div class="column column-two"><ul><li>SQL, Redis, Neo4J</li></ul></div>
+   <div class="column column-three"><ul><li>Stata</li></ul></div>
+</div>
 
 ### Experience
 <div style="text-indent: -1.5em; padding-left: 1.5em;">
