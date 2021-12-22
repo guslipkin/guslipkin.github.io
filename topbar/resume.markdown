@@ -101,5 +101,5 @@ title: "My Résumé"
 <ul style="font-size: 14px; color:#666666;">
 	<li>Manage the SGA SharePoint and CampusLabs</li>
 	<li>Track SGA and Registered Student Organization assets</li>
-	<li>Maintain <a href="https:flpolysga.github.io">FLPoly.github.io</a></li>
+	<li>Maintain <a href="https://flpolysga.github.io">FLPoly.github.io</a></li>
 </ul>
