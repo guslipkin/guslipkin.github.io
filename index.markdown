@@ -7,14 +7,14 @@ I'm Gus, a Business Analyst with a few years' experience. I'd like to show you w
 
 ## Data Focused Projects
 
-<h3><a href="https://github.com/guslipkin/disney_ds/blob/master/presentation/Data%20Science%20Final%20Presentation.pdf">Disney World ride wait times</a></h3>
+### [Disney World ride wait times](/presentations/disney_world_ride_wait_times/)
 
 - **What:** Can I find the best time to visit Disney World 🏰 based on ride wait times?
 - **Why:** Going to Disney can be lots of fun, but waiting in lines is not.
 - <a href="https://github.com/guslipkin/disney_ds"><b>How:</b></a> `R: {forcats, lubridate, reshape2, tidyverse}`
 - **Conclusion:** Try going to Epcot on a Wednesday in September.
 
-<h3><a href="https://github.com/guslipkin/COVID-TimeSeries-GIS/blob/main/Presentation.pdf">Investigating a relationship between climate variables and the spread of COVID-19</a></h3>
+### [Investigating a relationship between climate variables and the spread of COVID-19](/presentations/covid_time_series_gis/)
 
 - **What:** Since COVID-19 🦠 is spread through close contact, do any climate variables influence spread?
 - **Why:** Human behavior is affected by the weather. If there is adverse weather, is there an increase in spread?
@@ -23,14 +23,14 @@ I'm Gus, a Business Analyst with a few years' experience. I'd like to show you w
 
 ## Economic Analysis Focused Projects
 
-<h3><a href="https://github.com/guslipkin/Fall2021/blob/main/ECO%203930%20%7E%20Contemporary%20Economics/Final%20Paper/FinalPaperPresentation.pdf">Improving Tutoring at Florida Poly</a></h3>
+### [Improving Tutoring at Florida Poly](/presentations/tutoring_at_poly/)
 
 - **What:** How can we make tutoring more available to students?
 - **Why:** Getting tutoring for the classes you need can be difficult, especially when trying to fit it into your schedule.
 - <a href="https://github.com/guslipkin/Fall2021/tree/main/ECO%203930%20%7E%20Contemporary%20Economics/Final%20Paper"><b>How:</b></a> ✨Math✨
 - **Conclusion:** A hybrid model where high demand classes offer group tutoring and all classes have one-on-one tutoring would be most efficient.
 
-<h3><a href="https://github.com/guslipkin/Spring2021/blob/main/GEB%203373%20%7E%20International%20Comparative%20Dimensions/GEB%203373%20Final%20Project/Final%20Presentation.pdf">Trader Joe's Cultural and Marketing Plan</a></h3>
+### [Trader Joe's Cultural and Marketing Plan](/presentations/trader_joes_cultural_marketing_plan/)
 
 - **What:** Let's help Trader Joe's enter the Canadian supermarket industry.
 - **Why:** It's a final project for GEB 3373 – International and Comparative Dimensions of Business
@@ -39,7 +39,7 @@ I'm Gus, a Business Analyst with a few years' experience. I'd like to show you w
 
 ## Other Projects
 
-<h3><a href="https://github.com/guslipkin/Lark/blob/master/Cat%20Simulator%202019%20PDF.pdf">Cat Simulator 2019</a></h3>
+### [Cat Simulator 2019](/presentations/cat_simulator_2019/)
 
 - **What:** Can we make a game that teaches basic Bash commands?
 - **Why:** It's a final project for COP 3353C – Introduction to Unix.

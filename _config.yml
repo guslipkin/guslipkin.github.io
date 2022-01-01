@@ -30,6 +30,7 @@ header_pages:
   - topbar/resume.markdown
 plugins:
   - jekyll-feed
+  - jekyll-pdf-embed
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
