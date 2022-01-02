@@ -50,5 +50,5 @@ I'm Gus, a Business Analyst with a few years' experience. I'd like to show you w
 
 - **What:** Let's make a website with all the Student Government documents.
 - **Why:** It's important that Student Government stay in compliance with Florida Sunshine Laws
-- <a href="https://github.com/FLPolySGA/FLPolySGA.github.io"><b>How:</b></a> `GitHub Pages`, `Jekyll`, `Markdown`
+- <a href="https://github.com/FLPolySGA/FLPolySGA.github.io"><b>How:</b></a> `GitHub Pages`, `Jekyll`, `Markdown`, `HTML`, and `CSS`
 - **Conclusion:** It ain't much, but it's honest work.

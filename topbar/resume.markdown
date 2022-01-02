@@ -28,23 +28,25 @@ title: "My Résumé"
 	<span style="color:#2e4440"><em> – BS, Business Analytics with concentrations in Quantitative Economics & Econometrics and Intelligent Mobility</em></span>
 </div>
 <p style="color:#666666; font-size: 12px;">August 2018 - May 2022</p>
-<p style="text-indent: 1.5em; font-size: 14px; color: #666666;"><b>Selected Courses</b></p>
+<p style="text-indent: 1.5em; font-size: 14px;"><b>Selected Courses</b></p>
 
-<div class="container" style="padding-left: 1.5em; font-size: 14px;">
-   <div class="column column-one"><ul><li>Database I & II</li></ul></div>
-   <div class="column column-two"><ul><li>Strategic Management</li></ul></div>
-   <div class="column column-three"><ul><li>Six Sigma</li></ul></div>
-   <div class="column column-four"><ul><li>Programming I</li></ul></div>
-</div>
-<div class="container" style="padding-left: 1.5em; font-size: 14px;">
-   <div class="column column-one"><ul><li>Operations and Supply Chain & Operations Research</li></ul></div>
-   <div class="column column-two"><ul><li>Time Series Modeling and Forecasting</li></ul></div>
-   <div class="column column-three"><ul><li>Stats I & Quantitative Methods</li></ul></div>
-   <div class="column column-four"><ul><li>Benefit Cost Analysis & Economic Analysis</li></ul></div>
+<div style="padding-left: 1.5em; font-size: 14px; color: #666666;">
+	<div class="container">
+   	<div class="column column-one"><ul><li>Database I & II</li></ul></div>
+   	<div class="column column-two"><ul><li>Strategic Management</li></ul></div>
+   	<div class="column column-three"><ul><li>Six Sigma</li></ul></div>
+   	<div class="column column-four"><ul><li>Programming I</li></ul></div>
+	</div>
+	<div class="container">
+   	<div class="column column-one"><ul><li>Operations and Supply Chain & Operations Research</li></ul></div>
+   	<div class="column column-two"><ul><li>Time Series Modeling and Forecasting</li></ul></div>
+   	<div class="column column-three"><ul><li>Stats I & Quantitative Methods</li></ul></div>
+   	<div class="column column-four"><ul><li>Benefit Cost Analysis & Economic Analysis</li></ul></div>
+	</div>
 </div>
 
-<p style="text-indent: 1.5em; font-size: 14px; color: #666666;"><b>Software and Programming</b></p>
-<div class="container" style="padding-left: 1.5em; font-size: 14px;">
+<p style="text-indent: 1.5em; font-size: 14px;"><b>Software and Programming</b></p>
+<div class="container" style="padding-left: 1.5em; font-size: 14px; color: #666666;">
    <div class="column column-one"><ul><li>R and RStudio</li></ul></div>
    <div class="column column-two"><ul><li>SQL, Redis, Neo4J</li></ul></div>
    <div class="column column-three"><ul><li>Stata</li></ul></div>
