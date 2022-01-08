@@ -28,6 +28,7 @@ markdown: kramdown
 theme: minima
 header_pages:
   - topbar/resume.markdown
+  - topbar/about.markdown
 plugins:
   - jekyll-feed
   - jekyll-pdf-embed

@@ -25,7 +25,14 @@ title: "My Résumé"
 ### Education
 <div style="text-indent: -1.5em; padding-left: 1.5em;">
 	<span style="color:#e91d63"><b>Florida Polytechnic University</b></span>
-	<span style="color:#2e4440"><em> – BS, Business Analytics with concentrations in Quantitative Economics & Econometrics and Intelligent Mobility</em></span>
+	<span style="color:#2e4440"><em> – Associate of Arts</em> | <em>Bachelor of Science, Business Analytics with concentrations in Quantitative Economics & Econometrics and Intelligent Mobility</em></span>
+</div>
+<div style="text-indent: -1.5em; padding-left: 1.5em;">
+	<span style="color:#e91d63"><b>Florida Polytechnic University</b></span>
+	<br>
+	<span style="color:#2e4440"><em>– Associate of Arts</em></span>
+	<br>
+	<span style="color:#2e4440"><em>– Bachelor of Science, Business Analytics with concentrations in Quantitative Economics & Econometrics and Intelligent Mobility</em></span>
 </div>
 <p style="color:#666666; font-size: 12px;">August 2018 - May 2022</p>
 <p style="text-indent: 1.5em; font-size: 14px;"><b>Selected Courses</b></p>
@@ -53,6 +60,17 @@ title: "My Résumé"
 </div>
 
 ### Experience
+<div style="text-indent: -1.5em; padding-left: 1.5em;">
+	<span style="color:#e91d63"><b>Software Quality Assurance Analyst</b></span>
+	<span style="color:#2e4440"><em> – AssistRx</em></span>
+</div>
+<p style="color:#666666; font-size: 12px;">January 2022 - Present</p>
+<!--
+<ul style="font-size: 14px; color:#666666;">
+	<li></li>
+</ul>
+-->
+
 <div style="text-indent: -1.5em; padding-left: 1.5em;">
 	<span style="color:#e91d63"><b>Correlating Patient Feedback to Avoidable Readmissions and Patient Experience</b></span>
 	<span style="color:#2e4440"><em> – Tallahassee Memorial Healthcare</em></span>
