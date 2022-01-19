@@ -25,7 +25,7 @@ title: "About Me"
 <center><img src="/assets/gus_double_gus.jpg" 
 			 style="max-height: 315px;"
 			 alt="Gus showing his phone with a picture of himself"/></center>
-<center><em>This makes for a really fun but mildly chaotic Zoom background</em></center>
+<center><em>This makes for a really, fun but mildly chaotic Zoom background</em></center>
 <br>
 You can learn more about my [projects here](/) and see my [resume here](/resume/). I'm going to use this space to tell you more about me outside of work and school.
 
