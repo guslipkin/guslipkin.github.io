@@ -4,62 +4,89 @@ permalink: "/tmh"
 title: "Patient Readmission Rates"
 ---
 
-<!--
-<table>
-	<tr>
-		<th>Gender</th>
-		<th>Race</th>
-		<th>Ethnicity</th>
-		<th>Age</th>
-	</tr>
-</table>
--->
-
 <style>
-@media screen and (max-width: 600px) {
-  table {
-    width: 100%;
+  .flex-container {
+  	display: flex;
+  	flex-wrap: wrap;
   }
 
-  table thead {
-    display: none;
-  }
+	.flex-item {
+		flex: 30%;
+		border: 1.5px solid black;
+		margin: 3px;
+		padding-left: 3px;
+	}
 
-  table tr, table td {
-    border-bottom: 1px solid #ddd;
-  }
-
-  table tr {
-    margin-bottom: 8px;
-  }
-
-  table td {
-    display: flex;
-  }
-  
-  table td::before {
-    content: attr(label);
-    font-weight: bold;
-    width: 120px;
-    min-width: 120px;
-  }
-}
+	@media (max-width: 600px) {
+		.flex-item {
+			flex: 100%;
+		}
+	}
 </style>
 
-<table>
-	<thead>
-		<tr>
-			<th>Age</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td><b id="gender"></b></td>
-		</tr>
-	</tbody>
-</table>
-<script>setMobileTable('table')</script>
- 
+## Your Demographics and Story
+### Demographics
+
+<div class="flex-container">
+  <div class="flex-item" id="age"></div>
+  <div class="flex-item" id="gender"></div>
+  <div class="flex-item" id="insurance"></div>
+  <div class="flex-item" id="race"></div>
+  <div class="flex-item" id="ethnicity"></div>
+</div>
+<br>
+
+### Story
+
+<p><em>All stories are fictional and creations of the author</em></p>
+<div id="storyDiv"></div>
+
+## Discharge Survey
+
+<form name="discharge" id="discharge" onsubmit="calculateReadmit();return false">
+	<h4>During this hospital stay, did you need help from nurses or other hospital staff in getting to the bathroom or in using a bed pan?</h4>
+	<label><input type="radio" name="cms_12" value="0" required />Yes</label>
+	<label><input type="radio" name="cms_12" value="1">No</label>
+	<br>
+	<br>
+	<h4>In general, how would you rate your overall health?</h4>
+	<label><input type="radio" name="cms_25" value="1" required />Poor</label>
+	<label><input type="radio" name="cms_25" value="2">Fair</label>
+	<label><input type="radio" name="cms_25" value="3">Good</label>
+	<label><input type="radio" name="cms_25" value="4">Very Good</label>
+	<label><input type="radio" name="cms_25" value="5">Excellent</label>
+	<br>
+	<br>
+	<h4>Before giving you any new medicine, how often did hospital staff tell you what the medicine was for?</h4>
+	<label><input type="radio" name="cms_33" value="1" required />Never</label>
+	<label><input type="radio" name="cms_33" value="2">Rarely</label>
+	<label><input type="radio" name="cms_33" value="3">Sometimes</label>
+	<label><input type="radio" name="cms_33" value="4">Often</label>
+	<label><input type="radio" name="cms_33" value="5">Always</label>
+	<br>
+	<br>
+	<h4>When I left the hospital, I clearly understood the purpose for taking each of my medications?</h4>
+	<label><input type="radio" name="cms_40" value="0" required />Never</label>
+	<label><input type="radio" name="cms_40" value="1">Seldom</label>
+	<label><input type="radio" name="cms_40" value="2">Sometimes</label>
+	<label><input type="radio" name="cms_40" value="3">Often</label>
+	<label><input type="radio" name="cms_40" value="4">Always</label>
+	<br>
+	<br>
+	<h4>During this hospital stay, were you admitted to this hospital through the emergency room?</h4>
+	<label><input type="radio" name="cms_41" value="1" required />Yes</label>
+	<label><input type="radio" name="cms_41" value="0">No</label>
+	<br>
+	<br>
+	<button type="submit" id="submit" style="font-size: 16px;"><b>Submit your survey</b></button>
+	<button type="reset" id="reset" style="font-size: 16px;" onclick="resetReadmit()"><b>Reset your survey</b></button>
+</form>
+
+
+## Your Results
+
+<div id="results">Your results will be here!</div>
+
 <script>
 	const genderArray = [
 		"Male", 
@@ -82,22 +109,59 @@ title: "Patient Readmission Rates"
 		"Not Reported"
 	]
 	var ethnicity = ethnicityArray[Math.floor(Math.random()*ethnicityArray.length)]
+	const insuranceArray = [
+		"None",
+		"Blue Cross",
+		"Commercial",
+		"Health Maintenance Org",
+		"Medicaid/Welfare",
+		"Medicare Part A"
+	]
+	var insurance = insuranceArray[Math.floor(Math.random()*insuranceArray.length)]
+	// Minimum age for a survey is 18 and maximum is 110 (92+18)
 	var age = Math.floor(Math.random() * 92) + 18
 
-	document.getElementById("gender").innerHTML = "Gender: " + gender
-	document.getElementById("race").innerHTML = "Race: " + race
-	document.getElementById("ethnicity").innerHTML = "Ethnicity: " + ethnicity
-	document.getElementById("age").innerHTML = "Age: " + age
+	var boldOpen = "<b style=color:Gray;>"
+	var boldClose = "</b><br>"
 
-	window.setMobileTable = function(selector) {
-  // if (window.innerWidth > 600) return false;
-  const tableEl = document.querySelector(selector);
-  const thEls = tableEl.querySelectorAll('thead th');
-  const tdLabels = Array.from(thEls).map(el => el.innerText);
-  tableEl.querySelectorAll('tbody tr').forEach( tr => {
-    Array.from(tr.children).forEach( 
-      (td, ndx) =>  td.setAttribute('label', tdLabels[ndx])
-    );
-  });
-}
+	document.getElementById("gender").innerHTML = boldOpen + "Gender:" + boldClose + gender
+	document.getElementById("race").innerHTML = boldOpen + "Race:" + boldClose + race
+	document.getElementById("ethnicity").innerHTML = boldOpen + "Ethnicity:" + boldClose + ethnicity
+	document.getElementById("age").innerHTML = boldOpen + "Age:" + boldClose + age
+	document.getElementById("insurance").innerHTML = boldOpen + "Insurance:" + boldClose + insurance
+
+	function logit2prob(logit) {
+		let odds = Math.exp(logit)
+		let prob = odds / (1 + odds) * 100
+		prob = Math.round(prob)
+		return prob
+	}
+
+	function calculateReadmit() {
+    let cms_12 = Number(document.getElementById("discharge").elements["cms_12"].value)
+    let cms_25 = Number(document.getElementById("discharge").elements["cms_25"].value)
+    let cms_33 = Number(document.getElementById("discharge").elements["cms_33"].value)
+    //var cms_40 = Number(document.getElementById("discharge").elements["cms_40"].value)
+    let cms_41 = Number(document.getElementById("discharge").elements["cms_41"].value)
+
+    let readmit = -.5541
+    readmit += -.6482 * cms_12
+    readmit += -.3596 * cms_25
+    readmit += -.2465 * cms_33
+    readmit += .7170 * cms_41
+		document.getElementById("results").innerHTML = "You have a " + logit2prob(readmit) + "% chance of being readmitted"
+	}
+
+	function resetReadmit() {
+		document.getElementById("results").innerHTML = "Your results will be here!"
+	}
+
+	window.onload = function() {
+		const stories = [
+		// This story by Gus Lipkin
+		"&emsp;It's a beautiful Wednesday in November and the Seminoles have just beaten the Gators at the Sunshine Showdown only four days prior. You've already had a great week, but a freak snowstorm has lightly dusted Tallahassee and there is just enough snow for sledding. Feeling a zest for life you haven't in a long time due to a rather debilitating stroke a few years earlier, you take some friends and your makeshift sled (a trashcan lid) to Coombs Drive which has a rather large elevation change from top to bottom of about 50 feet. After a full day of sledding, you decide to take one more run to the bottom. Just when you begin to slow down, a car pulls out in front of you from Brown Street and sends you flying into the trees on the far side of the intersection.<br>&emsp;The rest of the day and, admittedly, much of the next is a bit of a blur. Your friends tell you that when you crashed, they were about to call 911, but realized that you had been sledding right behind Tallahassee Memorial Hospital. They scooped you up and brought you to the Emergency Room in just a few minutes, running through some backyards to do so.<br>&emsp;When you come to, a very helpful nurse tells you that it's now Thursday and you've been transferred to the Clinical Decision Unit before handing you a cocktail of pills and a cup of water. You recognize some ibuprofen in there, but that's about it. When you ask him what's in the cup, he says a bunch of words you don't recognize, glances at his watch, then leaves in a hurry. A short while later, you realize you have to pee and wonder how long it's been since you used the bathroom. A different nurse comes after you press the call button and quickly runs to get a jug when you say you have to pee. What follows is a very uncomfortable five minutes where you try and pee in the jug while lying down with a nurse checking on you 30 every seconds asking if you need help.<br>&emsp;After a few more rather uneventful hours, someone comes in to let you know that they'll be discharging you any minute now and you should call someone to come get you. They give you a prescription for some painkillers and tell you to take it easy for a while because you have a concussion. They also advise you to make a follow-up appointment with your primary care physician."
+		]
+		var story = stories[Math.floor(Math.random()*stories.length)]
+		document.getElementById("storyDiv").innerHTML = story
+	}
 </script>
