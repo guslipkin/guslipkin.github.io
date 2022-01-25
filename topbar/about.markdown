@@ -44,4 +44,4 @@ I was born and raised in Massachusetts about twenty minutes west of Boston.
   <div class="flex-item">"This is a guy that knows the guy you need for whatever it is you need" – Tucker M-S</div>
   <div class="flex-item">"Gus is one of the most dependable and consistent people I have ever known." – Melia R</div>
   <div class="flex-item">"Lemme think about it" – Macy L</div>
-  <div class="flex-item">"In the many the years I've known him, has enough resourcefulness and preparation skills in him to do the work of a dozen people" – Chris H</div>
+  <div class="flex-item">"Gus Lipkin, in the many the years I've known him, has enough resourcefulness and preparation skills in him to do the work of a dozen people" – Chris H</div>
