@@ -43,6 +43,8 @@ title: "Patient Readmission Rates"
 
 ## Discharge Survey
 
+<b>Please answer this survey based on the above narrative</b>
+
 <form name="discharge" id="discharge" onsubmit="calculateReadmit();return false">
 	<h4>During this hospital stay, did you need help from nurses or other hospital staff in getting to the bathroom or in using a bed pan?</h4>
 	<label><input type="radio" name="cms_12" value="0" required />Yes</label>
