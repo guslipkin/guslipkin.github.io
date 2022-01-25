@@ -14,9 +14,6 @@ title: "My Résumé"
 		display: grid;
 		grid-template-columns: 1fr 2fr 1fr;
 	}
-	.grid-item {
-		span: 1;
-	}
 
 	.item-1 {
 		grid-column:  1; 
@@ -32,7 +29,7 @@ title: "My Résumé"
 		text-align: right;
 	}
 
-	@media (max-width: 600px) {
+	@media (max-width: 700px) {
 		.grid-container {
 			display: grid;
 			justify-items: center;
@@ -60,7 +57,7 @@ title: "My Résumé"
    <div class="item-2" style="color:#e91d63; font-size: 32px;"><center><b>Gus Lipkin</b></center></div>
    <div class="item-3">
    		<a href="https://linkedin.com/in/guslipkin/">linkedin.com/in/guslipkin/</a>
-   		<a href="https://guslipkin.github.io">guslipkin.github.io</a>
+   		<a href="https://guslipkin.github.io">&emsp;guslipkin.github.io</a>
    </div>
 </div>
 <!--
@@ -79,14 +76,10 @@ title: "My Résumé"
 ### Education
 <div style="text-indent: -1.5em; padding-left: 1.5em;">
 	<span style="color:#e91d63"><b>Florida Polytechnic University</b></span>
-	<span style="color:#2e4440"><em> – Associate of Arts</em> | <em>Bachelor of Science, Business Analytics with concentrations in Quantitative Economics & Econometrics and Intelligent Mobility</em></span>
-</div>
-<div style="text-indent: -1.5em; padding-left: 1.5em;">
-	<span style="color:#e91d63"><b>Florida Polytechnic University</b></span>
-	<br>
-	<span style="color:#2e4440"><em>– Associate of Arts</em></span>
 	<br>
 	<span style="color:#2e4440"><em>– Bachelor of Science, Business Analytics with concentrations in Quantitative Economics & Econometrics and Intelligent Mobility</em></span>
+	<br>
+	<span style="color:#2e4440"><em>– Associate of Arts</em></span>
 </div>
 <p style="color:#666666; font-size: 12px;">August 2018 - May 2022</p>
 <p style="text-indent: 1.5em; font-size: 14px;"><b>Selected Courses</b></p>
@@ -101,7 +94,7 @@ title: "My Résumé"
 	<div class="container">
    	<div class="column column-one"><ul><li>Operations and Supply Chain & Operations Research</li></ul></div>
    	<div class="column column-two"><ul><li>Time Series Modeling and Forecasting</li></ul></div>
-   	<div class="column column-three"><ul><li>Stats I & Quantitative Methods</li></ul></div>
+   	<div class="column column-three"><ul><li>Stats I, Quantitative Methods, & Statistical Learning</li></ul></div>
    	<div class="column column-four"><ul><li>Benefit Cost Analysis & Economic Analysis</li></ul></div>
 	</div>
 </div>
@@ -119,11 +112,10 @@ title: "My Résumé"
 	<span style="color:#2e4440"><em> – AssistRx</em></span>
 </div>
 <p style="color:#666666; font-size: 12px;">January 2022 - Present</p>
-<!--
 <ul style="font-size: 14px; color:#666666;">
-	<li></li>
+	<li>Create and execute test plans to discover software problems and their causes</li>
+	<li>Document and demonstrate software features to internal and external users</li>
 </ul>
--->
 
 <div style="text-indent: -1.5em; padding-left: 1.5em;">
 	<span style="color:#e91d63"><b>Correlating Patient Feedback to Avoidable Readmissions and Patient Experience</b></span>

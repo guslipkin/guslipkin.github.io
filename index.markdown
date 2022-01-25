@@ -3,6 +3,11 @@ layout: home
 title: "Hi there 👋"
 ---
 
+<center>
+	<img src="/assets/gus_headshot_landscape.jpg"
+	style="max-height: 315px;"/>
+</center>
+<br>
 I'm Gus, a Business Analyst with a few years' experience. I'd like to show you what I do.
 
 ## Data Focused Projects
