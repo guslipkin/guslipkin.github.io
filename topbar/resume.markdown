@@ -9,8 +9,61 @@ title: "My Résumé"
 	.noBorder { border:none !important; }
 	.container { display: flex; }
 	.column { flex: 1; }
+
+	.grid-container {
+		display: grid;
+		grid-template-columns: 1fr 2fr 1fr;
+	}
+	.grid-item {
+		span: 1;
+	}
+
+	.item-1 {
+		grid-column:  1; 
+		grid-row:  1;
+		}
+	.item-2 {
+		grid-column: 2;
+		grid-row: 1;
+	}
+	.item-3 {
+		grid-column: 3;
+		grid-row: 1;
+		text-align: right;
+	}
+
+	@media (max-width: 600px) {
+		.grid-container {
+			display: grid;
+			justify-items: center;
+		}
+		.item-1 {
+			grid-column:  2; 
+			grid-row:  2;
+		}
+		.item-2 {
+			grid-column: 2;
+			grid-row: 1;
+		}
+		.item-3 {
+			grid-column: 2;
+			grid-row: 3;
+			text-align: center;
+		}
+	}
 </style>
 
+<div class="grid-container" style="padding-left: 1.5em; font-size: 14px; align-items: center;">
+   <div class="item-1">
+   		<a href="mailto:gus.lipkin@gmail.com">gus.lipkin@gmail.com</a>
+   	</div>
+   <div class="item-2" style="color:#e91d63; font-size: 32px;"><center><b>Gus Lipkin</b></center></div>
+   <div class="item-3">
+   		<a href="https://linkedin.com/in/guslipkin/">linkedin.com/in/guslipkin/</a>
+   		<a href="https://guslipkin.github.io">guslipkin.github.io</a>
+   </div>
+</div>
+<!--
 <div class="container" style="padding-left: 1.5em; font-size: 14px; align-items: center;">
    <div class="column column-one">
    		<a href="mailto:gus.lipkin@gmail.com">gus.lipkin@gmail.com</a>
@@ -21,11 +74,19 @@ title: "My Résumé"
    		<a href="https://guslipkin.github.io">guslipkin.github.io</a>
    </div>
 </div>
+-->
 <hr>
 ### Education
 <div style="text-indent: -1.5em; padding-left: 1.5em;">
 	<span style="color:#e91d63"><b>Florida Polytechnic University</b></span>
-	<span style="color:#2e4440"><em> – BS, Business Analytics with concentrations in Quantitative Economics & Econometrics and Intelligent Mobility</em></span>
+	<span style="color:#2e4440"><em> – Associate of Arts</em> | <em>Bachelor of Science, Business Analytics with concentrations in Quantitative Economics & Econometrics and Intelligent Mobility</em></span>
+</div>
+<div style="text-indent: -1.5em; padding-left: 1.5em;">
+	<span style="color:#e91d63"><b>Florida Polytechnic University</b></span>
+	<br>
+	<span style="color:#2e4440"><em>– Associate of Arts</em></span>
+	<br>
+	<span style="color:#2e4440"><em>– Bachelor of Science, Business Analytics with concentrations in Quantitative Economics & Econometrics and Intelligent Mobility</em></span>
 </div>
 <p style="color:#666666; font-size: 12px;">August 2018 - May 2022</p>
 <p style="text-indent: 1.5em; font-size: 14px;"><b>Selected Courses</b></p>
@@ -53,6 +114,17 @@ title: "My Résumé"
 </div>
 
 ### Experience
+<div style="text-indent: -1.5em; padding-left: 1.5em;">
+	<span style="color:#e91d63"><b>Software Quality Assurance Analyst</b></span>
+	<span style="color:#2e4440"><em> – AssistRx</em></span>
+</div>
+<p style="color:#666666; font-size: 12px;">January 2022 - Present</p>
+<!--
+<ul style="font-size: 14px; color:#666666;">
+	<li></li>
+</ul>
+-->
+
 <div style="text-indent: -1.5em; padding-left: 1.5em;">
 	<span style="color:#e91d63"><b>Correlating Patient Feedback to Avoidable Readmissions and Patient Experience</b></span>
 	<span style="color:#2e4440"><em> – Tallahassee Memorial Healthcare</em></span>
