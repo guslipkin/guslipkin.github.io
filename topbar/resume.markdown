@@ -14,7 +14,6 @@ title: "My Résumé"
 		display: grid;
 		grid-template-columns: 1fr 2fr 1fr;
 	}
-
 	.item-1 {
 		grid-column:  1; 
 		grid-row:  1;
@@ -27,6 +26,25 @@ title: "My Résumé"
 		grid-column: 3;
 		grid-row: 1;
 		text-align: right;
+	}
+
+	.grid-job {
+		display: grid;
+		grid-template-columns: 3fr 1fr;
+	}
+	.job {
+		grid-column: 1;
+		grid-row:  1;
+		color: #e91d63;
+		text-indent: -1.5em; 
+		padding-left: 1.5em;
+	}
+	.time {
+		grid-column: 2;
+		grid-row: 1;
+		text-align: right;
+		color:  #666666;
+		font-size: 12px;
 	}
 
 	@media (max-width: 700px) {
@@ -47,6 +65,25 @@ title: "My Résumé"
 			grid-row: 3;
 			text-align: center;
 		}
+
+		.grid-job {
+			display: grid;
+			grid-template-columns: 1fr;
+		}
+		.job {
+			grid-column: 1;
+			grid-row:  1;
+			color: #e91d63;
+			text-indent: -1.5em; 
+			padding-left: 1.5em;
+		}
+		.time {
+			grid-column: 1;
+			grid-row: 2;
+			text-align: left;
+			color:  #666666;
+			font-size: 12px;
+		}
 	}
 </style>
 
@@ -57,32 +94,22 @@ title: "My Résumé"
    <div class="item-2" style="color:#e91d63; font-size: 32px;"><center><b>Gus Lipkin</b></center></div>
    <div class="item-3">
    		<a href="https://linkedin.com/in/guslipkin/">linkedin.com/in/guslipkin/</a>
-   		<a href="https://guslipkin.github.io">&emsp;guslipkin.github.io</a>
-   </div>
-</div>
-<!--
-<div class="container" style="padding-left: 1.5em; font-size: 14px; align-items: center;">
-   <div class="column column-one">
-   		<a href="mailto:gus.lipkin@gmail.com">gus.lipkin@gmail.com</a>
-   	</div>
-   <div class="column column-two"><center><h2 style="color:#e91d63">Gus Lipkin</h2></center></div>
-   <div class="column column-three" style="text-align: right;">
-   		<a href="https://linkedin.com/in/guslipkin/">linkedin.com/in/guslipkin/</a>
+   		<br>
    		<a href="https://guslipkin.github.io">guslipkin.github.io</a>
    </div>
 </div>
--->
 <hr>
 ### Education
-<div style="text-indent: -1.5em; padding-left: 1.5em;">
-	<span style="color:#e91d63"><b>Florida Polytechnic University</b></span>
-	<br>
-	<span style="color:#2e4440"><em>– Bachelor of Science, Business Analytics with concentrations in Quantitative Economics & Econometrics and Intelligent Mobility</em></span>
-	<br>
-	<span style="color:#2e4440"><em>– Associate of Arts</em></span>
+<div class="grid-job">
+	<div class="job"><b>Florida Polytechnic University</b></div>
+	<div class="time">August 2018 - May 2022</div>
 </div>
-<p style="color:#666666; font-size: 12px;">August 2018 - May 2022</p>
-<p style="text-indent: 1.5em; font-size: 14px;"><b>Selected Courses</b></p>
+<div style="text-indent: -1.5em; padding-left: 1.5em;">
+	<span style="color:#2e4440; padding-left: 1.5em;"><em>– Bachelor of Science, Business Analytics with concentrations in Quantitative Economics & Econometrics and Intelligent Mobility</em></span>
+	<br>
+	<span style="color:#2e4440;"><em>– Associate of Arts</em></span>
+</div>
+<p style="text-indent: 1em; font-size: 14px;"><b>Selected Courses</b></p>
 
 <div style="padding-left: 1.5em; font-size: 14px; color: #666666;">
 	<div class="container">
@@ -94,12 +121,12 @@ title: "My Résumé"
 	<div class="container">
    	<div class="column column-one"><ul><li>Operations and Supply Chain & Operations Research</li></ul></div>
    	<div class="column column-two"><ul><li>Time Series Modeling and Forecasting</li></ul></div>
-   	<div class="column column-three"><ul><li>Stats I, Quantitative Methods, & Statistical Learning</li></ul></div>
+   	<div class="column column-three"><ul><li>Statistics, Quantitative Methods, & Statistical Learning</li></ul></div>
    	<div class="column column-four"><ul><li>Benefit Cost Analysis & Economic Analysis</li></ul></div>
 	</div>
 </div>
 
-<p style="text-indent: 1.5em; font-size: 14px;"><b>Software and Programming</b></p>
+<p style="text-indent: 1em; font-size: 14px;"><b>Software and Programming</b></p>
 <div class="container" style="padding-left: 1.5em; font-size: 14px; color: #666666;">
    <div class="column column-one"><ul><li>R and RStudio</li></ul></div>
    <div class="column column-two"><ul><li>SQL, Redis, Neo4J</li></ul></div>
@@ -107,52 +134,64 @@ title: "My Résumé"
 </div>
 
 ### Experience
-<div style="text-indent: -1.5em; padding-left: 1.5em;">
-	<span style="color:#e91d63"><b>Software Quality Assurance Analyst</b></span>
-	<span style="color:#2e4440"><em> – AssistRx</em></span>
+<div class="grid-job">
+	<div class="job">
+		<span><b>Software Quality Assurance Analyst</b></span>
+		<span style="color:#2e4440"><em> – AssistRx</em></span>
+	</div>
+	<div class="time">January 2022 - Present</div>
 </div>
-<p style="color:#666666; font-size: 12px;">January 2022 - Present</p>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Create and execute test plans to discover software problems and their causes</li>
 	<li>Document and demonstrate software features to internal and external users</li>
 </ul>
 
-<div style="text-indent: -1.5em; padding-left: 1.5em;">
-	<span style="color:#e91d63"><b>Correlating Patient Feedback to Avoidable Readmissions and Patient Experience</b></span>
+<div class="grid-job">
+	<div class="job">
+		<span><b>Data Science Project Team Lead</b></span>
 	<span style="color:#2e4440"><em> – Tallahassee Memorial Healthcare</em></span>
+	</div>
+	<div class="time">August 2021 - Present</div>
 </div>
-<p style="color:#666666; font-size: 12px;">August 2021 - Present</p>
 <ul style="font-size: 14px; color:#666666;">
+	<li>Correlate Patient Feedback to Avoidable Readmissions and Patient Experience</li>
 	<li>Work with capstone sponsor to define project timeline and goals</li>
 	<li>Analyze discharge survey data to find correlations between responses and readmission rates using R and RStudio</li>
 </ul>
 
-<div style="text-indent: -1.5em; padding-left: 1.5em;">
-	<span style="color:#e91d63"><b>Investigating the Spatio-Temporal Relationship of Different Climate Variables with the Spread of SARS-CoV-2 Using GIS and Multivariate Regressions</b></span>
+<div class="grid-job">
+	<div class="job">
+		<span><b>Research Intern</b></span>
 	<span style="color:#2e4440"><em> – iCompBio</em></span>
+	</div>
+	<div class="time">May 2021 - August 2021</div>
 </div>
-<p style="color:#666666; font-size: 12px;">May 2021 - August 2021</p>
 <ul style="font-size: 14px; color:#666666;">
+	<li>Investige the Spatio-Temporal Relationship of Different Climate Variables with the Spread of SARS-CoV-2 Using GIS and Multivariate Regressions</li>
 	<li>Gather and process time series data of geospatial climate variables and SARS-CoV-2 data</li>
 	<li>Analyze data in ArcGIS to investigate variable relationships</li>
 </ul>
 
-<div style="text-indent: -1.5em; padding-left: 1.5em;">
-	<span style="color:#e91d63"><b>RAMCO Transition Assistant Project Manager and Data Analyst</b></span>
-	<span style="color:#2e4440"><em> – Draken International</em></span>
+<div class="grid-job">
+	<div class="job">
+		<span><b>Data Analyst and Assistant Project Manager</b></span>
+		<span style="color:#2e4440"><em> – Draken International</em></span>
+	</div>
+	<div class="time">December 2020 - September 2021</div>
 </div>
-<p style="color:#666666; font-size: 12px;">December 2020 - September 2021</p>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Oversee a team of interns and supervise data transition efforts</li>
 	<li>Coordinate with project managers to ensure a successful data migration</li>
 	<li>Create and run weekly parts availability analysis and reports using R and RStudio</li>
 </ul>
 
-<div style="text-indent: -1.5em; padding-left: 1.5em;">
-	<span style="color:#e91d63"><b>Research Assistant</b></span>
-	<span style="color:#2e4440"><em> – Florida Polytechnic University</em></span>
+<div class="grid-job">
+	<div class="job">
+		<span ><b>Research Assistant</b></span>
+		<span style="color:#2e4440"><em> – Florida Polytechnic University</em></span>
+	</div>
+	<div class="time">May 2020 - August 2020</div>
 </div>
-<p style="color:#666666; font-size: 12px;">May 2020 - August 2020</p>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Assist in all facets of research, including but not limited to, data transcription, analysis in R and RStudio, and writing reports</li>
 	<li>Attend daily meetings to give updates on project progress and discuss data discoveries</li>
