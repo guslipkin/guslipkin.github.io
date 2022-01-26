@@ -14,7 +14,6 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Gus Lipkin's Portfolio Project
-email: gus.lipkin@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Hi there! I'm Gus, a Business Analyst with a few years' experience. 
   Take a look around to learn more about what I do.
