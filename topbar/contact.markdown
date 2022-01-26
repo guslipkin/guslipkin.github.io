@@ -40,13 +40,13 @@ title: "Contact Me"
 </style>
 
 <form action="https://getform.io/f/48d79c83-3c81-4b2c-9e3f-866352164fa5" method="POST">
-    <p style="font-size: 24px;">Name</p>
+    <p style="font-size: 24px;">Name<b style="color: red;">*</b></p>
     <input type="text" name="name" required/>
     <p style="font-size: 24px;">Company</p>
     <input type="text" name="company">
-    <p style="font-size: 24px;">Email</p>
+    <p style="font-size: 24px;">Email<b style="color: red;">*</b></p>
     <input type="email" name="email" size="50" required/>
-    <p style="font-size: 24px;">Message</p>
+    <p style="font-size: 24px;">Message<b style="color: red;">*</b></p>
     <textarea type="text" name="message" rows="5" cols="50" required></textarea>
     <br>
     <p><em>&ensp;Sending this form will take you to an external thank you page</em></p>
