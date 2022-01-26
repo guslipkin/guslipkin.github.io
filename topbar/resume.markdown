@@ -138,7 +138,7 @@ title: "My Résumé"
 	/* end attribution */
 </style>
 
-<h3><a href="/assets/Gus_Lipkin_Resume_for_GitHub.pdf/">🖨 Print a copy</a></h3>
+<h3><a href="/assets/Gus_Lipkin_Resume_for_GitHub.pdf">🖨 Print a copy</a></h3>
 
 <div class="letter resumeClass" id="resume">
 
