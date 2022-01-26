@@ -102,7 +102,7 @@ title: "My Résumé"
 ### Education
 <div class="grid-job">
 	<div class="job"><b>Florida Polytechnic University</b></div>
-	<div class="time">August 2018 - May 2022</div>
+	<div class="time">Aug 2018 - May 2022</div>
 </div>
 <div style="text-indent: -1.5em; padding-left: 1.5em;">
 	<span style="color:#2e4440; padding-left: 1.5em;"><em>– Bachelor of Science, Business Analytics with concentrations in Quantitative Economics & Econometrics and Intelligent Mobility</em></span>
@@ -139,7 +139,7 @@ title: "My Résumé"
 		<span><b>Software Quality Assurance Analyst</b></span>
 		<span style="color:#2e4440"><em> – AssistRx</em></span>
 	</div>
-	<div class="time">January 2022 - Present</div>
+	<div class="time">Jan 2022 - Present</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Create and execute test plans to discover software problems and their causes</li>
@@ -151,7 +151,7 @@ title: "My Résumé"
 		<span><b>Data Science Project Team Lead</b></span>
 	<span style="color:#2e4440"><em> – Tallahassee Memorial Healthcare</em></span>
 	</div>
-	<div class="time">August 2021 - Present</div>
+	<div class="time">Aug 2021 - Present</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Correlate Patient Feedback to Avoidable Readmissions and Patient Experience</li>
@@ -164,7 +164,7 @@ title: "My Résumé"
 		<span><b>Research Intern</b></span>
 	<span style="color:#2e4440"><em> – iCompBio</em></span>
 	</div>
-	<div class="time">May 2021 - August 2021</div>
+	<div class="time">May 2021 - Aug 2021</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Investige the Spatio-Temporal Relationship of Different Climate Variables with the Spread of SARS-CoV-2 Using GIS and Multivariate Regressions</li>
@@ -177,7 +177,7 @@ title: "My Résumé"
 		<span><b>Data Analyst and Assistant Project Manager</b></span>
 		<span style="color:#2e4440"><em> – Draken International</em></span>
 	</div>
-	<div class="time">December 2020 - September 2021</div>
+	<div class="time">Dec 2020 - Sep 2021</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Oversee a team of interns and supervise data transition efforts</li>
@@ -190,7 +190,7 @@ title: "My Résumé"
 		<span ><b>Research Assistant</b></span>
 		<span style="color:#2e4440"><em> – Florida Polytechnic University</em></span>
 	</div>
-	<div class="time">May 2020 - August 2020</div>
+	<div class="time">May 2020 - Aug 2020</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Assist in all facets of research, including but not limited to, data transcription, analysis in R and RStudio, and writing reports</li>
@@ -198,11 +198,23 @@ title: "My Résumé"
 </ul>
 
 ### Professional Organizations
-<div style="text-indent: -1.5em; padding-left: 1.5em;">
-	<span style="color:#e91d63"><b>Director of Standards and Enforcement</b></span>
+<div class="grid-job">
+	<div class="job">
+		<span><b>Student Body Vice-President</b></span>
 	<span style="color:#2e4440"><em> – Florida Polytechnic University Student Government Association</em></span>
+	</div>
+	<div class="time">Jan 2022 - Present</div>
 </div>
-<p style="color:#666666; font-size: 12px;">May 2020 - Present</p>
+<ul style="font-size: 14px; color:#666666;">
+	<!--<li></li>-->
+</ul>
+<div class="grid-job">
+	<div class="job">
+		<span><b>Director of Standards and Enforcement</b></span>
+	<span style="color:#2e4440"><em> – Florida Polytechnic University Student Government Association</em></span>
+	</div>
+	<div class="time">May 2020 - Jan 2022</div>
+</div>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Manage the SGA SharePoint and CampusLabs</li>
 	<li>Track SGA and Registered Student Organization assets</li>
