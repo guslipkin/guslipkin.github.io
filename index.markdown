@@ -10,6 +10,8 @@ title: "Hi there 👋"
 <br>
 I'm Gus, a Business Analyst with a few years' experience. I'd like to show you what I do.
 
+You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipkin</a> or on Medium also <a href="https://guslipkin.medium.com">@guslipkin</a>.
+
 ## Data Focused Projects
 
 ### [Disney World ride wait times](/presentations/disney_world_ride_wait_times/)
