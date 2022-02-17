@@ -54,9 +54,7 @@ I'm Gus, a Business Analyst with a few years' experience. I'd like to show you w
 
 You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipkin</a> or on Medium also <a href="https://guslipkin.medium.com">@guslipkin</a>.
 
-<!--
 <a target="_blank" href="https://github-readme-medium-recent-article.vercel.app/medium/guslipkin/0"><img src="https://github-readme-medium-recent-article.vercel.app/medium/guslipkin/0" alt="Recent Article 0"> 
--->
 
 <h2>Data Focused Projects</h2>
 
