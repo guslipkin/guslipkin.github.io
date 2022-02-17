@@ -1,6 +1,6 @@
 ---
 layout: post
-permalink: "/tmh"
+permalink: "/capstone"
 title: "Patient Readmission Rates"
 ---
 

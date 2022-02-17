@@ -4,7 +4,7 @@ permalink: "/resume"
 title: "My Résumé"
 ---
 
-<link rel="stylesheet" href="../assets/resume.css">
+<link rel="stylesheet" href="../assets/wide.css">
 
 <style>
 	#center { width: 70%; }
