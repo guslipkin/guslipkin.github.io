@@ -3,7 +3,7 @@ layout: post
 title: "Hi there 👋"
 ---
 
-<link rel="stylesheet" href="../assets/wide.css">
+<link rel="stylesheet" href="../assets/css/wide.css">
 
 <style>
 .grid-container {
