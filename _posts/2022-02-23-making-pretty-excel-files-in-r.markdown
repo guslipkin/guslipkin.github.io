@@ -14,6 +14,8 @@ title: "Making Pretty Excel Files in R"
 	}
 </style>
 
+<a href="https://guslipkin.medium.com/making-pretty-excel-files-in-r-46a15c7a2ee8"><em>Link to the Medium post</em></a>
+
 It's a tale as old as time. Your boss gave you a bunch of Excel files and you painstakingly made a bot that will import and display them in a Shiny dashboard. Proud of your work, you take it to your boss and they say "I don't know what a 'Shiny' is, can't you just give me one of those Excels back?" `openxlsx` makes this easy.
 
 Today we're going to recreate an existing workbook with openxlsx. To get started, I made a small `.xlsx` file for us to work with that can be downloaded <a href="https://guslipkin.github.io/assets/posts/2022-02-23-making-pretty-excel-files-in-r/bbq.xlsx">here</a>. It's an attendance list and some notes on supplies you'll need for a company barbecue. Feel free to get familiar with it then come back here when you're ready.
