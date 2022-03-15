@@ -177,7 +177,7 @@ title: "My Résumé"
    <div class="flex-item"><ul><li>R and RStudio</li></ul></div>
    <div class="flex-item"><ul><li>SQL, Redis, Neo4J</li></ul></div>
    <div class="flex-item"><ul><li>Stata</li></ul></div>
-   <div class="flex-item"></div>
+   <div class="flex-item"><ul><li>Apache Spark</li></ul></div>
 </div>
 
 <h3 style="margin-bottom: 0px;">Experience</h3>
