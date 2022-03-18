@@ -95,15 +95,14 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 </div>
 
 <hr>
-<h2>Other Projects</h2>
-
+<h2>Software Development</h2>
 <div class="grid-container">
-    <div class="title-1 title"><h4><a href="/presentations/cat_simulator_2019/">Cat Simulator 2019</a></h4></div>
+    <div class="title-1 title"><h4><a href="/dewey/index.html">{dewey}📦</a></h4></div>
     <div class="content-1 content"><ul>
-      <li><b>What:</b> Can we make a game that teaches basic Bash commands?</li>
-      <li><b>Why:</b> It's a final project for COP 3353C – Introduction to Unix.</li>
-      <li><a href="https://github.com/guslipkin/Lark"><b>How:</b> </a><code>Bash</code></li>
-      <li><b>Conclusion:</b> It's lots of fun. I highly recommend it!</li>
+      <li><b>What:</b> A collection of useful <code>R</code> functions for data analysis</li>
+      <li><b>Why:</b> There were some things I wanted to do and they didn't exist yet, so I made them</li>
+      <li><a href="https://github.com/guslipkin/dewey"><b>How:</b> </a><code>R: {data.table, parallel, pkgdown, stats}</code></li>
+      <li><b>Conclusion:</b> Development is difficult, but I'm proud of it and it's super useful</li>
     </ul></div>
     <div class="title-2 title"><h4><a href="https://flpolysga.github.io/">FLPolySGA.github.io</a></h4></div>
     <div class="content-2 content"><ul>
@@ -113,19 +112,34 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
       <li><b>Conclusion:</b> It ain't much, but it's honest work.</li>
     </ul></div>
 </div>
+
+<hr>
+<h2>Other Projects</h2>
+
 <div class="grid-container">
-  <div class="title-1 title"><h4><a href="/presentations/spreadsheet_guide/">Gus' Good Spreadsheet Guide</a></h4></div>
+    <div class="title-1 title"><h4><a href="/presentations/spreadsheet_guide/">Gus' Good Spreadsheet Guide</a></h4></div>
     <div class="content-1 content"><ul>
       <li><b>What:</b> A slideshow with guidelines for high quality spreadsheets</li>
       <li><b>Why:</b> Sometimes people ask for help with spreadsheets and it's easier to help with consistent design</li>
       <li><b>How:</b> <code>Microsoft PowerPoint</code></li>
       <li><b>Conclusion:</b> While it is by no means exhaustive, it's a good start and I hope someone finds it useful</li>
     </ul></div>
-    <div class="title-2 title"><h4>Consulting</h4></div>
+    <div class="title-2 title"><h4><a href="/presentations/cat_simulator_2019/">Cat Simulator 2019</a></h4></div>
     <div class="content-2 content"><ul>
-      <li><b>What:</b> That's up to you!</li>
-      <li><b>Why:</b> I have a lot to offer you and your company in a variety of fields.</li>
-      <li><b>How:</b> If you'd like to work with me but, you're not sure where I might fit in, this page and <a href="/resume/">my résumé</a> are a great place to start</li>
-      <li><b>Conclusion:</b> It's time to <a href="/contact/">contact me</a> and get the ball rolling!</li>
+      <li><b>What:</b> Can we make a game that teaches basic Bash commands?</li>
+      <li><b>Why:</b> It's a final project for COP 3353C – Introduction to Unix.</li>
+      <li><a href="https://github.com/guslipkin/Lark"><b>How:</b> </a><code>Bash</code></li>
+      <li><b>Conclusion:</b> It's lots of fun. I highly recommend it!</li>
     </ul></div>
-  </div>
+</div>
+
+<hr>
+<h2>Consulting</h2>
+<div class="grid-container">
+  <div class="content"><ul>
+    <li><b>What:</b> That's up to you!</li>
+    <li><b>Why:</b> I have a lot to offer you and your company in a variety of fields.</li>
+    <li><b>How:</b> If you'd like to work with me but, you're not sure where I might fit in, this page and <a href="/resume/">my résumé</a> are a great place to start</li>
+    <li><b>Conclusion:</b> It's time to <a href="/contact/">contact me</a> and get the ball rolling!</li>
+  </ul></div>
+</div>
