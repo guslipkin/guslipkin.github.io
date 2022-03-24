@@ -97,7 +97,7 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 <hr>
 <h2>Software Development</h2>
 <div class="grid-container">
-    <div class="title-1 title"><h4><a href="/dewey/index.html">{dewey}📦</a></h4></div>
+    <div class="title-1 title"><h4><a href="/dewey/index.html">{dewey}<img src="dewey/logo.svg" height=40/></a></h4></div>
     <div class="content-1 content"><ul>
       <li><b>What:</b> A collection of useful <code>R</code> functions for data analysis</li>
       <li><b>Why:</b> There were some things I wanted to do and they didn't exist yet, so I made them</li>
