@@ -1,7 +1,128 @@
 ---
-title: "guslipkin.github.io"
+title: "Hi There 👋"
+format:
+  html:
+    theme: default
+    toc-title: My Projects
+    toc: true
+    toc-location: right
+$enable-grid-classes: false
+$enable-cssgrid: true
 ---
 
-This is a Quarto website.
+<style>
+  code { white-space: normal; }
+</style>
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+<center><img src="/assets/gus_headshot_landscape.jpg" style="max-height: 315px;"/></center>
+<br>
+
+I'm Gus, a Business Analyst with a few years' experience. I'd like to show you what I do.
+
+You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipkin</a> or on Medium also <a href="https://guslipkin.medium.com">@guslipkin</a>.
+
+----
+
+::: {.column-page}
+## Data Focused Projects
+:::
+::: {.grid .column-page}
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+#### [Disney World Ride Wait Times](/presentations/disney_world_ride_wait_times/)
+:::
+::: {.g-col-12 .d-flex .align-items-start}
+- **What:** Can I find the best time to visit Disney World 🏰 based on ride wait times?
+- **Why:** Going to Disney can be lots of fun, but waiting in lines is not.
+- **[How](https://github.com/guslipkin/disney_ds):** `R: {forcats, lubridate, reshape2, tidyverse}`
+- **Conclusion:** Try going to Epcot on a Wednesday in September.
+:::
+:::
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+#### [Investigating a relationship between climate variables and the spread of COVID-19](/presentations/covid_time_series_gis/)
+:::
+::: {.g-col-12}
+- **What:** Since COVID-19 🦠 is spread through close contact, do any climate variables influence spread?
+- **Why:** Human behavior is affected by the weather. If there is adverse weather, is there an increase in spread?
+- **[How](https://github.com/guslipkin/COVID-TimeSeries-GIS):** `ArcGIS`, `Excel`, `R: {data.table, tidyverse}`
+- **Conclusion:** Some counties can be modelled very well such as Cook County, Illinois while others, such as Tift County, Georgia, not so much.
+:::
+:::
+:::
+
+::: {.column-page}
+## Economic Analysis Focused Projects
+:::
+::: {.grid .column-page}
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+#### [Improving Tutoring at Florida Poly](/presentations/tutoring_at_poly/)
+:::
+::: {.g-col-12 .text-wrap}
+- **What:** How can we make tutoring more available to students?
+- **Why:** Getting tutoring for the classes you need can be difficult, especially when trying to fit it into your schedule.
+- **[How](https://github.com/guslipkin/Fall2021/tree/main/ECO%203930%20%7E%20Contemporary%20Economics/Final%20Paper):** `✨Math✨`
+- **Conclusion:** A hybrid model where high demand classes offer group tutoring and all classes have one-on-one tutoring would be most efficient.
+:::
+:::
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+#### [Trader Joe's Cultural and Marketing Plan](/presentations/trader_joes_cultural_marketing_plan/)
+:::
+::: {.g-col-12}
+- **What:** Let's help Trader Joe's enter the Canadian supermarket industry.
+- **Why:** It's a final project for GEB 3373 – International and Comparative Dimensions of Business.
+- **[How](https://github.com/guslipkin/Spring2021/blob/main/GEB%203373%20%7E%20International%20Comparative%20Dimensions/GEB%203373%20Final%20Project):**`Economic Analysis` and `Game Theory`
+- **Conclusion:** Trader Joe's has the potential to be a smash hit in the Canadian Supermarket industry.
+:::
+:::
+:::
+
+::: {.column-page}
+## Software Development
+:::
+::: {.grid .column-page}
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+#### [{dewey}![](dewey/logo.svg){height=40}](/dewey/index.html)
+:::
+::: {.g-col-12 .text-wrap}
+- **What:** A collection of useful `R` functions for data analysis
+- **Why:** There were some things I wanted to do and they didn't exist yet, so I made them
+- **[How](https://github.com/guslipkin/dewey):** `R: {data.table, parallel, pkgdown, stats}`
+- **Conclusion:** Development is difficult, but I'm proud of it and it's super useful
+:::
+:::
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+#### [FLPolySGA.github.io](https://flpolysga.github.io)
+:::
+::: {.g-col-12}
+- **What:** Let's make a website with all the Student Government documents.
+- **Why:** It's important that Student Government stay in compliance with Florida Sunshine Laws.
+- **[How](https://github.com/FLPolySGA/FLPolySGA.github.io):** `GitHub Pages`, `Jekyll`, `Markdown`, `HTML`, and `CSS`
+- **Conclusion:** It ain't much, but it's honest work.
+:::
+:::
+:::
+
+::: {.column-page}
+## Consulting
+:::
+::: {.grid .column-page}
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+:::
+::: {.g-col-12 .text-wrap}
+- **What:** That's up to you!
+- **Why:** I have a lot to offer you and your company in a variety of fields.</li>
+- **How:** If you'd like to work with me but, you're not sure where I might fit in, this page and [my résumé](/resume) are a great place to start
+- **Conclusion:** It's time to [contact me](/contact) and get the ball rolling!
+:::
+:::
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+:::
+:::
+:::

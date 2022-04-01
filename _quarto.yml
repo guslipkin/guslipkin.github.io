@@ -2,13 +2,25 @@ project:
   type: website
 
 website:
-  title: "guslipkin.github.io"
+  title: "Gus Lipkin's Awesome Website"
   navbar:
     background: primary
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+      - href: about.qmd
+        text: About Me
+      - href: resume.qmd
+        text: My Résumé
+      - href: blog.qmd
+        text: My Blog
+      - href: contact.qmd
+        text: Contact Me
+    right:
+      - href: https://www.linkedin.com/in/guslipkin/
+        icon: linkedin
+      - href: https://www.github.com/guslipkin/disney_ds
+        icon: github
+      - href: https://www.twitter.com/GusLipkin
+        icon: twitter
 
 format:
   html:

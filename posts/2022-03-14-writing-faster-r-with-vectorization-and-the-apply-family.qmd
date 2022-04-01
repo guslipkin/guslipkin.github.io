@@ -1,0 +1,297 @@
+---
+title: "Writing Faster R With Vectorization and the Apply Family"
+author: Gus Lipkin
+date: "2022/03/14"
+categories:
+  - R
+  - apply
+format:
+  html:
+    theme: default
+    toc: true
+---
+
+[*Link to the Medium post*](https://guslipkin.medium.com/writing-faster-r-with-vectorization-and-the-apply-family-ff6078a2583a)
+
+One of my favorite things about R is that there are a lot of ways to do the same thing. Of course, this means that some ways are better than others depending on the use case. `for` loops, the `apply` family, and vectorization are all common ways to write code for large amounts of data in R, but it can be tricky to know when to use each one and how to use them.
+
+I’ve divided this post into how to use each method in R and then give a few examples of when you might want to use each one. I close everything out with a short benchmark demonstration to compare the three.
+
+----
+
+## What is a(n)...
+### `for` loop
+
+*If you’re familiar with programming, you can probably skip this section.*
+
+A for loop lets you run the same code a specified number of times. The structure generally follows `for(x in y)` where `x` represents an item in `y`. If we think about a shopping basket with some apples, bananas, and carrots, we could write `for(food in basket)` and food would represent each item in our basket. It would be apples the first time, bananas the second time, and carrots the third time. We could also write it as `for(food in 1:length(basket))` where `1:length(basket)` is a vector of numbers that counts the items in your basket. Rather than food representing an item in your basket, it represents an index in the vector. In this example, apples are at index 1, bananas at 2, and carrots at 3. `for` loops are also very flexible and can be used on many data types such as vectors, data.frames, and matrices.
+
+Let’s say you have a `data.frame` called `basket` that has three columns. It has the `Food` column with the name of the food, the `PricePerUnit` which has the unit cost for each food, and `Quantity` which has the number of units of each food in your basket. It looks like this:
+
+| Food    | PricePerUnit | Quantity |
+|---------|--------------|----------|
+| Apples  | 0.99         | 12       |
+| Bananas | 0.19         | 6        |
+| Carrots | 0.49         | 2        |
+
+And it can be recreated with this:
+
+```{r}
+basket <- data.frame("Food" = c("Apples", "Bananas", "Carrots"),
+                     "PricePerUnit" = c(.99, .19, .49),
+                     "Quantity" = c(12, 6, 2))
+```
+
+If we wanted to get the total cost of everything in our basket, we could iterate over each row multiplying the `PricePerUnit` and `Quantity` and adding those to our running totals.
+
+```{r}
+# create the total
+total <- 0
+# loop over the data.frame and add the running total
+for(row in 1:nrow(basket))
+  total <- total + (basket$PricePerUnit[row] * basket$Quantity[row])
+total
+```
+
+### `apply` family
+
+The `apply` family is part of base R and very similar to a for loop. Rather than running a set number of times, an `apply` runs a function on each item in a `data.frame`, `list`, `vector`, or other object that can be applied to. While there are six different functions in the `apply` family, I’m only going to talk about the three most common; `apply`, `lapply`, and `sapply`.
+
+The biggest differences between the three is the types of input that they accept and their output types. `apply` takes in a `data.frame` or matrix and has three function arguments. The first argument, `x`, is the object we’re passing to it. The second argument is a number, either 1 or 2 or `c(1, 2)`, that says if we want the function applied to rows, columns, or both rows and columns, respectively. The last argument is the function call. `sapply` and `lapply` are the same, except they don’t have the second argument because they take either a vector or list which don’t have multiple dimensions. Generally speaking, the `apply` family will return a vector, list, or array of some kind.
+
+If we go back to the shopping basket example, we can calculate the total with an `apply` function. Our first argument is the `basket`, the second is a `1` because we want to `apply` to every row, and the last is the function call. We can create the function in the `apply` call or we can create it earlier and then call it here.
+
+```{r}
+# multiply each PricePerUnit and Quantity and store the resulting vector
+perItemTotal <- apply(basket, 1, function(bskt) {
+  as.numeric(bskt["PricePerUnit"]) * as.numeric(bskt["Quantity"])
+})
+# sum all values in the perItemTotal
+sum(perItemTotal)
+```
+
+**A quick note on function calls in the apply family:**
+
+If a function call only has one argument, they can be done in three ways.
+1. `sapply(X, function(x) { ... })` if function is not predefined
+2. `sapply(X, function)` if function is predefined
+3. `sapply(X, function(x))` if function is predefined
+
+Option two is most common for built-in functions such as `sum` or `as.numeric`, but can be used with any function.
+
+### Vector Operations
+
+Vector operations are not a function like the `apply` family or a `for` loop, but rather a feature of the R language. Instead of operating on a vector one item at a time, R is able to do an operation on the entire vector in one line of code. Back to the basket example again, we know that the per item total is the `PricePerUnit` and `Quantity` multiplied together, and then we get the grand total by summing all of those values.
+
+```{r}
+# take the sum of multiplying PerPriceUnit and Quantity to get total cost
+sum(basket$PricePerUnit * basket$Quantity)
+```
+
+----
+
+## When should I use a(n)...
+
+These examples are not exhaustive and you may find some cases where one is better than the others even where it seems like it might not be.
+
+### `for` loop
+
+`for` loops in R should be a last resort. They are much slower compared to the apply family and vectorized code. They may be helpful when each iteration relies on the iteration before it, although then you might want to look into a recursive function if possible. You might find a `for` loop useful if you need to run the same block of code multiple times or iterate over elements of an object in a non-standard way such as every other item. Any code that can be written with an `apply` function or a vector operation can be written in a `for` loop.
+
+### `apply` family
+The `apply` family should be used when you want to operate on each element of an object, but treat them individually. This might present as a list with vectors of differing lengths for each item or if you want a specific type of output. Any vector operation can be written as an `apply` statement, but not all `for` loops can be converted.
+
+### Vector Operations
+
+Vector operations are the gold standard. They are fast and can be used in many cases, but not all. Most common use cases will be on vectors or columns of a `data.frame`. Many base functions such as `sum` and `as.numeric` are already vectorized. Many but not all `for` loops and `apply` functions can be written as vectorized operations.
+
+----
+
+## Benchmarks
+
+### Building the input
+
+Rather than use the simple shopping basket example from before, I’ve written a small function that takes a `data.frame` of red, green, and blue values and adds a new column with the corresponding hex code.
+
+```{r}
+# create a vector of the possible hex code values (0-9 and A-F)
+hex <- c(0:9, LETTERS[1:6])
+
+# set the seed
+set.seed(2022)
+# pick the number of rows
+rows <- 10^4
+# create a data.frame of rgb values
+df <- data.frame("red" = sample(0:255, rows, replace = TRUE), 
+                 "green" = sample(0:255, rows, replace = TRUE),
+                 "blue" = sample(0:255, rows, replace = TRUE))
+```
+
+And the resulting data should look like this:
+
+| red | green | blue |
+|-----|-------|------|
+| 227 | 18    | 84   |
+| 178 | 245   | 26   |
+| 205 | 219   | 176  |
+| 54  | 236   | 205  |
+| 74  | 252   | 67   |
+| 195 | 116   | 122  |
+
+We’ve also created a vector of values that can go in a hex code with numbers 0–9 and letters A-F.
+
+### Creating the conversion function
+
+I used [this website](https://www.developintelligence.com/blog/2017/02/rgb-to-hex-understanding-the-major-web-color-codes/) for the math behind my functions. In essence, you divide each number by `16` and round down and the resulting number corresponds to a position in hex. You then take the remainder of the division and get the hex value that that number corresponds to. If our value is `227`, then our first hex code is `227/16` would round down to `14` and the remainder would be `3`. Because vectors in R start at position `1`, we add one to both for `15` and `4`. The corresponding values in hex are `E` and `3` and so the hex pair for `227` is `E3`.
+
+### Implementing the conversion function
+
+#### In a `for` loop
+
+```{r}
+# iterate over each row in df
+for(r in 1:nrow(df)) {
+  # get a value for each position in the hex code
+  # first pair
+  h1 <- hex[floor(df$red[r] / 16) + 1]
+  h2 <- hex[df$red[r] %% 16 + 1]
+  
+  # second pair
+  h3 <- hex[floor(df$green[r] / 16) + 1]
+  h4 <- hex[df$green[r] %% 16 + 1]
+
+  # third pair
+  h5 <- hex[floor(df$blue[r] / 16) + 1]
+  h6 <- hex[df$blue[r] %% 16 + 1]
+  
+  # assemble the values using `paste0` and assign it to the `hex` column for 
+  # the corresponding row
+  df$hex[r] <- paste0("#", h1, h2, h3, h4, h5, h6)
+}
+```
+
+#### In an `apply` function
+
+```{r}
+df <- df[, c("red", "green", "blue")]
+# create the rgbToHex function that takes a named vector and returns a hex code
+rgbToHex <- function(x) {
+  # get a value for each position in the hex code
+  # first pair
+  h1 <- hex[floor(x["red"] / 16) + 1]
+  h2 <- hex[x["red"] %% 16 + 1]
+  
+  # second pair
+  h3 <- hex[floor(x["green"] / 16) + 1]
+  h4 <- hex[x["green"] %% 16 + 1]
+
+  # third pair
+  h5 <- hex[floor(x["blue"] / 16) + 1]
+  h6 <- hex[x["blue"] %% 16 + 1]
+  
+  # assemble and return the hex code
+  paste0("#", h1, h2, h3, h4, h5, h6)
+}
+# call `rgbToHex` and apply it to each row in df
+df$hex <- apply(df, 1, rgbToHex)
+```
+
+#### In a vectorized function
+
+```{r}
+# paste the calculated hex codes into the new `hex` column in df
+df$hex <- paste0("#", 
+                 hex[floor(df$red / 16) + 1],
+                 hex[df$red %% 16 + 1],
+                 hex[floor(df$green / 16) + 1],
+                 hex[df$green %% 16 + 1],
+                 hex[floor(df$blue / 16) + 1],
+                 hex[df$blue %% 16 + 1])
+```
+
+#### The results
+
+| red | green | blue | hex     |
+|-----|-------|------|---------|
+| 227 | 18    | 84   | #E31254 |
+| 178 | 245   | 26   | #B2F51A |
+| 205 | 219   | 176  | #CDDBB0 |
+| 54  | 236   | 205  | #36ECCD |
+| 74  | 252   | 67   | #4AFC43 |
+| 195 | 116   | 122  | #C3747A |
+
+
+### Running the benchmark
+
+I’ve simplified the `for` loop and `apply` implementations a little bit to better match the vectorized function. This way we have a better comparison between the three. Your benchmark results may be a little different because it is a little dependent on your computer.
+
+```{r}
+#| echo: false
+rows <- 10^4
+hex <- c(0:9, LETTERS[1:6])
+
+set.seed(2022)
+dt <- data.frame("red" = sample(0:255, rows, replace = TRUE), 
+                 "green" = sample(0:255, rows, replace = TRUE),
+                 "blue" = sample(0:255, rows, replace = TRUE))
+
+rbenchmark::benchmark(
+  "for loop" = {
+    df <- dt
+    for (r in 1:nrow(df)) {
+      df$hexFor[r] <- paste0("#", 
+                             hex[floor(df$red[r] / 16) + 1],
+                             hex[df$red[r] %% 16 + 1],
+                             hex[floor(df$green[r] / 16) + 1],
+                             hex[df$green[r] %% 16 + 1],
+                             hex[floor(df$blue[r] / 16) + 1],
+                             hex[df$blue[r] %% 16 + 1]
+                             )
+    }
+  },
+  "apply" = {
+    df <- dt
+    rgbToHex <- function(x) {
+      paste0("#",
+             hex[floor(x["red"] / 16) + 1],
+             hex[x["red"] %% 16 + 1],
+             hex[floor(x["green"] / 16) + 1],
+             hex[x["green"] %% 16 + 1],
+             hex[floor(x["blue"] / 16) + 1],
+             hex[x["blue"] %% 16 + 1]
+             )
+    }
+    df$hexApply <- apply(df, 1, rgbToHex)
+  },
+  "vector" = {
+    df <- dt
+    df$hexVector <- paste0("#",
+                           hex[floor(df$red / 16) + 1],
+                           hex[df$red %% 16 + 1],
+                           hex[floor(df$green / 16) + 1],
+                           hex[df$green %% 16 + 1],
+                           hex[floor(df$blue / 16) + 1],
+                           hex[df$blue %% 16 + 1]
+                           )
+  },
+  replications = 10, order = "relative"
+)
+```
+
+| test    | replications | elapsed | relative | user.self | sys.self | user.child | sys.child |
+|---------|--------------|---------|----------|-----------|----------|------------|-----------|
+| vector  | 10           | 0.026   | 1.000    | 0.025     | 0.000    | 0          | 0         |
+| apply   | 10           | 0.536   | 20.615   | 0.530     | 0.006    | 0          | 0         |
+| forloop | 10           | 1.569   | 60.346   | 1.252     | 0.317    | 0          | 0         |
+
+The important column is relative as that shows a comparison between the three with the quickest function given a value of 1. Using an `apply` function took roughly 20x longer and a `for` loop roughly 60x longer than using a vectorized function.
+
+
+![](../assets/posts/2022-03-14-writing-faster-r-with-vectorization-and-the-apply-family/sonic.jpeg){alt="A hand drawn Sonic the Hedgehog saying “Gotta go fast”"}
+
+----
+
+The code for all the charts in this article is available [here](https://gist.github.com/guslipkin/f21dc766bac769ef69c220fe476306b4#file-basket-csv?file=vectorise.rmd). If you want to see more from me, check out [my GitHub](https://github.com/guslipkin) or [guslipkin.github.io](https://guslipkin.github.io). If you want to hear from me, I'm also on Twitter [@guslipkin](https://twitter.com/GusLipkin).
+
+<br>
+<center><em>Gus Lipkin is a Data Scientist, Business Analyst, and occasional bike mechanic</em></center>
