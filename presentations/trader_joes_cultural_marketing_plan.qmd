@@ -1,0 +1,6 @@
+---
+title: "Trader Joe's Cultural and Marketing Plan"
+site-path: "/presentations/trader_joes_cultural_marketing_plan"
+---
+
+<embed src="../assets/trader_joes_cultural_marketing_plan.pdf" type="application/pdf" width="100%" height="100%">

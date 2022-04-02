@@ -1,0 +1,28 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@import "minima";
+
+/*
+$content-width: 100%;
+
+@media screen and (min-width: 816px) {
+  	$content-width: 816px;
+}
+*/
+
+.wrapper { 
+	max-width: 100%; 
+	margin-right: auto; 
+	margin-left: auto; 
+	padding-right: 30px; 
+	padding-left: 30px; 
+}
+@media screen and (min-width: 816px) { 
+	.wrapper { 
+		max-width: 944px; 
+		padding-right: 15px; 
+		padding-left: 15px; 
+	} 
+}

@@ -1,0 +1,6 @@
+---
+title: "Disney World ride wait times"
+site-path: "/presentations/disney_world_ride_wait_times"
+---
+
+<embed src="../assets/Data_Science_Final_Presentation.pdf" type="application/pdf" width="100%" height="100%">

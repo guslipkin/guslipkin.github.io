@@ -1,0 +1,6 @@
+---
+title: "Gus' Good Spreadsheet Guide"
+site-path: "/presentations/spreadsheet_guide"
+---
+
+<embed src="../assets/SpreadsheetGuide.pdf" type="application/pdf" width="100%" height="100%">
