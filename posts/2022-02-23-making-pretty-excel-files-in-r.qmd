@@ -40,6 +40,7 @@ As usual, the first thing to do is load our library with `library(openxlsx)`. We
 #| output: FALSE
 #| include: FALSE
 filePath <- "../assets/post-assets/2022-02-23-making-pretty-excel-files-in-r/bbq.xlsx"
+outputPath <- "../assets/post-assets/2022-02-23-making-pretty-excel-files-in-r/newBBQ.xlsx"
 ```
 
 ```{r}
@@ -239,7 +240,7 @@ wb
 worksheetOrder(wb) <- c(2, 1)
 
 # save the workbook
-saveWorkbook(wb, "newBBQ.xlsx", overwrite = TRUE)
+saveWorkbook(wb, outputPath, overwrite = TRUE)
 ```
 
 If we open the new file, we can see that they are nearly identical. The biggest difference between the two is that the original used formulas to calculate the values in `Supplies`.

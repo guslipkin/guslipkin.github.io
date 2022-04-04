@@ -1,0 +1,10 @@
+---
+title: "404: Page Not Found"
+format:
+  html:
+    theme: default
+---
+
+This is embarrassing! I don't seem to have the page you were looking for.
+
+Please [contact me](/contact.html) and let me know what page you were looking for and I'll try and fix it right away!

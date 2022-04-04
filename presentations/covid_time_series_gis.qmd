@@ -3,4 +3,4 @@ title: "Investigating a relationship between climate variables and the spread of
 site-path: "/presentations/covid_time_series_gis"
 ---
 
-<embed src="../assets/covid_time_series_gis.pdf" type="application/pdf" width="100%" height="100%">
+<iframe src="http://docs.google.com/gview?url=https://guslipkin.github.io/assets/covid_time_series_gis.pdf&embedded=true" style="width:100%; height:100%;" frameborder="0"></iframe>
