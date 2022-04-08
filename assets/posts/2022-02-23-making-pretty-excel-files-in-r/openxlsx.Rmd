@@ -1,0 +1,138 @@
+```{r loadLibrary}
+# load library
+library(openxlsx)
+```
+
+
+```{r}
+# reading the file straight in only pulls the first sheet
+bbq <- read.xlsx("bbq.xlsx")
+head(bbq)
+```
+
+
+```{r loadWorkbook}
+# get the sheet names
+bbq <- loadWorkbook("bbq.xlsx")
+bbq
+
+# load the sheets and preview them
+attendance <- readWorkbook(bbq, "Attendance")
+head(attendance)
+
+supplies <- readWorkbook(bbq, sheet = "Supplies")
+head(supplies)
+```
+
+
+```{r getStyles}
+# getStyles and set them appropriately
+styles <- getStyles(bbq)
+styles
+
+# doesn't work for colors because those are conditional formatting
+headerStyle <- styles[[1]]
+numberStyle <- styles[[7]]
+```
+
+
+```{r createWorkbook}
+# create workbook and check contents
+wb <- createWorkbook()
+wb
+```
+
+
+```{r createSupplies}
+# create the supplies sheet and check for it
+addWorksheet(wb = wb, sheetName = "Supplies")
+
+# write supplies to the worksheet using headerStyle
+writeData(wb = wb, sheet = "Supplies", x = supplies, headerStyle = headerStyle)
+```
+
+
+```{r addNumberStyle}
+# add numberStyle
+addStyle(wb = wb, sheet = "Supplies", style = numberStyle, rows = 2:5, 
+         cols = 2:5, gridExpand = TRUE)
+```
+
+
+```{r mergeCells}
+# merge the hamburger and hotdog quantity cells
+mergeCells(wb = wb, sheet = "Supplies", cols = 2, rows = 2:3)
+mergeCells(wb = wb, sheet = "Supplies", cols = 2, rows = 4:5)
+```
+
+
+```{r autoWidth}
+# set column widths to auto
+setColWidths(wb = wb, sheet = "Supplies", cols = 1:5, widths = "auto")
+```
+
+
+```{r createAttendance}
+# create the attendance sheet and check for it
+addWorksheet(wb = wb, sheetName = "Attendance")
+
+# write attendance to the worksheet using the same headerStyle from before
+writeData(wb = wb, sheet = "Attendance", x = attendance, 
+          headerStyle = headerStyle)
+```
+
+
+```{r goodBadStyle}
+# create color styles for rsvp and status
+goodStyle <- createStyle(fontColour = "#006100", bgFill = "#C6EFCE")
+badStyle <- createStyle(fontColour = "#9C0006", bgFill = "#FFC7CE")
+# create center style for rsvp column
+centerStyle <- createStyle(halign = "center")
+
+# create a variable of row numbers
+rowNumbers <- seq(2, nrow(attendance) + 1, by = 1)
+```
+
+
+```{r rsvpStyle}
+# center the column values
+addStyle(wb = wb, sheet = "Attendance", style = centerStyle, cols = 2, 
+         rows = rowNumbers)
+
+# IF `RSVPed` is TRUE, set it to green. IF FALSE, set it to red
+conditionalFormatting(wb = wb, sheet = "Attendance", cols = 2, 
+                      rows = rowNumbers, rule = "B2==TRUE", style = goodStyle)
+conditionalFormatting(wb = wb, sheet = "Attendance", cols = 2, 
+                      rows = rowNumbers, rule = "B2==FALSE", style = badStyle)
+```
+
+
+```{r statusColumnStyle}
+# add style for status and tentative
+maybeStyle <- createStyle(fontColour = "#9C6500", bgFill = "#FFEB9C")
+
+conditionalFormatting(wb = wb, sheet = "Attendance", cols = 3, 
+                      rows = rowNumbers, rule = "C2==\"Yes\"", 
+                      style = goodStyle)
+conditionalFormatting(wb = wb, sheet = "Attendance", cols = 3, 
+                      rows = rowNumbers, rule = "C2==\"No\"", 
+                      style = badStyle)
+conditionalFormatting(wb = wb, sheet = "Attendance", cols = 3, 
+                      rows = rowNumbers, rule = "C2==\"Tentative\"", 
+                      style = maybeStyle)
+
+# set column widths to auto
+setColWidths(wb = wb, sheet = "Attendance", cols = 1:4, widths = "auto")
+```
+
+
+```{r saveWorkbook}
+# check the workbook sheet order
+wb
+# change the order
+worksheetOrder(wb) <- c(2, 1)
+
+# save the workbook
+saveWorkbook(wb, "newBBQ.xlsx")
+```
+

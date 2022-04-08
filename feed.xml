@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-04-08T15:06:34+00:00</updated><id>/feed.xml</id><title type="html">Gus Lipkin’s Awesome Website</title><subtitle>Hi there! I'm Gus, a Data Scientist and Business Analyst with a few years' experience.  Take a look around to learn more about what I do.</subtitle><entry><title type="html">Writing Faster R with Vectorization and the {apply} family</title><link href="/2022/03/14/writing-faster-r-with-vectorization-and-the-apply-family.html" rel="alternate" type="text/html" title="Writing Faster R with Vectorization and the {apply} family" /><published>2022-03-14T00:00:00+00:00</published><updated>2022-03-14T00:00:00+00:00</updated><id>/2022/03/14/writing-faster-r-with-vectorization-and-the-apply-family</id><content type="html" xml:base="/2022/03/14/writing-faster-r-with-vectorization-and-the-apply-family.html">&lt;p&gt;&lt;a href=&quot;https://guslipkin.medium.com/writing-faster-r-with-vectorization-and-the-apply-family-ff6078a2583a&quot;&gt;&lt;em&gt;Link to the Medium post&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;One of my favorite things about R is that there are a lot of ways to do the same thing. Of course, this means that some ways are better than others depending on the use case. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loops, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; family, and vectorization are all common ways to write code for large amounts of data in R, but it can be tricky to know when to use each one and how to use them.&lt;/p&gt;
+
+&lt;p&gt;I’ve divided this post into how to use each method in R and then give a few examples of when you might want to use each one. I close everything out with a short benchmark demonstration to compare the three.&lt;/p&gt;
+
+&lt;center&gt;&lt;hr style=&quot;width: 25%; height: .5px; color: black; background-color: black;&quot; /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-an&quot;&gt;What is a(n)…&lt;/h2&gt;
+&lt;h3 id=&quot;for-loop&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loop&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;If you’re familiar with programming, you can probably skip this section.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;A for loop lets you run the same code a specified number of times. The structure generally follows &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for(x in y)&lt;/code&gt; where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;x&lt;/code&gt; represents an item in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;y&lt;/code&gt;. If we think about a shopping basket with some apples, bananas, and carrots, we could write &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for(food in basket)&lt;/code&gt; and food would represent each item in our basket. It would be apples the first time, bananas the second time, and carrots the third time. We could also write it as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for(food in 1:length(basket))&lt;/code&gt; where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1:length(basket)&lt;/code&gt; is a vector of numbers that counts the items in your basket. Rather than food representing an item in your basket, it represents an index in the vector. In this example, apples are at index 1, bananas at 2, and carrots at 3. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loops are also very flexible and can be used on many data types such as vectors, data.frames, and matrices.&lt;/p&gt;
+
+&lt;p&gt;Let’s say you have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data.frame&lt;/code&gt; called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;basket&lt;/code&gt; that has three columns. It has the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Food&lt;/code&gt; column with the name of the food, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PricePerUnit&lt;/code&gt; which has the unit cost for each food, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Quantity&lt;/code&gt; which has the number of units of each food in your basket. It looks like this:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Food&lt;/th&gt;
+      &lt;th&gt;PricePerUnit&lt;/th&gt;
+      &lt;th&gt;Quantity&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Apples&lt;/td&gt;
+      &lt;td&gt;0.99&lt;/td&gt;
+      &lt;td&gt;12&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Bananas&lt;/td&gt;
+      &lt;td&gt;0.19&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Carrots&lt;/td&gt;
+      &lt;td&gt;0.49&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;And it can be recreated with this:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;basket &amp;lt;- data.frame(&quot;Food&quot; = c(&quot;Apples&quot;, &quot;Bananas&quot;, &quot;Carrots&quot;),
+                     &quot;PricePerUnit&quot; = c(.99, .19, .49),
+                     &quot;Quantity&quot; = c(12, 6, 2))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If we wanted to get the total cost of everything in our basket, we could iterate over each row multiplying the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PricePerUnit&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Quantity&lt;/code&gt; and adding those to our running totals.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# create the total
+total &amp;lt;- 0
+# loop over the data.frame and add the running total
+for(row in 1:nrow(basket))
+  total &amp;lt;- total + (basket$PricePerUnit[row] * basket$Quantity[row])
+total
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;apply-family&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; family&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; family is part of base R and very similar to a for loop. Rather than running a set number of times, an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; runs a function on each item in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data.frame&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;list&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vector&lt;/code&gt;, or other object that can be applied to. While there are six different functions in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; family, I’m only going to talk about the three most common; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lapply&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sapply&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The biggest differences between the three is the types of input that they accept and their output types. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; takes in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data.frame&lt;/code&gt; or matrix and has three function arguments. The first argument, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;x&lt;/code&gt;, is the object we’re passing to it. The second argument is a number, either 1 or 2 or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c(1, 2)&lt;/code&gt;, that says if we want the function applied to rows, columns, or both rows and columns, respectively. The last argument is the function call. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sapply&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lapply&lt;/code&gt; are the same, except they don’t have the second argument because they take either a vector or list which don’t have multiple dimensions. Generally speaking, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; family will return a vector, list, or array of some kind.&lt;/p&gt;
+
+&lt;p&gt;If we go back to the shopping basket example, we can calculate the total with an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; function. Our first argument is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;basket&lt;/code&gt;, the second is a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1&lt;/code&gt; because we want to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; to every row, and the last is the function call. We can create the function in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; call or we can create it earlier and then call it here.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# multiply each PricePerUnit and Quantity and store the resulting vector
+perItemTotal &amp;lt;- apply(basket, 1, function(bskt) {
+  as.numeric(bskt[&quot;PricePerUnit&quot;]) * as.numeric(bskt[&quot;Quantity&quot;])
+})
+# sum all values in the perItemTotal
+sum(perItemTotal)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;A quick note on function calls in the apply family:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If a function call only has one argument, they can be done in three ways.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sapply(X, function(x) { ... })&lt;/code&gt; if function is not predefined&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sapply(X, function)&lt;/code&gt; if function is predefined&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sapply(X, function(x))&lt;/code&gt; if function is predefined&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Option two is most common for built-in functions such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sum&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;as.numeric&lt;/code&gt;, but can be used with any function.&lt;/p&gt;
+
+&lt;h3 id=&quot;vector-operations&quot;&gt;Vector Operations&lt;/h3&gt;
+
+&lt;p&gt;Vector operations are not a function like the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; family or a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loop, but rather a feature of the R language. Instead of operating on a vector one item at a time, R is able to do an operation on the entire vector in one line of code. Back to the basket example again, we know that the per item total is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PricePerUnit&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Quantity&lt;/code&gt; multiplied together, and then we get the grand total by summing all of those values.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# take the sum of multiplying PerPriceUnit and Quantity to get total cost
+sum(basket$PricePerUnit * basket$Quantity)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;center&gt;&lt;hr style=&quot;width: 25%; height: .5px; color: black; background-color: black;&quot; /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;when-should-i-use-an&quot;&gt;When should I use a(n)…&lt;/h2&gt;
+
+&lt;p&gt;These examples are not exhaustive and you may find some cases where one is better than the others even where it seems like it might not be.&lt;/p&gt;
+
+&lt;h3 id=&quot;for-loop-1&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loop&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loops in R should be a last resort. They are much slower compared to the apply family and vectorized code. They may be helpful when each iteration relies on the iteration before it, although then you might want to look into a recursive function if possible. You might find a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loop useful if you need to run the same block of code multiple times or iterate over elements of an object in a non-standard way such as every other item. Any code that can be written with an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; function or a vector operation can be written in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loop.&lt;/p&gt;
+
+&lt;h3 id=&quot;apply-family-1&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; family&lt;/h3&gt;
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; family should be used when you want to operate on each element of an object, but treat them individually. This might present as a list with vectors of differing lengths for each item or if you want a specific type of output. Any vector operation can be written as an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; statement, but not all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loops can be converted.&lt;/p&gt;
+
+&lt;h3 id=&quot;vector-operations-1&quot;&gt;Vector Operations&lt;/h3&gt;
+
+&lt;p&gt;Vector operations are the gold standard. They are fast and can be used in many cases, but not all. Most common use cases will be on vectors or columns of a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data.frame&lt;/code&gt;. Many base functions such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sum&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;as.numeric&lt;/code&gt; are already vectorized. Many but not all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loops and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; functions can be written as vectorized operations.&lt;/p&gt;
+
+&lt;center&gt;&lt;hr style=&quot;width: 25%; height: .5px; color: black; background-color: black;&quot; /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;benchmarks&quot;&gt;Benchmarks&lt;/h2&gt;
+
+&lt;h3 id=&quot;building-the-input&quot;&gt;Building the input&lt;/h3&gt;
+
+&lt;p&gt;Rather than use the simple shopping basket example from before, I’ve written a small function that takes a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data.frame&lt;/code&gt; of red, green, and blue values and adds a new column with the corresponding hex code.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# create a vector of the possible hex code values (0-9 and A-F)
+hex &amp;lt;- c(0:9, LETTERS[1:6])
+
+# set the seed
+set.seed(2022)
+# pick the number of rows
+rows &amp;lt;- 10^4
+# create a data.frame of rgb values
+df &amp;lt;- data.frame(&quot;red&quot; = sample(0:255, rows, replace = TRUE), 
+                 &quot;green&quot; = sample(0:255, rows, replace = TRUE),
+                 &quot;blue&quot; = sample(0:255, rows, replace = TRUE))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And the resulting data should look like this:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;red&lt;/th&gt;
+      &lt;th&gt;green&lt;/th&gt;
+      &lt;th&gt;blue&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;227&lt;/td&gt;
+      &lt;td&gt;18&lt;/td&gt;
+      &lt;td&gt;84&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;178&lt;/td&gt;
+      &lt;td&gt;245&lt;/td&gt;
+      &lt;td&gt;26&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;205&lt;/td&gt;
+      &lt;td&gt;219&lt;/td&gt;
+      &lt;td&gt;176&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;54&lt;/td&gt;
+      &lt;td&gt;236&lt;/td&gt;
+      &lt;td&gt;205&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;74&lt;/td&gt;
+      &lt;td&gt;252&lt;/td&gt;
+      &lt;td&gt;67&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;195&lt;/td&gt;
+      &lt;td&gt;116&lt;/td&gt;
+      &lt;td&gt;122&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;We’ve also created a vector of values that can go in a hex code with numbers 0–9 and letters A-F.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-the-conversion-function&quot;&gt;Creating the conversion function&lt;/h3&gt;
+
+&lt;p&gt;I used &lt;a href=&quot;https://www.developintelligence.com/blog/2017/02/rgb-to-hex-understanding-the-major-web-color-codes/&quot;&gt;this website&lt;/a&gt; for the math behind my functions. In essence, you divide each number by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;16&lt;/code&gt; and round down and the resulting number corresponds to a position in hex. You then take the remainder of the division and get the hex value that that number corresponds to. If our value is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;227&lt;/code&gt;, then our first hex code is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;227/16&lt;/code&gt; would round down to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;14&lt;/code&gt; and the remainder would be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3&lt;/code&gt;. Because vectors in R start at position &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1&lt;/code&gt;, we add one to both for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;15&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4&lt;/code&gt;. The corresponding values in hex are &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;E&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3&lt;/code&gt; and so the hex pair for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;227&lt;/code&gt; is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;E3&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;implementing-the-conversion-function&quot;&gt;Implementing the conversion function&lt;/h3&gt;
+
+&lt;h4 id=&quot;in-a-for-loop&quot;&gt;In a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loop&lt;/h4&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+# iterate over each row in df
+for(r in 1:nrow(df)) {
+  # get a value for each position in the hex code
+  # first pair
+  h1 &amp;lt;- hex[floor(df$red[r] / 16) + 1]
+  h2 &amp;lt;- hex[df$red[r] %% 16 + 1]
+  
+  # second pair
+  h3 &amp;lt;- hex[floor(df$green[r] / 16) + 1]
+  h4 &amp;lt;- hex[df$green[r] %% 16 + 1]
+
+  # third pair
+  h5 &amp;lt;- hex[floor(df$blue[r] / 16) + 1]
+  h6 &amp;lt;- hex[df$blue[r] %% 16 + 1]
+  
+  # assemble the values using `paste0` and assign it to the `hex` column for 
+  # the corresponding row
+  df$hex[r] &amp;lt;- paste0(&quot;#&quot;, h1, h2, h3, h4, h5, h6)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;in-an-apply-function&quot;&gt;In an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; function&lt;/h4&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+# create the rgbToHex function that takes a named vector and returns a hex code
+rgbToHex &amp;lt;- function(x) {
+  # get a value for each position in the hex code
+  # first pair
+  h1 &amp;lt;- hex[floor(x[&quot;red&quot;] / 16) + 1]
+  h2 &amp;lt;- hex[x[&quot;red&quot;] %% 16 + 1]
+  
+  # second pair
+  h3 &amp;lt;- hex[floor(x[&quot;green&quot;] / 16) + 1]
+  h4 &amp;lt;- hex[x[&quot;green&quot;] %% 16 + 1]
+
+  # third pair
+  h5 &amp;lt;- hex[floor(x[&quot;blue&quot;] / 16) + 1]
+  h6 &amp;lt;- hex[x[&quot;blue&quot;] %% 16 + 1]
+  
+  # assemble and return the hex code
+  paste0(&quot;#&quot;, h1, h2, h3, h4, h5, h6)
+}
+# call `rgbToHex` and apply it to each row in df
+df$hex &amp;lt;- apply(df, 1, rgbToHex)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;in-a-vectorized-function&quot;&gt;In a vectorized function&lt;/h4&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# paste the calculated hex codes into the new `hex` column in df
+df$hex &amp;lt;- paste0(&quot;#&quot;, 
+                 hex[floor(df$red / 16) + 1],
+                 hex[df$red %% 16 + 1],
+                 hex[floor(df$green / 16) + 1],
+                 hex[df$green %% 16 + 1],
+                 hex[floor(df$blue / 16) + 1],
+                 hex[df$blue %% 16 + 1])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;the-results&quot;&gt;The results&lt;/h4&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;red&lt;/th&gt;
+      &lt;th&gt;green&lt;/th&gt;
+      &lt;th&gt;blue&lt;/th&gt;
+      &lt;th&gt;hex&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;227&lt;/td&gt;
+      &lt;td&gt;18&lt;/td&gt;
+      &lt;td&gt;84&lt;/td&gt;
+      &lt;td&gt;#E31254&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;178&lt;/td&gt;
+      &lt;td&gt;245&lt;/td&gt;
+      &lt;td&gt;26&lt;/td&gt;
+      &lt;td&gt;#B2F51A&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;205&lt;/td&gt;
+      &lt;td&gt;219&lt;/td&gt;
+      &lt;td&gt;176&lt;/td&gt;
+      &lt;td&gt;#CDDBB0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;54&lt;/td&gt;
+      &lt;td&gt;236&lt;/td&gt;
+      &lt;td&gt;205&lt;/td&gt;
+      &lt;td&gt;#36ECCD&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;74&lt;/td&gt;
+      &lt;td&gt;252&lt;/td&gt;
+      &lt;td&gt;67&lt;/td&gt;
+      &lt;td&gt;#4AFC43&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;195&lt;/td&gt;
+      &lt;td&gt;116&lt;/td&gt;
+      &lt;td&gt;122&lt;/td&gt;
+      &lt;td&gt;#C3747A&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;running-the-benchmark&quot;&gt;Running the benchmark&lt;/h3&gt;
+
+&lt;p&gt;I’ve simplified the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loop and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; implementations a little bit to better match the vectorized function. This way we have a better comparison between the three. Your benchmark results may be a little different because it is a little dependent on your computer.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rows &amp;lt;- 10^4
+hex &amp;lt;- c(0:9, LETTERS[1:6])
+
+set.seed(2022)
+dt &amp;lt;- data.frame(&quot;red&quot; = sample(0:255, rows, replace = TRUE), 
+                 &quot;green&quot; = sample(0:255, rows, replace = TRUE),
+                 &quot;blue&quot; = sample(0:255, rows, replace = TRUE))
+
+rbenchmark::benchmark(
+  &quot;for loop&quot; = {
+    df &amp;lt;- dt
+    for (r in 1:nrow(df)) {
+      df$hexFor[r] &amp;lt;- paste0(&quot;#&quot;, 
+                             hex[floor(df$red[r] / 16) + 1],
+                             hex[df$red[r] %% 16 + 1],
+                             hex[floor(df$green[r] / 16) + 1],
+                             hex[df$green[r] %% 16 + 1],
+                             hex[floor(df$blue[r] / 16) + 1],
+                             hex[df$blue[r] %% 16 + 1]
+                             )
+    }
+  },
+  &quot;apply&quot; = {
+    df &amp;lt;- dt
+    rgbToHex &amp;lt;- function(x) {
+      paste0(&quot;#&quot;,
+             hex[floor(x[&quot;red&quot;] / 16) + 1],
+             hex[x[&quot;red&quot;] %% 16 + 1],
+             hex[floor(x[&quot;green&quot;] / 16) + 1],
+             hex[x[&quot;green&quot;] %% 16 + 1],
+             hex[floor(x[&quot;blue&quot;] / 16) + 1],
+             hex[x[&quot;blue&quot;] %% 16 + 1]
+             )
+    }
+    df$hexApply &amp;lt;- apply(df, 1, rgbToHex)
+  },
+  &quot;vector&quot; = {
+    df &amp;lt;- dt
+    df$hexVector &amp;lt;- paste0(&quot;#&quot;,
+                           hex[floor(df$red / 16) + 1],
+                           hex[df$red %% 16 + 1],
+                           hex[floor(df$green / 16) + 1],
+                           hex[df$green %% 16 + 1],
+                           hex[floor(df$blue / 16) + 1],
+                           hex[df$blue %% 16 + 1]
+                           )
+  },
+  replications = 10, order = &quot;relative&quot;
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;test&lt;/th&gt;
+      &lt;th&gt;replications&lt;/th&gt;
+      &lt;th&gt;elapsed&lt;/th&gt;
+      &lt;th&gt;relative&lt;/th&gt;
+      &lt;th&gt;user.self&lt;/th&gt;
+      &lt;th&gt;sys.self&lt;/th&gt;
+      &lt;th&gt;user.child&lt;/th&gt;
+      &lt;th&gt;sys.child&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;vector&lt;/td&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;0.026&lt;/td&gt;
+      &lt;td&gt;1.000&lt;/td&gt;
+      &lt;td&gt;0.025&lt;/td&gt;
+      &lt;td&gt;0.000&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;apply&lt;/td&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;0.536&lt;/td&gt;
+      &lt;td&gt;20.615&lt;/td&gt;
+      &lt;td&gt;0.530&lt;/td&gt;
+      &lt;td&gt;0.006&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;forloop&lt;/td&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;1.569&lt;/td&gt;
+      &lt;td&gt;60.346&lt;/td&gt;
+      &lt;td&gt;1.252&lt;/td&gt;
+      &lt;td&gt;0.317&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The important column is relative as that shows a comparison between the three with the quickest function given a value of 1. Using an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt; function took roughly 20x longer and a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loop roughly 60x longer than using a vectorized function.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/posts/2022-03-14-writing-faster-r-with-vectorization-and-the-apply-family/sonic.jpeg&quot; alt=&quot;A hand drawn Sonic the Hedgehog saying “Gotta go fast”&quot; /&gt;&lt;/p&gt;
+
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;A hand drawn Sonic the Hedgehog saying “Gotta go fast”&lt;/em&gt;&lt;/center&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;center&gt;&lt;hr style=&quot;width: 25%; height: .5px; color: black; background-color: black;&quot; /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;The code for all the charts in this article is available &lt;a href=&quot;https://gist.github.com/guslipkin/f21dc766bac769ef69c220fe476306b4#file-basket-csv?file=vectorise.rmd&quot;&gt;here&lt;/a&gt;. If you want to see more from me, check out &lt;a href=&quot;https://github.com/guslipkin&quot;&gt;my GitHub&lt;/a&gt; or &lt;a href=&quot;https://guslipkin.github.io&quot;&gt;guslipkin.github.io&lt;/a&gt;. If you want to hear from me, I’m also on Twitter &lt;a href=&quot;https://twitter.com/GusLipkin&quot;&gt;@guslipkin&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;center&gt;&lt;em&gt;Gus Lipkin is a Data Scientist, Business Analyst, and occasional bike mechanic&lt;/em&gt;&lt;/center&gt;</content><author><name></name></author><summary type="html">Link to the Medium post</summary></entry><entry><title type="html">Making Pretty Excel Files in R</title><link href="/2022/02/23/making-pretty-excel-files-in-r.html" rel="alternate" type="text/html" title="Making Pretty Excel Files in R" /><published>2022-02-23T00:00:00+00:00</published><updated>2022-02-23T00:00:00+00:00</updated><id>/2022/02/23/making-pretty-excel-files-in-r</id><content type="html" xml:base="/2022/02/23/making-pretty-excel-files-in-r.html">&lt;style&gt;
+	.row {
+		display: flex;
+	}
+
+	.column {
+		flex: auto;
+		padding:  5px;
+	}
+&lt;/style&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://guslipkin.medium.com/making-pretty-excel-files-in-r-46a15c7a2ee8&quot;&gt;&lt;em&gt;Link to the Medium post&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s a tale as old as time. Your boss gave you a bunch of Excel files and you painstakingly made a bot that will import and display them in a Shiny dashboard. Proud of your work, you take it to your boss and they say “I don’t know what a ‘Shiny’ is, can’t you just give me one of those Excels back?” &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;openxlsx&lt;/code&gt; makes this easy.&lt;/p&gt;
+
+&lt;p&gt;Today we’re going to recreate an existing workbook with openxlsx. To get started, I made a small &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.xlsx&lt;/code&gt; file for us to work with that can be downloaded &lt;a href=&quot;https://guslipkin.github.io/assets/posts/2022-02-23-making-pretty-excel-files-in-r/bbq.xlsx&quot;&gt;here&lt;/a&gt;. It’s an attendance list and some notes on supplies you’ll need for a company barbecue. Feel free to get familiar with it then come back here when you’re ready.&lt;/p&gt;
+
+&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;column&quot;&gt;
+		&lt;img src=&quot;/assets/posts/2022-02-23-making-pretty-excel-files-in-r/attendancePreview.png&quot; alt=&quot;A grouped bar chart&quot; /&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;column&quot;&gt;
+		&lt;img src=&quot;/assets/posts/2022-02-23-making-pretty-excel-files-in-r/suppliesPreview.png&quot; alt=&quot;A stacked bar chart&quot; /&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;A preview of the Attendance and Supplies sheets&lt;/em&gt;&lt;/center&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;center&gt;&lt;hr style=&quot;width: 25%; height: .5px; color: black; background-color: black;&quot; /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;As usual, the first thing to do is load our library with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library(openxlsx)&lt;/code&gt;. We can try and load the workbook, the Excel file, with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;read.xlsx&lt;/code&gt;, but for now we’re going to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;loadWorkbook&lt;/code&gt;. This loads a workbook object and exposes some workbook properties to us rather than just the raw data like with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;read.xlsx&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# get the sheet names
+bbq &amp;lt;- loadWorkbook(&quot;bbq.xlsx&quot;)
+bbq
+
+# load the sheets and preview them
+attendance &amp;lt;- readWorkbook(bbq, &quot;Attendance&quot;)
+head(attendance)
+
+supplies &amp;lt;- readWorkbook(bbq, sheet = &quot;Supplies&quot;)
+head(supplies)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Loading the xlsx file as a workbook object&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;Name&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;RSVPed&lt;/th&gt;
+      &lt;th&gt;Status&lt;/th&gt;
+      &lt;th&gt;FoodPreference&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Masud Durga&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;TRUE&lt;/td&gt;
+      &lt;td&gt;No&lt;/td&gt;
+      &lt;td&gt;NA&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;Stanislav Zillah&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;TRUE&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Hotdog&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;Joaquina Aristide&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;FALSE&lt;/td&gt;
+      &lt;td&gt;NA&lt;/td&gt;
+      &lt;td&gt;NA&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;Iuppiter Dieu&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;TRUE&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Hotdog&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;Hari Evgenios&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;TRUE&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Hamburger&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;Shaina Gwenaelle&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;TRUE&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Hotdog&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;The attendance data.frame&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;SupplyType&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Quantity&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;PerPackage&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;PackagesNeeded&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Leftover&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Hotdogs&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;34&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;10&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;Hotdog buns&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;NA&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;8&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;Hamburgers&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;36&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;Hamburger buns&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;NA&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;8&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;The supplies data.frame&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Because we loaded the data as a workbook object, we can use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getStyles&lt;/code&gt; to load the styles and preview them. Unfortunately, the styles can’t pull conditional formatting and don’t keep track of which cells use which styles. By cross referencing the list of styles and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbq.xlsx&lt;/code&gt;, we can identify some styles to use and them assign them each to a variable.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# getStyles and set them appropriately
+styles &amp;lt;- getStyles(bbq)
+styles
+
+# doesn't work for colors because those are conditional formatting
+headerStyle &amp;lt;- styles[[1]]
+numberStyle &amp;lt;- styles[[7]]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Getting a list of the workbook styles&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;I’ve chosen to only show the first two items from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;styles&lt;/code&gt; list here.&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[[1]]
+A custom cell style. 
+
+ Cell formatting: GENERAL 
+ Font name: Calibri 
+ Font size: 14 
+ Font colour: 1 
+ Font decoration: BOLD 
+ 
+
+[[2]]
+A custom cell style. 
+
+ Cell formatting: GENERAL 
+ Cell horz. align: center
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;First thing we have to do is create a workbook object that we’ll call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wb&lt;/code&gt;. We can quickly preview it by just typing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wb&lt;/code&gt; into our chunk or the console.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# create workbook and check contents
+wb &amp;lt;- createWorkbook()
+wb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;A Workbook object.
+ 
+Worksheets:
+ No worksheets attached
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Creating a workbook object&lt;/em&gt;&lt;/center&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;center&gt;&lt;hr style=&quot;width: 25%; height: .5px; color: black; background-color: black;&quot; /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;We’re going to make the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Supplies&lt;/code&gt; sheet first as it’s a little bit easier. We first add a new worksheet named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Supplies&lt;/code&gt; to the workbook, then we can write the relevant data to that sheet along with styling our column headers using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;headerStyle&lt;/code&gt; from earlier.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# create the supplies sheet and check for it
+addWorksheet(wb = wb, sheetName = &quot;Supplies&quot;)
+# write supplies to the worksheet using headerStyle
+writeData(wb = wb, sheet = &quot;Supplies&quot;, x = supplies, headerStyle = headerStyle)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Creating the supplies worksheet&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;All of the numbers in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Supplies&lt;/code&gt; sheet are centered both horizontally and vertically. We can achieve this by adding the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numberStyle&lt;/code&gt; from before to those cells. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rows&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cols&lt;/code&gt; both start at 2 because row one is the header row and column one is the supply type. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rows&lt;/code&gt; goes to 5 because there are 4 rows of numbers (remember the header row) and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cols&lt;/code&gt; goes to 5 because there are 4 columns of numbers. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gridExpand = TRUE&lt;/code&gt; makes sure that all cell reference combinations possible with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rows&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cols&lt;/code&gt; are used, rather than doing an entire row or column.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# add numberStyle
+addStyle(wb = wb, sheet = &quot;Supplies&quot;, style = numberStyle, rows = 2:5, 
+         cols = 2:5, gridExpand = TRUE)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Adding number formatting to the numbers&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;If we go back to our data in R, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Quantity&lt;/code&gt; for Hotdog buns and Hamburger buns is empty. A bit further back, we see that that’s because those cells were merged with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Quantity&lt;/code&gt; of Hotdogs and Hamburgers respectively. We can replicate this using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mergeCells&lt;/code&gt;. Unlike &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addStyle&lt;/code&gt;, we don’t need to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gridExpand&lt;/code&gt; to merge all the cells as it is implied. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cols&lt;/code&gt; will be 2 for both and we want &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rows&lt;/code&gt; 2 and 3 for Hotdogs and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rows&lt;/code&gt; 4 and 5 for Hamburgers.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# merge the hamburger and hotdog quantity cells
+mergeCells(wb = wb, sheet = &quot;Supplies&quot;, cols = 2, rows = 2:3)
+mergeCells(wb = wb, sheet = &quot;Supplies&quot;, cols = 2, rows = 4:5)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Merging the hotdog and hamburger quantity cells&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Our last step on this worksheet is to set the column widths to auto. We again need to specify &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cols&lt;/code&gt; and can just do &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1:5&lt;/code&gt; so that all columns are affected.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# set column widths to auto
+setColWidths(wb = wb, sheet = &quot;Supplies&quot;, cols = 1:5, widths = &quot;auto&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Setting the column widths&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ou &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Supplies&lt;/code&gt; sheet is now complete, but we’re not going to write it just yet because we still need to do the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Attendance&lt;/code&gt; sheet.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;center&gt;&lt;hr style=&quot;width: 25%; height: .5px; color: black; background-color: black;&quot; /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Like before, we first add the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Attendance&lt;/code&gt; worksheet and write the data to it.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# create the attendance sheet and check for it
+addWorksheet(wb = wb, sheetName = &quot;Attendance&quot;)
+
+# write attendance to the worksheet using the same headerStyle from before
+writeData(wb = wb, sheet = &quot;Attendance&quot;, x = attendance, 
+          headerStyle = headerStyle)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Creating the attendance worksheet&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RSVPed&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Status&lt;/code&gt; columns each have some conditional formatting. We can reuse the color formatting from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RSVPed&lt;/code&gt; column on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Status&lt;/code&gt; column, so we’re going to separate the color style from the alignment style. It was easy to see how many rows we have in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Supplies&lt;/code&gt; sheet but not here so we’re going to create a new variable that has the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rowNumbers&lt;/code&gt;. Again, we start on row 2 because of the header row and will end at our last data row plus 1.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# create color styles for rsvp and status
+goodStyle &amp;lt;- createStyle(fontColour = &quot;#006100&quot;, bgFill = &quot;#C6EFCE&quot;)
+badStyle &amp;lt;- createStyle(fontColour = &quot;#9C0006&quot;, bgFill = &quot;#FFC7CE&quot;)
+# create center style for rsvp column
+centerStyle &amp;lt;- createStyle(halign = &quot;center&quot;)
+
+# create a variable of row numbers
+rowNumbers &amp;lt;- seq(2, nrow(attendance) + 1, by = 1)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Creating styles for conditional formatting&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Our first step is to center the values in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RSVPed&lt;/code&gt; column with an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addStyle&lt;/code&gt;. Next, while we could manually color each cell using a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loop, it’s more efficient to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;conditionalFormatting&lt;/code&gt;. This also has the added bonus of showing in Excel and responding to any changes. The rule argument may be a little strange, and that’s because it must match how the same formatting rule would be written in Excel. In this case, we use our top-leftmost cell as the reference cell in the rule, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;B2&lt;/code&gt;, then we check if it is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TRUE&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FALSE&lt;/code&gt;. When the rule is applied down the cells in column &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;B&lt;/code&gt;, the row number will change to match the current row.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# center the column values
+addStyle(wb = wb, sheet = &quot;Attendance&quot;, 
+         style = centerStyle, cols = 2, rows = rowNumbers)
+
+# IF `RSVPed` is TRUE, set it to green. IF FALSE, set it to red
+conditionalFormatting(wb = wb, sheet = &quot;Attendance&quot;, cols = 2, 
+                      rows = rowNumbers, rule = &quot;B2==TRUE&quot;, style = goodStyle)
+conditionalFormatting(wb = wb, sheet = &quot;Attendance&quot;, cols = 2, 
+                      rows = rowNumbers, rule = &quot;B2==FALSE&quot;, style = badStyle)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Styling the RSVPed column&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Status&lt;/code&gt; column is very similar to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RSVPed&lt;/code&gt; column, but we add a style for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Tentative&lt;/code&gt; responses and then need a third &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;conditionalFormatting&lt;/code&gt;. The newest part here is in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rule&lt;/code&gt; argument. We need to put quotes around &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Yes&lt;/code&gt; so that Excel knows that it is a string and need to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\&quot;&lt;/code&gt; so that R knows that the quote is part of the string. Once our formatting has been applied, we set the column widths as we did before.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# add style for status and tentative
+maybeStyle &amp;lt;- createStyle(fontColour = &quot;#9C6500&quot;, bgFill = &quot;#FFEB9C&quot;)
+
+conditionalFormatting(wb = wb, sheet = &quot;Attendance&quot;, cols = 3, 
+                      rows = rowNumbers, rule = &quot;C2==\&quot;Yes\&quot;&quot;, 
+                      style = goodStyle)
+conditionalFormatting(wb = wb, sheet = &quot;Attendance&quot;, cols = 3, 
+                      rows = rowNumbers, rule = &quot;C2==\&quot;No\&quot;&quot;, 
+                      style = badStyle)
+conditionalFormatting(wb = wb, sheet = &quot;Attendance&quot;, cols = 3, 
+                      rows = rowNumbers, rule = &quot;C2==\&quot;Tentative\&quot;&quot;, 
+                      style = maybeStyle)
+
+# set column widths to auto
+setColWidths(wb = wb, sheet = &quot;Attendance&quot;, cols = 1:4, widths = &quot;auto&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;More conditional formatting for the Status column&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;The last thing we need to do is reorder the worksheets so that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Attendance&lt;/code&gt; is first because when we created the workbook in R, we created the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Supplies&lt;/code&gt; worksheet first. Unfortunately, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;worksheetOrder&lt;/code&gt; only supports integer vectors. We can check our worksheet numbers by calling the object again through either the chunk or console. Then we set the worksheet order and save the workbook to an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.xlsx&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# check the workbook sheet order
+wb
+# change the order
+worksheetOrder(wb) &amp;lt;- c(2, 1)
+
+# save the workbook
+saveWorkbook(wb, &quot;newBBQ.xlsx&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Setting the worksheet order and saving the workbook&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;If we open the new file, we can see that they are nearly identical. The biggest difference between the two is that the original used formulas to calculate the values in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Supplies&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you did want to take it a step further and use those instead, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;writeFormula&lt;/code&gt; function is your friend. In any case, I highly encourage everyone to at least skim through the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;openxlsx&lt;/code&gt; documentation &lt;a href=&quot;https://cran.r-project.org/web/packages/openxlsx/openxlsx.pdf&quot;&gt;here&lt;/a&gt; because it has so much to offer to help streamline Excel file generation.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;center&gt;&lt;hr style=&quot;width: 25%; height: .5px; color: black; background-color: black;&quot; /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;All the code for this article is available &lt;a href=&quot;https://gist.github.com/guslipkin/bc0b1ab7861c431a08b8672bec50d806?file=openxlsxUsage.rmd&quot;&gt;here&lt;/a&gt;. If you want to see more from me, check out &lt;a href=&quot;https://github.com/guslipkin&quot;&gt;my GitHub&lt;/a&gt; or &lt;a href=&quot;https://guslipkin.github.io&quot;&gt;guslipkin.github.io&lt;/a&gt;. If you want to hear from me, I’m also on Twitter &lt;a href=&quot;https://twitter.com/GusLipkin&quot;&gt;@guslipkin&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;center&gt;&lt;em&gt;Gus Lipkin is a Data Scientist, Business Analyst, and occasional bike mechanic&lt;/em&gt;&lt;/center&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Grouped and Stacked Bar Charts in R</title><link href="/2022/02/16/grouped-and-stacked-bar-charts-in-r.html" rel="alternate" type="text/html" title="Grouped and Stacked Bar Charts in R" /><published>2022-02-16T00:00:00+00:00</published><updated>2022-02-16T00:00:00+00:00</updated><id>/2022/02/16/grouped-and-stacked-bar-charts-in-r</id><content type="html" xml:base="/2022/02/16/grouped-and-stacked-bar-charts-in-r.html">&lt;style&gt;
+	.row {
+		display: flex;
+	}
+
+	.column {
+		flex: auto;
+		padding:  5px;
+	}
+&lt;/style&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://medium.com/@guslipkin/grouped-and-stacked-bar-charts-in-r-e5f5ac5637de&quot;&gt;&lt;em&gt;Link to the Medium post&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Sometimes you have a chart that looks like one of these. You have a grouped chart that shows one thing and a stacked chart that shows another. But you really want to show the continent of origin and the condition in one chart.&lt;/p&gt;
+
+&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;column&quot;&gt;
+		&lt;img src=&quot;/assets/posts/2022-02-16-grouped-and-stacked-bar-charts-in-r/group.png&quot; alt=&quot;A grouped bar chart&quot; /&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;column&quot;&gt;
+		&lt;img src=&quot;/assets/posts/2022-02-16-grouped-and-stacked-bar-charts-in-r/stack.png&quot; alt=&quot;A stacked bar chart&quot; /&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;A grouped bar chart and a stacked bar chart&lt;/em&gt;&lt;/center&gt;
+
+&lt;p&gt;Maybe the chart you want looks a lot like this:
+&lt;br /&gt;
+&lt;img src=&quot;/assets/posts/2022-02-16-grouped-and-stacked-bar-charts-in-r/stackAndDodge.png&quot; alt=&quot;A grouped and stacked bar chart&quot; /&gt;&lt;/p&gt;
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;The chart that we will learn to build&lt;/em&gt;&lt;/center&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;center&gt;&lt;hr style=&quot;width: 25%; height: .5px; color: black; background-color: black;&quot; /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;First we load &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ggplot2&lt;/code&gt; so we can make our charts. Then we make some data and preview it. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;set.seed(2022)&lt;/code&gt; makes sure that our data is the same every time.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;library(ggplot2)
+
+set.seed(2022)
+specie &amp;lt;- c(rep(&quot;sorgho&quot;, 6), rep(&quot;poacee&quot;, 6), 
+            rep(&quot;banana&quot;, 6), rep(&quot;triticum&quot;, 6))
+condition &amp;lt;- rep(c(&quot;normal&quot; , &quot;stress&quot; , &quot;N2&quot;) , 8)
+continent &amp;lt;- rep(c(&quot;Europe&quot;, &quot;Africa&quot;, &quot;Asia&quot;, &quot;South America&quot;,          
+                   &quot;North America&quot;, &quot;Australia&quot;), 4)
+value &amp;lt;- abs(rnorm(24 , 0 , 15))
+data &amp;lt;- data.frame(specie, condition, continent, value)
+head(data)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Creating the data&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt; &lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;strong&gt;specie&lt;/strong&gt;&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;strong&gt;condition&lt;/strong&gt;&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;strong&gt;continent&lt;/strong&gt;&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;strong&gt;value&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;sorgho&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;normal&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Europe&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;33.2982559377826&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;sorgho&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;stress&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Africa&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;7.4199245988712&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;sorgho&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;N2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Asia&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;52.3689859681817&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;sorgho&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;normal&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;South America&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4.85975695583929&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;sorgho&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;stress&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;North America&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6.84424418650998&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;sorgho&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;N2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Australia&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6.74199859289553&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Previewing the data&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Our first instinct might be to throw both charts together using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;grid.arrange&lt;/code&gt; from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gridextra&lt;/code&gt; package. While this does show the information we want, it’s not pretty and doesn’t show the data the way we want it to.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;one &amp;lt;- ggplot(data) +
+  geom_bar(aes(x = specie, y = value, fill = condition), 
+           position = &quot;dodge&quot;, stat = &quot;identity&quot;)
+two &amp;lt;- ggplot(data) +
+  geom_bar(aes(x = specie, y = value, fill = continent), 
+           position = &quot;stack&quot;, stat = &quot;identity&quot;)
+gridExtra::grid.arrange(one, two, nrow = 2)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;img src=&quot;/assets/posts/2022-02-16-grouped-and-stacked-bar-charts-in-r/gridExtra.png&quot; alt=&quot;A grouped chart and a stacked chart on top of each other&quot; /&gt;&lt;/p&gt;
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Two plots graphed together with gridExtra::grid.arrange()&lt;/em&gt;&lt;/center&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;center&gt;&lt;hr style=&quot;width: 25%; height: .5px; color: black; background-color: black;&quot; /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Not sure what to do, we come up with lots of plots that are almost right, but not quite.&lt;/p&gt;
+
+&lt;div class=&quot;row&quot;&gt;
+	&lt;div class=&quot;column&quot;&gt;
+		&lt;img src=&quot;/assets/posts/2022-02-16-grouped-and-stacked-bar-charts-in-r/groupDodge.png&quot; alt=&quot;A grouped bar chart and stacked bar chart without labels&quot; /&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;column&quot;&gt;
+		&lt;img src=&quot;/assets/posts/2022-02-16-grouped-and-stacked-bar-charts-in-r/interaction.png&quot; alt=&quot;A stacked bar chart with interaction labels&quot; /&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;column&quot;&gt;
+		&lt;img src=&quot;/assets/posts/2022-02-16-grouped-and-stacked-bar-charts-in-r/facetWrap.png&quot; alt=&quot;A stacked bar chart with interaction labels&quot; /&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Three attempts at making a grouped and stacked bar chart&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;The last one looks like it could be promising. How did we do it?&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ggplot(data) +
+  geom_bar(aes(x = condition, y = value, fill = continent),
+           position = &quot;stack&quot;,
+           stat = &quot;identity&quot;) +
+  facet_wrap(~ specie)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ggplot&lt;/code&gt; to set up the pipeline, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;geom_bar&lt;/code&gt; to create the bar chart, and then &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;facet_wrap&lt;/code&gt; is what gives us the four separate charts in one, with one mini-chart for each species. If we can move the charts to be side-by-side, we’ll be a lot closer to the desired outcome. We can use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;facet_grid&lt;/code&gt; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;facet_wrap&lt;/code&gt; to accomplish that.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ggplot(data) +
+  geom_bar(aes(x = condition, y = value, fill = continent),
+           position = &quot;stack&quot;,
+           stat = &quot;identity&quot;) +
+  facet_grid(~ specie)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/posts/2022-02-16-grouped-and-stacked-bar-charts-in-r/facetGrid.png&quot; alt=&quot;Four stacked bar charts side-by-side&quot; /&gt;&lt;/p&gt;
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;Using facet_grid() to show multiple plots next to each other&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;This looks much better, but we want it to look like one cohesive plot, rather than four smaller plots.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;center&gt;&lt;hr style=&quot;width: 25%; height: .5px; color: black; background-color: black;&quot; /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;I’m going to show you the code that does it, then walk through it so everything makes sense.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ggplot(data) +
+  geom_bar(aes(x = condition, y = value, fill = continent),
+           position = &quot;stack&quot;,
+           stat = &quot;identity&quot;) +
+  facet_grid(~ specie, switch = &quot;x&quot;) +
+  theme(strip.placement = &quot;outside&quot;,
+        strip.background = element_rect(fill = NA, color = &quot;white&quot;),
+        panel.spacing = unit(-.01,&quot;cm&quot;))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/posts/2022-02-16-grouped-and-stacked-bar-charts-in-r/stackAndDodge.png&quot; alt=&quot;A grouped and stacked bar chart&quot; /&gt;&lt;/p&gt;
+&lt;center&gt;&lt;em style=&quot;color: grey;&quot;&gt;The graph that we came here for&lt;/em&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;This looks pretty good and is exactly what we wanted. Like the charts before, we get 90% of the way there with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ggplot&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;geom_bar&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;facet_grid&lt;/code&gt;. The additions here are the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;switch = &quot;x&quot;&lt;/code&gt; argument in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;facet_grid&lt;/code&gt;, which moves the group panel with the species from the top of the chart to the bottom. Moving the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;strip.placement&lt;/code&gt; outside makes sure that the conditions are listed between the species and the chart. Making &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;strip.background&lt;/code&gt; empty with a white border allows the group panel with the species to blend in with the white background of the chart. Lastly, changing the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;panel.spacing&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-.01&lt;/code&gt; removes the small gap between each panel so that the chart appears to be one cohesive unit.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;center&gt;&lt;hr style=&quot;width: 25%; height: .5px; color: black; background-color: black;&quot; /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;The code for all the charts in this article is available &lt;a href=&quot;https://gist.github.com/guslipkin/76da4207fcee7bcdea6707ecc1f4b9fa?file=allTogether.rmd&quot;&gt;here&lt;/a&gt;. If you want to see more from me, check out &lt;a href=&quot;https://github.com/guslipkin&quot;&gt;my GitHub&lt;/a&gt; or &lt;a href=&quot;https://guslipkin.github.io&quot;&gt;guslipkin.github.io&lt;/a&gt;. If you want to hear from me, I’m also on Twitter &lt;a href=&quot;https://twitter.com/GusLipkin&quot;&gt;@guslipkin&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;center&gt;&lt;em&gt;Gus Lipkin is a Data Scientist, Business Analyst, and occasional bike mechanic&lt;/em&gt;&lt;/center&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>

@@ -1,0 +1,84 @@
+```{r createData}
+library(ggplot2)
+
+set.seed(2022)
+specie <- c(rep("sorgho", 6), rep("poacee", 6), 
+            rep("banana", 6), rep("triticum", 6))
+condition <- rep(c("normal" , "stress" , "N2") , 8)
+continent <- rep(c("Europe", "Africa", "Asia", "South America",          
+                   "North America", "Australia"), 4)
+value <- abs(rnorm(24 , 0 , 15))
+data <- data.frame(specie, condition, continent, value)
+head(data)
+```
+
+
+```{r dodge}
+ggplot(data) +
+  geom_bar(aes(x = specie,  y = value, fill = condition),
+           position = "dodge", stat = "identity")
+```
+
+
+```{r stack}
+ggplot(data) +
+  geom_bar(aes(x = specie,  y = value, fill = continent),
+           position = "stack", stat = "identity")
+```
+
+
+```{r gridExtra}
+one <- ggplot(data) +
+  geom_bar(aes(x = specie, y = value, fill = condition), 
+           position = "dodge", stat = "identity")
+two <- ggplot(data) +
+  geom_bar(aes(x = specie, y = value, fill = continent), 
+           position = "stack", stat = "identity")
+gridExtra::grid.arrange(one, two, nrow = 2)
+```
+
+
+```{r groupDodge}
+ggplot(data) +
+  geom_bar(aes(x = specie,  y = value, group = condition, fill = continent),
+           position = "dodge", stat = "identity") +
+  coord_flip()
+```
+
+
+```{r interaction}
+ggplot(data) +
+  geom_bar(aes(x = interaction(specie, condition), y = value, fill = continent),
+           position = "stack", stat = "identity") +
+  coord_flip()
+```
+
+
+```{r facetWrap}
+ggplot(data) +
+  geom_bar(aes(x = condition, y = value, fill = continent), 
+           position = "stack", stat = "identity") +
+  facet_wrap( ~ specie)
+```
+
+
+```{r facetGrid}
+ggplot(data) +
+  geom_bar(aes(x = condition, y = value, fill = continent),
+           position = "stack",
+           stat = "identity") +
+  facet_grid( ~specie)
+```
+
+
+```{r finalProduct}
+ggplot(data) +
+  geom_bar(aes(x = condition, y = value, fill = continent),
+           position = "stack",
+           stat = "identity") +
+  facet_grid(~ specie, switch = "x") +
+  theme(strip.placement = "outside",
+        strip.background = element_rect(fill = NA, color = "white"),
+        panel.spacing = unit(-.01,"cm"))
+```
+

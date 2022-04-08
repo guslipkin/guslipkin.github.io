@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Making Pretty Excel Files in R | Gus Lipkin’s Awesome Website</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Making Pretty Excel Files in R" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Hi there! I’m Gus, a Data Scientist and Business Analyst with a few years’ experience. Take a look around to learn more about what I do." />
+<meta property="og:description" content="Hi there! I’m Gus, a Data Scientist and Business Analyst with a few years’ experience. Take a look around to learn more about what I do." />
+<link rel="canonical" href="/2022/02/23/making-pretty-excel-files-in-r.html" />
+<meta property="og:url" content="/2022/02/23/making-pretty-excel-files-in-r.html" />
+<meta property="og:site_name" content="Gus Lipkin’s Awesome Website" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-23T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Making Pretty Excel Files in R" />
+<script type="application/ld+json">
+{"description":"Hi there! I’m Gus, a Data Scientist and Business Analyst with a few years’ experience. Take a look around to learn more about what I do.","@type":"BlogPosting","headline":"Making Pretty Excel Files in R","dateModified":"2022-02-23T00:00:00+00:00","datePublished":"2022-02-23T00:00:00+00:00","url":"/2022/02/23/making-pretty-excel-files-in-r.html","mainEntityOfPage":{"@type":"WebPage","@id":"/2022/02/23/making-pretty-excel-files-in-r.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Gus Lipkin's Awesome Website" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Gus Lipkin&#39;s Awesome Website</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/resume">My Résumé</a><a class="page-link" href="/about">About Me</a><a class="page-link" href="/blog">My blog</a><a class="page-link" href="/contact">Contact Me</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Making Pretty Excel Files in R</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-02-23T00:00:00+00:00" itemprop="datePublished">Feb 23, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <style>
+	.row {
+		display: flex;
+	}
+
+	.column {
+		flex: auto;
+		padding:  5px;
+	}
+</style>
+
+<p><a href="https://guslipkin.medium.com/making-pretty-excel-files-in-r-46a15c7a2ee8"><em>Link to the Medium post</em></a></p>
+
+<p>It’s a tale as old as time. Your boss gave you a bunch of Excel files and you painstakingly made a bot that will import and display them in a Shiny dashboard. Proud of your work, you take it to your boss and they say “I don’t know what a ‘Shiny’ is, can’t you just give me one of those Excels back?” <code class="language-plaintext highlighter-rouge">openxlsx</code> makes this easy.</p>
+
+<p>Today we’re going to recreate an existing workbook with openxlsx. To get started, I made a small <code class="language-plaintext highlighter-rouge">.xlsx</code> file for us to work with that can be downloaded <a href="https://guslipkin.github.io/assets/posts/2022-02-23-making-pretty-excel-files-in-r/bbq.xlsx">here</a>. It’s an attendance list and some notes on supplies you’ll need for a company barbecue. Feel free to get familiar with it then come back here when you’re ready.</p>
+
+<div class="row">
+	<div class="column">
+		<img src="/assets/posts/2022-02-23-making-pretty-excel-files-in-r/attendancePreview.png" alt="A grouped bar chart" />
+	</div>
+	<div class="column">
+		<img src="/assets/posts/2022-02-23-making-pretty-excel-files-in-r/suppliesPreview.png" alt="A stacked bar chart" />
+	</div>
+</div>
+<center><em style="color: grey;">A preview of the Attendance and Supplies sheets</em></center>
+
+<p><br /></p>
+<center><hr style="width: 25%; height: .5px; color: black; background-color: black;" /></center>
+<p><br /></p>
+
+<p>As usual, the first thing to do is load our library with <code class="language-plaintext highlighter-rouge">library(openxlsx)</code>. We can try and load the workbook, the Excel file, with <code class="language-plaintext highlighter-rouge">read.xlsx</code>, but for now we’re going to use <code class="language-plaintext highlighter-rouge">loadWorkbook</code>. This loads a workbook object and exposes some workbook properties to us rather than just the raw data like with <code class="language-plaintext highlighter-rouge">read.xlsx</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># get the sheet names
+bbq &lt;- loadWorkbook("bbq.xlsx")
+bbq
+
+# load the sheets and preview them
+attendance &lt;- readWorkbook(bbq, "Attendance")
+head(attendance)
+
+supplies &lt;- readWorkbook(bbq, sheet = "Supplies")
+head(supplies)
+</code></pre></div></div>
+<center><em style="color: grey;">Loading the xlsx file as a workbook object</em></center>
+<p><br /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Name</th>
+      <th style="text-align: center">RSVPed</th>
+      <th>Status</th>
+      <th>FoodPreference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Masud Durga</td>
+      <td style="text-align: center">TRUE</td>
+      <td>No</td>
+      <td>NA</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Stanislav Zillah</td>
+      <td style="text-align: center">TRUE</td>
+      <td>Yes</td>
+      <td>Hotdog</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Joaquina Aristide</td>
+      <td style="text-align: center">FALSE</td>
+      <td>NA</td>
+      <td>NA</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Iuppiter Dieu</td>
+      <td style="text-align: center">TRUE</td>
+      <td>Yes</td>
+      <td>Hotdog</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Hari Evgenios</td>
+      <td style="text-align: center">TRUE</td>
+      <td>Yes</td>
+      <td>Hamburger</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Shaina Gwenaelle</td>
+      <td style="text-align: center">TRUE</td>
+      <td>Yes</td>
+      <td>Hotdog</td>
+    </tr>
+  </tbody>
+</table>
+
+<center><em style="color: grey;">The attendance data.frame</em></center>
+<p><br /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>SupplyType</th>
+      <th style="text-align: center">Quantity</th>
+      <th style="text-align: center">PerPackage</th>
+      <th style="text-align: center">PackagesNeeded</th>
+      <th style="text-align: center">Leftover</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Hotdogs</td>
+      <td style="text-align: center">34</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">6</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Hotdog buns</td>
+      <td style="text-align: center">NA</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">6</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Hamburgers</td>
+      <td style="text-align: center">36</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">0</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Hamburger buns</td>
+      <td style="text-align: center">NA</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">4</td>
+    </tr>
+  </tbody>
+</table>
+
+<center><em style="color: grey;">The supplies data.frame</em></center>
+<p><br /></p>
+
+<p>Because we loaded the data as a workbook object, we can use <code class="language-plaintext highlighter-rouge">getStyles</code> to load the styles and preview them. Unfortunately, the styles can’t pull conditional formatting and don’t keep track of which cells use which styles. By cross referencing the list of styles and <code class="language-plaintext highlighter-rouge">bbq.xlsx</code>, we can identify some styles to use and them assign them each to a variable.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># getStyles and set them appropriately
+styles &lt;- getStyles(bbq)
+styles
+
+# doesn't work for colors because those are conditional formatting
+headerStyle &lt;- styles[[1]]
+numberStyle &lt;- styles[[7]]
+</code></pre></div></div>
+
+<center><em style="color: grey;">Getting a list of the workbook styles</em></center>
+<p><br /></p>
+
+<p><em>I’ve chosen to only show the first two items from the <code class="language-plaintext highlighter-rouge">styles</code> list here.</em></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[[1]]
+A custom cell style. 
+
+ Cell formatting: GENERAL 
+ Font name: Calibri 
+ Font size: 14 
+ Font colour: 1 
+ Font decoration: BOLD 
+ 
+
+[[2]]
+A custom cell style. 
+
+ Cell formatting: GENERAL 
+ Cell horz. align: center
+</code></pre></div></div>
+
+<p>First thing we have to do is create a workbook object that we’ll call <code class="language-plaintext highlighter-rouge">wb</code>. We can quickly preview it by just typing <code class="language-plaintext highlighter-rouge">wb</code> into our chunk or the console.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># create workbook and check contents
+wb &lt;- createWorkbook()
+wb
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A Workbook object.
+ 
+Worksheets:
+ No worksheets attached
+</code></pre></div></div>
+
+<center><em style="color: grey;">Creating a workbook object</em></center>
+
+<p><br /></p>
+
+<center><hr style="width: 25%; height: .5px; color: black; background-color: black;" /></center>
+<p><br /></p>
+
+<p>We’re going to make the <code class="language-plaintext highlighter-rouge">Supplies</code> sheet first as it’s a little bit easier. We first add a new worksheet named <code class="language-plaintext highlighter-rouge">Supplies</code> to the workbook, then we can write the relevant data to that sheet along with styling our column headers using <code class="language-plaintext highlighter-rouge">headerStyle</code> from earlier.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># create the supplies sheet and check for it
+addWorksheet(wb = wb, sheetName = "Supplies")
+# write supplies to the worksheet using headerStyle
+writeData(wb = wb, sheet = "Supplies", x = supplies, headerStyle = headerStyle)
+</code></pre></div></div>
+
+<center><em style="color: grey;">Creating the supplies worksheet</em></center>
+<p><br /></p>
+
+<p>All of the numbers in the <code class="language-plaintext highlighter-rouge">Supplies</code> sheet are centered both horizontally and vertically. We can achieve this by adding the <code class="language-plaintext highlighter-rouge">numberStyle</code> from before to those cells. <code class="language-plaintext highlighter-rouge">rows</code> and <code class="language-plaintext highlighter-rouge">cols</code> both start at 2 because row one is the header row and column one is the supply type. <code class="language-plaintext highlighter-rouge">rows</code> goes to 5 because there are 4 rows of numbers (remember the header row) and <code class="language-plaintext highlighter-rouge">cols</code> goes to 5 because there are 4 columns of numbers. <code class="language-plaintext highlighter-rouge">gridExpand = TRUE</code> makes sure that all cell reference combinations possible with <code class="language-plaintext highlighter-rouge">rows</code> and <code class="language-plaintext highlighter-rouge">cols</code> are used, rather than doing an entire row or column.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># add numberStyle
+addStyle(wb = wb, sheet = "Supplies", style = numberStyle, rows = 2:5, 
+         cols = 2:5, gridExpand = TRUE)
+</code></pre></div></div>
+
+<center><em style="color: grey;">Adding number formatting to the numbers</em></center>
+<p><br /></p>
+
+<p>If we go back to our data in R, the <code class="language-plaintext highlighter-rouge">Quantity</code> for Hotdog buns and Hamburger buns is empty. A bit further back, we see that that’s because those cells were merged with the <code class="language-plaintext highlighter-rouge">Quantity</code> of Hotdogs and Hamburgers respectively. We can replicate this using <code class="language-plaintext highlighter-rouge">mergeCells</code>. Unlike <code class="language-plaintext highlighter-rouge">addStyle</code>, we don’t need to use <code class="language-plaintext highlighter-rouge">gridExpand</code> to merge all the cells as it is implied. <code class="language-plaintext highlighter-rouge">cols</code> will be 2 for both and we want <code class="language-plaintext highlighter-rouge">rows</code> 2 and 3 for Hotdogs and <code class="language-plaintext highlighter-rouge">rows</code> 4 and 5 for Hamburgers.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># merge the hamburger and hotdog quantity cells
+mergeCells(wb = wb, sheet = "Supplies", cols = 2, rows = 2:3)
+mergeCells(wb = wb, sheet = "Supplies", cols = 2, rows = 4:5)
+</code></pre></div></div>
+
+<center><em style="color: grey;">Merging the hotdog and hamburger quantity cells</em></center>
+<p><br /></p>
+
+<p>Our last step on this worksheet is to set the column widths to auto. We again need to specify <code class="language-plaintext highlighter-rouge">cols</code> and can just do <code class="language-plaintext highlighter-rouge">1:5</code> so that all columns are affected.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># set column widths to auto
+setColWidths(wb = wb, sheet = "Supplies", cols = 1:5, widths = "auto")
+</code></pre></div></div>
+
+<center><em style="color: grey;">Setting the column widths</em></center>
+<p><br /></p>
+
+<p>Ou <code class="language-plaintext highlighter-rouge">Supplies</code> sheet is now complete, but we’re not going to write it just yet because we still need to do the <code class="language-plaintext highlighter-rouge">Attendance</code> sheet.</p>
+
+<p><br /></p>
+<center><hr style="width: 25%; height: .5px; color: black; background-color: black;" /></center>
+<p><br /></p>
+
+<p>Like before, we first add the <code class="language-plaintext highlighter-rouge">Attendance</code> worksheet and write the data to it.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># create the attendance sheet and check for it
+addWorksheet(wb = wb, sheetName = "Attendance")
+
+# write attendance to the worksheet using the same headerStyle from before
+writeData(wb = wb, sheet = "Attendance", x = attendance, 
+          headerStyle = headerStyle)
+</code></pre></div></div>
+
+<center><em style="color: grey;">Creating the attendance worksheet</em></center>
+<p><br /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">RSVPed</code> and <code class="language-plaintext highlighter-rouge">Status</code> columns each have some conditional formatting. We can reuse the color formatting from the <code class="language-plaintext highlighter-rouge">RSVPed</code> column on the <code class="language-plaintext highlighter-rouge">Status</code> column, so we’re going to separate the color style from the alignment style. It was easy to see how many rows we have in the <code class="language-plaintext highlighter-rouge">Supplies</code> sheet but not here so we’re going to create a new variable that has the <code class="language-plaintext highlighter-rouge">rowNumbers</code>. Again, we start on row 2 because of the header row and will end at our last data row plus 1.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># create color styles for rsvp and status
+goodStyle &lt;- createStyle(fontColour = "#006100", bgFill = "#C6EFCE")
+badStyle &lt;- createStyle(fontColour = "#9C0006", bgFill = "#FFC7CE")
+# create center style for rsvp column
+centerStyle &lt;- createStyle(halign = "center")
+
+# create a variable of row numbers
+rowNumbers &lt;- seq(2, nrow(attendance) + 1, by = 1)
+</code></pre></div></div>
+
+<center><em style="color: grey;">Creating styles for conditional formatting</em></center>
+<p><br /></p>
+
+<p>Our first step is to center the values in the <code class="language-plaintext highlighter-rouge">RSVPed</code> column with an <code class="language-plaintext highlighter-rouge">addStyle</code>. Next, while we could manually color each cell using a <code class="language-plaintext highlighter-rouge">for</code> loop, it’s more efficient to use <code class="language-plaintext highlighter-rouge">conditionalFormatting</code>. This also has the added bonus of showing in Excel and responding to any changes. The rule argument may be a little strange, and that’s because it must match how the same formatting rule would be written in Excel. In this case, we use our top-leftmost cell as the reference cell in the rule, <code class="language-plaintext highlighter-rouge">B2</code>, then we check if it is <code class="language-plaintext highlighter-rouge">TRUE</code> or <code class="language-plaintext highlighter-rouge">FALSE</code>. When the rule is applied down the cells in column <code class="language-plaintext highlighter-rouge">B</code>, the row number will change to match the current row.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># center the column values
+addStyle(wb = wb, sheet = "Attendance", 
+         style = centerStyle, cols = 2, rows = rowNumbers)
+
+# IF `RSVPed` is TRUE, set it to green. IF FALSE, set it to red
+conditionalFormatting(wb = wb, sheet = "Attendance", cols = 2, 
+                      rows = rowNumbers, rule = "B2==TRUE", style = goodStyle)
+conditionalFormatting(wb = wb, sheet = "Attendance", cols = 2, 
+                      rows = rowNumbers, rule = "B2==FALSE", style = badStyle)
+</code></pre></div></div>
+
+<center><em style="color: grey;">Styling the RSVPed column</em></center>
+<p><br /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Status</code> column is very similar to the <code class="language-plaintext highlighter-rouge">RSVPed</code> column, but we add a style for <code class="language-plaintext highlighter-rouge">Tentative</code> responses and then need a third <code class="language-plaintext highlighter-rouge">conditionalFormatting</code>. The newest part here is in the <code class="language-plaintext highlighter-rouge">rule</code> argument. We need to put quotes around <code class="language-plaintext highlighter-rouge">Yes</code> so that Excel knows that it is a string and need to use <code class="language-plaintext highlighter-rouge">\"</code> so that R knows that the quote is part of the string. Once our formatting has been applied, we set the column widths as we did before.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># add style for status and tentative
+maybeStyle &lt;- createStyle(fontColour = "#9C6500", bgFill = "#FFEB9C")
+
+conditionalFormatting(wb = wb, sheet = "Attendance", cols = 3, 
+                      rows = rowNumbers, rule = "C2==\"Yes\"", 
+                      style = goodStyle)
+conditionalFormatting(wb = wb, sheet = "Attendance", cols = 3, 
+                      rows = rowNumbers, rule = "C2==\"No\"", 
+                      style = badStyle)
+conditionalFormatting(wb = wb, sheet = "Attendance", cols = 3, 
+                      rows = rowNumbers, rule = "C2==\"Tentative\"", 
+                      style = maybeStyle)
+
+# set column widths to auto
+setColWidths(wb = wb, sheet = "Attendance", cols = 1:4, widths = "auto")
+</code></pre></div></div>
+
+<center><em style="color: grey;">More conditional formatting for the Status column</em></center>
+<p><br /></p>
+
+<p>The last thing we need to do is reorder the worksheets so that <code class="language-plaintext highlighter-rouge">Attendance</code> is first because when we created the workbook in R, we created the <code class="language-plaintext highlighter-rouge">Supplies</code> worksheet first. Unfortunately, <code class="language-plaintext highlighter-rouge">worksheetOrder</code> only supports integer vectors. We can check our worksheet numbers by calling the object again through either the chunk or console. Then we set the worksheet order and save the workbook to an <code class="language-plaintext highlighter-rouge">.xlsx</code> file.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># check the workbook sheet order
+wb
+# change the order
+worksheetOrder(wb) &lt;- c(2, 1)
+
+# save the workbook
+saveWorkbook(wb, "newBBQ.xlsx")
+</code></pre></div></div>
+
+<center><em style="color: grey;">Setting the worksheet order and saving the workbook</em></center>
+<p><br /></p>
+
+<p>If we open the new file, we can see that they are nearly identical. The biggest difference between the two is that the original used formulas to calculate the values in <code class="language-plaintext highlighter-rouge">Supplies</code>.</p>
+
+<p>If you did want to take it a step further and use those instead, the <code class="language-plaintext highlighter-rouge">writeFormula</code> function is your friend. In any case, I highly encourage everyone to at least skim through the <code class="language-plaintext highlighter-rouge">openxlsx</code> documentation <a href="https://cran.r-project.org/web/packages/openxlsx/openxlsx.pdf">here</a> because it has so much to offer to help streamline Excel file generation.</p>
+
+<p><br /></p>
+<center><hr style="width: 25%; height: .5px; color: black; background-color: black;" /></center>
+<p><br /></p>
+
+<p>All the code for this article is available <a href="https://gist.github.com/guslipkin/bc0b1ab7861c431a08b8672bec50d806?file=openxlsxUsage.rmd">here</a>. If you want to see more from me, check out <a href="https://github.com/guslipkin">my GitHub</a> or <a href="https://guslipkin.github.io">guslipkin.github.io</a>. If you want to hear from me, I’m also on Twitter <a href="https://twitter.com/GusLipkin">@guslipkin</a>.</p>
+
+<p><br /></p>
+<center><em>Gus Lipkin is a Data Scientist, Business Analyst, and occasional bike mechanic</em></center>
+
+  </div><a class="u-url" href="/2022/02/23/making-pretty-excel-files-in-r.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Gus Lipkin&#39;s Awesome Website</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Gus Lipkin&#39;s Awesome Website</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/guslipkin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">guslipkin</span></a></li><li><a href="https://www.linkedin.com/in/guslipkin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">guslipkin</span></a></li><li><a href="https://www.twitter.com/guslipkin"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">guslipkin</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Hi there! I&#39;m Gus, a Data Scientist and Business Analyst with a few years&#39; experience.  Take a look around to learn more about what I do.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
