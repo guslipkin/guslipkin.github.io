@@ -1,0 +1,33 @@
+project:
+  type: website
+
+website:
+  title: "Gus Lipkin's Awesome Website"
+  navbar:
+    background: primary
+    left:
+      - href: about.qmd
+        text: About Me
+      - href: resume.qmd
+        text: My Résumé
+      - href: blog.qmd
+        text: My Blog
+      - href: contact.qmd
+        text: Contact Me
+    right:
+      - href: https://www.linkedin.com/in/guslipkin/
+        icon: linkedin
+      - href: https://www.github.com/guslipkin
+        icon: github
+      - href: https://www.twitter.com/GusLipkin
+        icon: twitter
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    css: styles.css
+
+
+
