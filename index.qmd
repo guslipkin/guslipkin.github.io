@@ -144,8 +144,8 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 ::: {.g-col-12 .text-wrap}
 - **What:** That's up to you!
 - **Why:** I have a lot to offer you and your company in a variety of fields.</li>
-- **How:** If you'd like to work with me but, you're not sure where I might fit in, this page and [my résumé](../resume.html) are a great place to start
-- **Conclusion:** It's time to [contact me](../contact.html) and get the ball rolling!
+- **How:** If you'd like to work with me but, you're not sure where I might fit in, this page and [my résumé](resume.html) are a great place to start
+- **Conclusion:** It's time to [contact me](contact.html) and get the ball rolling!
 :::
 :::
 ::: {.g-col-12 .g-col-sm-6 .d-grid}

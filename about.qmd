@@ -60,7 +60,7 @@ After graduating high school in 2015, I launched the archery program at a summer
 :::
 :::
 <br>
-I came to Florida Poly during Fall 2018 and the rest, as they say, is history. You can learn more about [my time at Florida Poly](https://floridapoly.edu/search/?q=gus+lipkin) and [projects here](/) and see my [resume here](/resume/).
+I came to Florida Poly during Fall 2018 and the rest, as they say, is history. You can learn more about [my time at Florida Poly](https://floridapoly.edu/search/?q=gus+lipkin) and [projects here](/) and see my [resume here](resume.html).
 
 ## Selected Interests
 

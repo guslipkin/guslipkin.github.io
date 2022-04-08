@@ -3,7 +3,7 @@ title: "Gus' Good Spreadsheet Guide"
 site-path: "/presentations/spreadsheet_guide"
 ---
 
-[💾 Print a copy](../assets/spreadsheet_guide.pdf)
+[💾 Print a copy](../assets/SpreadsheetGuide.pdf)
 
 <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="false">
 <div class="carousel-inner">
