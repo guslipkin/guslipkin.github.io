@@ -5,38 +5,38 @@ site-path: "/presentations/disney_world_ride_wait_times"
 
 [🏰 Print a copy](../assets/Data_Science_Final_Presentation.pdf)
 
-<div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="false">
+<div id="carouselExampleIndicators" class="carousel carousel-dark Slide" data-bs-ride="carousel" data-bs-interval="false">
 <div class="carousel-inner">
   <div class="carousel-item active">
-  <img src="../assets/Data_Science_Final_Presentation/slide1.png" class="d-block w-100">
+  <img src="../assets/Data_Science_Final_Presentation/Slide1.png" class="d-block w-100">
   </div>
   <div class="carousel-item">
-  <img src="../assets/Data_Science_Final_Presentation/slide2.png" class="d-block w-100">
+  <img src="../assets/Data_Science_Final_Presentation/Slide2.png" class="d-block w-100">
   </div>
   <div class="carousel-item">
-  <img src="../assets/Data_Science_Final_Presentation/slide3.png" class="d-block w-100">
+  <img src="../assets/Data_Science_Final_Presentation/Slide3.png" class="d-block w-100">
   </div>
   <div class="carousel-item">
-  <img src="../assets/Data_Science_Final_Presentation/slide4.png" class="d-block w-100">
+  <img src="../assets/Data_Science_Final_Presentation/Slide4.png" class="d-block w-100">
   </div>
   <div class="carousel-item">
-  <img src="../assets/Data_Science_Final_Presentation/slide5.png" class="d-block w-100">
+  <img src="../assets/Data_Science_Final_Presentation/Slide5.png" class="d-block w-100">
   </div>
   <div class="carousel-item">
-  <img src="../assets/Data_Science_Final_Presentation/slide6.png" class="d-block w-100">
+  <img src="../assets/Data_Science_Final_Presentation/Slide6.png" class="d-block w-100">
   </div>
   <div class="carousel-item">
-  <img src="../assets/Data_Science_Final_Presentation/slide7.png" class="d-block w-100">
+  <img src="../assets/Data_Science_Final_Presentation/Slide7.png" class="d-block w-100">
   </div>
   <div class="carousel-item">
-  <img src="../assets/Data_Science_Final_Presentation/slide8.png" class="d-block w-100">
+  <img src="../assets/Data_Science_Final_Presentation/Slide8.png" class="d-block w-100">
   </div>
 </div>
-<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-Slide="prev">
   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
   <span class="visually-hidden">Previous</span>
 </button>
-<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-Slide="next">
   <span class="carousel-control-next-icon" aria-hidden="true"></span>
   <span class="visually-hidden">Next</span>
 </button>
