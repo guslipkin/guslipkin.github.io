@@ -138,7 +138,7 @@ $enable-cssgrid: true
 	/* end attribution */
 </style>
 
-### [🖨 Print a copy](../assets/Gus_Lipkin_Resume_for_GitHub.pdf) {.unnumbered .unlisted}
+### [🖨 Print a copy](assets/Gus_Lipkin_Resume_for_GitHub.pdf) {.unnumbered .unlisted}
 
 <div class="letter resumeClass" id="resume">
 
