@@ -1,0 +1,153 @@
+---
+title: "Grouped and Stacked Bar Charts in R"
+description: "Using R and ggplot2 to create stacked and grouped column charts"
+image: "../assets/post-assets/2022-02-16-grouped-and-stacked-bar-charts-in-r/stackAndDodge.png"
+author: "Gus Lipkin"
+date: "2022/02/16"
+categories:
+  - R
+  - "R: tidyverse"
+  - "R: ggplot2"
+format:
+  html:
+    theme: default
+    toc: true
+---
+
+[*Link to the Medium post*](https://medium.com/@guslipkin/grouped-and-stacked-bar-charts-in-r-e5f5ac5637de)
+
+# Intro 
+
+Sometimes you have a chart that looks like one of these. You have a grouped chart that shows one thing and a stacked chart that shows another. But you really want to show the continent of origin and the condition in one chart.
+
+::: {#fig-grouped-stacked layout-ncol=2}
+
+![A grouped bar chart](../assets/post-assets/2022-02-16-grouped-and-stacked-bar-charts-in-r/group.png){#fig-grouped}
+
+![A stacked bar chart](../assets/post-assets/2022-02-16-grouped-and-stacked-bar-charts-in-r/stack.png){#fig-stacked}
+
+A grouped bar chart and a stacked bar chart
+:::
+
+Maybe the chart you want looks a lot like this:
+
+![The chart that we will learn to build](../assets/post-assets/2022-02-16-grouped-and-stacked-bar-charts-in-r/stackAndDodge.png){alt="A grouped and stacked bar chart"}
+
+----
+
+# Creating the Data
+
+First we load `ggplot2` so we can make our charts. Then we make some data and preview it. `set.seed(2022)` makes sure that our data is the same every time.
+
+```{r}
+#| output: FALSE
+library(ggplot2)
+
+set.seed(2022)
+specie <- c(rep("sorgho", 6), rep("poacee", 6), 
+            rep("banana", 6), rep("triticum", 6))
+condition <- rep(c("normal" , "stress" , "N2") , 8)
+continent <- rep(c("Europe", "Africa", "Asia", "South America",          
+                   "North America", "Australia"), 4)
+value <- abs(rnorm(24 , 0 , 15))
+data <- data.frame(specie, condition, continent, value)
+head(data)
+```
+<center><em style="color: grey;">Creating the data</em></center>
+
+||**specie**|**condition**|**continent**|**value**
+|:-----:|:-----:|:-----:|:-----:|:-----:
+1|sorgho|normal|Europe|33.2982559377826
+2|sorgho|stress|Africa|7.4199245988712
+3|sorgho|N2|Asia|52.3689859681817
+4|sorgho|normal|South America|4.85975695583929
+5|sorgho|stress|North America|6.84424418650998
+6|sorgho|N2|Australia|6.74199859289553
+
+<center><em style="color: grey;">Previewing the data</em></center>
+
+----
+
+# Not Quite Right
+
+Our first instinct might be to throw both charts together using `grid.arrange` from the `gridextra` package. While this does show the information we want, it’s not pretty and doesn’t show the data the way we want it to.
+
+```{r}
+#| fig-caption: "Two plots graphed together with `gridExtra::grid.arrange()`"
+#| alt-text: "A grouped chart and a stacked chart on top of each other"
+one <- ggplot(data) +
+  geom_bar(aes(x = specie, y = value, fill = condition), 
+           position = "dodge", stat = "identity")
+two <- ggplot(data) +
+  geom_bar(aes(x = specie, y = value, fill = continent), 
+           position = "stack", stat = "identity")
+gridExtra::grid.arrange(one, two, nrow = 2)
+```
+
+Not sure what to do, we come up with lots of plots that are almost right, but not quite.
+
+::: {#fig-three-not-right layout-ncol=3}
+
+![](../assets/post-assets/2022-02-16-grouped-and-stacked-bar-charts-in-r/groupDodge.png){#fig-groupDodge alt="A grouped bar chart and stacked bar chart without labels"}
+
+![](../assets/post-assets/2022-02-16-grouped-and-stacked-bar-charts-in-r/interaction.png){#fig-interaction alt="A stacked bar chart with interaction labels"}
+
+![](../assets/post-assets/2022-02-16-grouped-and-stacked-bar-charts-in-r/facetWrap.png){#fig-factWrap alt="Four stacked bar charts in a 2x2 grid"}
+
+Three attempts at making a grouped and stacked bar chart
+:::
+
+
+The last one looks like it could be promising. How did we do it?
+
+```{r}
+#| output: FALSE
+ggplot(data) +
+  geom_bar(aes(x = condition, y = value, fill = continent),
+           position = "stack",
+           stat = "identity") +
+  facet_wrap(~ specie)
+```
+
+We use `ggplot` to set up the pipeline, `geom_bar` to create the bar chart, and then `facet_wrap` is what gives us the four separate charts in one, with one mini-chart for each species. If we can move the charts to be side-by-side, we’ll be a lot closer to the desired outcome. We can use `facet_grid` instead of `facet_wrap` to accomplish that.
+
+```{r}
+#| fig-cap: "Using facet_grid() to show multiple plots next to each other"
+#| alt-text: "Four stacked bar charts side-by-side"
+ggplot(data) +
+  geom_bar(aes(x = condition, y = value, fill = continent),
+           position = "stack",
+           stat = "identity") +
+  facet_grid(~ specie)
+```
+
+This looks much better, but we want it to look like one cohesive plot, rather than four smaller plots.
+
+----
+
+# The Final Product
+
+I'm going to show you the code that does it, then walk through it so everything makes sense.
+
+```{r}
+#| fig-cap: "The graph that we came here for"
+#| alt-text: "A grouped and stacked bar chart"
+ggplot(data) +
+  geom_bar(aes(x = condition, y = value, fill = continent),
+           position = "stack",
+           stat = "identity") +
+  facet_grid(~ specie, switch = "x") +
+  theme(strip.placement = "outside",
+        strip.background = element_rect(fill = NA, color = "white"),
+        panel.spacing = unit(-.01,"cm"))
+```
+
+
+This looks pretty good and is exactly what we wanted. Like the charts before, we get 90% of the way there with `ggplot`, `geom_bar`, and `facet_grid`. The additions here are the `switch = "x"` argument in `facet_grid`, which moves the group panel with the species from the top of the chart to the bottom. Moving the `strip.placement` outside makes sure that the conditions are listed between the species and the chart. Making `strip.background` empty with a white border allows the group panel with the species to blend in with the white background of the chart. Lastly, changing the `panel.spacing` to `-.01` removes the small gap between each panel so that the chart appears to be one cohesive unit.
+
+----
+
+The code for all the charts in this article is available <a [here](https://gist.github.com/guslipkin/76da4207fcee7bcdea6707ecc1f4b9fa?file=allTogether.rmd). If you want to see more from me, check out [my GitHub](https://github.com/guslipkin) or [guslipkin.github.io](https://guslipkin.github.io). If you want to hear from me, I'm also on Twitter [@guslipkin](https://twitter.com/GusLipkin).
+
+
+<center><em>Gus Lipkin is a Data Scientist, Business Analyst, and occasional bike mechanic</em></center>

@@ -1,0 +1,25 @@
+"","specie","condition","continent","value"
+"1","sorgho","normal","Europe",8.51515461680331
+"2","sorgho","stress","Africa",15.1724287383997
+"3","sorgho","N2","Asia",4.38900439266154
+"4","sorgho","normal","South America",1.77456217088058
+"5","sorgho","stress","North America",2.9218228309744
+"6","sorgho","N2","Australia",11.7185545137167
+"7","poacee","normal","Europe",44.2702813484929
+"8","poacee","stress","Africa",13.2142605852609
+"9","poacee","N2","Asia",25.6036362145583
+"10","poacee","normal","South America",33.7236821211368
+"11","poacee","stress","North America",4.24983560061448
+"12","poacee","N2","Australia",1.70703770618793
+"13","banana","normal","Europe",18.8250467772715
+"14","banana","stress","Africa",28.1148658465898
+"15","banana","N2","Asia",39.1816700573495
+"16","banana","normal","South America",8.36269192409752
+"17","banana","stress","North America",0.139285767475215
+"18","banana","N2","Australia",8.11291937004012
+"19","triticum","normal","Europe",2.52724111827825
+"20","triticum","stress","Africa",9.58979007069442
+"21","triticum","N2","Asia",3.21845167083357
+"22","triticum","normal","South America",15.2408645554152
+"23","triticum","stress","North America",15.8892359918932
+"24","triticum","N2","Australia",9.22944771679487
