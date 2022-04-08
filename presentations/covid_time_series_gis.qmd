@@ -3,4 +3,161 @@ title: "Investigating a relationship between climate variables and the spread of
 site-path: "/presentations/covid_time_series_gis"
 ---
 
-<iframe src="http://docs.google.com/gview?url=https://guslipkin.github.io/assets/covid_time_series_gis.pdf&embedded=true" style="width:100%; height:100%;" frameborder="0"></iframe>
+[🦠 Print a copy](../assets/covid_time_series_gis.pdf)
+
+<div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="false">
+<div class="carousel-inner">
+  <div class="carousel-item active">
+  <img src="../assets/covid_time_series_gis/Slide1.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide2.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide3.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide4.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide5.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide6.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide7.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide8.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide9.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide10.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide11.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide12.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide13.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide14.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide15.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide16.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide17.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide18.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide19.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide20.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide21.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide22.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide23.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide24.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide25.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide26.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide27.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide28.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide29.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide30.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide31.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide32.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide33.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide34.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide35.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide36.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide37.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide38.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide39.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide40.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide41.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide42.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide43.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide44.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide45.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide46.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide47.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="../assets/covid_time_series_gis/Slide48.png" class="d-block w-100">
+  </div>
+</div>
+<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Next</span>
+</button>
+</div>

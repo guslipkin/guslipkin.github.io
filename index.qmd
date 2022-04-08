@@ -9,8 +9,6 @@ $enable-grid-classes: false
 $enable-cssgrid: true
 ---
 
-*Hi, everyone. I'm having a bit of trouble with my project pages. Hoping to get them back up by 2pm April 8*
-
 <style>
   code { white-space: normal; }
 </style>
