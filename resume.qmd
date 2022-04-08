@@ -187,8 +187,9 @@ $enable-cssgrid: true
 <div class="time">Jan 2022 - Present</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
-	<li>Create and execute test plans to discover software problems and their causes</li>
-	<li>Document and demonstrate software features to internal and external users</li>
+	<li>Create and execute test plans to discover software problems and their causes using qTest and Jira</li>
+	<li>Investigate patterns in bugs reported using JQL and causal inference</li>
+	<li>Document and demonstrate software features to internal and external users in Confluence</li>
 </ul>
 
 <div class="grid-job">
@@ -199,9 +200,9 @@ $enable-cssgrid: true
 <div class="time">Aug 2021 - Present</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
-	<li>Correlate patient feedback to avoidable readmissions and patient experience</li>
-	<li>Work with capstone sponsor to define project timeline and goals</li>
-	<li>Analyze discharge survey data to find correlations between responses and readmission rates using R and RStudio</li>
+	<li>Correlate patient feedback to readmissions and patient experience using linear regression and decision trees</li>
+	<li>Create a training tool for nurses using significant results found in the analysis</li>
+	<li>Work with capstone sponsor to define project timeline and goals and write a report on project findings</li>
 </ul>
 
 <div class="grid-job">
@@ -212,9 +213,8 @@ $enable-cssgrid: true
 <div class="time">May 2021 - Aug 2021</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
-	<li>Investigate the spatio-temporal relationship of different climate variables with the spread of SARS-CoV-2 using GIS and multivariate regressions</li>
 	<li>Gather and process time series data of geospatial climate variables and SARS-CoV-2 data</li>
-	<li>Analyze data in ArcGIS to investigate variable relationships</li>
+	<li>Analyze data in R, Excel, and ArcGIS to investigate relationships with time series analysis and linear regressions</li>
 </ul>
 
 <div class="grid-job">
@@ -225,22 +225,11 @@ $enable-cssgrid: true
 <div class="time">Dec 2020 - Sep 2021</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
-	<li>Oversee a team of interns and supervise data transition efforts</li>
-	<li>Coordinate with project managers to ensure a successful data migration</li>
+	<li>Oversee a team of interns and supervise data migration efforts including cleaning source data before transfer</li>
+	<li>Use text mining and sentiment analysis to correlate jet system failure reports and maintenance repairs</li>
 	<li>Create and run weekly parts availability analysis and reports using R and RStudio</li>
 </ul>
 
-<div class="grid-job">
-<div class="job">
-<span ><b>Research Assistant</b></span>
-<span style="color:#2e4440"><em> – Florida Polytechnic University</em></span>
-</div>
-<div class="time">May 2020 - Aug 2020</div>
-</div>
-<ul style="font-size: 14px; color:#666666;">
-	<li>Assist in all facets of research, including but not limited to, data transcription, analysis in R and RStudio, and writing reports</li>
-	<li>Attend daily meetings to give updates on project progress and discuss data discoveries</li>
-</ul>
 <h3 style="margin-bottom: 0px;">Professional Organizations</h3>
 <div class="grid-job">
 <div class="job">
