@@ -28,6 +28,7 @@ site-path: "/contact"
   }
 
   button[type="submit"] {
+    background-color: green;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -35,17 +36,42 @@ site-path: "/contact"
     font-size: 24px;
     text-align: center;
   }
+  
+  input {
+    outline: none;
+    border: solid 1px green;
+  }
+
+  input:invalid {
+    border: solid 1px red;
+  }
+
+  input:invalid ~ button {
+    background-color: red;
+  }
+  
+  textarea {
+    outline: none;
+  }
+
+  textarea:invalid {
+    border: solid 1px red;
+  }
+
+  textarea:invalid ~ button {
+    background-color: red;
+  }
 </style>
 
 <form action="https://getform.io/f/48d79c83-3c81-4b2c-9e3f-866352164fa5" method="POST">
   <p style="font-size: 24px;">Name<b style="color: red;">*</b></p>
-  <input type="text" name="name" required/>
+  <input type="text" name="name" required="required"/>
   <p style="font-size: 24px;">Company</p>
   <input type="text" name="company">
   <p style="font-size: 24px;">Email<b style="color: red;">*</b></p>
-  <input type="email" name="email" size="50" required/>
+  <input type="email" name="email" size="50" required="required"/>
   <p style="font-size: 24px;">Message<b style="color: red;">*</b></p>
-  <textarea type="text" name="message" rows="5" cols="50" required></textarea>
+  <textarea type="text" name="message" rows="5" cols="50" required="required"></textarea>
   <br>
   <p><em>&ensp;Sending this form will take you to an external thank you page</em></p>
   <button type="submit">Send</button>
