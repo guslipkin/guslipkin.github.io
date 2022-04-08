@@ -1,12 +1,13 @@
 ---
 title: "Grouped and Stacked Bar Charts in R"
 description: "Using R and ggplot2 to create stacked and grouped column charts"
+image: "../assets/post-assets/2022-02-16-grouped-and-stacked-bar-charts-in-r/stackAndDodge.png"
 author: "Gus Lipkin"
 date: "2022/02/16"
 categories:
   - R
-  - tidyverse
-  - ggplot2
+  - "R: tidyverse"
+  - "R: ggplot2"
 format:
   html:
     theme: default

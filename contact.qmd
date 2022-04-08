@@ -28,7 +28,6 @@ site-path: "/contact"
   }
 
   button[type="submit"] {
-    background-color: #000000;
     color: white;
     padding: 12px 20px;
     border: none;
