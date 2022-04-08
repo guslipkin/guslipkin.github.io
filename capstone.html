@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="quarto-0.9.166">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Gus Lipkin’s Awesome Website - Hi There 👋</title>
+  <title>Gus Lipkin’s Awesome Website - Patient Readmission Rates</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -55,7 +55,7 @@
   <![endif]-->
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="fullcontent">
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
@@ -110,188 +110,181 @@
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">My Projects</h2>
-<ul>
-<li><a href="#data-focused-projects" class="nav-link active" data-scroll-target="#data-focused-projects">Data Focused Projects</a></li>
-<li><a href="#economic-analysis-focused-projects" class="nav-link" data-scroll-target="#economic-analysis-focused-projects">Economic Analysis Focused Projects</a></li>
-<li><a href="#software-development" class="nav-link" data-scroll-target="#software-development">Software Development</a></li>
-<li><a href="#other-projects" class="nav-link" data-scroll-target="#other-projects">Other Projects</a></li>
-<li><a href="#consulting" class="nav-link" data-scroll-target="#consulting">Consulting</a></li>
-</ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 <header id="title-block-header" class="quarto-title-block default">
 
-<div class="quarto-title"><h1 class="title display-7">Hi There 👋</h1></div></header>
-
-<p><em>Hi, everyone. I’m having a bit of trouble with my project pages. Hoping to get them back up by 2pm April 8</em></p>
+<div class="quarto-title"><h1 class="title display-7">Patient Readmission Rates</h1></div></header>
 <style>
-  code { white-space: normal; }
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+    .flex-item {
+        flex: 30%;
+        border: 1.5px solid black;
+        margin: 3px;
+        padding-left: 3px;
+    }
+
+    @media (max-width: 600px) {
+        .flex-item {
+            flex: 100%;
+        }
+    }
 </style>
-<center>
-<img src="./assets/gus_headshot_landscape.jpg" style="max-height: 315px;">
-</center>
+<section id="your-demographics-and-story" class="level2">
+<h2 class="anchored" data-anchor-id="your-demographics-and-story">Your Demographics and Story</h2>
+<section id="demographics" class="level3">
+<h3 class="anchored" data-anchor-id="demographics">Demographics</h3>
+<div class="flex-container">
+<div id="age" class="flex-item">
+
+</div>
+<div id="gender" class="flex-item">
+
+</div>
+<div id="insurance" class="flex-item">
+
+</div>
+<div id="race" class="flex-item">
+
+</div>
+<div id="ethnicity" class="flex-item">
+
+</div>
+</div>
 <p><br></p>
-<p>I’m Gus, a Business Analyst with a few years’ experience. I’d like to show you what I do.</p>
-<p>You can also find me on Twitter <a href="https://twitter.com/GusLipkin"><span class="citation" data-cites="guslipkin">@guslipkin</span></a> or on Medium also <a href="https://guslipkin.medium.com"><span class="citation" data-cites="guslipkin">@guslipkin</span></a>.</p>
-<hr>
-<section id="data-focused-projects" class="level2 column-page">
-<h2 class="anchored" data-anchor-id="data-focused-projects">Data Focused Projects</h2>
 </section>
-<div class="grid column-page">
-<div class="g-col-12 g-col-sm-6 d-grid">
-<section id="disney-world-ride-wait-times" class="level4 g-col-12">
-<h4 class="anchored" data-anchor-id="disney-world-ride-wait-times"><a href="../presentations/disney_world_ride_wait_times.html">Disney World Ride Wait Times</a></h4>
-</section>
-<div class="g-col-12 d-flex align-items-start">
-<ul>
-<li><strong>What:</strong> Can I find the best time to visit Disney World 🏰 based on ride wait times?</li>
-<li><strong>Why:</strong> Going to Disney can be lots of fun, but waiting in lines is not.</li>
-<li><strong><a href="https://github.com/guslipkin/disney_ds">How</a>:</strong> <code>R: {forcats, lubridate, reshape2, tidyverse}</code></li>
-<li><strong>Conclusion:</strong> Try going to Epcot on a Wednesday in September.</li>
-</ul>
-</div>
-</div>
-<div class="g-col-12 g-col-sm-6 d-grid">
-<section id="investigating-a-relationship-between-climate-variables-and-the-spread-of-covid-19" class="level4 g-col-12">
-<h4 class="anchored" data-anchor-id="investigating-a-relationship-between-climate-variables-and-the-spread-of-covid-19"><a href="../presentations/covid_time_series_gis.html">Investigating a relationship between climate variables and the spread of COVID-19</a></h4>
-</section>
-<div class="g-col-12">
-<ul>
-<li><strong>What:</strong> Since COVID-19 🦠 is spread through close contact, do any climate variables influence spread?</li>
-<li><strong>Why:</strong> Human behavior is affected by the weather. If there is adverse weather, is there an increase in spread?</li>
-<li><strong><a href="https://github.com/guslipkin/COVID-TimeSeries-GIS">How</a>:</strong> <code>ArcGIS</code>, <code>Excel</code>, <code>R: {data.table, tidyverse}</code></li>
-<li><strong>Conclusion:</strong> Some counties can be modelled very well such as Cook County, Illinois while others, such as Tift County, Georgia, not so much.</li>
-</ul>
-</div>
-</div>
-</div>
-<section id="economic-analysis-focused-projects" class="level2 column-page">
-<h2 class="anchored" data-anchor-id="economic-analysis-focused-projects">Economic Analysis Focused Projects</h2>
-</section>
-<div class="grid column-page">
-<div class="g-col-12 g-col-sm-6 d-grid">
-<section id="improving-tutoring-at-florida-poly" class="level4 g-col-12">
-<h4 class="anchored" data-anchor-id="improving-tutoring-at-florida-poly"><a href="../presentations/tutoring_at_poly.html">Improving Tutoring at Florida Poly</a></h4>
-</section>
-<div class="g-col-12 text-wrap">
-<ul>
-<li><strong>What:</strong> How can we make tutoring more available to students?</li>
-<li><strong>Why:</strong> Getting tutoring for the classes you need can be difficult, especially when trying to fit it into your schedule.</li>
-<li><strong><a href="https://github.com/guslipkin/Fall2021/tree/main/ECO%203930%20%7E%20Contemporary%20Economics/Final%20Paper">How</a>:</strong> <code>✨Math✨</code></li>
-<li><strong>Conclusion:</strong> A hybrid model where high demand classes offer group tutoring and all classes have one-on-one tutoring would be most efficient.</li>
-</ul>
-</div>
-</div>
-<div class="g-col-12 g-col-sm-6 d-grid">
-<section id="trader-joes-cultural-and-marketing-plan" class="level4 g-col-12">
-<h4 class="anchored" data-anchor-id="trader-joes-cultural-and-marketing-plan"><a href="../presentations/trader_joes_cultural_marketing_plan.html">Trader Joe’s Cultural and Marketing Plan</a></h4>
-</section>
-<div class="g-col-12">
-<ul>
-<li><strong>What:</strong> Let’s help Trader Joe’s enter the Canadian supermarket industry.</li>
-<li><strong>Why:</strong> It’s a final project for GEB 3373 – International and Comparative Dimensions of Business.</li>
-<li><strong><a href="https://github.com/guslipkin/Spring2021/blob/main/GEB%203373%20%7E%20International%20Comparative%20Dimensions/GEB%203373%20Final%20Project">How</a>:</strong><code>Economic Analysis</code> and <code>Game Theory</code></li>
-<li><strong>Conclusion:</strong> Trader Joe’s has the potential to be a smash hit in the Canadian Supermarket industry.</li>
-</ul>
-</div>
-</div>
-</div>
-<section id="software-development" class="level2 column-page">
-<h2 class="anchored" data-anchor-id="software-development">Software Development</h2>
-</section>
-<div class="grid column-page">
-<div class="g-col-12 g-col-sm-6 d-grid">
-<section id="dewey" class="level4 g-col-12">
-<h4 class="anchored" data-anchor-id="dewey"><a href="../dewey.html">{dewey}<img src="assets/dewey.svg" height="40"></a></h4>
-</section>
-<div class="g-col-12 text-wrap">
-<ul>
-<li><strong>What:</strong> A collection of useful <code>R</code> functions for data analysis</li>
-<li><strong>Why:</strong> There were some things I wanted to do and they didn’t exist yet, so I made them</li>
-<li><strong><a href="https://github.com/guslipkin/dewey">How</a>:</strong> <code>R: {data.table, parallel, pkgdown, stats}</code></li>
-<li><strong>Conclusion:</strong> Development is difficult, but I’m proud of it and it’s super useful</li>
-</ul>
-</div>
-</div>
-<div class="g-col-12 g-col-sm-6 d-grid">
-<section id="flpolysga.github.io" class="level4 g-col-12">
-<h4 class="anchored" data-anchor-id="flpolysga.github.io"><a href="https://flpolysga.github.io">FLPolySGA.github.io</a></h4>
-</section>
-<div class="g-col-12">
-<ul>
-<li><strong>What:</strong> Let’s make a website with all the Student Government documents.</li>
-<li><strong>Why:</strong> It’s important that Student Government stay in compliance with Florida Sunshine Laws.</li>
-<li><strong><a href="https://github.com/FLPolySGA/FLPolySGA.github.io">How</a>:</strong> <code>GitHub Pages</code>, <code>Jekyll</code>, <code>Markdown</code>, <code>HTML</code>, and <code>CSS</code></li>
-<li><strong>Conclusion:</strong> It ain’t much, but it’s honest work.</li>
-</ul>
-</div>
-</div>
-</div>
-<section id="other-projects" class="level2 column-page">
-<h2 class="anchored" data-anchor-id="other-projects">Other Projects</h2>
-</section>
-<div class="grid column-page">
-<div class="g-col-12 g-col-sm-6 d-grid">
-<section id="gus-good-spreadsheet-guide" class="level4 g-col-12">
-<h4 class="anchored" data-anchor-id="gus-good-spreadsheet-guide"><a href="../presentations/spreadsheet_guide.html">Gus’ Good Spreadsheet Guide</a></h4>
-</section>
-<div class="g-col-12 text-wrap">
-<ul>
-<li><strong>What:</strong> A slideshow with guidelines for high quality spreadsheets
-</li>
-<li><strong>Why:</strong> Sometimes people ask for help with spreadsheets and it’s easier to help with consistent design</li>
-<li><strong>How:</strong> <code>Microsoft PowerPoint</code></li>
-<li><strong>Conclusion:</strong> While it is by no means exhaustive, it’s a good start and I hope someone finds it useful</li>
-</ul>
-</div>
-</div>
-<div class="g-col-12 g-col-sm-6 d-grid">
-<section id="cat-simulator-2019" class="level4 g-col-12">
-<h4 class="anchored" data-anchor-id="cat-simulator-2019"><a href="../presentations/cat_simulator_2019.html">Cat Simulator 2019</a></h4>
-</section>
-<div class="g-col-12">
-<ul>
-<li><strong>What:</strong> Can we make a game that teaches basic Bash commands?</li>
-<li><strong>Why:</strong> It’s a final project for COP 3353C – Introduction to Unix.
-</li>
-<li><strong><a href="https://github.com/guslipkin/Lark">How</a>:</strong> <code>Bash</code></li>
-<li><strong>Conclusion:</strong> It’s lots of fun. I highly recommend it!</li>
-</ul>
-</div>
-</div>
-</div>
-<section id="consulting" class="level2 column-page">
-<h2 class="anchored" data-anchor-id="consulting">Consulting</h2>
-</section>
-<div class="grid column-page">
-<div class="g-col-12 g-col-sm-6 d-grid">
-<div class="g-col-12">
+<section id="story" class="level3">
+<h3 class="anchored" data-anchor-id="story">Story</h3>
+<p>
+<em>All stories are fictional and creations of the author</em>
+</p>
+<div id="storyDiv">
 
 </div>
-<div class="g-col-12 text-wrap">
-<ul>
-<li><strong>What:</strong> That’s up to you!</li>
-<li><strong>Why:</strong> I have a lot to offer you and your company in a variety of fields.
-</li>
-<li><strong>How:</strong> If you’d like to work with me but, you’re not sure where I might fit in, this page and <a href="../resume.html">my résumé</a> are a great place to start</li>
-<li><strong>Conclusion:</strong> It’s time to <a href="../contact.html">contact me</a> and get the ball rolling!</li>
-</ul>
+</section>
+</section>
+<section id="discharge-survey" class="level2">
+<h2 class="anchored" data-anchor-id="discharge-survey">Discharge Survey</h2>
+<p><b>Please answer this survey based on the above narrative</b></p>
+<form name="discharge" id="discharge" onsubmit="calculateReadmit();return false">
+<h4 class="anchored">
+During this hospital stay, did you need help from nurses or other hospital staff in getting to the bathroom or in using a bed pan?
+</h4>
+<label><input type="radio" name="cms_12" value="0" required="">Yes</label> <label><input type="radio" name="cms_12" value="1">No</label> <br> <br>
+<h4 class="anchored">
+In general, how would you rate your overall health?
+</h4>
+<label><input type="radio" name="cms_25" value="1" required="">Poor</label> <label><input type="radio" name="cms_25" value="2">Fair</label> <label><input type="radio" name="cms_25" value="3">Good</label> <label><input type="radio" name="cms_25" value="4">Very Good</label> <label><input type="radio" name="cms_25" value="5">Excellent</label> <br> <br>
+<h4 class="anchored">
+Before giving you any new medicine, how often did hospital staff tell you what the medicine was for?
+</h4>
+<label><input type="radio" name="cms_33" value="1" required="">Never</label> <label><input type="radio" name="cms_33" value="2">Rarely</label> <label><input type="radio" name="cms_33" value="3">Sometimes</label> <label><input type="radio" name="cms_33" value="4">Often</label> <label><input type="radio" name="cms_33" value="5">Always</label> <br> <br>
+<h4 class="anchored">
+When I left the hospital, I clearly understood the purpose for taking each of my medications?
+</h4>
+<label><input type="radio" name="cms_40" value="0" required="">Never</label> <label><input type="radio" name="cms_40" value="1">Seldom</label> <label><input type="radio" name="cms_40" value="2">Sometimes</label> <label><input type="radio" name="cms_40" value="3">Often</label> <label><input type="radio" name="cms_40" value="4">Always</label> <br> <br>
+<h4 class="anchored">
+During this hospital stay, were you admitted to this hospital through the emergency room?
+</h4>
+<label><input type="radio" name="cms_41" value="1" required="">Yes</label> <label><input type="radio" name="cms_41" value="0">No</label> <br> <br> <button type="submit" id="submit" style="font-size: 16px;"><b>Submit your survey</b></button> <button type="reset" id="reset" style="font-size: 16px;" onclick="resetReadmit()"><b>Reset your survey</b></button>
+</form>
+</section>
+<section id="your-results" class="level2">
+<h2 class="anchored" data-anchor-id="your-results">Your Results</h2>
+<div id="results">
+Your results will be here!
 </div>
-</div>
-<div class="g-col-12 g-col-sm-6 d-grid">
-<div class="g-col-12">
+<script>
+    const genderArray = [
+        "Male", 
+        "Female"
+    ]
+    var gender = genderArray[Math.floor(Math.random()*genderArray.length)]
+    const raceArray = [
+        "American Indian/Alaskan Native",
+        "Asian",
+        "Black",
+        "Hawaiian/Pacific Islander",
+        "Unknown",
+        "White",
+    ]
+    var race = raceArray[Math.floor(Math.random()*raceArray.length)]
+    const ethnicityArray = [
+        "Hispanic/Latino",
+        "Not Hispanic/Latino",
+        "Other",
+        "Not Reported"
+    ]
+    var ethnicity = ethnicityArray[Math.floor(Math.random()*ethnicityArray.length)]
+    const insuranceArray = [
+        "None",
+        "Blue Cross",
+        "Commercial",
+        "Health Maintenance Org",
+        "Medicaid/Welfare",
+        "Medicare Part A"
+    ]
+    var insurance = insuranceArray[Math.floor(Math.random()*insuranceArray.length)]
+    // Minimum age for a survey is 18 and maximum is 110 (92+18)
+    var age = Math.floor(Math.random() * 92) + 18
 
-</div>
-</div>
-</div>
+    var boldOpen = "<b style=color:Gray;>"
+    var boldClose = "</b><br>"
+
+    document.getElementById("gender").innerHTML = boldOpen + "Gender:" + boldClose + gender
+    document.getElementById("race").innerHTML = boldOpen + "Race:" + boldClose + race
+    document.getElementById("ethnicity").innerHTML = boldOpen + "Ethnicity:" + boldClose + ethnicity
+    document.getElementById("age").innerHTML = boldOpen + "Age:" + boldClose + age
+    document.getElementById("insurance").innerHTML = boldOpen + "Insurance:" + boldClose + insurance
+
+    function logit2prob(logit) {
+        let odds = Math.exp(logit)
+        let prob = odds / (1 + odds) * 100
+        prob = Math.round(prob)
+        return prob
+    }
+
+    function calculateReadmit() {
+    let cms_12 = Number(document.getElementById("discharge").elements["cms_12"].value)
+    let cms_25 = Number(document.getElementById("discharge").elements["cms_25"].value)
+    let cms_33 = Number(document.getElementById("discharge").elements["cms_33"].value)
+    //var cms_40 = Number(document.getElementById("discharge").elements["cms_40"].value)
+    let cms_41 = Number(document.getElementById("discharge").elements["cms_41"].value)
+
+    let readmit = -.5541
+    readmit += -.6482 * cms_12
+    readmit += -.3596 * cms_25
+    readmit += -.2465 * cms_33
+    readmit += .7170 * cms_41
+        document.getElementById("results").innerHTML = "You have a " + logit2prob(readmit) + "% chance of being readmitted"
+    }
+
+    function resetReadmit() {
+        document.getElementById("results").innerHTML = "Your results will be here!"
+    }
+
+    window.onload = function() {
+        const stories = [
+        // This story by Gus Lipkin
+        "&emsp;It's a beautiful Wednesday in November and the Seminoles have just beaten the Gators at the Sunshine Showdown only four days prior. You've already had a great week, but a freak snowstorm has lightly dusted Tallahassee and there is just enough snow for sledding. Feeling a zest for life you haven't in a long time due to a rather debilitating stroke a few years earlier, you take some friends and your makeshift sled (a trashcan lid) to Coombs Drive which has a rather large elevation change from top to bottom of about 50 feet. After a full day of sledding, you decide to take one more run to the bottom. Just when you begin to slow down, a car pulls out in front of you from Brown Street and sends you flying into the trees on the far side of the intersection.<br>&emsp;The rest of the day and, admittedly, much of the next is a bit of a blur. Your friends tell you that when you crashed, they were about to call 911, but realized that you had been sledding right behind Tallahassee Memorial Hospital. They scooped you up and brought you to the Emergency Room in just a few minutes, running through some backyards to do so.<br>&emsp;When you come to, a very helpful nurse tells you that it's now Thursday and you've been transferred to the Clinical Decision Unit before handing you a cocktail of pills and a cup of water. You recognize some ibuprofen in there, but that's about it. When you ask him what's in the cup, he says a bunch of words you don't recognize, glances at his watch, then leaves in a hurry. A short while later, you realize you have to pee and wonder how long it's been since you used the bathroom. A different nurse comes after you press the call button and quickly runs to get a jug when you say you have to pee. What follows is a very uncomfortable five minutes where you try and pee in the jug while lying down with a nurse checking on you 30 every seconds asking if you need help.<br>&emsp;After a few more rather uneventful hours, someone comes in to let you know that they'll be discharging you any minute now and you should call someone to come get you. They give you a prescription for some painkillers and tell you to take it easy for a while because you have a concussion. They also advise you to make a follow-up appointment with your primary care physician.",
+        // This story by Hailey Skoglund
+        "&emsp;I’ve always loved weddings and this one was no exception. A close, and perpetually single, family friend was finally getting married. Feeling fit as a fiddle, I was getting my boogie on on the dance floor until I started to feel some chest pain and discomfort. Feeling weak, lightheaded, and short of breath after the dance, I brushed it off as exhaustion from the excitement of the day and decided to rest for a bit in the rooms outside the venue where we spent the morning getting ready for the big day. However, my pain worsened, so I called for help. The next thing I know, I am in an ambulance on my way to the ER for a heart attack. When we arrived, I was rushed into the ER.<br>&emsp;I can vaguely remember my close family and friends from the wedding trailing behind me. Luckily, the hospital staff acted quickly to save my life. They told me that they were giving me a clot-dissolving drug of some sort and pumped it into my veins. The doctors informed me and my family of the risks of performing an angioplasty and recommended that I was prepared for surgery immediately after my heart attack. I don’t remember much after that, besides the recovery. The days following my surgery were painful, I could hardly even move. Needing help with everything from sitting up to even using the restroom was so unlike me since I’m usually very healthy and otherwise independent. Luckily, the nurses and hospital staff did everything they could to make my recovery go as smoothly as possible. When I was finally ready to go home, my doctor met with me one last time to go over my new medications in detail. I would have never imagined that anything could ever make me less excited about weddings, but here I am."
+        // This story by Maverick Hope
+        
+        ]
+        var story = stories[Math.floor(Math.random()*stories.length)]
+        document.getElementById("storyDiv").innerHTML = story
+    }
+</script>
 
 
 
+</section>
 </main> <!-- /main -->
 <script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
