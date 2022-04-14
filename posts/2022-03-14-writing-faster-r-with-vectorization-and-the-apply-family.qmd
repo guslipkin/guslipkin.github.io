@@ -294,7 +294,7 @@ The important column is relative as that shows a comparison between the three wi
 
 ----
 
-The code for all the charts in this article is available [here](https://gist.github.com/guslipkin/f21dc766bac769ef69c220fe476306b4#file-basket-csv?file=vectorise.rmd). If you want to see more from me, check out [my GitHub](https://github.com/guslipkin) or [guslipkin.github.io](https://guslipkin.github.io). If you want to hear from me, I'm also on Twitter [@guslipkin](https://twitter.com/GusLipkin).
+All code used in this article is available [here](https://gist.github.com/guslipkin/f21dc766bac769ef69c220fe476306b4#file-basket-csv?file=vectorise.rmd). If you want to see more from me, check out [my GitHub](https://github.com/guslipkin) or [guslipkin.github.io](https://guslipkin.github.io). If you want to hear from me, I'm also on Twitter [@guslipkin](https://twitter.com/GusLipkin).
 
 
 <center><em>Gus Lipkin is a Data Scientist, Business Analyst, and occasional bike mechanic</em></center>

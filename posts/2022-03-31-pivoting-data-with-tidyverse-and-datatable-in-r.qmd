@@ -19,6 +19,8 @@ format:
 }
 </style>
 
+# Intro
+
 Pivoting data can be a little scary sometimes, even if you know exactly what you want to do. But it doesn't need to be. I'm hoping that by the end of this post, you'll feel like the pivot pro you always knew you could be.
 
 ::: {#fig-giraffe-manta layout-ncol=2}
@@ -408,7 +410,7 @@ I'm hoping that by now you're more comfortable with `pivot_wider`/`dcast` and `p
 
 ----
 
-The code for all the charts in this article is available <a [here](https://gist.github.com/guslipkin/34a3a9e84f9cddd9c54a8e76f1f68b4d). If you want to see more from me, check out [my GitHub](https://github.com/guslipkin) or [guslipkin.github.io](https://guslipkin.github.io). If you want to hear from me, I'm also on Twitter [@guslipkin](https://twitter.com/GusLipkin).
+All code used in this article is available [here](https://gist.github.com/guslipkin/34a3a9e84f9cddd9c54a8e76f1f68b4d). If you want to see more from me, check out [my GitHub](https://github.com/guslipkin) or [guslipkin.github.io](https://guslipkin.github.io). If you want to hear from me, I'm also on Twitter [@guslipkin](https://twitter.com/GusLipkin).
 
 
 <center><em>Gus Lipkin is a Data Scientist, Business Analyst, and occasional bike mechanic</em></center>

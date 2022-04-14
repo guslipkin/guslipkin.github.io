@@ -179,7 +179,10 @@
         <nav id="TOC" role="doc-toc">
 <h2 id="toc-title">On this page</h2>
 <ul>
-<li><a href="#getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting Started</a></li>
+<li><a href="#intro" class="nav-link active" data-scroll-target="#intro">Intro</a>
+<ul class="collapse">
+<li><a href="#getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a></li>
+</ul></li>
 <li><a href="#what-are" class="nav-link" data-scroll-target="#what-are">What are…</a>
 <ul class="collapse">
 <li><a href="#pivot_wider-and-dcast" class="nav-link" data-scroll-target="#pivot_wider-and-dcast"><code>pivot_wider</code> and <code>dcast</code></a></li>
@@ -221,6 +224,8 @@
   overflow-x: scroll;
 }
 </style>
+<section id="intro" class="level1">
+<h1>Intro</h1>
 <p>Pivoting data can be a little scary sometimes, even if you know exactly what you want to do. But it doesn’t need to be. I’m hoping that by the end of this post, you’ll feel like the pivot pro you always knew you could be.</p>
 <div class="quarto-layout-panel">
 <figure class="figure">
@@ -387,6 +392,7 @@
 </tbody>
 </table>
 </div>
+</section>
 </section>
 <section id="what-are" class="level1">
 <h1>What are…</h1>
@@ -1322,7 +1328,7 @@
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>I’m hoping that by now you’re more comfortable with <code>pivot_wider</code>/<code>dcast</code> and <code>pivot_longer</code>/<code>melt</code> than you were before. Generally, before you begin reshaping data, you want to know what your resulting data should look like and if you’ll have any duplicate rows. From there, decide if you want to use <code>tidyverse</code> or <code>data.table</code> and then write your code.</p>
 <hr>
-<p>The code for all the charts in this article is available &lt;a <a href="https://gist.github.com/guslipkin/34a3a9e84f9cddd9c54a8e76f1f68b4d">here</a>. If you want to see more from me, check out <a href="https://github.com/guslipkin">my GitHub</a> or <a href="https://guslipkin.github.io">guslipkin.github.io</a>. If you want to hear from me, I’m also on Twitter <a href="https://twitter.com/GusLipkin"><span class="citation" data-cites="guslipkin">@guslipkin</span></a>.</p>
+<p>All code used in this article is available <a href="https://gist.github.com/guslipkin/34a3a9e84f9cddd9c54a8e76f1f68b4d">here</a>. If you want to see more from me, check out <a href="https://github.com/guslipkin">my GitHub</a> or <a href="https://guslipkin.github.io">guslipkin.github.io</a>. If you want to hear from me, I’m also on Twitter <a href="https://twitter.com/GusLipkin"><span class="citation" data-cites="guslipkin">@guslipkin</span></a>.</p>
 <center>
 <em>Gus Lipkin is a Data Scientist, Business Analyst, and occasional bike mechanic</em>
 </center>

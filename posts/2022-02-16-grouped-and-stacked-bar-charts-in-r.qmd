@@ -147,7 +147,7 @@ This looks pretty good and is exactly what we wanted. Like the charts before, we
 
 ----
 
-The code for all the charts in this article is available <a [here](https://gist.github.com/guslipkin/76da4207fcee7bcdea6707ecc1f4b9fa?file=allTogether.rmd). If you want to see more from me, check out [my GitHub](https://github.com/guslipkin) or [guslipkin.github.io](https://guslipkin.github.io). If you want to hear from me, I'm also on Twitter [@guslipkin](https://twitter.com/GusLipkin).
+The code for all the charts in this article is available [here](https://gist.github.com/guslipkin/76da4207fcee7bcdea6707ecc1f4b9fa?file=allTogether.rmd). If you want to see more from me, check out [my GitHub](https://github.com/guslipkin) or [guslipkin.github.io](https://guslipkin.github.io). If you want to hear from me, I'm also on Twitter [@guslipkin](https://twitter.com/GusLipkin).
 
 
 <center><em>Gus Lipkin is a Data Scientist, Business Analyst, and occasional bike mechanic</em></center>

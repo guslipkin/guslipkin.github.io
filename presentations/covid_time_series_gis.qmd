@@ -161,3 +161,10 @@ site-path: "/presentations/covid_time_series_gis"
   <span class="visually-hidden">Next</span>
 </button>
 </div>
+
+<br>
+<br>
+
+## Watch me present
+
+<iframe width="100%" height="auto" src="https://www.youtube-nocookie.com/embed/ygMuOCe6aCA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
