@@ -1,6 +1,10 @@
 ---
-title: "Patient Readmission Rates"
+title: "Patient Readmission Rates with Tallahassee Memorial Healthcare"
 site-path: "/capstone"
+format:
+  html:
+    theme: default
+    toc: true
 ---
 
 <style>
@@ -23,8 +27,65 @@ site-path: "/capstone"
 	}
 </style>
 
-## Your Demographics and Story
-### Demographics
+# Presentation
+
+<div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="false">
+<div class="carousel-inner">
+  <div class="carousel-item active">
+  <img src="assets/capstone/Slide1.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="assets/capstone/Slide2.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="assets/capstone/Slide3.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="assets/capstone/Slide4.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="assets/capstone/Slide5.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="assets/capstone/Slide6.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="assets/capstone/Slide7.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="assets/capstone/Slide8.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="assets/capstone/Slide9.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="assets/capstone/Slide10.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="assets/capstone/Slide11.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="assets/capstone/Slide12.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="assets/capstone/Slide13.png" class="d-block w-100">
+  </div>
+  <div class="carousel-item">
+  <img src="assets/capstone/Slide14.png" class="d-block w-100">
+  </div>
+</div>
+<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Next</span>
+</button>
+</div>
+
+# Your Demographics and Story
+## Demographics
 
 <div class="flex-container">
   <div class="flex-item" id="age"></div>
@@ -35,7 +96,7 @@ site-path: "/capstone"
 </div>
 <br>
 
-### Story
+## Story
 
 <p><em>All stories are fictional and creations of the author</em></p>
 <div id="storyDiv"></div>
@@ -83,6 +144,8 @@ site-path: "/capstone"
 	<button type="reset" id="reset" style="font-size: 16px;" onclick="resetReadmit()"><b>Reset your survey</b></button>
 </form>
 
+<br>
+<br>
 
 ## Your Results
 
