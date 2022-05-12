@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/2022-05-12-student-debt-and-retirement.html",
       "/posts/2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r.html",
       "/posts/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r.html",
       "/posts/2022-03-14-writing-faster-r-with-vectorization-and-the-apply-family.html",
