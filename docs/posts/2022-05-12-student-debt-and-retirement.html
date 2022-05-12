@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.166">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Gus Lipkin">
+  <meta name="description" content="Teaching my mom about R through a Tidy Tuesday data exploration">
+  <title>Gus Lipkin’s Awesome Website - Does Student Debt Correlate with Retirement Funds?</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="../site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="../site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="../">
+  <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="../site_libs/quarto-search/fuse.min.js"></script>
+  <script src="../site_libs/quarto-search/quarto-search.js"></script>
+  <script src="../site_libs/quarto-html/quarto.js"></script>
+  <script src="../site_libs/quarto-html/popper.min.js"></script>
+  <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="../site_libs/quarto-html/anchor.min.js"></script>
+  <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link class="quarto-color-scheme" id="quarto-text-highlighting-styles" href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <link class="quarto-color-scheme quarto-color-alternate" rel="prefetch" id="quarto-text-highlighting-styles" href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css">
+  <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link class="quarto-color-scheme" href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link class="quarto-color-scheme quarto-color-alternate" rel="prefetch" href="../site_libs/bootstrap/bootstrap-dark.min.css">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 3,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Gus Lipkin’s Awesome Website</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">About Me</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resume.html">My Résumé</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html">My Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../contact.html">Contact Me</a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/guslipkin/"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.github.com/guslipkin"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.twitter.com/GusLipkin"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#pre-intro" class="nav-link active" data-scroll-target="#pre-intro">Pre-Intro</a></li>
+<li><a href="#intro" class="nav-link" data-scroll-target="#intro">Intro</a></li>
+<li><a href="#looking-at-debt" class="nav-link" data-scroll-target="#looking-at-debt">Looking at debt</a></li>
+<li><a href="#looking-at-retirement" class="nav-link" data-scroll-target="#looking-at-retirement">Looking at retirement</a></li>
+<li><a href="#bringing-it-together" class="nav-link" data-scroll-target="#bringing-it-together">Bringing it together</a></li>
+<li><a href="#what-if-we-account-for-wealth-too" class="nav-link" data-scroll-target="#what-if-we-account-for-wealth-too">What if we account for wealth too?</a></li>
+<li><a href="#add-wealth-into-the-mix" class="nav-link" data-scroll-target="#add-wealth-into-the-mix">Add wealth into the mix</a></li>
+<li><a href="#bringing-it-back-to-retirement" class="nav-link" data-scroll-target="#bringing-it-back-to-retirement">Bringing it back to retirement</a></li>
+<li><a href="#parting-thoughts" class="nav-link" data-scroll-target="#parting-thoughts">Parting Thoughts</a></li>
+<li><a href="#post-conclusion" class="nav-link" data-scroll-target="#post-conclusion">Post-Conclusion</a></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<header id="title-block-header" class="quarto-title-block default">
+
+
+
+<div class="quarto-title"><h1 class="title display-7">Does Student Debt Correlate with Retirement Funds?</h1><div class="quarto-description"><p>Teaching my mom about R through a Tidy Tuesday data exploration</p></div></div><div class="quarto-categories"><div class="quarto-category">R</div><div class="quarto-category">R: Tidy Tuesday</div></div><div class="quarto-title-meta"><div><div class="quarto-title-meta-heading">Author</div><div class="quarto-title-meta-contents"><div class="quarto-title-authors"><div><div>
+<p>Gus Lipkin</p>
+</div></div></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">May 12, 2022</p></div></div></div></header>
+
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Data comes from the May 18, 2021 Tidy Tuesday dataset “Wealth and income over time”</p>
+<p><a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-05-18/readme.md">The dataset can be found here</a></p>
+</div>
+</div>
+<section id="pre-intro" class="level1">
+<h1>Pre-Intro</h1>
+<p>I graduated with my BS in Business Analytics a few days ago. My mom came to visit for graduation and stayed for a few days. I wanted to show her some of what I learned at school through a hands on activity so we found a Tidy Tuesday dataset and did some exploring. There’s no particular rhyme or reason to this, but I wanted to share my passion for data with her and thought it would be cool to share with the rest of you as well. While I did provide some guidance, most of the exploration is what she thought might be interesting and wanted to explore.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>From here on out, I wrote down my mom’s stream of consciousness thoughts on what we were working on. It’s not necessarily verbatim, but gets her thoughts across.</p>
+<p><em>Italics are my words</em></p>
+</div>
+</div>
+</section>
+<section id="intro" class="level1">
+<h1>Intro</h1>
+<p><em>First we load our packages and data.</em></p>
+<div class="cell">
+
+</div>
+<p><em>Do you want to preview the data?</em></p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(debt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>   year     race loan_debt loan_debt_pct
+1: 2016    White 11108.410     0.3367511
+2: 2016    Black 14224.770     0.4183588
+3: 2016 Hispanic  7493.999     0.2189689
+4: 2013    White  8363.605     0.2845555
+5: 2013    Black 10302.660     0.4122773
+6: 2013 Hispanic  3177.410     0.1570289</code></pre>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(retirement)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>   year     race retirement
+1: 1989    White  32649.430
+2: 1989    Black   5954.398
+3: 1989 Hispanic   7121.722
+4: 1992    White  36637.760
+5: 1992    Black   7798.197
+6: 1992 Hispanic   5248.894</code></pre>
+</div>
+</div>
+<p><em>Do you want to see summary statistics?</em></p>
+<p>Yeah. Can we do that?</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(debt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>      year          race             loan_debt       loan_debt_pct    
+ Min.   :1989   Length:30          Min.   :  793.1   Min.   :0.09146  
+ 1st Qu.:1995   Class :character   1st Qu.: 1406.8   1st Qu.:0.13887  
+ Median :2002   Mode  :character   Median : 2992.6   Median :0.16049  
+ Mean   :2002                      Mean   : 4119.4   Mean   :0.19388  
+ 3rd Qu.:2010                      3rd Qu.: 5899.2   3rd Qu.:0.21823  
+ Max.   :2016                      Max.   :14224.8   Max.   :0.41836  </code></pre>
+</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(retirement)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>      year          race             retirement    
+ Min.   :1989   Length:30          Min.   :  5249  
+ 1st Qu.:1995   Class :character   1st Qu.: 15021  
+ Median :2002   Mode  :character   Median : 21809  
+ Mean   :2002                      Mean   : 41411  
+ 3rd Qu.:2010                      3rd Qu.: 44936  
+ Max.   :2016                      Max.   :157884  </code></pre>
+</div>
+</div>
+</section>
+<section id="looking-at-debt" class="level1">
+<h1>Looking at debt</h1>
+<p>Can we see debt by race?</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>debt <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> race, <span class="at">y =</span> loan_debt))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="2022-05-12-student-debt-and-retirement_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It’s been 40 years since I saw a box and whisker plot in college… But it’s interesting that Hispanics seem to have lower debt than Blacks and Whites who seem to be about equal.</p>
+<p>What about debt over time?</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>debt <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> loan_debt, <span class="at">color =</span> race))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="2022-05-12-student-debt-and-retirement_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The difference in debt between Blacks and Whites increases dramatically over time.</p>
+<p>Does the share of families with debt change over time?</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>debt <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> loan_debt_pct, <span class="at">y =</span> loan_debt, <span class="at">color =</span> race))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="2022-05-12-student-debt-and-retirement_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It appears that fewer Hispanics take on student loan debt than Blacks or Whites.</p>
+</section>
+<section id="looking-at-retirement" class="level1">
+<h1>Looking at retirement</h1>
+<p>Can we copy/paste that code for retirement?</p>
+<p><em>Yes. Yes we can!</em></p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>retirement <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> race, <span class="at">y =</span> retirement))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="2022-05-12-student-debt-and-retirement_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Whites seem to have much more solid retirement savings that Blacks or Hispanics. Even the lowest whisker in the Whites plot seems higher than the highest points in the Black or Hispanics plots.</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>minMaxRetirement <span class="ot">&lt;-</span> retirement <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(race) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">min =</span> <span class="fu">min</span>(retirement), <span class="at">max =</span> <span class="fu">max</span>(retirement))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>minMaxRetirement</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  race        min     max
+  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 Black     5954.  29365.
+2 Hispanic  5249.  28581.
+3 White    32649. 157884.</code></pre>
+</div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(minMaxRetirement<span class="sc">$</span>min) <span class="sc">-</span> <span class="fu">min</span>(minMaxRetirement<span class="sc">$</span>max)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>[1] 4068.31</code></pre>
+</div>
+</div>
+<p>This is terrible! The highest average Hispanic retirement is over $4000 less than the lowest average White retirement.</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>retirement <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> retirement, <span class="at">color =</span> race))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="2022-05-12-student-debt-and-retirement_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This is not surprising. White retirement savings has increased faster than Black or Hispanic which has been relatively static.</p>
+</section>
+<section id="bringing-it-together" class="level1">
+<h1>Bringing it together</h1>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>debt_retirement <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(debt, retirement, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"race"</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(debt_retirement)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>   year     race loan_debt loan_debt_pct retirement
+1: 2016    White 11108.410     0.3367511  157884.20
+2: 2016    Black 14224.770     0.4183588   25211.85
+3: 2016 Hispanic  7493.999     0.2189689   28581.12
+4: 2013    White  8363.605     0.2845555  138557.50
+5: 2013    Black 10302.660     0.4122773   20440.14
+6: 2013 Hispanic  3177.410     0.1570289   10264.48</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>debt_retirement <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> loan_debt, <span class="at">y =</span> retirement, <span class="at">color =</span> race))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="2022-05-12-student-debt-and-retirement_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Loan debt doesn’t appear to have an effect on retirement for Blacks and Hispanics. It does have a large effect for Whites.</p>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>linear <span class="ot">&lt;-</span> <span class="fu">lm</span>(retirement <span class="sc">~</span> loan_debt, <span class="at">data =</span> debt_retirement[race <span class="sc">==</span> <span class="st">"White"</span>,])</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linear)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = retirement ~ loan_debt, data = debt_retirement[race == 
+    "White", ])
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-13520 -10442  -6777  12753  22574 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 32652.056   8114.951   4.024  0.00382 ** 
+loan_debt      12.284      1.419   8.657 2.46e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 14480 on 8 degrees of freedom
+Multiple R-squared:  0.9036,    Adjusted R-squared:  0.8915 
+F-statistic: 74.95 on 1 and 8 DF,  p-value: 2.463e-05</code></pre>
+</div>
+</div>
+<p>Loan debt doesn’t have the effect we thought for Whites, and seems to have minimal effect for Blacks and Hispanics.</p>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>linear <span class="ot">&lt;-</span> <span class="fu">lm</span>(retirement <span class="sc">~</span> ., <span class="at">data =</span> debt_retirement)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linear)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = retirement ~ ., data = debt_retirement)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-33124 -14811   5102  11353  38578 
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   -3.458e+06  1.744e+06  -1.983   0.0590 .  
+year           1.733e+03  8.733e+02   1.985   0.0587 .  
+raceHispanic   7.743e+02  1.443e+04   0.054   0.9577    
+raceWhite      7.357e+04  1.156e+04   6.366 1.39e-06 ***
+loan_debt      6.832e-01  5.213e+00   0.131   0.8968    
+loan_debt_pct  6.545e+03  2.032e+05   0.032   0.9746    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 19760 on 24 degrees of freedom
+Multiple R-squared:  0.8291,    Adjusted R-squared:  0.7935 
+F-statistic: 23.29 on 5 and 24 DF,  p-value: 1.738e-08</code></pre>
+</div>
+</div>
+<p>I wonder if people with loan debt haven’t finished school?</p>
+<p>Student loan debt could also be affected by family size which we don’t have data for.</p>
+</section>
+<section id="what-if-we-account-for-wealth-too" class="level1">
+<h1>What if we account for wealth too?</h1>
+<div class="cell">
+<div class="sourceCode" id="cb25"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>wealth <span class="ot">&lt;-</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-02-09/race_wealth.csv'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">wealth_type =</span> type)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wealth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>   wealth_type year      race wealth_family
+1:     Average 1963 Non-White      19503.84
+2:     Average 1963     White     140632.66
+3:     Average 1963     Black            NA
+4:     Average 1963  Hispanic            NA
+5:     Average 1983 Non-White      73233.62
+6:     Average 1983     White     324057.60</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb27"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(wealth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code> wealth_type             year          race           wealth_family   
+ Length:96          Min.   :1963   Length:96          Min.   :  2467  
+ Class :character   1st Qu.:1991   Class :character   1st Qu.: 19559  
+ Mode  :character   Median :2000   Mode  :character   Median : 97209  
+                    Mean   :1998                      Mean   :158020  
+                    3rd Qu.:2008                      3rd Qu.:156895  
+                    Max.   :2016                      Max.   :919336  
+                                                      NA's   :24      </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb29"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>wealth <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> race, <span class="at">y =</span> wealth_family))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stderr">
+<pre><code>Warning: Removed 24 rows containing non-finite values (stat_boxplot).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="2022-05-12-student-debt-and-retirement_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Oh. That’s interesting. I think family wealth includes all assets and debts, liquid or not. That’s not a great indication of actual wealth.</p>
+<p>It looks like there’s some data missing so lets filter for years greater than or equal to 1985 and for the median, rather than average, income.</p>
+<div class="cell">
+<div class="sourceCode" id="cb31"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>wealth <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">1985</span>, wealth_type <span class="sc">==</span> <span class="st">"Median"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> wealth_family, <span class="at">color =</span> race))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stderr">
+<pre><code>Warning: Removed 10 rows containing missing values (geom_point).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="2022-05-12-student-debt-and-retirement_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It looks like there isn’t any data for Non-Whites. The median has increased for Whites, but dropped in 2008, while for others it has remained the same over time.</p>
+</section>
+<section id="add-wealth-into-the-mix" class="level1">
+<h1>Add wealth into the mix</h1>
+<div class="cell">
+<div class="sourceCode" id="cb33"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">left_join</span>(debt_retirement, wealth, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"race"</span>, <span class="st">"year"</span>))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>   year     race loan_debt loan_debt_pct retirement wealth_type wealth_family
+1: 2016    White 11108.410     0.3367511  157884.20     Average      919336.1
+2: 2016    White 11108.410     0.3367511  157884.20      Median      171000.0
+3: 2016    Black 14224.770     0.4183588   25211.85     Average      139523.1
+4: 2016    Black 14224.770     0.4183588   25211.85      Median       17409.0
+5: 2016 Hispanic  7493.999     0.2189689   28581.12     Average      191727.3
+6: 2016 Hispanic  7493.999     0.2189689   28581.12      Median       20920.0</code></pre>
+</div>
+</div>
+<p><em>It’s kinda confusing with <code>wealth_type</code>, let’s change it a bit</em></p>
+<div class="cell">
+<div class="sourceCode" id="cb35"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dcast</span>(year <span class="sc">+</span> race <span class="sc">+</span> loan_debt <span class="sc">+</span> loan_debt_pct <span class="sc">+</span> retirement <span class="sc">~</span> wealth_type, </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">value.var =</span> <span class="st">"wealth_family"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">average_wealth =</span> Average, <span class="at">median_wealth =</span> Median)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>   year     race loan_debt loan_debt_pct retirement average_wealth
+1: 1989    Black 1160.5680     0.1788198   5954.398       78092.20
+2: 1989 Hispanic  897.5826     0.1272523   7121.722       84397.75
+3: 1989    White 1100.4070     0.1047123  32649.430      424082.40
+4: 1992    Black  927.4824     0.1382771   7798.197       80779.48
+5: 1992 Hispanic  793.0610     0.0914574   5248.894       90751.79
+6: 1992    White 1321.3030     0.1433340  36637.760      373825.90
+   median_wealth
+1:      8023.198
+2:      9329.301
+3:    134677.800
+4:     16602.980
+5:     11387.300
+6:    116891.700</code></pre>
+</div>
+</div>
+<p>“Can we scatter this one?”</p>
+<p><em>Yes. Yes we can.</em></p>
+<div class="cell">
+<div class="sourceCode" id="cb37"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> loan_debt, <span class="at">y =</span> average_wealth, <span class="at">color =</span> race))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="2022-05-12-student-debt-and-retirement_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Hispanics only seem to be doing better with having less loan debt.</p>
+<p>Can we predict if increasing loan debt is correlated to average wealth?</p>
+<div class="cell">
+<div class="sourceCode" id="cb38"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(average_wealth <span class="sc">~</span> loan_debt <span class="sc">+</span> race, <span class="at">data =</span> df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = average_wealth ~ loan_debt + race, data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-186449  -33795   17625   48869  180878 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  1.341e+04  3.989e+04   0.336  0.73941    
+loan_debt    1.821e+01  5.133e+00   3.547  0.00151 ** 
+raceHispanic 7.419e+04  4.435e+04   1.673  0.10639    
+raceWhite    5.228e+05  4.219e+04  12.391 2.05e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 94210 on 26 degrees of freedom
+Multiple R-squared:  0.8861,    Adjusted R-squared:  0.873 
+F-statistic: 67.45 on 3 and 26 DF,  p-value: 2.139e-12</code></pre>
+</div>
+</div>
+<p>This makes sense and tracks with what we saw in the other regressions.</p>
+</section>
+<section id="bringing-it-back-to-retirement" class="level1">
+<h1>Bringing it back to retirement</h1>
+<div class="cell">
+<div class="sourceCode" id="cb40"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(retirement <span class="sc">~</span> ., <span class="at">data =</span> df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = retirement ~ ., data = df)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-11882  -4546     -3   2733  16560 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)    -6.352e+05  6.836e+05  -0.929  0.36291    
+year            3.097e+02  3.432e+02   0.902  0.37666    
+raceHispanic   -4.747e+03  5.986e+03  -0.793  0.43628    
+raceWhite       6.748e+03  1.404e+04   0.481  0.63545    
+loan_debt      -2.796e+00  1.906e+00  -1.467  0.15656    
+loan_debt_pct   1.130e+05  7.727e+04   1.463  0.15763    
+average_wealth  2.716e-01  2.798e-02   9.709 2.06e-09 ***
+median_wealth  -5.232e-01  1.756e-01  -2.980  0.00691 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7119 on 22 degrees of freedom
+Multiple R-squared:  0.9797,    Adjusted R-squared:  0.9732 
+F-statistic: 151.4 on 7 and 22 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>I guess this makes sense. If you have money, you have money for retirement.</p>
+<p><em>Let me show you that R package I made that I always talk about.</em></p>
+<div class="cell">
+<div class="sourceCode" id="cb42"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>dewey<span class="sc">::</span><span class="fu">regsearch</span>(df, <span class="at">dependent =</span> <span class="st">"retirement"</span>, </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">independent =</span> <span class="fu">colnames</span>(df)[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">7</span>)], <span class="at">maxvar =</span> <span class="dv">6</span>, </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> <span class="st">"gaussian"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">12</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">|&gt;</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, </span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">font_size =</span> <span class="dv">14</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">"250px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stderr">
+<pre><code>Warning in dewey::regsearch(df, dependent = "retirement", independent =
+colnames(df)[c(1:4, : Missing 'interactions' argument. Defaulting to FALSE.</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>Warning in dewey::regsearch(df, dependent = "retirement", independent =
+colnames(df)[c(1:4, : Missing 'multi' argument. Defaulting to FALSE.</code></pre>
+</div>
+<div class="cell-output-stdout">
+<pre><code>[1] "Assembling regresions..."
+[1] "Creating 63 formulas. Please be patient, this may take a while."
+[1] "Creating regressions..."
+[1] "Running 63 regressions. Please be patient, this may take a while."
+[1] "Running regressions..."</code></pre>
+</div>
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:250px; "><table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> formula </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> aic </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> bic </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> rSquare </th>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> warn </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> xIntercept </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> year </th>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> race </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt_pct </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median_wealth </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceHispanic </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceWhite </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth </td>
+   <td style="text-align:right;"> 650.2739 </td>
+   <td style="text-align:right;"> 654.4775 </td>
+   <td style="text-align:right;"> 0.93199 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.1895266 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + median_wealth </td>
+   <td style="text-align:right;"> 686.7959 </td>
+   <td style="text-align:right;"> 690.9995 </td>
+   <td style="text-align:right;"> 0.77025 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.3351785 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0000000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth + median_wealth </td>
+   <td style="text-align:right;"> 629.9331 </td>
+   <td style="text-align:right;"> 635.5379 </td>
+   <td style="text-align:right;"> 0.96771 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0036909 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0.0000088 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + median_wealth + year </td>
+   <td style="text-align:right;"> 670.4355 </td>
+   <td style="text-align:right;"> 676.0403 </td>
+   <td style="text-align:right;"> 0.87542 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0000571 </td>
+   <td style="text-align:right;"> 0.0000559 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0000000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + loan_debt + median_wealth </td>
+   <td style="text-align:right;"> 673.2736 </td>
+   <td style="text-align:right;"> 678.8784 </td>
+   <td style="text-align:right;"> 0.86306 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.1440991 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0002116 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0000000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt_pct </td>
+   <td style="text-align:right;"> 638.7578 </td>
+   <td style="text-align:right;"> 644.3626 </td>
+   <td style="text-align:right;"> 0.95666 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0003023 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0005465 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt </td>
+   <td style="text-align:right;"> 639.8237 </td>
+   <td style="text-align:right;"> 645.4284 </td>
+   <td style="text-align:right;"> 0.95509 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0030143 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0009078 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth + year </td>
+   <td style="text-align:right;"> 640.3430 </td>
+   <td style="text-align:right;"> 645.9478 </td>
+   <td style="text-align:right;"> 0.95431 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0011340 </td>
+   <td style="text-align:right;"> 0.0011635 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + loan_debt_pct + median_wealth </td>
+   <td style="text-align:right;"> 676.7298 </td>
+   <td style="text-align:right;"> 682.3345 </td>
+   <td style="text-align:right;"> 0.84633 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0215718 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0010906 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0000000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt_pct + median_wealth </td>
+   <td style="text-align:right;"> 624.0222 </td>
+   <td style="text-align:right;"> 631.0282 </td>
+   <td style="text-align:right;"> 0.97519 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0001792 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0094886 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0.0001608 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt + loan_debt_pct + median_wealth </td>
+   <td style="text-align:right;"> 621.5912 </td>
+   <td style="text-align:right;"> 629.9984 </td>
+   <td style="text-align:right;"> 0.97860 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0002454 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0570795 </td>
+   <td style="text-align:right;"> 0.0087417 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0.0000324 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt + median_wealth </td>
+   <td style="text-align:right;"> 628.0037 </td>
+   <td style="text-align:right;"> 635.0097 </td>
+   <td style="text-align:right;"> 0.97167 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0007230 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0675575 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0.0006058 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table></div>
+
+</div>
+</div>
+<p><em>Try choosing a model and defend your choice</em></p>
+<p>I would choose <code>retirement ~ + average_wealth + loan_debt + loan_debt_pct + median_wealth</code> because it has the highest <span class="math inline">\(R^2\)</span> value.</p>
+<p><em>That’s not quite right. <code>retirement ~ + average_wealth + median_wealth</code> is much better because 96% of the model is explained by those two variables so adding <code>loan_debt_pct</code> and <code>loan_debt</code> does not give a lot of benefit.</em></p>
+<p><em>What if we considered interaction terms?</em></p>
+<div class="cell" data-hash="2022-05-12-student-debt-and-retirement_cache/html/unnamed-chunk-24_13bb106758cc51fe6b689eec3baeea0f">
+<div class="sourceCode" id="cb46"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>dewey<span class="sc">::</span><span class="fu">regsearch</span>(df, <span class="at">dependent =</span> <span class="st">"retirement"</span>, </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">independent =</span> <span class="fu">colnames</span>(df)[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">7</span>)], <span class="at">maxvar =</span> <span class="dv">6</span>, </span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> <span class="st">"gaussian"</span>, <span class="at">interactions =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">12</span>) <span class="sc">|&gt;</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">|&gt;</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, </span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"condensed"</span>, <span class="st">"responsive"</span>),</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">font_size =</span> <span class="dv">14</span>) <span class="sc">|&gt;</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">"250px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stderr">
+<pre><code>Warning in dewey::regsearch(df, dependent = "retirement", independent =
+colnames(df)[c(1:4, : Missing 'multi' argument. Defaulting to FALSE.</code></pre>
+</div>
+<div class="cell-output-stdout">
+<pre><code>[1] "Gathering variables..."
+[1] "WARNING: Using interaction terms without multithreading may take a very long time"
+[1] "Assembling regresions..."
+[1] "Creating 82159 formulas. Please be patient, this may take a while."
+[1] "Creating regressions..."
+[1] "Running 14828 regressions. Please be patient, this may take a while."
+[1] "Running regressions..."</code></pre>
+</div>
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:250px; "><table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> formula </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> aic </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> bic </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> rSquare </th>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> warn </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> xIntercept </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> year </th>
+   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> race </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt_pct </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median_wealth </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth.loan_debt </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth.loan_debt_pct </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth.median_wealth </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceHispanic </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceWhite </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth.raceHispanic </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth.raceWhite </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth.year </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt.loan_debt_pct </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt.median_wealth </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt.raceHispanic </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt.raceWhite </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt.year </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt_pct.median_wealth </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt_pct.raceHispanic </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt_pct.raceWhite </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt_pct.year </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median_wealth.raceHispanic </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median_wealth.raceWhite </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median_wealth.year </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceHispanic.year </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceWhite.year </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt_pct.loan_debt </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median_wealth.loan_debt </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median_wealth.loan_debt_pct </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceHispanic.loan_debt </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceWhite.loan_debt </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceHispanic.loan_debt_pct </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceWhite.loan_debt_pct </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceHispanic.median_wealth </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceWhite.median_wealth </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> year.loan_debt </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> year.loan_debt_pct </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> year.median_wealth </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> year.raceHispanic </th>
+   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> year.raceWhite </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth </td>
+   <td style="text-align:right;"> 650.2739 </td>
+   <td style="text-align:right;"> 654.4775 </td>
+   <td style="text-align:right;"> 0.93199 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.1895266 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0000000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + median_wealth </td>
+   <td style="text-align:right;"> 686.7959 </td>
+   <td style="text-align:right;"> 690.9995 </td>
+   <td style="text-align:right;"> 0.77025 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.3351785 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0000000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth + median_wealth </td>
+   <td style="text-align:right;"> 629.9331 </td>
+   <td style="text-align:right;"> 635.5379 </td>
+   <td style="text-align:right;"> 0.96771 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0036909 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0000000 </td>
+   <td style="text-align:right;"> 0.0000088 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + median_wealth + year </td>
+   <td style="text-align:right;"> 670.4355 </td>
+   <td style="text-align:right;"> 676.0403 </td>
+   <td style="text-align:right;"> 0.87542 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0000571 </td>
+   <td style="text-align:right;"> 0.0000559 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0000000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + loan_debt + median_wealth </td>
+   <td style="text-align:right;"> 673.2736 </td>
+   <td style="text-align:right;"> 678.8784 </td>
+   <td style="text-align:right;"> 0.86306 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.1440991 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0002116 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0000000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt_pct </td>
+   <td style="text-align:right;"> 638.7578 </td>
+   <td style="text-align:right;"> 644.3626 </td>
+   <td style="text-align:right;"> 0.95666 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0003023 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0005465 </td>
+   <td style="text-align:right;"> 0.0000000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt </td>
+   <td style="text-align:right;"> 639.8237 </td>
+   <td style="text-align:right;"> 645.4284 </td>
+   <td style="text-align:right;"> 0.95509 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0030143 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0009078 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0000000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth + year </td>
+   <td style="text-align:right;"> 640.3430 </td>
+   <td style="text-align:right;"> 645.9478 </td>
+   <td style="text-align:right;"> 0.95431 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0011340 </td>
+   <td style="text-align:right;"> 0.0011635 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0000000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + loan_debt_pct + median_wealth </td>
+   <td style="text-align:right;"> 676.7298 </td>
+   <td style="text-align:right;"> 682.3345 </td>
+   <td style="text-align:right;"> 0.84633 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0215718 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0010906 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0000000 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth*loan_debt_pct + average_wealth*median_wealth + average_wealth*race + average_wealth*year </td>
+   <td style="text-align:right;"> 576.6673 </td>
+   <td style="text-align:right;"> 594.8828 </td>
+   <td style="text-align:right;"> 0.99700 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0004973 </td>
+   <td style="text-align:right;"> 0.0004812 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0004864 </td>
+   <td style="text-align:right;"> 0.0000061 </td>
+   <td style="text-align:right;"> 0.0008194 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0004452 </td>
+   <td style="text-align:right;"> 2.50e-06 </td>
+   <td style="text-align:right;"> 0.0020289 </td>
+   <td style="text-align:right;"> 0.0045869 </td>
+   <td style="text-align:right;"> 0.0087832 </td>
+   <td style="text-align:right;"> 0.0120152 </td>
+   <td style="text-align:right;"> 5.8e-06 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt_pct + median_wealth </td>
+   <td style="text-align:right;"> 624.0222 </td>
+   <td style="text-align:right;"> 631.0282 </td>
+   <td style="text-align:right;"> 0.97519 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0001792 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0094886 </td>
+   <td style="text-align:right;"> 0.0000000 </td>
+   <td style="text-align:right;"> 0.0001608 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> retirement ~ + average_wealth*median_wealth + median_wealth*year + loan_debt_pct </td>
+   <td style="text-align:right;"> 590.8267 </td>
+   <td style="text-align:right;"> 602.0363 </td>
+   <td style="text-align:right;"> 0.99328 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> 0.0081282 </td>
+   <td style="text-align:right;"> 0.0076968 </td>
+   <td style="text-align:left;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 0.0126352 </td>
+   <td style="text-align:right;"> 0.0004052 </td>
+   <td style="text-align:right;"> 0.0000001 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 2.14e-05 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> 1e-07 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table></div>
+
+</div>
+</div>
+<p>This is pretty cool. Average wealth by itself is pretty good, but when it interacts with <code>loan_debt_pct</code>, <code>median_wealth</code>, <code>race</code>, and <code>year</code>, it seems to produce a really great model.</p>
+<p><em>Of course, we still want to be careful about overfitting.</em></p>
+</section>
+<section id="parting-thoughts" class="level1">
+<h1>Parting Thoughts</h1>
+<p>Race appears to have a huge impact on everything and increasing educational debt increases retirement, but only for Whites. I’d be curious to see the data behind the loans to learn why increasing educational debt does not always correlate with increased wealth.</p>
+</section>
+<section id="post-conclusion" class="level1">
+<h1>Post-Conclusion</h1>
+<p>It’s Gus again. I had a really fun time with this. I like to think my mom learned a lot and I’m hoping you did too.</p>
+
+
+
+</section>
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+    } else {
+      disableStylesheet(alternateStylesheets);
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+</body></html>

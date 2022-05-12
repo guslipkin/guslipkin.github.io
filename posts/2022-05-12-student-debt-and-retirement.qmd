@@ -1,0 +1,319 @@
+---
+title: "Does Student Debt Correlate with Retirement Funds?"
+description: "Teaching my mom about R through a Tidy Tuesday data exploration"
+image: "../assets/post-assets/2022-05-12-student-debt-and-retirement/alexander-sinn-KgLtFCgfC28-unsplash.jpg"
+author: "Gus Lipkin"
+date: "2022/05/12"
+categories:
+  - R
+  - "R: Tidy Tuesday"
+format:
+  html:
+    theme: default
+    toc: true
+---
+
+::: {.callout-note}
+
+Data comes from the May 18, 2021 Tidy Tuesday dataset "Wealth and income over 
+time"
+
+[The dataset can be found here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-05-18/readme.md)
+
+:::
+
+# Pre-Intro
+
+I graduated with my BS in Business Analytics a few days ago. My mom came to
+visit for graduation and stayed for a few days. I wanted to show her some of
+what I learned at school through a hands on activity so we found a Tidy Tuesday
+dataset and did some exploring. There's no particular rhyme or reason to this,
+but I wanted to share my passion for data with her and thought it would be cool
+to share with the rest of you as well. While I did provide some guidance, most
+of the exploration is what she thought might be interesting and wanted to
+explore.
+
+::: {.callout-important}
+
+From here on out, I wrote down my mom's stream of consciousness thoughts on what
+we were working on. It's not necessarily verbatim, but gets her thoughts across.
+
+*Italics are my words*
+
+:::
+
+# Intro
+
+*First we load our packages and data.*
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+library(tidyverse)
+library(data.table)
+library(kableExtra)
+
+debt <- 
+  fread('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-02-09/student_debt.csv')
+retirement <-
+  fread('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-02-09/retirement.csv')
+```
+
+*Do you want to preview the data?*
+
+```{r}
+head(debt)
+head(retirement)
+```
+
+*Do you want to see summary statistics?*
+
+Yeah. Can we do that?
+
+```{r}
+summary(debt)
+summary(retirement)
+```
+
+# Looking at debt
+
+Can we see debt by race?
+
+```{r}
+debt |>
+  ggplot() +
+  geom_boxplot(aes(x = race, y = loan_debt))
+```
+
+It's been 40 years since I saw a box and whisker plot in college... But it's
+interesting that Hispanics seem to have lower debt than Blacks and Whites who
+seem to be about equal.
+
+What about debt over time?
+
+```{r}
+debt |>
+  ggplot() +
+  geom_point(aes(x = year, y = loan_debt, color = race))
+```
+
+The difference in debt between Blacks and Whites increases dramatically over 
+time.
+
+Does the share of families with debt change over time?
+
+```{r}
+debt |>
+  ggplot() +
+  geom_point(aes(x = loan_debt_pct, y = loan_debt, color = race))
+```
+
+It appears that fewer Hispanics take on student loan debt than Blacks or Whites.
+
+# Looking at retirement
+
+Can we copy/paste that code for retirement?
+
+*Yes. Yes we can!*
+
+```{r}
+retirement |>
+  ggplot() +
+  geom_boxplot(aes(x = race, y = retirement))
+```
+
+Whites seem to have much more solid retirement savings that Blacks or Hispanics.
+Even the lowest whisker in the Whites plot seems higher than the highest points
+in the Black or Hispanics plots.
+
+```{r}
+minMaxRetirement <- retirement |>
+  group_by(race) |>
+  summarise(min = min(retirement), max = max(retirement))
+minMaxRetirement
+
+max(minMaxRetirement$min) - min(minMaxRetirement$max)
+```
+
+This is terrible! The highest average Hispanic retirement is over $4000 less
+than the lowest average White retirement.
+
+```{r}
+retirement |>
+  ggplot() +
+  geom_point(aes(x = year, y = retirement, color = race))
+```
+
+This is not surprising. White retirement savings has increased faster than Black
+or Hispanic which has been relatively static.
+
+# Bringing it together
+
+```{r}
+debt_retirement <- inner_join(debt, retirement, by = c("year", "race"))
+head(debt_retirement)
+```
+
+```{r}
+debt_retirement |>
+  ggplot() +
+  geom_point(aes(x = loan_debt, y = retirement, color = race))
+```
+
+Loan debt doesn't appear to have an effect on retirement for Blacks and
+Hispanics. It does have a large effect for Whites.
+
+```{r}
+linear <- lm(retirement ~ loan_debt, data = debt_retirement[race == "White",])
+summary(linear)
+```
+
+Loan debt doesn't have the effect we thought for Whites, and seems to have
+minimal effect for Blacks and Hispanics.
+
+```{r}
+linear <- lm(retirement ~ ., data = debt_retirement)
+summary(linear)
+```
+
+I wonder if people with loan debt haven't finished school?
+
+Student loan debt could also be affected by family size which we don't have data
+for.
+
+# What if we account for wealth too?
+
+```{r}
+wealth <- 
+  fread('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-02-09/race_wealth.csv') |>
+  rename(wealth_type = type)
+head(wealth)
+```
+
+```{r}
+summary(wealth)
+```
+
+```{r}
+wealth |>
+  ggplot() +
+  geom_boxplot(aes(x = race, y = wealth_family))
+```
+
+Oh. That's interesting. I think family wealth includes all assets and debts,
+liquid or not. That's not a great indication of actual wealth.
+
+It looks like there's some data missing so lets filter for years greater than or
+equal to 1985 and for the median, rather than average, income.
+
+```{r}
+wealth |>
+  filter(year >= 1985, wealth_type == "Median") |>
+  ggplot() +
+  geom_point(aes(x = year, y = wealth_family, color = race))
+```
+
+It looks like there isn't any data for Non-Whites. The median has increased for
+Whites, but dropped in 2008, while for others it has remained the same over
+time.
+
+# Add wealth into the mix
+
+```{r}
+df <- left_join(debt_retirement, wealth, by = c("race", "year"))
+head(df)
+```
+
+*It's kinda confusing with `wealth_type`, let's change it a bit*
+
+```{r}
+df <- df |>
+  dcast(year + race + loan_debt + loan_debt_pct + retirement ~ wealth_type, 
+        value.var = "wealth_family") |>
+  rename(average_wealth = Average, median_wealth = Median)
+head(df)
+```
+
+"Can we scatter this one?" 
+
+*Yes. Yes we can.*
+
+```{r}
+df |>
+  ggplot() +
+  geom_point(aes(x = loan_debt, y = average_wealth, color = race))
+```
+
+Hispanics only seem to be doing better with having less loan debt.
+
+Can we predict if increasing loan debt is correlated to average wealth?
+
+```{r}
+summary(lm(average_wealth ~ loan_debt + race, data = df))
+```
+
+This makes sense and tracks with what we saw in the other regressions.
+
+# Bringing it back to retirement
+
+```{r}
+summary(lm(retirement ~ ., data = df))
+```
+
+I guess this makes sense. If you have money, you have money for retirement.
+
+*Let me show you that R package I made that I always talk about.*
+
+```{r}
+dewey::regsearch(df, dependent = "retirement", 
+                 independent = colnames(df)[c(1:4, 6:7)], maxvar = 6, 
+                 family = "gaussian") |>
+  head(12) |>
+  kbl() |>
+  kable_styling(bootstrap_options = c("striped", "hover", 
+                                      "condensed", "responsive"),
+                font_size = 14) |>
+  scroll_box(height = "250px")
+```
+
+*Try choosing a model and defend your choice*
+
+I would choose `retirement ~ + average_wealth + loan_debt + loan_debt_pct +
+median_wealth` because it has the highest $R^2$ value.
+
+*That's not quite right. `retirement ~ + average_wealth + median_wealth` is much
+better because 96% of the model is explained by those two variables so adding
+`loan_debt_pct` and `loan_debt` does not give a lot of benefit.*
+
+*What if we considered interaction terms?*
+
+```{r}
+#| cache: TRUE
+dewey::regsearch(df, dependent = "retirement", 
+                 independent = colnames(df)[c(1:4, 6:7)], maxvar = 6, 
+                 family = "gaussian", interactions = TRUE) |>
+  head(12) |>
+  kbl() |>
+  kable_styling(bootstrap_options = c("striped", "hover", 
+                                      "condensed", "responsive"),
+                font_size = 14) |>
+  scroll_box(height = "250px")
+```
+
+This is pretty cool. Average wealth by itself is pretty good, but when it
+interacts with `loan_debt_pct`, `median_wealth`, `race`, and `year`, it seems to
+produce a really great model. 
+
+*Of course, we still want to be careful about overfitting.*
+
+# Parting Thoughts
+
+Race appears to have a huge impact on everything and increasing educational debt
+increases retirement, but only for Whites. I'd be curious to see the data behind
+the loans to learn why increasing educational debt does not always correlate
+with increased wealth.
+
+# Post-Conclusion
+
+It's Gus again. I had a really fun time with this. I like to think my mom
+learned a lot and I'm hoping you did too.
