@@ -146,7 +146,7 @@ $enable-cssgrid: true
 <b>Gus Lipkin</b>
 </div>
 ----
-<h3 style="margin-bottom: 0px;">Education</h3>
+<h3 style="margin-bottom: 0px; color:#404040;">Education</h3>
 <div class="grid-job">
 <div class="job"><b>Florida Polytechnic University</b></div>
 <div class="time">Aug 2018 - May 2022</div>
@@ -156,7 +156,7 @@ $enable-cssgrid: true
 <br>
 <span style="color:#2e4440;"><em>– Associate of Arts</em></span>
 </div>
-<p style="text-indent: 1em; font-size: 14px; margin-bottom: 0px;"><b>Selected Courses</b></p>
+<p style="text-indent: 1em; font-size: 14px; margin-bottom: 0px; color:#404040;"><b>Selected Courses</b></p>
 <div style="padding-left: 1.5em; font-size: 14px; color: #666666;">
 <div class="flex-container">
 <div class="flex-item"><ul><li>Database I & II</li></ul></div>
@@ -170,7 +170,7 @@ $enable-cssgrid: true
 </div>
 </div>
 
-<p style="text-indent: 1em; font-size: 14px; margin-bottom: 0px;"><b>Software and Programming</b></p>
+<p style="text-indent: 1em; font-size: 14px; margin-bottom: 0px; color:#404040;"><b>Software and Programming</b></p>
 <div class="flex-container" style="padding-left: 1.5em; font-size: 14px; color: #666666;">
 <div class="flex-item"><ul><li>R and RStudio</li></ul></div>
 <div class="flex-item"><ul><li>SQL, Redis, Neo4J</li></ul></div>
@@ -178,13 +178,26 @@ $enable-cssgrid: true
 <div class="flex-item"><ul><li>Apache Spark</li></ul></div>
 </div>
 
-<h3 style="margin-bottom: 0px;">Experience</h3>
+<h3 style="margin-bottom: 0px; color:#404040;">Experience</h3>
+<div class="grid-job">
+<div class="job">
+<span><b>Data Analyst</b></span>
+<span style="color:#2e4440"><em> – Publix Supermarkets</em></span>
+</div>
+<div class="time">May 2022 - Present</div>
+</div>
+<ul style="font-size: 14px; color:#666666;">
+	<li>Create and execute test plans to discover software problems and their causes using qTest and Jira</li>
+	<li>Investigate patterns in bugs reported using JQL and causal inference</li>
+	<li>Document and demonstrate software features to internal and external users in Confluence</li>
+</ul>
+
 <div class="grid-job">
 <div class="job">
 <span><b>Software Quality Assurance Analyst</b></span>
 <span style="color:#2e4440"><em> – AssistRx</em></span>
 </div>
-<div class="time">Jan 2022 - Present</div>
+<div class="time">Jan 2022 - May 2022</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Create and execute test plans to discover software problems and their causes using qTest and Jira</li>
@@ -197,7 +210,7 @@ $enable-cssgrid: true
 <span><b>Data Science Project Team Lead</b></span>
 <span style="color:#2e4440"><em> – Tallahassee Memorial Healthcare</em></span>
 </div>
-<div class="time">Aug 2021 - Present</div>
+<div class="time">Aug 2021 - May 2022</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Correlate patient feedback to readmissions and patient experience using linear regression and decision trees</li>
@@ -230,7 +243,7 @@ $enable-cssgrid: true
 	<li>Create and run weekly parts availability analysis and reports using R and RStudio</li>
 </ul>
 
-<h3 style="margin-bottom: 0px;">Professional Organizations</h3>
+<h3 style="margin-bottom: 0px; color:#404040;">Professional Organizations</h3>
 <div class="grid-job">
 <div class="job">
 <span><b>Student Body Vice-President</b></span>
