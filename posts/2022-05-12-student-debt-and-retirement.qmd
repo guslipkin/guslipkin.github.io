@@ -47,8 +47,8 @@ we were working on. It's not necessarily verbatim, but gets her thoughts across.
 *First we load our packages and data.*
 
 ```{r}
-#| echo: FALSE
-#| warning: FALSE
+#| echo: false
+#| warning: false
 library(tidyverse)
 library(data.table)
 library(kableExtra)
@@ -288,7 +288,6 @@ better because 96% of the model is explained by those two variables so adding
 *What if we considered interaction terms?*
 
 ```{r}
-#| cache: TRUE
 dewey::regsearch(df, dependent = "retirement", 
                  independent = colnames(df)[c(1:4, 6:7)], maxvar = 6, 
                  family = "gaussian", interactions = TRUE) |>

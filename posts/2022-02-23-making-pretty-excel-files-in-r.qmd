@@ -37,14 +37,14 @@ A preview of the Attendance and Supplies sheets
 As usual, the first thing to do is load our library with `library(openxlsx)`. We can try and load the workbook, the Excel file, with `read.xlsx`, but for now we're going to use `loadWorkbook`. This loads a workbook object and exposes some workbook properties to us rather than just the raw data like with `read.xlsx`.
 
 ```{r}
-#| output: FALSE
-#| include: FALSE
+#| output: false
+#| include: false
 filePath <- "../assets/post-assets/2022-02-23-making-pretty-excel-files-in-r/bbq.xlsx"
 outputPath <- "../assets/post-assets/2022-02-23-making-pretty-excel-files-in-r/newBBQ.xlsx"
 ```
 
 ```{r}
-#| output: FALSE
+#| output: false
 
 # load openxlsx
 library(openxlsx)
@@ -87,7 +87,7 @@ head(supplies)
 Because we loaded the data as a workbook object, we can use `getStyles` to load the styles and preview them. Unfortunately, the styles can't pull conditional formatting and don't keep track of which cells use which styles. By cross referencing the list of styles and `bbq.xlsx`, we can identify some styles to use and them assign them each to a variable.
 
 ```{r}
-#| output: FALSE
+#| output: false
 # getStyles and set them appropriately
 styles <- getStyles(bbq)
 styles

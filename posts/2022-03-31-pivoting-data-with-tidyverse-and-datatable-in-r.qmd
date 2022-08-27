@@ -1,5 +1,5 @@
 ---
-title: "Pivoting Data with tidyverse and datatable in R"
+title: "Pivoting Data with tidyverse and data.table in R"
 description: "pivot_wider/dcast and pivot_longer/melt all make sense with a bit of explaining."
 author: "Gus Lipkin"
 date: "2022/03/31"

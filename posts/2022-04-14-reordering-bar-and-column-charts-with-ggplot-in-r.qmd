@@ -32,9 +32,9 @@ Bar charts organized by day of the week and descending order, respectively
 As usual, we want to load the `tidyverse` first since it gives us `%>%` from `magrittr` and `ggplot2` and everything that comes with it.
 
 ```{r}
-#| warning: FALSE
-#| message: FALSE
-#| echo: FALSE
+#| warning: false
+#| message: false
+#| echo: false
 library(tidyverse)
 ```
 
@@ -138,7 +138,7 @@ sales$paintings <- round(rnorm(28*12, c(sample(1:28, 28*12, replace = TRUE))))
 Thinking that maybe we'd like to switch up our day off every month, we want to see how our sales change over the course of the year, but still `group_by(weekday)`. However, since we want to know the mean for each `weekday` for each `month`, we need to add that so we have `group_by(month, weekday)`. We also add `facet_wrap(~ month)` to the end of the `ggplot` chain. Essentially, this means that we want to have a mini plot for each `month`. In this case, we've ordered our `y` axis so that the days of the week are in order from top to bottom.
 
 ```{r, fig.alt="One column chart for each month in alphabetical order with days of the week in proper order"}
-#| message: FALSE
+#| message: false
 sales %>%
   group_by(month, weekday) %>%
   summarise(weekdaySales = mean(paintings)) %>%
@@ -155,7 +155,7 @@ sales %>%
 That's all well and good, but what if we want each month ordered in descending order like we had the chart before? We can try changing `y = factor()` to `y = reorder()`. We also add `scales = "free_y"` to `facet_wrap` so that each chart's `y` axis is calculated independently. It's quickly apparent that this doesn't work the way we were expecting it to. The facets are not sorted properly and all of them are sorted the same way.
 
 ```{r, fig.alt="One column chart for each month in alphabetical order with days of the week in an unknown order"}
-#| message: FALSE
+#| message: false
 sales %>%
   group_by(month, weekday) %>%
   summarise(weekdaySales = mean(paintings)) %>%
@@ -172,7 +172,7 @@ sales %>%
 Not sure what happened, we try to investigate. If we re-run the earlier *Mean Weekly Painting Sales in Descending Order* chart with the new data and grouped by `weekday`, we find that the `y` axis in each facet is, in fact, in order with Sunday with the highest sales and Friday with the lowest, but the order hasn't been recalculated for each month.
 
 ```{r, fig.alt="Column chart of mean painting sales vs day of the week in order of descending mean painting sales"}
-#| echo: FALSE
+#| echo: false
 sales %>%
   group_by(weekday) %>%
   summarise(weekdaySales = mean(paintings)) %>%
@@ -200,7 +200,7 @@ library(tidytext)
 Instead of using `factor()` and `reorder()`, we change the `y` axis argument in `aes()` to use `reorder_within`: `y = reorder_within(weekday, weekdaySales, month)`. Our first argument, `weekday` is the vector we want to reorder. The second argument, `weekdaySales` is the variable we want to use for reordering. The last argument, `month`, is the variable we want to use for grouping. The third argument could be a vector of column names if we wanted to group by multiple variables. Like with `reorder()`, we can set the direction to ascending with a minus sign before the ordering argument, `weekdaySales`. We keep `scales = "free_y"` in `facet_wrap()` so that each facet has its own order, and then use `scale_y_reordered()` to make sure that the new order from `reorder_within()` is used.
 
 ```{r}
-#| message: FALSE
+#| message: false
 #| layout-ncol: 2
 sales %>%
   group_by(month, weekday) %>%
@@ -236,7 +236,7 @@ sales %>%
 At this point, you might be staring at your screen in disbelief and thinking, "But Gus, the facets aren't in order! The months are in alphabetical order and not calendar order!" You're not wrong. When we were setting the order of `y` with `factor()`, we were doing something that we could have done much earlier in our data creation stage. If we redefine the `month` and `weekday` variables using the `factor(variable, levels)` syntax, we don't need to use `y = factor(weekday)` to make sure our days are in order. In addition, the facets will now be in calendar order like they appear in the `month.name` constant. I've chosen to reverse the `days_of_the_week` so that Sunday appears at the top, rather than at the bottom of the `y` axis.
 
 ```{r, fig.alt="Column charts of day of the week vs mean painting sales with both the months and days of the week in order"}
-#| message: FALSE
+#| message: false
 sales$month <- factor(sales$month, levels = month.name)
 sales$weekday <- factor(sales$weekday, levels = rev(days_of_the_week))
 
