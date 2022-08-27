@@ -8,9 +8,9 @@
 
 <meta name="author" content="Gus Lipkin">
 <meta name="dcterms.date" content="2022-08-27">
-<meta name="description" content="Moving SQL to Spark doesn’t need to be difficult">
+<meta name="description" content="It might not be easy, but it’ll certainly be less painful">
 
-<title>Gus Lipkin’s Awesome Website - Moving Local Data Processes to Spark the Easy Way with R and Python</title>
+<title>Gus Lipkin’s Awesome Website - Moving Local Data Pipelines to Spark: The Easy Way with R and&nbsp;Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -205,7 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Moving Local Data Processes to Spark the Easy Way with R and Python</h1>
+<h1 class="title">Moving Local Data Pipelines to Spark: The Easy Way with R and&nbsp;Python</h1>
   <div class="quarto-categories">
     <div class="quarto-category">R</div>
     <div class="quarto-category">R: sparklyr</div>
@@ -217,7 +217,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div>
   <div class="description">
-    Moving SQL to Spark doesn’t need to be difficult
+    It might not be easy, but it’ll certainly be less painful
   </div>
 </div>
 
@@ -259,17 +259,29 @@ Note
 <section id="intro" class="level1">
 <h1>Intro</h1>
 <p>As data people, we know that “the cloud” is usually a server somewhere maybe hosted on Azure, a server in a closet, or maybe a ten year old laptop underneath someone’s desk. When we hear people ask about moving data and processes to the cloud, it’s hard not to think of the <a href="https://disney.fandom.com/wiki/Little_Green_Men">Little Green Men</a> from Toy Story worshiping “The Claw”. Within a few short breaths, you’ve been asked to try and move all your current processes to the cloud. It’s a daunting task, but with a few handy tricks, we can make the SQL conversion relatively painless.</p>
-<p>I’ve generally tried to keep the R and Python code as similar as possible, but that’s not always the wisest move. If you have any questions, don’t hesitate to reach out.</p>
-<p><img src="../assets/post-assets/2022-08-27-moving-local-sql-to-spark-the-easy-way/Little_Green_Men.jpg" class="img-fluid"></p>
+<p><img src="../assets/post-assets/2022-08-27-moving-local-sql-to-spark-the-easy-way/Little_Green_Men.jpg" class="img-fluid" alt="Three Little Green Men from Toy Story saying 'The Cloud'"></p>
 </section>
 <section id="getting-started" class="level1">
 <h1>Getting Started</h1>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I’ve generally tried to keep the R and Python code as similar as possible, but that’s not always the wisest move. If you have any questions, don’t hesitate to reach out.</p>
+</div>
+</div>
 <p>Our first step is to load our packages and connect to spark. We’ll also create a local spark instance to use rather than link to a server. On the R side of things, our core packages are <code>sparklyr</code> and <code>glue</code> while Python is using <code>pyspark</code> and Python 3’s f-String functionality.</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-1_7f80dffee8620a8075782f10148f9a90">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/LibrariesConnect.R_af4f04c81b5a9261b1db97dadb6ed84d">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparklyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -277,7 +289,7 @@ Note
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-2_12dab279f9278f3913de08d73fb0b393">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/LibrariesConnect.py_f0aca692b05276cfbccce0a9c4713d1a">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> col</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -289,12 +301,12 @@ Note
 </section>
 <section id="prepping-the-data" class="level1">
 <h1>Prepping the Data</h1>
-<p>At this point “in the real world” you’ll have loaded your data into the table format of your choosing. Where I work, all of our tables are in delta or parquet formats. For this example, rather than create dummy data for a post like I usually do, I’ve downloaded the <a href="https://www.kaggle.com/datasets/josephcheng123456/olympic-historical-dataset-from-olympediaorg"><em>Olympic Historical Dataset From Olympedia.org</em></a> from Kaggle and left everything in the archive folder it comes in.</p>
+<p>At this point “in the real world” you’ll have loaded your data into the table format of your choosing. Where I work, all of our tables are in delta or parquet formats. For this example, rather than create dummy data for a post like I usually do, I’ve downloaded the <a href="https://www.kaggle.com/datasets/josephcheng123456/olympic-historical-dataset-from-olympediaorg"><em>Olympic Historical Dataset From Olympedia.org</em></a> from Kaggle and moved everything to my data folder.</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-3_2fcd742420f7cc3d5ac82930007a3855">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/ReadCSV.R_6763e6e51db196b0b7523e46bdafa50d">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio <span class="ot">&lt;-</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"athlete_bio"</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympic_Athlete_Bio.csv"</span>)</span>
@@ -320,7 +332,7 @@ Note
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-4_cb149c7befa3a46755d1e4388cd52751">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/ReadCSV.py_f07d398b8a3dc80b706dd360288ed8cb">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio <span class="op">=</span> sc.read.csv(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympic_Athlete_Bio.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio.createOrReplaceTempView(<span class="st">"athlete_bio"</span>)</span>
@@ -348,7 +360,7 @@ Note
 </div>
 </div>
 </div>
-<p>By assigning the tables to both an R/Python variable and a name in Spark, we’re able to access the data from both an R/Python context, and a SQL context.</p>
+<p>By assigning the tables to both an R and Python variable and a name in Spark, we’re able to access the data from both an R and Python context, and a SQL context.</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><code>Python</code></a></li></ul>
 <div class="tab-content">
@@ -358,7 +370,7 @@ Note
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tbl_country)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># SQL</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sdf_sql</span>(sc, <span class="st">'SELECT * FROM country LIMIT 6'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-tbl-subcap="[&quot;sparklyr&quot;,&quot;SQL&quot;]" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-5_b8cd18c1da7a1098e60c508f931e3b53">
+<div class="cell quarto-layout-panel" data-tbl-subcap="[&quot;sparklyr&quot;,&quot;SQL&quot;]" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/PreviewTable.R_810dff5d6c5d6eff9f0c2fa085adc46f">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <pre><code># Source: spark&lt;?&gt; [?? x 2]
@@ -392,7 +404,7 @@ Note
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tbl_country.show(<span class="dv">6</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># SQL</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="st">'SELECT * FROM country LIMIT 6'</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-tbl-subcap="[&quot;PySpark&quot;,&quot;SQL&quot;]" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-6_0de7559a67aa933d015ae09d51a19a44">
+<div class="cell quarto-layout-panel" data-tbl-subcap="[&quot;PySpark&quot;,&quot;SQL&quot;]" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/PreviewTable.py_7a571b644843ab35ea4a66518b160638">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <pre><code>+-----------+--------------+
@@ -429,7 +441,7 @@ only showing top 6 rows</code></pre>
 <section id="working-with-views" class="level1">
 <h1>Working With Views</h1>
 <p>Let’s say your database administrators (if they aren’t also you) are kind and have done a small amount of data cleaning and you usually access the data from a mount point which provides a view. You pull the schema for the <code>athlete_bio_vw</code> table and get the following SQL that references <code>athlete_bio</code>.</p>
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-7_91bcd05ff5cdab6f019b11da8bfe026c">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/View.sql_546c8e682bfdbe4aa920349907772eb9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  athlete_id, name, sex, <span class="fu">CAST</span>(born <span class="kw">AS</span> <span class="dt">DATE</span>), </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">CAST</span>(height <span class="kw">AS</span> <span class="dt">DOUBLE</span>), <span class="fu">CAST</span>(weight <span class="kw">AS</span> <span class="dt">DOUBLE</span>), </span>
@@ -444,7 +456,7 @@ only showing top 6 rows</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false"><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-8_749e4196cc1f62dcf2e14060bf4006ab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/View.R_a39b05d6b4823cb2ab9b0e0f49801214">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  tbl_athlete_bio <span class="sc">|&gt;</span> </span>
@@ -479,7 +491,7 @@ only showing top 6 rows</code></pre>
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-9_3a815070d1406b0ad083c2626eeba534">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/View.py_93f9ab07a22c6dfd33cbd32a7ba24908">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="op">=</span> tbl_athlete_bio.<span class="bu">filter</span>(<span class="st">'height != "na" AND weight != "na"'</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    ).select([<span class="st">'athlete_id'</span>, <span class="st">'name'</span>, <span class="st">'sex'</span>, col(<span class="st">'born'</span>).cast(<span class="st">'date'</span>), </span>
@@ -519,8 +531,8 @@ only showing top 6 rows</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false"><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-10_68874c68f4df2c06db62b779be150975">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_qry <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/ViewQuery.R_8ee97a475ff6a6909bbda8be5567fd4e">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>athlete_bio_vw_qry <span class="ot">&lt;-</span> <span class="st">'</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT </span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="st">    athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), </span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">    CAST(weight AS DOUBLE), country, country_noc</span></span>
@@ -528,7 +540,7 @@ only showing top 6 rows</code></pre>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE </span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="st">    height != "na" AND</span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="st">    weight != "na"'</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span> <span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">"{tbl_athlete_bio_qry}"</span>))</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span> <span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">"{athlete_bio_vw_qry}"</span>))</span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tbl_athlete_bio_vw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -546,8 +558,8 @@ only showing top 6 rows</code></pre>
 </div>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-11_9fc5eb9b338b85c624bd5bf40c6e11ef">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_qry <span class="op">=</span> <span class="st">'''</span></span>
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/ViewQuery.py_77be1297253f079be5ee27dccef5f939">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>athlete_bio_vw_qry <span class="op">=</span> <span class="st">'''</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT </span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="st">    athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), </span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="st">    CAST(weight AS DOUBLE), country, country_noc</span></span>
@@ -555,7 +567,7 @@ only showing top 6 rows</code></pre>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE </span></span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="st">    height != "na" AND</span></span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="st">    weight != "na"'''</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="op">=</span> sc.sql(<span class="ss">f'''</span><span class="sc">{</span>tbl_athlete_bio_qry<span class="sc">}</span><span class="ss">'''</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="op">=</span> sc.sql(<span class="ss">f'''</span><span class="sc">{</span>athlete_bio_vw_qry<span class="sc">}</span><span class="ss">'''</span>)</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw.show(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -578,20 +590,20 @@ only showing top 6 rows</code></pre>
 </section>
 <section id="subqueries" class="level1">
 <h1>Subqueries</h1>
-<p>You probably know that the idea behind subqueries is that it lets you nest operations. The idea behind my third method (I really need a better name for it) is the same. Rather, instead of nesting queries directly, we’re nesting strings which are then evaluated as queries. For this example, I’m going to make another subquery called <code>tbl_athlete_results_qry</code> that contains all columns from the <code>athlete_results</code> Spark table for medal winners. I then want to return all rows from <code>tbl_athlete_bio_vw</code> for people who have won medals.</p>
+<p>You probably know that the idea behind subqueries is that it lets you nest operations. The idea behind my third method (I really need a better name for it) is the same. Rather, instead of nesting queries directly, we’re nesting strings which are then evaluated as queries. In this example, we’re going to make another subquery called <code>tbl_athlete_results_qry</code> that contains all columns from the <code>athlete_results</code> Spark table for medal winners. We then want to return all rows from <code>tbl_athlete_bio_vw</code> for people who have won medals.</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false"><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-12_6df490d2c25d376c4cfe8265539ccca8">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_results_qry <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Subquery.R_7bff04ac0fe340d18e4ded2a71bd4c92">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>athlete_results_qry <span class="ot">&lt;-</span> <span class="st">'</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT athlete_id </span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_results</span></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE medal != "na"'</span></span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">'</span></span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT *</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ({tbl_athlete_bio_qry})</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE athlete_id IN ({tbl_athlete_results_qry})'</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ({athlete_bio_vw_qry})</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE athlete_id IN ({athlete_results_qry})'</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source: spark&lt;?&gt; [?? x 8]
@@ -608,15 +620,15 @@ only showing top 6 rows</code></pre>
 </div>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-13_6439fec3e50fb888a3a5e3c309b6f8b5">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_results_qry <span class="op">=</span> <span class="st">'''</span></span>
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Subquery.py_ebd6f2d8e1d5dcb59feb2546d462219f">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>athlete_results_qry <span class="op">=</span> <span class="st">'''</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT athlete_id </span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_results</span></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE medal != "na"'''</span></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="ss">f'''</span></span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  SELECT *</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM (</span><span class="sc">{</span>tbl_athlete_bio_qry<span class="sc">}</span><span class="ss">)</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  WHERE athlete_id IN (</span><span class="sc">{</span>tbl_athlete_results_qry<span class="sc">}</span><span class="ss">)'''</span>).show(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM (</span><span class="sc">{</span>athlete_bio_vw_qry<span class="sc">}</span><span class="ss">)</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  WHERE athlete_id IN (</span><span class="sc">{</span>athlete_results_qry<span class="sc">}</span><span class="ss">)'''</span>).show(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>+----------+----------------+------+----------+------+------+------------------+-----------+
 |athlete_id|            name|   sex|      born|height|weight|           country|country_noc|
@@ -639,11 +651,11 @@ only showing top 6 rows</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false"><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-14_56a3c6c0a59406d0036983474385b8f4">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/SubSubquery.R_38579b07aa44b6c5ac5158f039bd36a4">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>medal_athlete_qry <span class="ot">&lt;-</span> <span class="fu">glue</span>(<span class="st">'</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT *</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ({tbl_athlete_bio_qry})</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE athlete_id IN ({tbl_athlete_results_qry})'</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ({athlete_bio_vw_qry})</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE athlete_id IN ({athlete_results_qry})'</span>)</span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>tbl_country_medal <span class="ot">&lt;-</span> <span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">'</span></span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT country, COUNT(country) AS medal_count</span></span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ({medal_athlete_qry})</span></span>
@@ -665,11 +677,11 @@ only showing top 6 rows</code></pre>
 </div>
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-15_c7dd61123609865f4c763ef9da33e2d5">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/SubSubquery.py_5b8893a5943da37df4d4c57642082448">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>medal_athlete_qry <span class="op">=</span> <span class="ss">f'''</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ss">  SELECT *</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM (</span><span class="sc">{</span>tbl_athlete_bio_qry<span class="sc">}</span><span class="ss">)</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  WHERE athlete_id IN (</span><span class="sc">{</span>tbl_athlete_results_qry<span class="sc">}</span><span class="ss">)'''</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM (</span><span class="sc">{</span>athlete_bio_vw_qry<span class="sc">}</span><span class="ss">)</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  WHERE athlete_id IN (</span><span class="sc">{</span>athlete_results_qry<span class="sc">}</span><span class="ss">)'''</span></span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>tbl_country_medal <span class="op">=</span> sc.sql(<span class="ss">f'''</span></span>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  SELECT country, COUNT(country) AS medal_count</span></span>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM (</span><span class="sc">{</span>medal_athlete_qry<span class="sc">}</span><span class="ss">)</span></span>
@@ -702,7 +714,7 @@ only showing top 6 rows</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false"><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-16_23103949a662d6d05f2297fe99e3198d">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/SparkAgain.R_46dd8fa7510fba10bb04919ca7432a7f">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, tbl_athlete_bio_vw, <span class="st">'athlete_bio_vw'</span>)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">src_tbls</span>(sc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -726,7 +738,7 @@ only showing top 6 rows</code></pre>
 </div>
 </div>
 <div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-17_27ffe774c8799a179a43f6e9adbb3653">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/SparkAgain.py_ba7301a58f579331bdbae35f759f0c27">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw.createOrReplaceTempView(<span class="st">'athlete_bio_vw'</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="st">"show tables"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -768,7 +780,7 @@ only showing top 6 rows</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false"><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-18_d4271df83a01b2e28b9e699922f10b1a">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Dynamic.R_72583a1c49a56262295135bed16f38e2">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>thirtyYears <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="fu">Sys.Date</span>()) <span class="sc">-</span> <span class="fu">years</span>(<span class="dv">30</span>)</span>
@@ -793,7 +805,7 @@ only showing top 6 rows</code></pre>
 </div>
 </div>
 <div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-19_5a9c4b7c7b5b37b2b957cb55535d6784">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Dynamic.py_100c8ade8792dcf8d22744650c60a4a0">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dateutil.relativedelta <span class="im">import</span> relativedelta</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -827,12 +839,12 @@ only showing top 6 rows</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false"><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-20_90b83a9953d5200ae4fa39b73be37ddc">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Disconnect.R_6f03ffc2b5d6369e3c6e8afba6b6915b">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spark_disconnect</span>(sc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/unnamed-chunk-21_85abb92d465dc8fac149529a504adf28">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Disconnect.py_a6d66ff19244ba7f10ebb5877816454b">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sc.stop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>

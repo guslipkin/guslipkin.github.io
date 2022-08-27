@@ -1,6 +1,6 @@
 ---
-title: "Moving Local Data Processes to Spark the Easy Way with R and Python"
-description: "Moving SQL to Spark doesn't need to be difficult"
+title: "Moving Local Data Pipelines to Spark: The Easy Way with R and Python"
+description: "It might not be easy, but it'll certainly be less painful"
 image: "../assets/post-assets/2022-08-27-moving-local-sql-to-spark-the-easy-way/Little_Green_Men.jpg"
 author: "Gus Lipkin"
 date: "2022/08/27"
@@ -26,11 +26,15 @@ Data comes from the [*Olympic Historical Dataset From Olympedia.org*](https://ww
 
 As data people, we know that "the cloud" is usually a server somewhere maybe hosted on Azure, a server in a closet, or maybe a ten year old laptop underneath someone's desk. When we hear people ask about moving data and processes to the cloud, it's hard not to think of the [Little Green Men](https://disney.fandom.com/wiki/Little_Green_Men) from Toy Story worshiping "The Claw". Within a few short breaths, you've been asked to try and move all your current processes to the cloud. It's a daunting task, but with a few handy tricks, we can make the SQL conversion relatively painless.
 
-I've generally tried to keep the R and Python code as similar as possible, but that's not always the wisest move. If you have any questions, don't hesitate to reach out.
-
-![](../assets/post-assets/2022-08-27-moving-local-sql-to-spark-the-easy-way/Little_Green_Men.jpg)
+![](../assets/post-assets/2022-08-27-moving-local-sql-to-spark-the-easy-way/Little_Green_Men.jpg){fig-alt="Three Little Green Men from Toy Story saying 'The Cloud'"}
 
 # Getting Started
+
+::: {.callout-tip}
+
+I've generally tried to keep the R and Python code as similar as possible, but that's not always the wisest move. If you have any questions, don't hesitate to reach out.
+
+:::
 
 Our first step is to load our packages and connect to spark. We'll also create a local spark instance to use rather than link to a server. On the R side of things, our core packages are `sparklyr` and `glue` while Python is using `pyspark` and Python 3's f-String functionality.
 
@@ -38,7 +42,7 @@ Our first step is to load our packages and connect to spark. We'll also create a
 
 ##### `R`
 
-```{r}
+```{r LibrariesConnect.R}
 #| message: false
 library(sparklyr)
 library(glue)
@@ -48,7 +52,7 @@ sc <- spark_connect(master = "local")
 
 ##### `Python`
 
-```{python}
+```{python LibrariesConnect.py}
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 
@@ -59,13 +63,13 @@ sc = SparkSession.builder.getOrCreate()
 
 # Prepping the Data
 
-At this point "in the real world" you'll have loaded your data into the table format of your choosing. Where I work, all of our tables are in delta or parquet formats. For this example, rather than create dummy data for a post like I usually do, I've downloaded the [*Olympic Historical Dataset From Olympedia.org*](https://www.kaggle.com/datasets/josephcheng123456/olympic-historical-dataset-from-olympediaorg) from Kaggle and left everything in the archive folder it comes in.
+At this point "in the real world" you'll have loaded your data into the table format of your choosing. Where I work, all of our tables are in delta or parquet formats. For this example, rather than create dummy data for a post like I usually do, I've downloaded the [*Olympic Historical Dataset From Olympedia.org*](https://www.kaggle.com/datasets/josephcheng123456/olympic-historical-dataset-from-olympediaorg) from Kaggle and moved everything to my data folder.
 
 ::: {.panel-tabset}
 
 ##### `R`
 
-```{r}
+```{r ReadCSV.R}
 tbl_athlete_bio <- 
   spark_read_csv(sc, name = "athlete_bio",
                  path = "../assets/data/Olympic_Athlete_Bio.csv")
@@ -92,7 +96,7 @@ tbl_country <- spark_read_csv(sc, name = "country",
 
 ##### `Python`
 
-```{python}
+```{python ReadCSV.py}
 tbl_athlete_bio = sc.read.csv(
   "../assets/data/Olympic_Athlete_Bio.csv", header = True)
 tbl_athlete_bio.createOrReplaceTempView("athlete_bio")
@@ -120,13 +124,13 @@ tbl_country.createOrReplaceTempView("country")
 
 :::
 
-By assigning the tables to both an R/Python variable and a name in Spark, we're able to access the data from both an R/Python context, and a SQL context.
+By assigning the tables to both an R and Python variable and a name in Spark, we're able to access the data from both an R and Python context, and a SQL context.
 
 ::: {.panel-tabset}
 
 ##### `R`
 
-```{r}
+```{r PreviewTable.R}
 #| layout-ncol: 2
 #| tbl-subcap: 
 #|   - "sparklyr"
@@ -139,7 +143,7 @@ sdf_sql(sc, 'SELECT * FROM country LIMIT 6')
 
 ##### `Python`
 
-```{python}
+```{python PreviewTable.py}
 #| layout-ncol: 2
 #| tbl-subcap: 
 #|   - "PySpark"
@@ -157,7 +161,7 @@ sc.sql('SELECT * FROM country LIMIT 6').show()
 
 Let's say your database administrators (if they aren't also you) are kind and have done a small amount of data cleaning and you usually access the data from a mount point which provides a view. You pull the schema for the `athlete_bio_vw` table and get the following SQL that references `athlete_bio`.
 
-```{sql}
+```{sql View.sql}
 #| eval: false
 SELECT 
   athlete_id, name, sex, CAST(born AS DATE), 
@@ -175,7 +179,7 @@ We can re-create the views three ways. We can use R or Python to recreate the vi
 
 ##### `R`
 
-```{r}
+```{r View.R}
 # R
 tbl_athlete_bio_vw <-
   tbl_athlete_bio |> 
@@ -199,7 +203,7 @@ head(tbl_athlete_bio_vw)
 
 ##### `Python`
 
-```{python}
+```{python View.py}
 # Python
 tbl_athlete_bio_vw = tbl_athlete_bio.filter('height != "na" AND weight != "na"'
     ).select(['athlete_id', 'name', 'sex', col('born').cast('date'), 
@@ -228,8 +232,8 @@ If you're not familiar, both `glue` and f-strings take a regular string and inse
 
 ##### `R`
 
-```{r}
-tbl_athlete_bio_qry <- '
+```{r ViewQuery.R}
+athlete_bio_vw_qry <- '
   SELECT 
     athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), 
     CAST(weight AS DOUBLE), country, country_noc
@@ -237,15 +241,15 @@ tbl_athlete_bio_qry <- '
   WHERE 
     height != "na" AND
     weight != "na"'
-tbl_athlete_bio_vw <- sdf_sql(sc, glue("{tbl_athlete_bio_qry}"))
+tbl_athlete_bio_vw <- sdf_sql(sc, glue("{athlete_bio_vw_qry}"))
 
 head(tbl_athlete_bio_vw)
 ```
 
 ##### `Python`
 
-```{python}
-tbl_athlete_bio_qry = '''
+```{python ViewQuery.py}
+athlete_bio_vw_qry = '''
   SELECT 
     athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), 
     CAST(weight AS DOUBLE), country, country_noc
@@ -253,7 +257,7 @@ tbl_athlete_bio_qry = '''
   WHERE 
     height != "na" AND
     weight != "na"'''
-tbl_athlete_bio_vw = sc.sql(f'''{tbl_athlete_bio_qry}''')
+tbl_athlete_bio_vw = sc.sql(f'''{athlete_bio_vw_qry}''')
 
 tbl_athlete_bio_vw.show(6)
 ```
@@ -262,35 +266,35 @@ tbl_athlete_bio_vw.show(6)
 
 # Subqueries
 
-You probably know that the idea behind subqueries is that it lets you nest operations. The idea behind my third method (I really need a better name for it) is the same. Rather, instead of nesting queries directly, we're nesting strings which are then evaluated as queries. For this example, I'm going to make another subquery called `tbl_athlete_results_qry` that contains all columns from the `athlete_results` Spark table for medal winners. I then want to return all rows from `tbl_athlete_bio_vw` for people who have won medals.
+You probably know that the idea behind subqueries is that it lets you nest operations. The idea behind my third method (I really need a better name for it) is the same. Rather, instead of nesting queries directly, we're nesting strings which are then evaluated as queries. In this example, we're going to make another subquery called `tbl_athlete_results_qry` that contains all columns from the `athlete_results` Spark table for medal winners. We then want to return all rows from `tbl_athlete_bio_vw` for people who have won medals.
 
 ::: {.panel-tabset}
 
 ##### `R`
 
-```{r}
-tbl_athlete_results_qry <- '
+```{r Subquery.R}
+athlete_results_qry <- '
   SELECT athlete_id 
   FROM athlete_results
   WHERE medal != "na"'
 sdf_sql(sc, glue('
   SELECT *
-  FROM ({tbl_athlete_bio_qry})
-  WHERE athlete_id IN ({tbl_athlete_results_qry})')) |>
+  FROM ({athlete_bio_vw_qry})
+  WHERE athlete_id IN ({athlete_results_qry})')) |>
   head()
 ```
 
 ##### `Python`
 
-```{python}
-tbl_athlete_results_qry = '''
+```{python Subquery.py}
+athlete_results_qry = '''
   SELECT athlete_id 
   FROM athlete_results
   WHERE medal != "na"'''
 sc.sql(f'''
   SELECT *
-  FROM ({tbl_athlete_bio_qry})
-  WHERE athlete_id IN ({tbl_athlete_results_qry})''').show(6)
+  FROM ({athlete_bio_vw_qry})
+  WHERE athlete_id IN ({athlete_results_qry})''').show(6)
 ```
 
 :::
@@ -301,11 +305,11 @@ If, for whatever reason, we wanted to go even deeper with the subqueries, we cou
 
 ##### `R`
 
-```{r}
+```{r SubSubquery.R}
 medal_athlete_qry <- glue('
   SELECT *
-  FROM ({tbl_athlete_bio_qry})
-  WHERE athlete_id IN ({tbl_athlete_results_qry})')
+  FROM ({athlete_bio_vw_qry})
+  WHERE athlete_id IN ({athlete_results_qry})')
 tbl_country_medal <- sdf_sql(sc, glue('
   SELECT country, COUNT(country) AS medal_count
   FROM ({medal_athlete_qry})
@@ -317,11 +321,11 @@ head(tbl_country_medal)
 
 ##### `Python`
 
-```{python}
+```{python SubSubquery.py}
 medal_athlete_qry = f'''
   SELECT *
-  FROM ({tbl_athlete_bio_qry})
-  WHERE athlete_id IN ({tbl_athlete_results_qry})'''
+  FROM ({athlete_bio_vw_qry})
+  WHERE athlete_id IN ({athlete_results_qry})'''
 tbl_country_medal = sc.sql(f'''
   SELECT country, COUNT(country) AS medal_count
   FROM ({medal_athlete_qry})
@@ -341,7 +345,7 @@ At this point, you might decide you want to assign your new tables back to Spark
 
 ##### `R`
 
-```{r}
+```{r SparkAgain.R}
 tbl_athlete_bio_vw <- copy_to(sc, tbl_athlete_bio_vw, 'athlete_bio_vw')
 
 dplyr::src_tbls(sc)
@@ -351,7 +355,7 @@ sdf_sql(sc, 'SELECT * FROM athlete_bio_vw LIMIT 6')
 
 ##### `Python`
 
-```{python}
+```{python SparkAgain.py}
 tbl_athlete_bio_vw.createOrReplaceTempView('athlete_bio_vw')
 
 sc.sql("show tables").show()
@@ -369,7 +373,7 @@ The last piece that ties all of this together is using variables as different co
 
 ##### `R`
 
-```{r}
+```{r Dynamic.R}
 #| message: false
 library(lubridate)
 
@@ -384,7 +388,7 @@ sdf_sql(sc, glue('
 
 ##### `Python`
 
-```{python}
+```{python Dynamic.py}
 from datetime import date
 from dateutil.relativedelta import relativedelta
 
@@ -406,13 +410,13 @@ Before we wrap up, let's disconnect from Spark real quick.
 
 ##### `R`
 
-```{r}
+```{r Disconnect.R}
 spark_disconnect(sc)
 ```
 
 ##### `Python`
 
-```{python}
+```{python Disconnect.py}
 sc.stop()
 ```
 
