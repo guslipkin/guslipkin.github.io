@@ -84,7 +84,7 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 ::: {.grid .column-page}
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
 ::: {.g-col-12}
-#### [{dewey}![](assets/dewey.svg){height=40}](../dewey.html)
+#### [{dewey}![](assets/dewey.svg){height=40}](https://guslipkin.github.io/dewey/)
 :::
 ::: {.g-col-12 .text-wrap}
 - **What:** A collection of useful `R` functions for data analysis
