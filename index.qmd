@@ -13,7 +13,7 @@ $enable-cssgrid: true
   code { white-space: normal; }
 </style>
 
-<center><img src="/assets/gus_headshot_landscape.jpg" style="max-height: 315px;"/></center>
+<center><img src="/assets/gus_headshot_new.jpg" style="max-width: 40%;"/></center>
 <br>
 
 I'm Gus, a Business Analyst with a few years' experience. I'd like to show you what I do.
@@ -84,7 +84,7 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 ::: {.grid .column-page}
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
 ::: {.g-col-12}
-#### [{dewey}![](assets/dewey.svg){height=40}](../dewey.html)
+#### [{dewey}![](assets/dewey.svg){height=40}](https://guslipkin.github.io/dewey/)
 :::
 ::: {.g-col-12 .text-wrap}
 - **What:** A collection of useful `R` functions for data analysis
