@@ -138,3 +138,6 @@ dmypy.json
 .joblib
 /.quarto/
 .Rproj.user
+.RData
+.RData
+.Rhistory
