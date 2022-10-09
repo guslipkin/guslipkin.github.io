@@ -1,0 +1,11 @@
+{
+  "hash": "148fb658803233748c449fa5813c94db",
+  "result": {
+    "markdown": "---\ntitle: \"Taskmaster\"\ndate: \"2022-02-27\"\nformat: \n  revealjs:\n    theme: beige\n---\n\n```{css, echo=FALSE}\n\n.h2 {\n  text-align: center;\n}\n```\n\n\n## Slide 1 {background-image=\"../assets/fun-assets/taskmaster/sealed-envelope.png\" background-size=\"1920px\"}\n\nHello world!\n\n## Slide 2\n\nGoodbye world!\n\n",
+    "supporting": [
+      "taskmaster_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
