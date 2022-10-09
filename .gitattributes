@@ -1,5 +1,5 @@
 *.qmd linguist-language=RMarkdown
-*.html linguist-detectable=false
-*.js linguist-detectable=false
-*.css linguist-detectable=false
-*.json linguist-detectable=false
+*.html linguist-generated
+*.js linguist-generated
+*.css linguist-generated
+*.json linguist-generated
