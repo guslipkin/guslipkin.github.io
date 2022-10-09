@@ -146,38 +146,6 @@ $enable-cssgrid: true
 <b>Gus Lipkin</b>
 </div>
 ----
-<h3 style="margin-bottom: 0px; color:#404040;">Education</h3>
-<div class="grid-job">
-<div class="job"><b>Florida Polytechnic University</b></div>
-<div class="time">Aug 2018 - May 2022</div>
-</div>
-<div style="text-indent: -1.5em; padding-left: 1.5em;">
-<span style="color:#2e4440; padding-left: 1.5em;"><em>– Bachelor of Science, Business Analytics with concentrations in Quantitative Economics & Econometrics and Intelligent Mobility</em></span>
-<br>
-<span style="color:#2e4440;"><em>– Associate of Arts</em></span>
-</div>
-<p style="text-indent: 1em; font-size: 14px; margin-bottom: 0px; color:#404040;"><b>Selected Courses</b></p>
-<div style="padding-left: 1.5em; font-size: 14px; color: #666666;">
-<div class="flex-container">
-<div class="flex-item"><ul><li>Database I & II</li></ul></div>
-<div class="flex-item"><ul><li>Strategic Management</li></ul></div>
-<div class="flex-item"><ul><li>Six Sigma</li></ul></div>
-<div class="flex-item"><ul><li>Programming I</li></ul></div>
-<div class="flex-item"><ul><li>Operations and Supply Chain & Operations Research</li></ul></div>
-<div class="flex-item"><ul><li>Time Series Modeling and Forecasting</li></ul></div>
-<div class="flex-item"><ul><li>Statistics, Quantitative Methods, & Statistical Learning</li></ul></div>
-<div class="flex-item"><ul><li>Benefit Cost Analysis & Economic Analysis</li></ul></div>
-</div>
-</div>
-
-<p style="text-indent: 1em; font-size: 14px; margin-bottom: 0px; color:#404040;"><b>Software and Programming</b></p>
-<div class="flex-container" style="padding-left: 1.5em; font-size: 14px; color: #666666;">
-<div class="flex-item"><ul><li>R and RStudio</li></ul></div>
-<div class="flex-item"><ul><li>SQL, Redis, Neo4J</li></ul></div>
-<div class="flex-item"><ul><li>Stata</li></ul></div>
-<div class="flex-item"><ul><li>Apache Spark</li></ul></div>
-</div>
-
 <h3 style="margin-bottom: 0px; color:#404040;">Experience</h3>
 <div class="grid-job">
 <div class="job">
@@ -243,13 +211,45 @@ $enable-cssgrid: true
 	<li>Create and run weekly parts availability analysis and reports using R and RStudio</li>
 </ul>
 
+<h3 style="margin-bottom: 0px; color:#404040;">Education</h3>
+<div class="grid-job">
+<div class="job"><b>Florida Polytechnic University</b></div>
+<div class="time">Aug 2018 - May 2022</div>
+</div>
+<div style="text-indent: -1.5em; padding-left: 1.5em;">
+<span style="color:#2e4440; padding-left: 1.5em;"><em>– Bachelor of Science, Business Analytics with concentrations in Quantitative Economics & Econometrics and Intelligent Mobility</em></span>
+<br>
+<span style="color:#2e4440;"><em>– Associate of Arts</em></span>
+</div>
+<p style="text-indent: 1em; font-size: 14px; margin-bottom: 0px; color:#404040;"><b>Selected Courses</b></p>
+<div style="padding-left: 1.5em; font-size: 14px; color: #666666;">
+<div class="flex-container">
+<div class="flex-item"><ul><li>Database I & II</li></ul></div>
+<div class="flex-item"><ul><li>Strategic Management</li></ul></div>
+<div class="flex-item"><ul><li>Six Sigma</li></ul></div>
+<div class="flex-item"><ul><li>Programming I</li></ul></div>
+<div class="flex-item"><ul><li>Operations and Supply Chain & Operations Research</li></ul></div>
+<div class="flex-item"><ul><li>Time Series Modeling and Forecasting</li></ul></div>
+<div class="flex-item"><ul><li>Statistics, Quantitative Methods, & Statistical Learning</li></ul></div>
+<div class="flex-item"><ul><li>Benefit Cost Analysis & Economic Analysis</li></ul></div>
+</div>
+</div>
+
+<p style="text-indent: 1em; font-size: 14px; margin-bottom: 0px; color:#404040;"><b>Software and Programming</b></p>
+<div class="flex-container" style="padding-left: 1.5em; font-size: 14px; color: #666666;">
+<div class="flex-item"><ul><li>R and RStudio</li></ul></div>
+<div class="flex-item"><ul><li>SQL, Redis, Neo4J</li></ul></div>
+<div class="flex-item"><ul><li>Stata</li></ul></div>
+<div class="flex-item"><ul><li>Databricks</li></ul></div>
+</div>
+
 <h3 style="margin-bottom: 0px; color:#404040;">Professional Organizations</h3>
 <div class="grid-job">
 <div class="job">
 <span><b>Student Body Vice-President</b></span>
 <span style="color:#2e4440"><em> – Florida Polytechnic University Student Government Association</em></span>
 </div>
-<div class="time">Jan 2022 - Present</div>
+<div class="time">Jan 2022 - Aug 2022</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Act as the Chief Services Officer of the Student Body</li>

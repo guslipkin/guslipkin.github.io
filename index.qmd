@@ -79,7 +79,7 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 :::
 
 ::: {.column-page}
-## Software Development
+## Assorted Programming
 :::
 ::: {.grid .column-page}
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
@@ -95,13 +95,13 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 :::
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
 ::: {.g-col-12}
-#### [FLPolySGA.github.io](https://flpolysga.github.io)
+#### [Advent of Code](https://guslipkin.github.io/AdventOfCode/)
 :::
 ::: {.g-col-12}
-- **What:** Let's make a website with all the Student Government documents.
-- **Why:** It's important that Student Government stay in compliance with Florida Sunshine Laws.
-- **[How](https://github.com/FLPolySGA/FLPolySGA.github.io):** `GitHub Pages`, `Jekyll`, `Markdown`, `HTML`, and `CSS`
-- **Conclusion:** It ain't much, but it's honest work.
+- **What:** A series of programming puzzles to help save Christmas.
+- **Why:** Christmas must be saved! But also, it's a lot of fun and requires a variety of different solution styles.
+- **[How](https://github.com/guslipkin/AdventOfCode):** `R: {*puzzle dependent*}`, `Quarto`
+- **Conclusion:** I highly recommend joining if you like a good challenge.
 :::
 :::
 :::
