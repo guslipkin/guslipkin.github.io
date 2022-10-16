@@ -300,7 +300,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
 <p>As usual, the first thing we want to do is load our libraries. We’ll be using <code>pivot_wider</code> and <code>pivot_longer</code> from <code>tidyverse</code> as well as the pipe operator, <code>%&gt;%</code> from <code>magrittr</code> which is loaded through <code>tidyverse</code>. We’re also using <code>dcast</code> and <code>melt</code> from <code>data.table</code> as they are twins to <code>pivot_wider</code> and <code>pivot_longer</code>, respectively. While they are not identical, they perform the same functions are operate somewhat similarly.</p>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/LoadLibraries_3b65d0c8ec288b46f2c080a60d9dc7bd">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/LoadLibraries_990bc044ff8d9cd01bbe85e965be2783">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -353,7 +353,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/CreateDummyData_1b95013c6dca816747bf750d546e0be5">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/CreateDummyData_be5c5a147296375bda5debb453a66e5b">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2022</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>rideName <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"The Amulet from Below"</span>, <span class="st">"The Strong Key Mystery"</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"The Punishment of Bane"</span>, <span class="st">"The Mage Beyond the Grave"</span>,</span>
@@ -364,7 +364,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>estimatedWait <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(rideName), <span class="dv">50</span>, <span class="dv">10</span>))</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>actualWait <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(rideName), estimatedWait, <span class="dv">5</span>))</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(rideName, shortName, time, attendance, estimatedWait, actualWait)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(rideName, shortName, time, attendance, </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                 estimatedWait, actualWait)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once created, the data looks like this:</p>
 <div class="table-wrapper" data-markdown="block">
@@ -580,7 +581,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>That’s okay if you’re expecting multiple values, you’ll just need to remember use use <code>values_fn</code> for <code>pivot_wider</code> or <code>fun.aggregate</code> for <code>dcast</code> to make sure they are being handled appropriately. A common use-case would be something similar to pivot tables in Excel where you want to count each item. In that case, your function argument would be <code>count</code>.</p>
 <p>The basic format to check for for duplicates is <code>x[duplicated(x)]</code>. However, <code>duplicated()</code> only returns <code>TRUE</code> for the second or more occurrence of an item in <code>x</code>. In order to check for all duplicates, we need to also check <code>fromLast</code> like this: <code>x[duplicated(x) | duplicated(x), fromLast = TRUE]</code>. Once you have identified your duplicate rows, it is up to you what to do. In some cases, you might be okay using <code>unique(x)</code> to get only unique items, or you might want to discard all duplicated items altogether with <code>x[!duplicated(x) &amp; !duplicated(x, fromLast = TRUE)]</code>.</p>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/DuplicatedData_11f193c5ddcf84c8f03a207773bd0460">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/DuplicatedData_7f05b528591e44bf422f5d3a920bbf7a">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create duplicated data</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dtDuplicated <span class="ot">&lt;-</span> <span class="fu">rbind</span>(dt, dt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># DuplicatedData.csv</span></span>
@@ -607,17 +608,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this example, we want to know how long the <code>actualWait</code> is for each ride throughout the day with each recording time as a row, and each ride as a column.</p>
 <p>In the <code>pivot_wider</code>, we want our new column <code>names_from</code> to be the <code>shortName</code> and our <code>values_from</code> <code>actualWait</code>. The tricky bit here is the <code>id_cols</code> argument. <code>id_cols</code> are columns whose values should uniquely identify each row in the data. We need to use it because the <code>rideName</code> and <code>shortName</code> columns are perfectly correlated, that is, for each row the value of both columns will always be the same. Any column that is not in the <code>names_from</code> or <code>values_from</code> argument will be part of the default <code>id_cols</code> argument. We can use the argument two ways; we can use a numeric vector to select the columns that we want to be used as identifiers, or we can specify columns that we do not want used as a character or column name vector. In the example below, I’ve included both methods. For the rest of the post, I’ll be using the second method.</p>
 <p>As mentioned previously, the biggest difference for <code>dcast</code> is that it uses a formula instead of the <code>id_cols</code> and <code>names_from</code> arguments. The left hand side of the formula is the columns that you want to stay as columns to be used as the unique identifier for each row. The right hand side of the formula is the column whose values will be used as the new column names. Lastly, <code>value.var</code> defines the column with the desired values.</p>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWider_e9abd1951f004cda4e2685c02ca21f85">
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>data.table</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWider_03b62e0f5cbbe127e30b5b4ceefb50a3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with one value column</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">names_from =</span> shortName, </span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">values_from =</span> actualWait)</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance, estimatedWait), </span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">names_from =</span> shortName, </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">values_from =</span> actualWait)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">~</span> shortName, </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">value.var =</span> <span class="st">"actualWait"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">values_from =</span> actualWait)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-1_cd6787f034abe456905f6c35595a93bc">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with one value column</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">~</span> shortName, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">value.var =</span> <span class="st">"actualWait"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="table-wrapper" data-markdown="block">
 <table class="table">
@@ -687,14 +699,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="wider-with-two-or-more-value-columns" class="level2">
 <h2 class="anchored" data-anchor-id="wider-with-two-or-more-value-columns">Wider with Two or More Value Columns</h2>
 <p>Wider data with more than one value column is very similar to one value column. The only changes you need to make in <code>pivot_wider</code> are changing your <code>id_cols</code> argument if using the column name method and adding the new column to the <code>values_from</code> argument. The only change needed in <code>dcast</code> is adding to the <code>value.var</code> argument. One important thing to note is that the column names will now be a combination of the <code>names_from</code>/right hand side argument and the <code>values_from</code>/<code>value.var</code> argument. The column name order in the <code>value*</code> argument determines the column order in the resulting data.</p>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderTwoRight_4b31a75791f4974a1c55c542c13d6cbb">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with two value columns</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance), </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">names_from =</span> shortName, </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">values_from =</span> <span class="fu">c</span>(estimatedWait, actualWait))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">~</span> shortName, </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">value.var =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><code>data.table</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderTwoRight_b93b18f246f00ce6c6dd1cedd3c78c0e">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with two value columns</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance), </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">names_from =</span> shortName, </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">values_from =</span> <span class="fu">c</span>(estimatedWait, actualWait))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-2_9894048d3f47b0dd3808ae27a7c9a240">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with two value columns</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">~</span> shortName, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">value.var =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="table-wrapper" data-markdown="block">
 <table class="table">
@@ -812,14 +835,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="pivot-wider-two-or-more-id-columns" class="level2">
 <h2 class="anchored" data-anchor-id="pivot-wider-two-or-more-id-columns">Pivot Wider Two or More ID Columns</h2>
 <p>Again, this is pretty similar to a “normal” wider operation. With <code>pivot_wider</code> you expand your <code>id_cols</code> to include the new columns, or, in my case, drop the <code>attendance</code> column so that it is now included. With <code>dcast</code>, you simply add the new column to the left hand side of the formula.</p>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderTwoLeft_04e3f2231483098df2c7fcf6847fb17b">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with two id columns</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, estimatedWait),</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">names_from =</span> shortName,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">values_from =</span> actualWait)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">+</span> attendance <span class="sc">~</span> shortName,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">value.var =</span> <span class="st">"actualWait"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><code>data.table</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderTwoLeft_3f27671548b74fd2e1000726f3e6c7e7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with two id columns</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, estimatedWait),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">names_from =</span> shortName,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">values_from =</span> actualWait)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-3_a6dbe9e6dc6decda0138a49ef1d4b851">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with two id columns</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">+</span> attendance <span class="sc">~</span> shortName,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">value.var =</span> <span class="st">"actualWait"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="table-wrapper" data-markdown="block">
 <table class="table">
@@ -898,16 +932,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Pivot Longer</h1>
 <p><code>pivot_longer</code> and <code>melt</code> are very similar. The largest differences are the argument names and where they require argument values to be in quotes. <code>cols</code>/<code>measure.vars</code> are the columns that you want to be aggregated into a single new column. This argument must be in quotes for <code>melt</code>, but does not have to be for <code>pivot_longer</code> and should be the names of existing columns. <code>names_to</code>/<code>values_to</code> is the name of the column that will say which column was used for that row and <code>values_to</code>/<code>value.name</code> are the corresponding values. The name for each of these new columns is up to you. I have decided on <code>waitType</code> to describe if it is an <code>estimatedWait</code> or <code>actualWait</code> and <code>waitTime</code> to hold the value.</p>
 <p>I’ve saved a copy of the longer data as <code>dtLonger</code> so that we can explore <code>pivot_wider</code> and <code>dcast</code> a bit more.</p>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotLonger_11c27a890b55515a46c92f059a764737">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot longer</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(estimatedWait, actualWait), </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">names_to =</span> <span class="st">"waitType"</span>, </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">values_to =</span> <span class="st">"waitTime"</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">melt</span>(<span class="at">measure.vars =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>),</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">variable.name =</span> <span class="st">"waitType"</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">value.name =</span> <span class="st">"waitTime"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="ot">-&gt;</span> dtLonger</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false"><code>data.table</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotLonger_e913c4be861fc1ba3fc4c88a6d686ae6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot longer</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(estimatedWait, actualWait), </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">names_to =</span> <span class="st">"waitType"</span>, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">values_to =</span> <span class="st">"waitTime"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="ot">-&gt;</span> dtLonger</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-4_d952829637a8b98718cb8e38519699cf">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot longer</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">melt</span>(<span class="at">measure.vars =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">variable.name =</span> <span class="st">"waitType"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">value.name =</span> <span class="st">"waitTime"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="ot">-&gt;</span> dtLonger</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="table-wrapper" data-markdown="block">
 <table class="table">
@@ -989,14 +1035,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We want to take our new longer data and change it to wider data where we want to know how long the <code>actualWait</code> and <code>estimatedWait</code> are for each ride throughout the day with each recording time as a row, and each ride as a column and <code>waitType</code> and <code>shortName</code>.</p>
 <p>For <code>pivot_wider</code>, we want our column names to use both the <code>waitType</code> and <code>shortName</code> and our values from <code>waitTime</code>. <code>id_cols</code> is then the remaining columns that we don’t want. With <code>dcast</code>, we want to add <code>waitType</code> and <code>shortName</code> to the right hand side of the formula so they are used as the column names, and <code>time</code> to the left hand side for the row identifiers. For both, <code>values_from</code> and <code>value.var</code> are our <code>waitTime</code> column.</p>
 <p>Like when using multiple values in <code>value_from</code>/<code>value.var</code>, the new column names are all combinations of values in <code>names_from</code> or right hand side. The combinations will be given in the order the column names are specified.</p>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderFromLonger_7b519ca74494db33655ceda1030a0aec">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with more than one right hand column</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance), </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names_from =</span> <span class="fu">c</span>(waitType, shortName), </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">values_from =</span> waitTime)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">~</span> waitType <span class="sc">+</span> shortName, </span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">value.var =</span> <span class="st">"waitTime"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false"><code>data.table</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderFromLonger_4a19dc92cb361a0da01b61b4a5fbfc9d">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with more than one right hand column</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance), </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names_from =</span> <span class="fu">c</span>(waitType, shortName), </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">values_from =</span> waitTime)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-5_ea825afac20a92b9a2be52bef0ef2cb9">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with more than one right hand column</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">~</span> waitType <span class="sc">+</span> shortName, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">value.var =</span> <span class="st">"waitTime"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="table-wrapper" data-markdown="block">
 <table class="table">
@@ -1114,14 +1171,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="pivot-wider-with-mutiple-id-and-name-columns" class="level2">
 <h2 class="anchored" data-anchor-id="pivot-wider-with-mutiple-id-and-name-columns">Pivot Wider with Mutiple ID and Name Columns</h2>
 <p>If you’ve been following along so far, the code below should make sense. We want to use <code>time</code> and <code>attendance</code> as the row identifiers and the <code>estimatedWait</code> and <code>actualWait</code> as the values for each ride.</p>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderTwoLeftRight_75cbd3be773475f890db37ad27c430ae">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with more than one left and right hand column</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span>rideName, </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names_from =</span> <span class="fu">c</span>(waitType, shortName), </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">values_from =</span> waitTime)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">+</span> attendance <span class="sc">~</span> waitType <span class="sc">+</span> shortName, </span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">value.var =</span> <span class="st">"waitTime"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false"><code>data.table</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderTwoLeftRight_3971dcee81080d89d8f819f03f8db2e8">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with more than one left and right hand column</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span>rideName, </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names_from =</span> <span class="fu">c</span>(waitType, shortName), </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">values_from =</span> waitTime)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-6_ead21d49a4c7d6323be80bb59e4c29a1">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with more than one left and right hand column</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">+</span> attendance <span class="sc">~</span> waitType <span class="sc">+</span> shortName, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">value.var =</span> <span class="st">"waitTime"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="table-wrapper" data-markdown="block">
 <table class="table">
@@ -1249,29 +1317,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Wrapping Things Up</h1>
 <section id="a-quick-benchmark" class="level2">
 <h2 class="anchored" data-anchor-id="a-quick-benchmark">A quick benchmark</h2>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/Benchmark_2f27f2ed2674a4a871801f614d0886c9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rbenchmark<span class="sc">::</span><span class="fu">benchmark</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pivot_wider"</span> <span class="ot">=</span> {</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance, estimatedWait), </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">names_from =</span> shortName, </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">values_from =</span> actualWait)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dcast"</span> <span class="ot">=</span> {</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">~</span> shortName, </span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">value.var =</span> <span class="st">"actualWait"</span>)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">order =</span> <span class="st">"user.self"</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>rbenchmark<span class="sc">::</span><span class="fu">benchmark</span>(</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pivot_longer"</span> <span class="ot">=</span> {</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(estimatedWait, actualWait), </span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>                               <span class="at">names_to =</span> <span class="st">"waitType"</span>, </span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>                               <span class="at">values_to =</span> <span class="st">"waitTime"</span>)</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"melt"</span> <span class="ot">=</span> {</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span> <span class="fu">melt</span>(<span class="at">measure.vars =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>),</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>                       <span class="at">variable.name =</span> <span class="st">"waitType"</span>,</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>                       <span class="at">value.name =</span> <span class="st">"waitTime"</span>)</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">order =</span> <span class="st">"user.self"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/Benchmark_715ff8b10ff8dc20066ecf2888731838">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rbenchmark<span class="sc">::</span><span class="fu">benchmark</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pivot_wider"</span> <span class="ot">=</span> {</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance, estimatedWait), </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">names_from =</span> shortName, </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">values_from =</span> actualWait)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dcast"</span> <span class="ot">=</span> {</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">~</span> shortName, </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">value.var =</span> <span class="st">"actualWait"</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">order =</span> <span class="st">"user.self"</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>rbenchmark<span class="sc">::</span><span class="fu">benchmark</span>(</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pivot_longer"</span> <span class="ot">=</span> {</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(estimatedWait, actualWait), </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>                               <span class="at">names_to =</span> <span class="st">"waitType"</span>, </span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>                               <span class="at">values_to =</span> <span class="st">"waitTime"</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"melt"</span> <span class="ot">=</span> {</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span> <span class="fu">melt</span>(<span class="at">measure.vars =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>),</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>                       <span class="at">variable.name =</span> <span class="st">"waitType"</span>,</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>                       <span class="at">value.name =</span> <span class="st">"waitTime"</span>)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">order =</span> <span class="st">"user.self"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="table-wrapper" data-markdown="block">
 <table class="table">
