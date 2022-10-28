@@ -1,0 +1,798 @@
+---
+title: "DSBA Club"
+subtitle: "Gus Lipkin"
+Author: "Gus Lipkin"
+date: "2022-10-29"
+format: 
+  revealjs:
+    theme: default
+    controls: true
+    self-contained: true
+---
+
+## Topics may include...
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+![](../assets/gus_headshot_new.jpg)
+
+:::
+
+::: {.column width="60%"}
+
+- A bit about me
+  - Me
+  - My time at Poly
+  - My current role
+- **The main event**
+- Some other stuff
+
+:::
+
+::::
+
+# A bit about me
+
+## Me
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+- I like asking questions
+- I have a cute cat
+- I'm from Massachusetts
+- I self-host my own server for data storage and running a pi-hole
+- I have three bikes, a tandem, and three unicycles
+
+:::
+
+::: {.column width="60%"}
+
+![](../assets/mabel-collage.jpg)
+
+:::
+
+::::
+
+## My time at Poly {.smaller}
+
+- Data Science -> Business Analytics for business/management classes
+- Concentrations in...
+  - Quantitative Economics & Econometrics
+  - Intelligent Mobility
+- Capstone project with Tallahassee Memorial Healthcare
+
+![](../assets/capstone.jpg){.absolute bottom=0 width="50%" height="50%"}
+
+## My current role
+
+Data Analyst at Publix Supermarkets
+
+- Since just after graduation in May
+- Working on... 
+  - Shrink Reports (what goods couldn't be sold and why)
+  - Contribution Margin (💲profit💲)
+  
+# **The Main Event**
+
+**A real-world problem**
+
+## Overview
+
+We want to know the cost to ship items to stores at the weekly store item level. That is, how much does it cost to ship the same item to different stores, or different items to the same store, with each scenario covering a week's worth of costs? ($/store/item)
+
+We have two tables that describe warehouse to store distribution. One contains information on trips a truck takes to deliver to stores on its planned route. The second contains information on items shipped to each store.
+
+For each trip, there may be many stores. For each store, there may be many items.
+
+## Tables {.smaller auto-animate=true}
+
+How would you connect these two tables so that each item is assigned a cost from the correct trip?
+
+:::: {.columns}
+::: {.column width="50%"}
+::: {data-id="trips"}
+**`TRIPS`**
+:::
+::: {data-id="trip_code"}
+- `TRIP_CODE` (chr)
+:::
+::: {data-id="date1"}
+- `DATE` (date)
+:::
+::: {data-id="origin_whse"}
+- `ORIGIN_WHSE` (int) 
+:::
+::: {data-id="stop1"}
+- `STOP` (int)
+:::
+::: {data-id="order_number"}
+- `ORDER_NUMBER` (chr)
+:::
+::: {data-id="ship_cost"}
+- `SHIP_COST` (dbl)
+:::
+:::
+
+::: {.column width="50%"}
+::: {data-id="whse"}
+**`WHSE`**
+:::
+::: {data-id="fill_code"}
+- `FILL_CODE` (chr)
+:::
+::: {data-id="date2"}
+- `DATE` (date)
+:::
+::: {data-id="ship_whse"}
+- `SHIP_WHSE` (int)
+:::
+::: {data-id="stop2"}
+- `STOP` (int)
+:::
+::: {data-id="invoice_number"}
+- `INVOICE_NUMBER` (chr)
+:::
+::: {data-id="item_id"}
+- `ITEM_ID` (int)
+:::
+::: {data-id="item_cube"}
+- `ITEM_CUBE` (dbl)
+:::
+:::
+::::
+
+## Exact Matching {auto-animate=true}
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {data-id="trips"}
+<p align="right">**`TRIPS`**</p>
+:::
+::: {data-id="date1"}
+<p align="right">`DATE`</p>
+:::
+::: {data-id="origin_whse" text-align="right"}
+<p align="right">`ORIGIN_WHSE`</p>
+:::
+::: {data-id="stop1" text-align="right"}
+<p align="right">`STOP`</p>
+:::
+:::
+
+::: {.column width="10%"}
+<p><br></p>
+<p align="center">==</p>
+<p align="center">==</p>
+<p align="center">==</p>
+:::
+
+::: {.column width="45%"}
+::: {data-id="whse"}
+<p align="left">**`WHSE`**</p>
+:::
+::: {data-id="date2"}
+<p align="left">`DATE`</p>
+:::
+::: {data-id="ship_whse"}
+<p align="left">`SHIP_WHSE`</p>
+:::
+::: {data-id="stop2"}
+<p align="left">`STOP`</p>
+:::
+:::
+::::
+
+## A needed explanation {auto-animate=true}
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">**`TRIPS`**</p>
+:::
+:::
+::: {.column width="10%"}
+<p><br></p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">**`WHSE`**</p>
+:::
+:::
+::::
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">`DATE`</p>
+:::
+:::
+::: {.column width="10%"}
+<p align="center">==</p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">`DATE`</p>
+:::
+:::
+::::
+
+::: {data-id="explanation" .fragment .fade-in-then-out}
+Because we're aggregating at a weekly level, matching by the smallest interval possible is okay so long as it's shorter than a week.
+:::
+
+## A needed explanation {auto-animate=true}
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">**`TRIPS`**</p>
+:::
+:::
+::: {.column width="10%"}
+<p><br></p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">**`WHSE`**</p>
+:::
+:::
+::::
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">`DATE`</p>
+:::
+:::
+::: {.column width="10%"}
+<p align="center">==</p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">`DATE`</p>
+:::
+:::
+::::
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {data-id="origin_whse"}
+<p align="right">`ORIGIN_WHSE`</p>
+:::
+:::
+::: {.column width="10%"}
+<p align="center">==</p>
+:::
+::: {.column width="45%"}
+::: {data-id="ship_whse"}
+<p align="left">`SHIP_WHSE`</p>
+:::
+:::
+::::
+
+::: {data-id="explanation"}
+While these are not always equal, we can match many rows and then figure out what to do with mismatches later.
+:::
+
+## A needed explanation {auto-animate=true}
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">**`TRIPS`**</p>
+:::
+:::
+::: {.column width="10%"}
+<p><br></p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">**`WHSE`**</p>
+:::
+:::
+::::
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">`DATE`</p>
+:::
+:::
+::: {.column width="10%"}
+<p align="center">==</p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">`DATE`</p>
+:::
+:::
+::::
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">`ORIGIN_WHSE`</p>
+:::
+:::
+::: {.column width="10%"}
+<p align="center">==</p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">`SHIP_WHSE`</p>
+:::
+:::
+::::
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {data-id="stop1"}
+<p align="right">`STOP`</p>
+:::
+:::
+::: {.column width="10%"}
+<p align="center">==</p>
+:::
+::: {.column width="45%"}
+::: {data-id="stop2"}
+<p align="left">`STOP`</p>
+:::
+:::
+::::
+
+::: {data-id="explanation"}
+There should always be a matching store number.
+:::
+
+## A needed explanation {auto-animate=true}
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">**`TRIPS`**</p>
+:::
+:::
+::: {.column width="10%"}
+<p><br></p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">**`WHSE`**</p>
+:::
+:::
+::::
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">`DATE`</p>
+:::
+:::
+::: {.column width="10%"}
+<p align="center">==</p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">`DATE`</p>
+:::
+:::
+::::
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">`ORIGIN_WHSE`</p>
+:::
+:::
+::: {.column width="10%"}
+<p align="center">==</p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">`SHIP_WHSE`</p>
+:::
+:::
+::::
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">`STOP`</p>
+:::
+:::
+::: {.column width="10%"}
+<p align="center">==</p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">`STOP`</p>
+:::
+:::
+::::
+
+::: {data-id="explanation"}
+What about the leftover rows? This method only matched ~66% of the items to trips.
+:::
+
+## Matching `WHSE` type {auto-animate=true}
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {data-id="trips"}
+<p align="right">**`TRIPS`**</p>
+:::
+::: {data-id="date1"}
+<p align="right">`DATE`</p>
+:::
+::: {data-id="origin_whse" text-align="right"}
+<p align="right">`ORIGIN_WHSE`<br>`%/% 100`</p>
+:::
+::: {data-id="stop1" text-align="right"}
+<p align="right">`STOP`</p>
+:::
+:::
+
+::: {.column width="10%"}
+<p><br></p>
+<p align="center">==</p>
+<p align="center">==</p>
+<p><br></p>
+<p align="center">==</p>
+:::
+
+::: {.column width="45%"}
+::: {data-id="whse"}
+<p align="left">**`WHSE`**</p>
+:::
+::: {data-id="date2"}
+<p align="left">`DATE`</p>
+:::
+::: {data-id="ship_whse"}
+<p align="left">`SHIP_WHSE`<br>`%/% 100`</p>
+:::
+::: {data-id="stop2"}
+<p align="left">`STOP`</p>
+:::
+:::
+::::
+
+## A needed explanation {auto-animate=true}
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">**`TRIPS`**</p>
+:::
+:::
+::: {.column width="10%"}
+<p><br></p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">**`WHSE`**</p>
+:::
+:::
+::::
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">`DATE`</p>
+:::
+:::
+::: {.column width="10%"}
+<p align="center">==</p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">`DATE`</p>
+:::
+:::
+::::
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">`ORIGIN_WHSE`<br>`%/% 100`</p>
+:::
+:::
+::: {.column width="10%"}
+<p align="center">==</p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">`SHIP_WHSE`<br>`%/% 100`</p>
+:::
+:::
+::::
+
+::: {data-id="explanation"}
+A `WHSE_ID` (XYZZ) is made up of three parts. The first digit denotes that the facility is a warehouse, the second the warehouse type, the last two the unique ID. Matching the first two digits will give you matching warehouse types. Produce/produce, frozen/frozen, HV/HV, LV/LV, etc.
+:::
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">`STOP`</p>
+:::
+:::
+::: {.column width="10%"}
+<p align="center">==</p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">`STOP`</p>
+:::
+:::
+::::
+
+## A needed explanation {auto-animate=true}
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">**`TRIPS`**</p>
+:::
+:::
+::: {.column width="10%"}
+<p><br></p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">**`WHSE`**</p>
+:::
+:::
+::::
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">`DATE`</p>
+:::
+:::
+::: {.column width="10%"}
+<p align="center">==</p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">`DATE`</p>
+:::
+:::
+::::
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">`ORIGIN_WHSE`<br>`%/% 100`</p>
+:::
+:::
+::: {.column width="10%"}
+<p align="center">==</p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">`SHIP_WHSE`<br>`%/% 100`</p>
+:::
+:::
+::::
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {}
+<p align="right">`STOP`</p>
+:::
+:::
+::: {.column width="10%"}
+<p align="center">==</p>
+:::
+::: {.column width="45%"}
+::: {}
+<p align="left">`STOP`</p>
+:::
+:::
+::::
+
+::: {data-id="explanation"}
+This still leaves about 10% of the items without costs.
+:::
+
+## Forgetting about warehouses {auto-animate=true}
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {data-id="trips"}
+<p align="right">**`TRIPS`**</p>
+:::
+::: {data-id="date1"}
+<p align="right">`DATE`</p>
+:::
+::: {data-id="stop1" text-align="right"}
+<p align="right">`STOP`</p>
+:::
+:::
+
+::: {.column width="10%"}
+<p><br></p>
+<p align="center">==</p>
+<p align="center">==</p>
+:::
+
+::: {.column width="45%"}
+::: {data-id="whse"}
+<p align="left">**`WHSE`**</p>
+:::
+::: {data-id="date2"}
+<p align="left">`DATE`</p>
+:::
+::: {data-id="stop2"}
+<p align="left">`STOP`</p>
+:::
+:::
+::::
+
+::: {data-id="explanation"}
+Every item still needs a cost allocated, but since we have no way to link a trip and an item, we'll just have to hope for the best and make do with what we have.
+:::
+
+## Summing up
+
+::: {.incremental}
+1) Match on `DATE`, `STOP`, and `ORIGIN_WHSE`/`SHIP_WHSE`
+2) Match on `DATE`, `STOP`, and derived warehouse type
+3) Match on `DATE` and `STOP`
+:::
+
+# Designing a pipeline
+
+A generic guide
+
+## Designing a pipeline {auto-animate=true}
+
+::: {.incremental}
+1) Examine your source data
+2) Envision your end data format
+3) Design backwards then code forwards
+:::
+
+## Designing a pipeline {auto-animate=true}
+
+::: {.fragment .shrink}
+How can we go from this...
+```{r}
+head(mtcars)
+```
+:::
+::: {.fragment .fade-up .smaller}
+...to this?
+```{r}
+#| fig-width: 6
+#| fig-height: 3
+#| fig-align: center
+library(tidyverse)
+mtcars |>
+  group_by(cyl) |>
+    summarise(disp = mean(disp),
+              mpg = mean(mpg)) |>
+    ungroup() |>
+  pivot_longer(cols = c(disp, mpg)) |>
+  mutate(cyl = as.factor(cyl)) |>
+  ggplot() +
+    geom_bar(aes(x = cyl, y = value, fill = name), stat = "identity", position = "dodge")
+```
+:::
+
+## Examine the data
+
+```{r}
+#| echo: true
+head(mtcars)
+```
+
+## Envision the end data format
+
+```{r}
+library(tidyverse)
+
+mtcars |>
+  group_by(cyl) |>
+    summarise(disp = mean(disp),
+              mpg = mean(mpg)) |>
+    ungroup() |>
+  pivot_longer(cols = c(disp, mpg),
+               names_to = "name",
+               values_to = "value") |>
+  mutate(cyl = as.factor(cyl))
+```
+
+```{r}
+#| fig-width: 6
+#| fig-height: 3
+#| fig-align: center
+library(tidyverse)
+mtcars |>
+  group_by(cyl) |>
+    summarise(disp = mean(disp),
+              mpg = mean(mpg)) |>
+    ungroup() |>
+  pivot_longer(cols = c(disp, mpg)) |>
+  mutate(cyl = as.factor(cyl)) |>
+  ggplot() +
+    geom_bar(aes(x = cyl, y = value, fill = name), stat = "identity", position = "dodge")
+```
+
+## Working backwards {auto-animate=true}
+
+```{r}
+#| echo: true
+#| eval: false
+library(tidyverse)
+
+mtcars |>
+  ggplot() +
+    geom_bar(aes(x = cyl, y = value, fill = name), 
+             stat = "identity", position = "dodge")
+  
+```
+
+## Working backwards {auto-animate=true}
+
+```{r}
+#| echo: true
+#| eval: false
+library(tidyverse)
+  
+mtcars |>
+  mutate(cyl = as.factor(cyl)) |>
+  ggplot() +
+    geom_bar(aes(x = cyl, y = value, fill = name), 
+             stat = "identity", position = "dodge")
+  
+```
+
+## Working backwards {auto-animate=true}
+
+```{r}
+#| echo: true
+#| eval: false
+library(tidyverse)
+
+mtcars |>
+  group_by(cyl) |>
+    summarise(disp = mean(disp),
+              mpg = mean(mpg)) |>
+    ungroup() |>
+  mutate(cyl = as.factor(cyl)) |>
+  ggplot() +
+    geom_bar(aes(x = cyl, y = value, fill = name), 
+             stat = "identity", position = "dodge")
+  
+```
+
+## Working backwards {auto-animate=true}
+
+```{r}
+#| echo: true
+library(tidyverse)
+
+mtcars |>
+  group_by(cyl) |>
+    summarise(disp = mean(disp),
+              mpg = mean(mpg)) |>
+    ungroup() |>
+  pivot_longer(cols = c(disp, mpg),
+               names_to = "name",
+               values_to = "value") |>
+  mutate(cyl = as.factor(cyl)) |>
+  ggplot() +
+    geom_bar(aes(x = cyl, y = value, fill = name), 
+             stat = "identity", position = "dodge")
+  
+```
+
+# 2022-10-29 DSBA Club
+
+Gus Lipkin

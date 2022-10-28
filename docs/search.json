@@ -308,6 +308,174 @@
     "text": "🛒 Print a copy"
   },
   {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#topics-may-include",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#topics-may-include",
+    "title": "DSBA Club",
+    "section": "Topics may include…",
+    "text": "Topics may include…\n\n\n\n\n\nA bit about me\n\nMe\nMy time at Poly\nMy current role\n\nThe main event\nSome other stuff"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#me",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#me",
+    "title": "DSBA Club",
+    "section": "Me",
+    "text": "Me\n\n\n\nI like asking questions\nI have a cute cat\nI’m from Massachusetts\nI self-host my own server for data storage and running a pi-hole\nI have three bikes, a tandem, and three unicycles"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#my-time-at-poly",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#my-time-at-poly",
+    "title": "DSBA Club",
+    "section": "My time at Poly",
+    "text": "My time at Poly\n\nData Science -> Business Analytics for business/management classes\nConcentrations in…\n\nQuantitative Economics & Econometrics\nIntelligent Mobility\n\nCapstone project with Tallahassee Memorial Healthcare"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#my-current-role",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#my-current-role",
+    "title": "DSBA Club",
+    "section": "My current role",
+    "text": "My current role\nData Analyst at Publix Supermarkets\n\nSince just after graduation in May\nWorking on…\n\nShrink Reports (what goods couldn’t be sold and why)\nContribution Margin (💲profit💲)"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#overview",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#overview",
+    "title": "DSBA Club",
+    "section": "Overview",
+    "text": "Overview\nWe want to know the cost to ship items to stores at the weekly store item level. That is, how much does it cost to ship the same item to different stores, or different items to the same store, with each scenario covering a week’s worth of costs? ($/store/item)\nWe have two tables that describe warehouse to store distribution. One contains information on trips a truck takes to deliver to stores on its planned route. The second contains information on items shipped to each store.\nFor each trip, there may be many stores. For each store, there may be many items."
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#tables",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#tables",
+    "title": "DSBA Club",
+    "section": "Tables",
+    "text": "Tables\nHow would you connect these two tables so that each item is assigned a cost from the correct trip?\n\n\n\nTRIPS\n\n\n\nTRIP_CODE (chr)\n\n\n\n\nDATE (date)\n\n\n\n\nORIGIN_WHSE (int)\n\n\n\n\nSTOP (int)\n\n\n\n\nORDER_NUMBER (chr)\n\n\n\n\nSHIP_COST (dbl)\n\n\n\n\nWHSE\n\n\n\nFILL_CODE (chr)\n\n\n\n\nDATE (date)\n\n\n\n\nSHIP_WHSE (int)\n\n\n\n\nSTOP (int)\n\n\n\n\nINVOICE_NUMBER (chr)\n\n\n\n\nITEM_ID (int)\n\n\n\n\nITEM_CUBE (dbl)"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#exact-matching",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#exact-matching",
+    "title": "DSBA Club",
+    "section": "Exact Matching",
+    "text": "Exact Matching\n\n\n\n\nTRIPS\n\n\n\n\nDATE\n\n\n\n\nORIGIN_WHSE\n\n\n\n\nSTOP\n\n\n\n\n\n\n\n==\n\n\n==\n\n\n==\n\n\n\n\nWHSE\n\n\n\n\nDATE\n\n\n\n\nSHIP_WHSE\n\n\n\n\nSTOP"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#a-needed-explanation",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#a-needed-explanation",
+    "title": "DSBA Club",
+    "section": "A needed explanation",
+    "text": "A needed explanation\n\n\n\n\nTRIPS\n\n\n\n\n\n\n\n\n\nWHSE\n\n\n\n\n\n\n\n\nDATE\n\n\n\n\n==\n\n\n\n\nDATE\n\n\n\n\n\nBecause we’re aggregating at a weekly level, matching by the smallest interval possible is okay so long as it’s shorter than a week."
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#a-needed-explanation-1",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#a-needed-explanation-1",
+    "title": "DSBA Club",
+    "section": "A needed explanation",
+    "text": "A needed explanation\n\n\n\n\nTRIPS\n\n\n\n\n\n\n\n\n\nWHSE\n\n\n\n\n\n\n\n\nDATE\n\n\n\n\n==\n\n\n\n\nDATE\n\n\n\n\n\n\n\n\nORIGIN_WHSE\n\n\n\n\n==\n\n\n\n\nSHIP_WHSE\n\n\n\n\n\nWhile these are not always equal, we can match many rows and then figure out what to do with mismatches later."
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#a-needed-explanation-2",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#a-needed-explanation-2",
+    "title": "DSBA Club",
+    "section": "A needed explanation",
+    "text": "A needed explanation\n\n\n\n\nTRIPS\n\n\n\n\n\n\n\n\n\nWHSE\n\n\n\n\n\n\n\n\nDATE\n\n\n\n\n==\n\n\n\n\nDATE\n\n\n\n\n\n\n\n\nORIGIN_WHSE\n\n\n\n\n==\n\n\n\n\nSHIP_WHSE\n\n\n\n\n\n\n\n\nSTOP\n\n\n\n\n==\n\n\n\n\nSTOP\n\n\n\n\n\nThere should always be a matching store number."
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#a-needed-explanation-3",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#a-needed-explanation-3",
+    "title": "DSBA Club",
+    "section": "A needed explanation",
+    "text": "A needed explanation\n\n\n\n\nTRIPS\n\n\n\n\n\n\n\n\n\nWHSE\n\n\n\n\n\n\n\n\nDATE\n\n\n\n\n==\n\n\n\n\nDATE\n\n\n\n\n\n\n\n\nORIGIN_WHSE\n\n\n\n\n==\n\n\n\n\nSHIP_WHSE\n\n\n\n\n\n\n\n\nSTOP\n\n\n\n\n==\n\n\n\n\nSTOP\n\n\n\n\n\nWhat about the leftover rows? This method only matched ~66% of the items to trips."
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#matching-whse-type",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#matching-whse-type",
+    "title": "DSBA Club",
+    "section": "Matching WHSE type",
+    "text": "Matching WHSE type\n\n\n\n\nTRIPS\n\n\n\n\nDATE\n\n\n\n\nORIGIN_WHSE%/% 100\n\n\n\n\nSTOP\n\n\n\n\n\n\n\n==\n\n\n==\n\n\n\n\n\n==\n\n\n\n\nWHSE\n\n\n\n\nDATE\n\n\n\n\nSHIP_WHSE%/% 100\n\n\n\n\nSTOP"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#a-needed-explanation-4",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#a-needed-explanation-4",
+    "title": "DSBA Club",
+    "section": "A needed explanation",
+    "text": "A needed explanation\n\n\n\n\nTRIPS\n\n\n\n\n\n\n\n\n\nWHSE\n\n\n\n\n\n\n\n\nDATE\n\n\n\n\n==\n\n\n\n\nDATE\n\n\n\n\n\n\n\n\nORIGIN_WHSE%/% 100\n\n\n\n\n==\n\n\n\n\nSHIP_WHSE%/% 100\n\n\n\n\n\nA WHSE_ID (XYZZ) is made up of three parts. The first digit denotes that the facility is a warehouse, the second the warehouse type, the last two the unique ID. Matching the first two digits will give you matching warehouse types. Produce/produce, frozen/frozen, HV/HV, LV/LV, etc.\n\n\n\n\n\nSTOP\n\n\n\n\n==\n\n\n\n\nSTOP"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#a-needed-explanation-5",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#a-needed-explanation-5",
+    "title": "DSBA Club",
+    "section": "A needed explanation",
+    "text": "A needed explanation\n\n\n\n\nTRIPS\n\n\n\n\n\n\n\n\n\nWHSE\n\n\n\n\n\n\n\n\nDATE\n\n\n\n\n==\n\n\n\n\nDATE\n\n\n\n\n\n\n\n\nORIGIN_WHSE%/% 100\n\n\n\n\n==\n\n\n\n\nSHIP_WHSE%/% 100\n\n\n\n\n\n\n\n\nSTOP\n\n\n\n\n==\n\n\n\n\nSTOP\n\n\n\n\n\nThis still leaves about 10% of the items without costs."
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#forgetting-about-warehouses",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#forgetting-about-warehouses",
+    "title": "DSBA Club",
+    "section": "Forgetting about warehouses",
+    "text": "Forgetting about warehouses\n\n\n\n\nTRIPS\n\n\n\n\nDATE\n\n\n\n\nSTOP\n\n\n\n\n\n\n\n==\n\n\n==\n\n\n\n\nWHSE\n\n\n\n\nDATE\n\n\n\n\nSTOP\n\n\n\n\n\nEvery item still needs a cost allocated, but since we have no way to link a trip and an item, we’ll just have to hope for the best and make do with what we have."
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#summing-up",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#summing-up",
+    "title": "DSBA Club",
+    "section": "Summing up",
+    "text": "Summing up\n\n\nMatch on DATE, STOP, and ORIGIN_WHSE/SHIP_WHSE\nMatch on DATE, STOP, and derived warehouse type\nMatch on DATE and STOP"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#designing-a-pipeline-1",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#designing-a-pipeline-1",
+    "title": "DSBA Club",
+    "section": "Designing a pipeline",
+    "text": "Designing a pipeline\n\n\nExamine your source data\nEnvision your end data format\nDesign backwards then code forwards"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#designing-a-pipeline-2",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#designing-a-pipeline-2",
+    "title": "DSBA Club",
+    "section": "Designing a pipeline",
+    "text": "Designing a pipeline\n\nHow can we go from this…\n\n\n                   mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\nHornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\nHornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\nValiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1\n\n\n\n\n…to this?"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#examine-the-data",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#examine-the-data",
+    "title": "DSBA Club",
+    "section": "Examine the data",
+    "text": "Examine the data\n\nhead(mtcars)\n\n                   mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\nHornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\nHornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\nValiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#envision-the-end-data-format",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#envision-the-end-data-format",
+    "title": "DSBA Club",
+    "section": "Envision the end data format",
+    "text": "Envision the end data format\n\n\n# A tibble: 6 × 3\n  cyl   name  value\n  <fct> <chr> <dbl>\n1 4     disp  105. \n2 4     mpg    26.7\n3 6     disp  183. \n4 6     mpg    19.7\n5 8     disp  353. \n6 8     mpg    15.1"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#working-backwards",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#working-backwards",
+    "title": "DSBA Club",
+    "section": "Working backwards",
+    "text": "Working backwards\n\nlibrary(tidyverse)\n\nmtcars |>\n  ggplot() +\n    geom_bar(aes(x = cyl, y = value, fill = name), \n             stat = \"identity\", position = \"dodge\")"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#working-backwards-1",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#working-backwards-1",
+    "title": "DSBA Club",
+    "section": "Working backwards",
+    "text": "Working backwards\n\nlibrary(tidyverse)\n  \nmtcars |>\n  mutate(cyl = as.factor(cyl)) |>\n  ggplot() +\n    geom_bar(aes(x = cyl, y = value, fill = name), \n             stat = \"identity\", position = \"dodge\")"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#working-backwards-2",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#working-backwards-2",
+    "title": "DSBA Club",
+    "section": "Working backwards",
+    "text": "Working backwards\n\nlibrary(tidyverse)\n\nmtcars |>\n  group_by(cyl) |>\n    summarise(disp = mean(disp),\n              mpg = mean(mpg)) |>\n    ungroup() |>\n  mutate(cyl = as.factor(cyl)) |>\n  ggplot() +\n    geom_bar(aes(x = cyl, y = value, fill = name), \n             stat = \"identity\", position = \"dodge\")"
+  },
+  {
+    "objectID": "presentations/2022-10-29-dsba-club-presentation.html#working-backwards-3",
+    "href": "presentations/2022-10-29-dsba-club-presentation.html#working-backwards-3",
+    "title": "DSBA Club",
+    "section": "Working backwards",
+    "text": "Working backwards\n\nlibrary(tidyverse)\n\nmtcars |>\n  group_by(cyl) |>\n    summarise(disp = mean(disp),\n              mpg = mean(mpg)) |>\n    ungroup() |>\n  pivot_longer(cols = c(disp, mpg),\n               names_to = \"name\",\n               values_to = \"value\") |>\n  mutate(cyl = as.factor(cyl)) |>\n  ggplot() +\n    geom_bar(aes(x = cyl, y = value, fill = name), \n             stat = \"identity\", position = \"dodge\")"
+  },
+  {
     "objectID": "presentations/spreadsheet_guide.html",
     "href": "presentations/spreadsheet_guide.html",
     "title": "Gus’ Good Spreadsheet Guide",
