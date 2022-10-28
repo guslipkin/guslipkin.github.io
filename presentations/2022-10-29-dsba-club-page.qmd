@@ -1,0 +1,15 @@
+---
+title: "DSBA Club"
+---
+
+<style>
+
+.slide-deck {
+  border: 3px solid #dee2e6;
+}
+
+</style>
+
+<div class="ratio ratio-16x9">
+<iframe class="slide-deck" src="/presentations/2022-10-29-dsba-club-presentation.html"></iframe>
+</div>
