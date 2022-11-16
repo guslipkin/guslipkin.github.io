@@ -211,6 +211,32 @@ $enable-cssgrid: true
 	<li>Create and run weekly parts availability analysis and reports using R and RStudio</li>
 </ul>
 
+<h3 style="margin-bottom: 0px; color:#404040;">Projects</h3>
+<div class="grid-job">
+<div class="job">
+<span><b>Shrink Narrative Reports</b></span>
+<span style="color:#2e4440"><em> – Publix Super Markets</em></span>
+</div>
+<div class="time">May 2022 - Aug 2022</div>
+</div>
+<ul style="font-size: 14px; color:#666666;">
+	<li>Created a fully automated reporting pipeline with R and Python in a Databricks environment that delivers monthly PDF reports to all Publix stores</li>
+	<li>Shipped the project four months early and saved $85k per year in contracting costs</li>
+	<li>Analyzes store shrink metrics and provides actionable insights through targeted operations suggestions</li>
+	<li>Built and implemented a SQL translation function leveraging existing R packages to expedite writing new targeted operations suggestions as operations leaders see demand</li>
+</ul>
+<div class="grid-job">
+<div class="job">
+<span><b>cipheR</b></span>
+<span style="color:#2e4440"><em> – Personal Project</em></span>
+</div>
+<div class="time">Oct 2022 - Present</div>
+</div>
+<ul style="font-size: 14px; color:#666666;">
+	<li>Created, implemented, and publish an open source R package for ciphertext encoding and decoding on CRAN</li>
+	<li>Ciphertext methods are implemented in Base R with no external dependencies</li>
+</ul>
+
 <h3 style="margin-bottom: 0px; color:#404040;">Education</h3>
 <div class="grid-job">
 <div class="job"><b>Florida Polytechnic University</b></div>
@@ -242,31 +268,5 @@ $enable-cssgrid: true
 <div class="flex-item"><ul><li>Stata</li></ul></div>
 <div class="flex-item"><ul><li>Databricks</li></ul></div>
 </div>
-
-<h3 style="margin-bottom: 0px; color:#404040;">Professional Organizations</h3>
-<div class="grid-job">
-<div class="job">
-<span><b>Student Body Vice-President</b></span>
-<span style="color:#2e4440"><em> – Florida Polytechnic University Student Government Association</em></span>
-</div>
-<div class="time">Jan 2022 - Aug 2022</div>
-</div>
-<ul style="font-size: 14px; color:#666666;">
-	<li>Act as the Chief Services Officer of the Student Body</li>
-	<li>Assist the Student Body President in the conduct of government</li>
-	<li>Stay in communication with all SGA departments and organizations</li>
-</ul>
-<div class="grid-job">
-<div class="job">
-<span><b>Director of Standards and Enforcement</b></span>
-<span style="color:#2e4440"><em> – Florida Polytechnic University Student Government Association</em></span>
-</div>
-<div class="time">May 2020 - Jan 2022</div>
-</div>
-<ul style="font-size: 14px; color:#666666;">
-	<li>Manage the SGA SharePoint and CampusLabs</li>
-	<li>Track SGA and Registered Student Organization assets</li>
-	<li>Maintain <a href="https://flpolysga.github.io">FLPolySGA.github.io</a></li>
-</ul>
 
 </div>
