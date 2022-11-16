@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.148">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Gus Lipkin’s Awesome Website - Patient Readmission Rates with Tallahassee Memorial Healthcare</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Gus Lipkin’s Awesome Website</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">About Me</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resume.html">My Résumé</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./blog.html">My Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./contact.html">Contact Me</a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/guslipkin/"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.github.com/guslipkin"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.twitter.com/GusLipkin"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#presentation" id="toc-presentation" class="nav-link active" data-scroll-target="#presentation">Presentation</a></li>
+  <li><a href="#your-demographics-and-story" id="toc-your-demographics-and-story" class="nav-link" data-scroll-target="#your-demographics-and-story">Your Demographics and Story</a>
+  <ul class="collapse">
+  <li><a href="#demographics" id="toc-demographics" class="nav-link" data-scroll-target="#demographics">Demographics</a></li>
+  <li><a href="#story" id="toc-story" class="nav-link" data-scroll-target="#story">Story</a></li>
+  <li><a href="#discharge-survey" id="toc-discharge-survey" class="nav-link" data-scroll-target="#discharge-survey">Discharge Survey</a></li>
+  <li><a href="#your-results" id="toc-your-results" class="nav-link" data-scroll-target="#your-results">Your Results</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Patient Readmission Rates with Tallahassee Memorial Healthcare</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<style>
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+    .flex-item {
+        flex: 30%;
+        border: 1.5px solid black;
+        margin: 3px;
+        padding-left: 3px;
+    }
+
+    @media (max-width: 600px) {
+        .flex-item {
+            flex: 100%;
+        }
+    }
+</style>
+<section id="presentation" class="level1">
+<h1>Presentation</h1>
+<div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="false">
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img src="assets/capstone/Slide1.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="assets/capstone/Slide2.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="assets/capstone/Slide3.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="assets/capstone/Slide4.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="assets/capstone/Slide5.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="assets/capstone/Slide6.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="assets/capstone/Slide7.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="assets/capstone/Slide8.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="assets/capstone/Slide9.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="assets/capstone/Slide10.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="assets/capstone/Slide11.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="assets/capstone/Slide12.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="assets/capstone/Slide13.png" class="d-block w-100">
+</div>
+<div class="carousel-item">
+<img src="assets/capstone/Slide14.png" class="d-block w-100">
+</div>
+</div>
+<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+<span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="visually-hidden">Next</span>
+</button>
+</div>
+</section>
+<section id="your-demographics-and-story" class="level1">
+<h1>Your Demographics and Story</h1>
+<section id="demographics" class="level2">
+<h2 class="anchored" data-anchor-id="demographics">Demographics</h2>
+<div class="flex-container">
+<div id="age" class="flex-item">
+
+</div>
+<div id="gender" class="flex-item">
+
+</div>
+<div id="insurance" class="flex-item">
+
+</div>
+<div id="race" class="flex-item">
+
+</div>
+<div id="ethnicity" class="flex-item">
+
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="story" class="level2">
+<h2 class="anchored" data-anchor-id="story">Story</h2>
+<p>
+<em>All stories are fictional and creations of the author</em>
+</p>
+<div id="storyDiv">
+
+</div>
+</section>
+<section id="discharge-survey" class="level2">
+<h2 class="anchored" data-anchor-id="discharge-survey">Discharge Survey</h2>
+<p><b>Please answer this survey based on the above narrative</b></p>
+<form name="discharge" id="discharge" onsubmit="calculateReadmit();return false">
+<h4 class="anchored">
+During this hospital stay, did you need help from nurses or other hospital staff in getting to the bathroom or in using a bed pan?
+</h4>
+<label><input type="radio" name="cms_12" value="0" required="">Yes</label> <label><input type="radio" name="cms_12" value="1">No</label> <br> <br>
+<h4 class="anchored">
+In general, how would you rate your overall health?
+</h4>
+<label><input type="radio" name="cms_25" value="1" required="">Poor</label> <label><input type="radio" name="cms_25" value="2">Fair</label> <label><input type="radio" name="cms_25" value="3">Good</label> <label><input type="radio" name="cms_25" value="4">Very Good</label> <label><input type="radio" name="cms_25" value="5">Excellent</label> <br> <br>
+<h4 class="anchored">
+Before giving you any new medicine, how often did hospital staff tell you what the medicine was for?
+</h4>
+<label><input type="radio" name="cms_33" value="1" required="">Never</label> <label><input type="radio" name="cms_33" value="2">Rarely</label> <label><input type="radio" name="cms_33" value="3">Sometimes</label> <label><input type="radio" name="cms_33" value="4">Often</label> <label><input type="radio" name="cms_33" value="5">Always</label> <br> <br>
+<h4 class="anchored">
+When I left the hospital, I clearly understood the purpose for taking each of my medications?
+</h4>
+<label><input type="radio" name="cms_40" value="0" required="">Never</label> <label><input type="radio" name="cms_40" value="1">Seldom</label> <label><input type="radio" name="cms_40" value="2">Sometimes</label> <label><input type="radio" name="cms_40" value="3">Often</label> <label><input type="radio" name="cms_40" value="4">Always</label> <br> <br>
+<h4 class="anchored">
+During this hospital stay, were you admitted to this hospital through the emergency room?
+</h4>
+<label><input type="radio" name="cms_41" value="1" required="">Yes</label> <label><input type="radio" name="cms_41" value="0">No</label> <br> <br> <button type="submit" id="submit" style="font-size: 16px;"><b>Submit your survey</b></button> <button type="reset" id="reset" style="font-size: 16px;" onclick="resetReadmit()"><b>Reset your survey</b></button>
+</form>
+<p><br> <br></p>
+</section>
+<section id="your-results" class="level2">
+<h2 class="anchored" data-anchor-id="your-results">Your Results</h2>
+<div id="results">
+Your results will be here!
+</div>
+
+<script>
+    const genderArray = [
+        "Male", 
+        "Female"
+    ]
+    var gender = genderArray[Math.floor(Math.random()*genderArray.length)]
+    const raceArray = [
+        "American Indian/Alaskan Native",
+        "Asian",
+        "Black",
+        "Hawaiian/Pacific Islander",
+        "Unknown",
+        "White",
+    ]
+    var race = raceArray[Math.floor(Math.random()*raceArray.length)]
+    const ethnicityArray = [
+        "Hispanic/Latino",
+        "Not Hispanic/Latino",
+        "Other",
+        "Not Reported"
+    ]
+    var ethnicity = ethnicityArray[Math.floor(Math.random()*ethnicityArray.length)]
+    const insuranceArray = [
+        "None",
+        "Blue Cross",
+        "Commercial",
+        "Health Maintenance Org",
+        "Medicaid/Welfare",
+        "Medicare Part A"
+    ]
+    var insurance = insuranceArray[Math.floor(Math.random()*insuranceArray.length)]
+    // Minimum age for a survey is 18 and maximum is 110 (92+18)
+    var age = Math.floor(Math.random() * 92) + 18
+
+    var boldOpen = "<b style=color:Gray;>"
+    var boldClose = "</b><br>"
+
+    document.getElementById("gender").innerHTML = boldOpen + "Gender:" + boldClose + gender
+    document.getElementById("race").innerHTML = boldOpen + "Race:" + boldClose + race
+    document.getElementById("ethnicity").innerHTML = boldOpen + "Ethnicity:" + boldClose + ethnicity
+    document.getElementById("age").innerHTML = boldOpen + "Age:" + boldClose + age
+    document.getElementById("insurance").innerHTML = boldOpen + "Insurance:" + boldClose + insurance
+
+    function logit2prob(logit) {
+        let odds = Math.exp(logit)
+        let prob = odds / (1 + odds) * 100
+        prob = Math.round(prob)
+        return prob
+    }
+
+    function calculateReadmit() {
+    let cms_12 = Number(document.getElementById("discharge").elements["cms_12"].value)
+    let cms_25 = Number(document.getElementById("discharge").elements["cms_25"].value)
+    let cms_33 = Number(document.getElementById("discharge").elements["cms_33"].value)
+    //var cms_40 = Number(document.getElementById("discharge").elements["cms_40"].value)
+    let cms_41 = Number(document.getElementById("discharge").elements["cms_41"].value)
+
+    let readmit = -.5541
+    readmit += -.6482 * cms_12
+    readmit += -.3596 * cms_25
+    readmit += -.2465 * cms_33
+    readmit += .7170 * cms_41
+        document.getElementById("results").innerHTML = "You have a " + logit2prob(readmit) + "% chance of being readmitted"
+    }
+
+    function resetReadmit() {
+        document.getElementById("results").innerHTML = "Your results will be here!"
+    }
+
+    window.onload = function() {
+        const stories = [
+        // This story by Gus Lipkin
+        "&emsp;It's a beautiful Wednesday in November and the Seminoles have just beaten the Gators at the Sunshine Showdown only four days prior. You've already had a great week, but a freak snowstorm has lightly dusted Tallahassee and there is just enough snow for sledding. Feeling a zest for life you haven't in a long time due to a rather debilitating stroke a few years earlier, you take some friends and your makeshift sled (a trashcan lid) to Coombs Drive which has a rather large elevation change from top to bottom of about 50 feet. After a full day of sledding, you decide to take one more run to the bottom. Just when you begin to slow down, a car pulls out in front of you from Brown Street and sends you flying into the trees on the far side of the intersection.<br>&emsp;The rest of the day and, admittedly, much of the next is a bit of a blur. Your friends tell you that when you crashed, they were about to call 911, but realized that you had been sledding right behind Tallahassee Memorial Hospital. They scooped you up and brought you to the Emergency Room in just a few minutes, running through some backyards to do so.<br>&emsp;When you come to, a very helpful nurse tells you that it's now Thursday and you've been transferred to the Clinical Decision Unit before handing you a cocktail of pills and a cup of water. You recognize some ibuprofen in there, but that's about it. When you ask him what's in the cup, he says a bunch of words you don't recognize, glances at his watch, then leaves in a hurry. A short while later, you realize you have to pee and wonder how long it's been since you used the bathroom. A different nurse comes after you press the call button and quickly runs to get a jug when you say you have to pee. What follows is a very uncomfortable five minutes where you try and pee in the jug while lying down with a nurse checking on you 30 every seconds asking if you need help.<br>&emsp;After a few more rather uneventful hours, someone comes in to let you know that they'll be discharging you any minute now and you should call someone to come get you. They give you a prescription for some painkillers and tell you to take it easy for a while because you have a concussion. They also advise you to make a follow-up appointment with your primary care physician.",
+        // This story by Hailey Skoglund
+        "&emsp;I’ve always loved weddings and this one was no exception. A close, and perpetually single, family friend was finally getting married. Feeling fit as a fiddle, I was getting my boogie on on the dance floor until I started to feel some chest pain and discomfort. Feeling weak, lightheaded, and short of breath after the dance, I brushed it off as exhaustion from the excitement of the day and decided to rest for a bit in the rooms outside the venue where we spent the morning getting ready for the big day. However, my pain worsened, so I called for help. The next thing I know, I am in an ambulance on my way to the ER for a heart attack. When we arrived, I was rushed into the ER.<br>&emsp;I can vaguely remember my close family and friends from the wedding trailing behind me. Luckily, the hospital staff acted quickly to save my life. They told me that they were giving me a clot-dissolving drug of some sort and pumped it into my veins. The doctors informed me and my family of the risks of performing an angioplasty and recommended that I was prepared for surgery immediately after my heart attack. I don’t remember much after that, besides the recovery. The days following my surgery were painful, I could hardly even move. Needing help with everything from sitting up to even using the restroom was so unlike me since I’m usually very healthy and otherwise independent. Luckily, the nurses and hospital staff did everything they could to make my recovery go as smoothly as possible. When I was finally ready to go home, my doctor met with me one last time to go over my new medications in detail. I would have never imagined that anything could ever make me less excited about weddings, but here I am."
+        // This story by Maverick Hope
+        
+        ]
+        var story = stories[Math.floor(Math.random()*stories.length)]
+        document.getElementById("storyDiv").innerHTML = story
+    }
+</script>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

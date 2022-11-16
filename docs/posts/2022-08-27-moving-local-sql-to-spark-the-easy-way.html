@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.148">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Gus Lipkin">
+<meta name="dcterms.date" content="2022-08-27">
+<meta name="description" content="It might not be easy, but it’ll certainly be less painful">
+
+<title>Gus Lipkin’s Awesome Website - Moving Local Data Pipelines to Spark: The Easy Way with R and&nbsp;Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Gus Lipkin’s Awesome Website</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">About Me</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resume.html">My Résumé</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html">My Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../contact.html">Contact Me</a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/guslipkin/"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.github.com/guslipkin"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.twitter.com/GusLipkin"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a></li>
+  <li><a href="#prepping-the-data" id="toc-prepping-the-data" class="nav-link" data-scroll-target="#prepping-the-data">Prepping the Data</a></li>
+  <li><a href="#working-with-views" id="toc-working-with-views" class="nav-link" data-scroll-target="#working-with-views">Working With Views</a></li>
+  <li><a href="#subqueries" id="toc-subqueries" class="nav-link" data-scroll-target="#subqueries">Subqueries</a></li>
+  <li><a href="#assigning-variable-tables-to-spark-tables" id="toc-assigning-variable-tables-to-spark-tables" class="nav-link" data-scroll-target="#assigning-variable-tables-to-spark-tables">Assigning Variable Tables to Spark Tables</a></li>
+  <li><a href="#dynamic-queries" id="toc-dynamic-queries" class="nav-link" data-scroll-target="#dynamic-queries">Dynamic Queries</a></li>
+  <li><a href="#disconnecting-from-spark" id="toc-disconnecting-from-spark" class="nav-link" data-scroll-target="#disconnecting-from-spark">Disconnecting From Spark</a></li>
+  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up">Wrapping Up</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Moving Local Data Pipelines to Spark: The Easy Way with R and&nbsp;Python</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">R: sparklyr</div>
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">Python: PySpark</div>
+    <div class="quarto-category">Spark</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    It might not be easy, but it’ll certainly be less painful
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Gus Lipkin </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 27, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Data comes from the <a href="https://www.kaggle.com/datasets/josephcheng123456/olympic-historical-dataset-from-olympediaorg"><em>Olympic Historical Dataset From Olympedia.org</em></a></p>
+</div>
+</div>
+<section id="intro" class="level1">
+<h1>Intro</h1>
+<p>As data people, we know that “the cloud” is usually a server somewhere maybe hosted on Azure, a server in a closet, or maybe a ten year old laptop underneath someone’s desk. When we hear people ask about moving data and processes to the cloud, it’s hard not to think of the <a href="https://disney.fandom.com/wiki/Little_Green_Men">Little Green Men</a> from Toy Story worshiping “The Claw”. Within a few short breaths, you’ve been asked to try and move all your current processes to the cloud. It’s a daunting task, but with a few handy tricks, we can make the SQL conversion relatively painless.</p>
+<p><img src="../assets/post-assets/2022-08-27-moving-local-sql-to-spark-the-easy-way/Little_Green_Men.jpg" class="img-fluid" alt="Three Little Green Men from Toy Story saying 'The Cloud'"></p>
+</section>
+<section id="getting-started" class="level1">
+<h1>Getting Started</h1>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I’ve generally tried to keep the R and Python code as similar as possible, but that’s not always the wisest move. If you have any questions, don’t hesitate to reach out.</p>
+</div>
+</div>
+<p>Our first step is to load our packages and connect to spark. We’ll also create a local spark instance to use rather than link to a server. On the R side of things, our core packages are <code>sparklyr</code> and <code>glue</code> while Python is using <code>pyspark</code> and Python 3’s f-String functionality.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>Python</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/LibrariesConnect.R_af4f04c81b5a9261b1db97dadb6ed84d">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparklyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sc <span class="ot">&lt;-</span> <span class="fu">spark_connect</span>(<span class="at">master =</span> <span class="st">"local"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/LibrariesConnect.py_f0aca692b05276cfbccce0a9c4713d1a">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> col</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>sc <span class="op">=</span> SparkSession.builder.getOrCreate()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="prepping-the-data" class="level1">
+<h1>Prepping the Data</h1>
+<p>At this point “in the real world” you’ll have loaded your data into the table format of your choosing. Where I work, all of our tables are in delta or parquet formats. For this example, rather than create dummy data for a post like I usually do, I’ve downloaded the <a href="https://www.kaggle.com/datasets/josephcheng123456/olympic-historical-dataset-from-olympediaorg"><em>Olympic Historical Dataset From Olympedia.org</em></a> from Kaggle and moved everything to my data folder.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><code>Python</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/ReadCSV.R_6763e6e51db196b0b7523e46bdafa50d">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio <span class="ot">&lt;-</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"athlete_bio"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympic_Athlete_Bio.csv"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>tbl_athlete_results <span class="ot">&lt;-</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"athlete_results"</span>, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympic_Athlete_Event_Results.csv"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>tbl_results <span class="ot">&lt;-</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"results"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympic_Athlete_Event_Results.csv"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>tbl_medal_tally <span class="ot">&lt;-</span> </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"medal_tally"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympic_Games_Medal_Tally.csv"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>tbl_games <span class="ot">&lt;-</span> </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"games"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympics_Games.csv"</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>tbl_country <span class="ot">&lt;-</span> <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"country"</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                              <span class="at">path =</span> <span class="st">"../assets/data/Olympics_Country.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/ReadCSV.py_f07d398b8a3dc80b706dd360288ed8cb">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio <span class="op">=</span> sc.read.csv(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympic_Athlete_Bio.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio.createOrReplaceTempView(<span class="st">"athlete_bio"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>tbl_athlete_results <span class="op">=</span> sc.read.csv(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"../assets/data/Olympic_Athlete_Event_Results.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>tbl_athlete_results.createOrReplaceTempView(<span class="st">"athlete_results"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>tbl_results <span class="op">=</span> sc.read.csv(</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympic_Athlete_Event_Results.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>tbl_results.createOrReplaceTempView(<span class="st">"results"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>tbl_medal_tally <span class="op">=</span> sc.read.csv(</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympic_Games_Medal_Tally.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>tbl_medal_tally.createOrReplaceTempView(<span class="st">"medal_tally"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>tbl_games <span class="op">=</span> sc.read.csv(</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympics_Games.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>tbl_games.createOrReplaceTempView(<span class="st">"games"</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>tbl_country <span class="op">=</span> sc.read.csv(</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympics_Country.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>tbl_country.createOrReplaceTempView(<span class="st">"country"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>By assigning the tables to both an R and Python variable and a name in Spark, we’re able to access the data from both an R and Python context, and a SQL context.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><code>Python</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tbl_country)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># SQL</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sdf_sql</span>(sc, <span class="st">'SELECT * FROM country LIMIT 6'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-tbl-subcap="[&quot;sparklyr&quot;,&quot;SQL&quot;]" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/PreviewTable.R_810dff5d6c5d6eff9f0c2fa085adc46f">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<pre><code># Source: spark&lt;?&gt; [?? x 2]
+  country_noc country       
+  &lt;chr&gt;       &lt;chr&gt;         
+1 AFG         Afghanistan   
+2 ALB         Albania       
+3 ALG         Algeria       
+4 ASA         American Samoa
+5 AND         Andorra       
+6 ANG         Angola        </code></pre>
+</div>
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<pre><code># Source: spark&lt;?&gt; [?? x 2]
+  country_noc country       
+  &lt;chr&gt;       &lt;chr&gt;         
+1 AFG         Afghanistan   
+2 ALB         Albania       
+3 ALG         Algeria       
+4 ASA         American Samoa
+5 AND         Andorra       
+6 ANG         Angola        </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tbl_country.show(<span class="dv">6</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># SQL</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="st">'SELECT * FROM country LIMIT 6'</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-tbl-subcap="[&quot;PySpark&quot;,&quot;SQL&quot;]" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/PreviewTable.py_7a571b644843ab35ea4a66518b160638">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<pre><code>+-----------+--------------+
+|country_noc|       country|
++-----------+--------------+
+|        AFG|   Afghanistan|
+|        ALB|       Albania|
+|        ALG|       Algeria|
+|        ASA|American Samoa|
+|        AND|       Andorra|
+|        ANG|        Angola|
++-----------+--------------+
+only showing top 6 rows</code></pre>
+</div>
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<pre><code>+-----------+--------------+
+|country_noc|       country|
++-----------+--------------+
+|        AFG|   Afghanistan|
+|        ALB|       Albania|
+|        ALG|       Algeria|
+|        ASA|American Samoa|
+|        AND|       Andorra|
+|        ANG|        Angola|
++-----------+--------------+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="working-with-views" class="level1">
+<h1>Working With Views</h1>
+<p>Let’s say your database administrators (if they aren’t also you) are kind and have done a small amount of data cleaning and you usually access the data from a mount point which provides a view. You pull the schema for the <code>athlete_bio_vw</code> table and get the following SQL that references <code>athlete_bio</code>.</p>
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/View.sql_546c8e682bfdbe4aa920349907772eb9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  athlete_id, name, sex, <span class="fu">CAST</span>(born <span class="kw">AS</span> <span class="dt">DATE</span>), </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">CAST</span>(height <span class="kw">AS</span> <span class="dt">DOUBLE</span>), <span class="fu">CAST</span>(weight <span class="kw">AS</span> <span class="dt">DOUBLE</span>), </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  country, country_noc</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> athlete_bio </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  height <span class="op">!=</span> <span class="ot">"na"</span> <span class="kw">AND</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  weight <span class="op">!=</span> <span class="ot">"na"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can re-create the views three ways. We can use R or Python to recreate the view from scratch by referencing the table variable name, not the internal Spark name. We can also wrap a SQL statement in our language of choice and use the internal Spark name. We then assign this new data frame to <code>tbl_athlete_bio_vw</code>. However, because the new data frame has been assigned as a variable, we no longer have direct and easy access to the view inside further SQL queries, and would have to use R or Python to do any more analysis.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false"><code>Python</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/View.R_a39b05d6b4823cb2ab9b0e0f49801214">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  tbl_athlete_bio <span class="sc">|&gt;</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(height <span class="sc">!=</span> <span class="st">"na"</span>, weight <span class="sc">!=</span> <span class="st">"na"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">born =</span> <span class="fu">as.Date</span>(born), </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">height =</span> <span class="fu">as.double</span>(height), </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">weight =</span> <span class="fu">as.double</span>(weight)) <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(athlete_id, name, sex, born, height, weight, country, country_noc)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># SQL</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span> <span class="fu">sdf_sql</span>(sc, <span class="st">'</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT </span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="st">    athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), </span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="st">    CAST(weight AS DOUBLE), country, country_noc</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_bio </span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE </span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="st">    height != "na" AND</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="st">    weight != "na"'</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tbl_athlete_bio_vw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source: spark&lt;?&gt; [?? x 8]
+  athlete_id name                sex    born       height weight country count…¹
+       &lt;int&gt; &lt;chr&gt;               &lt;chr&gt;  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  
+1      43737 Andrzej Socharski   Male   1947-08-31    173     72 " Pola… POL    
+2      50147 Nathalie Wunderlich Female 1971-06-03    170     50 " Swit… SUI    
+3       5085 Miha Lokar          Male   1935-09-10    182     76 " Yugo… YUG    
+4     136329 Austin Hack         Male   1992-05-17    203    100 " Unit… USA    
+5      38633 Tsuneo Ogasawara    Male   1942-07-30    181     80 " Japa… JPN    
+6      77095 Fulgence Rwabu      Male   1947-11-23    165     51 " Ugan… UGA    
+# … with abbreviated variable name ¹​country_noc</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/View.py_93f9ab07a22c6dfd33cbd32a7ba24908">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="op">=</span> tbl_athlete_bio.<span class="bu">filter</span>(<span class="st">'height != "na" AND weight != "na"'</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    ).select([<span class="st">'athlete_id'</span>, <span class="st">'name'</span>, <span class="st">'sex'</span>, col(<span class="st">'born'</span>).cast(<span class="st">'date'</span>), </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>              col(<span class="st">'height'</span>).cast(<span class="st">'double'</span>), col(<span class="st">'weight'</span>).cast(<span class="st">'double'</span>), </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>              <span class="st">'country'</span>, <span class="st">'country_noc'</span>])</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># SQL</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="op">=</span> sc.sql(<span class="st">'''</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT </span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="st">    athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), </span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="st">    CAST(weight AS DOUBLE), country, country_noc</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_bio </span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE </span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="st">    height != "na" AND</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="st">    weight != "na"'''</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw.show(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+----------+-------------------+------+----------+------+------+--------------+-----------+
+|athlete_id|               name|   sex|      born|height|weight|       country|country_noc|
++----------+-------------------+------+----------+------+------+--------------+-----------+
+|     43737|  Andrzej Socharski|  Male|1947-08-31| 173.0|  72.0|        Poland|        POL|
+|     50147|Nathalie Wunderlich|Female|1971-06-03| 170.0|  50.0|   Switzerland|        SUI|
+|      5085|         Miha Lokar|  Male|1935-09-10| 182.0|  76.0|    Yugoslavia|        YUG|
+|    136329|        Austin Hack|  Male|1992-05-17| 203.0| 100.0| United States|        USA|
+|     38633|   Tsuneo Ogasawara|  Male|1942-07-30| 181.0|  80.0|         Japan|        JPN|
+|     77095|     Fulgence Rwabu|  Male|1947-11-23| 165.0|  51.0|        Uganda|        UGA|
++----------+-------------------+------+----------+------+------+--------------+-----------+
+only showing top 6 rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The third way is a little chaotic, but is actually my preferred method because I can save the queries I want to use as subqueries later on. First we save the query as a string and then use the R <code>{glue}</code> package or f-strings from Python to run the SQL query in the <code>tbl_athlete_bio_qry</code> variable. Because this method lends itself to subqueries so well, I don’t usually use it unless I intend to use the query later on.</p>
+<p>If you’re not familiar, both <code>glue</code> and f-strings take a regular string and insert the value of the variable inside curly braces <code>{}</code>. For example, if you have a variable named <code>name</code> that has someone’s name. You can use <code>glue</code> or f-strings to write <code>"hello {name}"</code> and when this is evaluated, if the name is Gus, it will print “hello Gus.”</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false"><code>Python</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/ViewQuery.R_8ee97a475ff6a6909bbda8be5567fd4e">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>athlete_bio_vw_qry <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT </span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="st">    athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), </span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">    CAST(weight AS DOUBLE), country, country_noc</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_bio </span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE </span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="st">    height != "na" AND</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="st">    weight != "na"'</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span> <span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">"{athlete_bio_vw_qry}"</span>))</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tbl_athlete_bio_vw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source: spark&lt;?&gt; [?? x 8]
+  athlete_id name                sex    born       height weight country count…¹
+       &lt;int&gt; &lt;chr&gt;               &lt;chr&gt;  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  
+1      43737 Andrzej Socharski   Male   1947-08-31    173     72 " Pola… POL    
+2      50147 Nathalie Wunderlich Female 1971-06-03    170     50 " Swit… SUI    
+3       5085 Miha Lokar          Male   1935-09-10    182     76 " Yugo… YUG    
+4     136329 Austin Hack         Male   1992-05-17    203    100 " Unit… USA    
+5      38633 Tsuneo Ogasawara    Male   1942-07-30    181     80 " Japa… JPN    
+6      77095 Fulgence Rwabu      Male   1947-11-23    165     51 " Ugan… UGA    
+# … with abbreviated variable name ¹​country_noc</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/ViewQuery.py_77be1297253f079be5ee27dccef5f939">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>athlete_bio_vw_qry <span class="op">=</span> <span class="st">'''</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT </span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="st">    athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), </span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="st">    CAST(weight AS DOUBLE), country, country_noc</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_bio </span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE </span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="st">    height != "na" AND</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="st">    weight != "na"'''</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="op">=</span> sc.sql(<span class="ss">f'''</span><span class="sc">{</span>athlete_bio_vw_qry<span class="sc">}</span><span class="ss">'''</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw.show(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+----------+-------------------+------+----------+------+------+--------------+-----------+
+|athlete_id|               name|   sex|      born|height|weight|       country|country_noc|
++----------+-------------------+------+----------+------+------+--------------+-----------+
+|     43737|  Andrzej Socharski|  Male|1947-08-31| 173.0|  72.0|        Poland|        POL|
+|     50147|Nathalie Wunderlich|Female|1971-06-03| 170.0|  50.0|   Switzerland|        SUI|
+|      5085|         Miha Lokar|  Male|1935-09-10| 182.0|  76.0|    Yugoslavia|        YUG|
+|    136329|        Austin Hack|  Male|1992-05-17| 203.0| 100.0| United States|        USA|
+|     38633|   Tsuneo Ogasawara|  Male|1942-07-30| 181.0|  80.0|         Japan|        JPN|
+|     77095|     Fulgence Rwabu|  Male|1947-11-23| 165.0|  51.0|        Uganda|        UGA|
++----------+-------------------+------+----------+------+------+--------------+-----------+
+only showing top 6 rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="subqueries" class="level1">
+<h1>Subqueries</h1>
+<p>You probably know that the idea behind subqueries is that it lets you nest operations. The idea behind my third method (I really need a better name for it) is the same. Rather, instead of nesting queries directly, we’re nesting strings which are then evaluated as queries. In this example, we’re going to make another subquery called <code>tbl_athlete_results_qry</code> that contains all columns from the <code>athlete_results</code> Spark table for medal winners. We then want to return all rows from <code>tbl_athlete_bio_vw</code> for people who have won medals.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false"><code>Python</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Subquery.R_7bff04ac0fe340d18e4ded2a71bd4c92">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>athlete_results_qry <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT athlete_id </span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_results</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE medal != "na"'</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">'</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT *</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ({athlete_bio_vw_qry})</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE athlete_id IN ({athlete_results_qry})'</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source: spark&lt;?&gt; [?? x 8]
+  athlete_id name             sex    born       height weight country    count…¹
+       &lt;int&gt; &lt;chr&gt;            &lt;chr&gt;  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;  
+1    1700071 Lee Myung-Hwa    Female 1964-09-07    168     57 " Republi… KOR    
+2      58599 István Kozma     Male   1939-11-27    198    125 " Hungary" HUN    
+3      31969 Valter Matošević Male   1970-06-11    194     99 " Croatia" CRO    
+4      91237 Volha Puzhevich  Female 1983-03-17    167     43 " Belarus" BLR    
+5     104818 Marko Kemppainen Male   1976-07-13    184    100 " Finland" FIN    
+6       5695 Lew Beck         Male   1922-04-19    183     75 " United … USA    
+# … with abbreviated variable name ¹​country_noc</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Subquery.py_ebd6f2d8e1d5dcb59feb2546d462219f">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>athlete_results_qry <span class="op">=</span> <span class="st">'''</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT athlete_id </span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_results</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE medal != "na"'''</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="ss">f'''</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  SELECT *</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM (</span><span class="sc">{</span>athlete_bio_vw_qry<span class="sc">}</span><span class="ss">)</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  WHERE athlete_id IN (</span><span class="sc">{</span>athlete_results_qry<span class="sc">}</span><span class="ss">)'''</span>).show(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+----------+----------------+------+----------+------+------+------------------+-----------+
+|athlete_id|            name|   sex|      born|height|weight|           country|country_noc|
++----------+----------------+------+----------+------+------+------------------+-----------+
+|   1700071|   Lee Myung-Hwa|Female|1964-09-07| 168.0|  57.0| Republic of Korea|        KOR|
+|     58599|    István Kozma|  Male|1939-11-27| 198.0| 125.0|           Hungary|        HUN|
+|     31969|Valter Matošević|  Male|1970-06-11| 194.0|  99.0|           Croatia|        CRO|
+|     91237| Volha Puzhevich|Female|1983-03-17| 167.0|  43.0|           Belarus|        BLR|
+|    104818|Marko Kemppainen|  Male|1976-07-13| 184.0| 100.0|           Finland|        FIN|
+|      5695|        Lew Beck|  Male|1922-04-19| 183.0|  75.0|     United States|        USA|
++----------+----------------+------+----------+------+------+------------------+-----------+
+only showing top 6 rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>If, for whatever reason, we wanted to go even deeper with the subqueries, we could. All we have to do is make sure we create our smallest level queries first then build those out inside the larger queries. Let’s save our query for athletes who have won medals as <code>medal_athlete_qry</code>. It’s important that when we save it, we use <code>glue</code>/f-strings to make sure our string is expanded properly. We can then use <code>medal_athlete_qry</code> as a subquery to count the number of medals won by each country.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false"><code>Python</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/SubSubquery.R_38579b07aa44b6c5ac5158f039bd36a4">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>medal_athlete_qry <span class="ot">&lt;-</span> <span class="fu">glue</span>(<span class="st">'</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT *</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ({athlete_bio_vw_qry})</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE athlete_id IN ({athlete_results_qry})'</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>tbl_country_medal <span class="ot">&lt;-</span> <span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">'</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT country, COUNT(country) AS medal_count</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ({medal_athlete_qry})</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="st">  GROUP BY country</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="st">  ORDER BY medal_count DESC'</span>))</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tbl_country_medal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source: spark&lt;?&gt; [?? x 2]
+  country          medal_count
+  &lt;chr&gt;                  &lt;dbl&gt;
+1 " United States"        3116
+2 " Soviet Union"         1319
+3 " Germany"              1005
+4 " Canada"                886
+5 " France"                803
+6 " Australia"             797</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/SubSubquery.py_5b8893a5943da37df4d4c57642082448">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>medal_athlete_qry <span class="op">=</span> <span class="ss">f'''</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ss">  SELECT *</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM (</span><span class="sc">{</span>athlete_bio_vw_qry<span class="sc">}</span><span class="ss">)</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  WHERE athlete_id IN (</span><span class="sc">{</span>athlete_results_qry<span class="sc">}</span><span class="ss">)'''</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>tbl_country_medal <span class="op">=</span> sc.sql(<span class="ss">f'''</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  SELECT country, COUNT(country) AS medal_count</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM (</span><span class="sc">{</span>medal_athlete_qry<span class="sc">}</span><span class="ss">)</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  GROUP BY country</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  ORDER BY medal_count DESC'''</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>                   </span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>tbl_country_medal.show(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+--------------+-----------+
+|       country|medal_count|
++--------------+-----------+
+| United States|       3116|
+|  Soviet Union|       1319|
+|       Germany|       1005|
+|        Canada|        886|
+|        France|        803|
+|     Australia|        797|
++--------------+-----------+
+only showing top 6 rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="assigning-variable-tables-to-spark-tables" class="level1">
+<h1>Assigning Variable Tables to Spark Tables</h1>
+<p>At this point, you might decide you want to assign your new tables back to Spark, rather than only keeping them in your R or Python environment. This turns out to be a relatively simple operation and we name <code>tbl_athlete_bio_vw</code> to <code>athlete_bio_vw</code>. We can then check the tables available to us to make sure the operation succeeded, and then run a short SQL query to be extra sure it worked.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false"><code>Python</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/SparkAgain.R_46dd8fa7510fba10bb04919ca7432a7f">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, tbl_athlete_bio_vw, <span class="st">'athlete_bio_vw'</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">src_tbls</span>(sc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "athlete_bio"     "athlete_bio_vw"  "athlete_results" "country"        
+[5] "games"           "medal_tally"     "results"        </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sdf_sql</span>(sc, <span class="st">'SELECT * FROM athlete_bio_vw LIMIT 6'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source: spark&lt;?&gt; [?? x 8]
+  athlete_id name                sex    born       height weight country count…¹
+       &lt;int&gt; &lt;chr&gt;               &lt;chr&gt;  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  
+1      43737 Andrzej Socharski   Male   1947-08-31    173     72 " Pola… POL    
+2      50147 Nathalie Wunderlich Female 1971-06-03    170     50 " Swit… SUI    
+3       5085 Miha Lokar          Male   1935-09-10    182     76 " Yugo… YUG    
+4     136329 Austin Hack         Male   1992-05-17    203    100 " Unit… USA    
+5      38633 Tsuneo Ogasawara    Male   1942-07-30    181     80 " Japa… JPN    
+6      77095 Fulgence Rwabu      Male   1947-11-23    165     51 " Ugan… UGA    
+# … with abbreviated variable name ¹​country_noc</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/SparkAgain.py_ba7301a58f579331bdbae35f759f0c27">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw.createOrReplaceTempView(<span class="st">'athlete_bio_vw'</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="st">"show tables"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+---------+---------------+-----------+
+|namespace|      tableName|isTemporary|
++---------+---------------+-----------+
+|         |    athlete_bio|       true|
+|         | athlete_bio_vw|       true|
+|         |athlete_results|       true|
+|         |        country|       true|
+|         |          games|       true|
+|         |    medal_tally|       true|
+|         |        results|       true|
++---------+---------------+-----------+</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="st">'SELECT * FROM athlete_bio_vw LIMIT 6'</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+----------+-------------------+------+----------+------+------+--------------+-----------+
+|athlete_id|               name|   sex|      born|height|weight|       country|country_noc|
++----------+-------------------+------+----------+------+------+--------------+-----------+
+|     43737|  Andrzej Socharski|  Male|1947-08-31| 173.0|  72.0|        Poland|        POL|
+|     50147|Nathalie Wunderlich|Female|1971-06-03| 170.0|  50.0|   Switzerland|        SUI|
+|      5085|         Miha Lokar|  Male|1935-09-10| 182.0|  76.0|    Yugoslavia|        YUG|
+|    136329|        Austin Hack|  Male|1992-05-17| 203.0| 100.0| United States|        USA|
+|     38633|   Tsuneo Ogasawara|  Male|1942-07-30| 181.0|  80.0|         Japan|        JPN|
+|     77095|     Fulgence Rwabu|  Male|1947-11-23| 165.0|  51.0|        Uganda|        UGA|
++----------+-------------------+------+----------+------+------+--------------+-----------+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="dynamic-queries" class="level1">
+<h1>Dynamic Queries</h1>
+<p>The last piece that ties all of this together is using variables as different components of your data operations. A relatively common task could be to change dates on a monthly query to filter for the last thirty days. However, I don’t think any Olympians have been born in the last thirty days, probably because the last Olympics was more than thirty days ago. Nevertheless, we can filter for athletes that were born in the last thirty years. In R, the <code>{lubridate}</code> makes the year subtraction a breeze while <code>python-dateutil</code> does all the heavy lifting in Python.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false"><code>Python</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Dynamic.R_72583a1c49a56262295135bed16f38e2">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>thirtyYears <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="fu">Sys.Date</span>()) <span class="sc">-</span> <span class="fu">years</span>(<span class="dv">30</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">'</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT *</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_bio_vw</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE born &gt;= "{thirtyYears}"</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="st">  LIMIT 6'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source: spark&lt;?&gt; [?? x 8]
+  athlete_id name               sex    born       height weight country  count…¹
+       &lt;int&gt; &lt;chr&gt;              &lt;chr&gt;  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  
+1     136346 Pedro Pascual      Male   1996-03-15    185     70 " Unite… USA    
+2     131521 Ana Dascăl         Female 2002-09-12    183     60 " Roman… ROU    
+3     137091 Saskia Alusalu     Female 1994-04-14    175     64 " Eston… EST    
+4     134220 Jason Osborne      Male   1994-03-20    178     72 " Germa… GER    
+5     143729 C. A. Bhavani Devi Female 1993-08-27    168     58 " India" IND    
+6     138162 Oskar Svensson     Male   1995-09-07    190     86 " Swede… SWE    
+# … with abbreviated variable name ¹​country_noc</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Dynamic.py_100c8ade8792dcf8d22744650c60a4a0">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dateutil.relativedelta <span class="im">import</span> relativedelta</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>thirtyYears <span class="op">=</span> date.today() <span class="op">-</span> relativedelta(years <span class="op">=</span> <span class="dv">30</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="ss">f'''</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  SELECT *</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM athlete_bio_vw</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  WHERE born &gt;= "</span><span class="sc">{</span>thirtyYears<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  LIMIT 6'''</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+----------+------------------+------+----------+------+------+--------------+-----------+
+|athlete_id|              name|   sex|      born|height|weight|       country|country_noc|
++----------+------------------+------+----------+------+------+--------------+-----------+
+|    136346|     Pedro Pascual|  Male|1996-03-15| 185.0|  70.0| United States|        USA|
+|    131521|        Ana Dascăl|Female|2002-09-12| 183.0|  60.0|       Romania|        ROU|
+|    137091|    Saskia Alusalu|Female|1994-04-14| 175.0|  64.0|       Estonia|        EST|
+|    134220|     Jason Osborne|  Male|1994-03-20| 178.0|  72.0|       Germany|        GER|
+|    143729|C. A. Bhavani Devi|Female|1993-08-27| 168.0|  58.0|         India|        IND|
+|    138162|    Oskar Svensson|  Male|1995-09-07| 190.0|  86.0|        Sweden|        SWE|
++----------+------------------+------+----------+------+------+--------------+-----------+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="disconnecting-from-spark" class="level1">
+<h1>Disconnecting From Spark</h1>
+<p>Before we wrap up, let’s disconnect from Spark real quick.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true"><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false"><code>Python</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Disconnect.R_6f03ffc2b5d6369e3c6e8afba6b6915b">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spark_disconnect</span>(sc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Disconnect.py_a6d66ff19244ba7f10ebb5877816454b">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sc.stop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="wrapping-up" class="level1">
+<h1>Wrapping Up</h1>
+<p>At the beginning of this post, I made a promise that moving your processes to the cloud doesn’t have to be super painful. It probably still will be painful, but I’m hoping that it’ll now be at most regular painful. We learned that we can either translate our queries to R or Python, run a SQL directly, or save the query as a string, and insert it into later queries where it will be run directly. We can then take our new tables and transfer them back over to Spark so we can reference the tables directly without any shenanigans involving <code>glue</code> or f-strings. Lastly, we can use those same <code>glue</code> and f-string tricks to dynamically change our queries based on R or Python variables.</p>
+</section>
+<section id="resources" class="level1">
+<h1>Resources</h1>
+<p>Both R and Python have some really great resources out there to help you get started. I highly recommend starting with the documentation for <code>sparklyr</code> and <code>PySpark</code> as each have everything you need to know (besides the info in my post!) to get started.</p>
+<ul>
+<li><p>R: <a href="https://spark.rstudio.com">spark.rstudio.com</a></p></li>
+<li><p>Python: <a href="https://spark.apache.org/docs/latest/api/python/">PySpark</a></p></li>
+</ul>
+<hr>
+<p>All code in this article is available <a href="https://github.com/guslipkin/guslipkin.github.io/blob/main/posts/2022-08-27-moving-local-sql-to-spark-the-easy-way.qmd">here</a>. If you want to see more from me, check out <a href="https://github.com/guslipkin">my GitHub</a> or <a href="https://guslipkin.github.io">guslipkin.github.io</a>. If you want to hear from me, I’m also on Twitter <a href="https://twitter.com/GusLipkin"><span class="citation" data-cites="guslipkin">@guslipkin</span></a>.</p>
+<center>
+<em>Gus Lipkin is a Data Scientist, Business Analyst, and occasional bike mechanic</em>
+</center>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
