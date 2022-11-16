@@ -23,6 +23,35 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 ----
 
 ::: {.column-page}
+:::
+::: {.grid .column-page}
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+## Published on CRAN
+#### [{cipheR}![](assets/cipher.png){height=40}](https://guslipkin.github.io/cipheR/)
+:::
+::: {.g-col-12 .text-wrap}
+- **What:** An R library for simple text ciphers.
+- **Why:** I needed a Caesar Shift for an [Advent of Code](https://guslipkin.github.io/AdventOfCode/) puzzle and got a bit carried away!
+- **[How](https://github.com/guslipkin/cipher):** `R`
+- **Conclusion:** Check it out on [CRAN](https://cran.r-project.org/package=cipheR)
+:::
+:::
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+## Consulting
+:::
+::: {.g-col-12 .text-wrap}
+- **What:** That's up to you!
+- **Why:** I have a lot to offer you and your company in a variety of fields.
+- **How:** If you'd like to work with me but, you're not sure where I might fit in, this page and [my résumé](resume.html) are a great place to start
+- **Conclusion:** It's time to [contact me](contact.html) and get the ball rolling!
+:::
+:::
+:::
+
+
+::: {.column-page}
 ## Data Focused Projects
 :::
 ::: {.grid .column-page}
@@ -130,26 +159,6 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 - **Why:** It's a final project for COP 3353C – Introduction to Unix.</li>
 - **[How](https://github.com/guslipkin/Lark):** `Bash`
 - **Conclusion:** It's lots of fun. I highly recommend it!
-:::
-:::
-:::
-
-::: {.column-page}
-## Consulting
-:::
-::: {.grid .column-page}
-::: {.g-col-12 .g-col-sm-6 .d-grid}
-::: {.g-col-12}
-:::
-::: {.g-col-12 .text-wrap}
-- **What:** That's up to you!
-- **Why:** I have a lot to offer you and your company in a variety of fields.</li>
-- **How:** If you'd like to work with me but, you're not sure where I might fit in, this page and [my résumé](resume.html) are a great place to start
-- **Conclusion:** It's time to [contact me](contact.html) and get the ball rolling!
-:::
-:::
-::: {.g-col-12 .g-col-sm-6 .d-grid}
-::: {.g-col-12}
 :::
 :::
 :::
