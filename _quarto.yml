@@ -11,8 +11,12 @@ website:
         text: About Me
       - href: resume.qmd
         text: My Résumé
-      - href: blog.qmd
-        text: My Blog
+      - text: My Blogs
+        menu:
+          - href: professional-blog.qmd
+            text: My Professional Blog
+          - href: personal-blog.qmd
+            text: My Personal Blog
       - href: contact.qmd
         text: Contact Me
     right:

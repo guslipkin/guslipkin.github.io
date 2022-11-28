@@ -162,3 +162,9 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 :::
 :::
 :::
+
+```{r}
+#| include: false
+source("post-packages.R")
+```
+
