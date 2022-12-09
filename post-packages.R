@@ -1,16 +1,4 @@
-needed <- c(
-  "data.table",
-  "glue",
-  "gridExtra",
-  "kableExtra",
-  "lubridate",
-  "openxlsx",
-  "rbenchmark",
-  "reticulate",
-  "sparklyr",
-  "tidytext",
-  "tidyverse"
-)
+needed <- unique(renv::dependencies()$Package)
 
 needed <- needed[!(needed %in% installed.packages())]
 

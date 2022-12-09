@@ -1,7 +1,9 @@
 [
   {
     "listing": "/personal-blog.html",
-    "items": []
+    "items": [
+      "/personal-blog/whats-on-my.html"
+    ]
   },
   {
     "listing": "/professional-blog.html",
