@@ -5,6 +5,10 @@ format:
     toc-title: My Projects
     toc: true
     toc-location: right
+execute: 
+  enabled: true
+  cache: false
+  freeze: false
 $enable-grid-classes: false
 $enable-cssgrid: true
 ---
@@ -129,7 +133,7 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 ::: {.g-col-12}
 - **What:** A series of programming puzzles to help save Christmas.
 - **Why:** Christmas must be saved! But also, it's a lot of fun and requires a variety of different solution styles.
-- **[How](https://github.com/guslipkin/AdventOfCode):** `R: {*puzzle dependent*}`, `Quarto`
+- **[How](https://github.com/guslipkin/AdventOfCode):** `R: {`[`mistlecode`](https://guslipkin.github.io/mistlecode/)`, *puzzle dependent* }`, `Quarto`
 - **Conclusion:** I highly recommend joining if you like a good challenge.
 :::
 :::
@@ -164,7 +168,8 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 :::
 
 ```{r}
-#| include: false
+#| echo: false
+#| output: false
 source("post-packages.R")
 ```
 
