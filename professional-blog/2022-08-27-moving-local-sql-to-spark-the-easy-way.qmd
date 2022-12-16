@@ -436,7 +436,7 @@ Both R and Python have some really great resources out there to help you get sta
 
 ----
 
-All code in this article is available [here](https://github.com/guslipkin/guslipkin.github.io/blob/main/posts/2022-08-27-moving-local-sql-to-spark-the-easy-way.qmd). If you want to see more from me, check out [my GitHub](https://github.com/guslipkin) or [guslipkin.github.io](https://guslipkin.github.io). If you want to hear from me, I'm also on Twitter [@guslipkin](https://twitter.com/GusLipkin).
+All code in this article is available [here](https://github.com/guslipkin/guslipkin.github.io/blob/main/professional-blog/2022-08-27-moving-local-sql-to-spark-the-easy-way.qmd). If you want to see more from me, check out [my GitHub](https://github.com/guslipkin) or [guslipkin.github.io](https://guslipkin.github.io). If you want to hear from me, I'm also on Twitter [@guslipkin](https://twitter.com/GusLipkin).
 
 
 <center><em>Gus Lipkin is a Data Scientist, Business Analyst, and occasional bike mechanic</em></center>

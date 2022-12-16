@@ -255,7 +255,7 @@ sales %>%
 
 ----
 
-All code used in this article is available [here](https://raw.githubusercontent.com/guslipkin/guslipkin.github.io/main/posts/2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r.qmd). If you want to see more from me, check out [my GitHub](https://github.com/guslipkin) or [guslipkin.github.io](https://guslipkin.github.io). If you want to hear from me, I'm also on Twitter [@guslipkin](https://twitter.com/GusLipkin).
+All code used in this article is available [here](https://raw.githubusercontent.com/guslipkin/guslipkin.github.io/main/professional-blog/2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r.qmd). If you want to see more from me, check out [my GitHub](https://github.com/guslipkin) or [guslipkin.github.io](https://guslipkin.github.io). If you want to hear from me, I'm also on Twitter [@guslipkin](https://twitter.com/GusLipkin).
 
 
 <center><em>Gus Lipkin is a Data Scientist, Business Analyst, and occasional bike mechanic</em></center>
