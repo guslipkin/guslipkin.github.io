@@ -136,10 +136,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 .joblib
+
+
 /.quarto/
 .Rproj.user
 .RData
-.RData
 .Rhistory
-.Rhistory
-.Rhistory
+docs/CNAME

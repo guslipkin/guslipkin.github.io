@@ -2,7 +2,7 @@
 title: "Hi There 👋"
 format:
   html:
-    toc-title: My Projects
+    toc-title: Selected Projects
     toc: true
     toc-location: right
 execute: 
@@ -20,18 +20,19 @@ $enable-cssgrid: true
 <center><img src="/assets/gus_headshot_new.jpg" style="max-width: 40%;"/></center>
 <br>
 
-I'm Gus, a Business Analyst with a few years' experience. I'd like to show you what I do.
+I’ve always loved asking ‘how?’ and ‘why?’ Since starting my journey as a data scientist, I’ve been able to answer ‘how?’ by architecting long-term reporting solutions and developing tools to support my teammates, while answering ‘why?’ with analyses to support data driven decision making. I’m looking for a position where I can put my skills to the test and help answer my two favorite questions.
 
-You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipkin</a> or on Medium also <a href="https://guslipkin.medium.com">@guslipkin</a>.
+If you want to learn more about me, feel free to poke around my site or [contact me directly](contact.html). You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipkin</a> or on Medium also <a href="https://guslipkin.medium.com">@guslipkin</a>.
 
 ----
 
 ::: {.column-page}
+<h2>Selected Projects</h2>
 :::
 ::: {.grid .column-page}
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
 ::: {.g-col-12}
-## Published on CRAN
+### Published on CRAN
 #### [{cipheR}![](assets/cipher.png){height=40}](https://guslipkin.github.io/cipheR/)
 :::
 ::: {.g-col-12 .text-wrap}
@@ -43,7 +44,7 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 :::
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
 ::: {.g-col-12}
-## Consulting
+### Consulting
 :::
 ::: {.g-col-12 .text-wrap}
 - **What:** That's up to you!
@@ -56,7 +57,7 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 
 
 ::: {.column-page}
-## Data Focused Projects
+### Data Focused Projects
 :::
 ::: {.grid .column-page}
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
@@ -84,7 +85,7 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 :::
 
 ::: {.column-page}
-## Economic Analysis Focused Projects
+### Economic Analysis Focused Projects
 :::
 ::: {.grid .column-page}
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
@@ -112,7 +113,7 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 :::
 
 ::: {.column-page}
-## Assorted Programming
+### Assorted Programming
 :::
 ::: {.grid .column-page}
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
@@ -140,7 +141,7 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 :::
 
 ::: {.column-page}
-## Other Projects
+### Other Projects
 :::
 ::: {.grid .column-page}
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
@@ -171,5 +172,7 @@ You can also find me on Twitter <a href="https://twitter.com/GusLipkin">@guslipk
 #| echo: false
 #| output: false
 source("post-packages.R")
+
+cat("guslipkin.me", file = "docs/CNAME")
 ```
 
