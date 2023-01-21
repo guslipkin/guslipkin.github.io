@@ -103,10 +103,12 @@ format:
 </div>
 </div>
 <br>
-I attended Florida Poly from Fall 2018 and graduated in May 2022. The rest, as
-they say, is history. You can learn more about [my time at Florida
-Poly](https://floridapoly.edu/search/?q=gus+lipkin) and [projects here](/). You
-can learn more about what I've been up to since then by taking a peek at [my
+I attended Florida Poly from Fall 2018 and graduated in May 2022. You can learn
+more about [my time at Florida
+Poly](https://floridapoly.edu/search/?q=gus+lipkin) and [projects here](/).
+Since graduating from Florida Poly, I've begun pursuing a Master's in Analytics
+through Georgia Tech and am excited to continue my learning while I build my
+career. You can learn more about what I've been up to by taking a peek at [my
 LinkedIn](https://www.linkedin.com/in/guslipkin/), looking at my
 [résumé](resume.html), or [just asking me](contact.html).
 
