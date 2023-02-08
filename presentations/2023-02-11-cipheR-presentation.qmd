@@ -17,7 +17,7 @@ format:
 library(cipheR)
 ```
 
--   `cihpeR` is a package for simple text ciphers.
+-   [`cipheR`](https://cran.r-project.org/web/packages/cipheR/index.html) is a package for simple text ciphers.
     -   A cipher is text that has been transformed by some method with the intention of hiding its meaning
 -   I made it because I needed a flexible [Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher) for [Advent of Code](https://adventofcode.com/)
 
@@ -68,117 +68,9 @@ caesar(e2, 5)
 caesar(e3, -2, preserve_spaces = FALSE)
 ```
 
-## `caesar.R` {.smaller auto-animate="true"}
+## `caesar.R` {.smaller}
 
-Set up the function.
-
-``` {.r code-line-numbers="1,3"}
-caesar <- function(x, n = 1, preserve_spaces = TRUE, dict = NULL, preset = NULL) {
-  ...
-}
-```
-
-## `caesar.R` {.smaller auto-animate="true"}
-
-Handle any errors, make sure `x` is a character vector, and split `x` into individual characters.
-
-``` {.r code-line-numbers="3-22"}
-caesar <- function(x, n = 1, preserve_spaces = TRUE, dict = NULL, preset = NULL) {
-
-  # Catching errors
-  if (length(x) == 0) {
-    stop("Please provide a vector of length greater than zero to shift.")
-  } else if (!is.atomic(x) | !(is.character(x) | is.numeric(x))) {
-    stop("x must be a numeric or character vector.")
-  }
-
-  if (!is.null(dict) & !is.null(preset)) {
-    warning("Both a dict and a preset was provided, only the dict will be used.")
-  }
-
-  if (n == 0) {
-    message("Shifting by zero doesn't do anything...")
-    return(x)
-  }
-  
-  if (!is.character(x)) { x <- as.character(x) }
-  
-  x <- strsplit(x, "")
-  unlistX <- unlist(x)
-  
-  ...
-}
-```
-
-## `caesar.R` {.smaller auto-animate="true"}
-
-Create the dictionary for shifting as needed.
-
-``` {.r code-line-numbers="4-23"}
-caesar <- function(x, n = 1, preserve_spaces = TRUE, dict = NULL, preset = NULL) {
-  ...
-
-  # Set the dictionary as needed
-  if (is.null(dict) & is.null(preset)) {
-    dict <- sort(unique(unlistX))
-  } else if (!is.null(preset)) {
-    if (preset == "alphanumeric")   { dict <- rawToChar(as.raw(c(48:57, 65:90, 97:122))) } 
-    else if (preset == "keyboard")  { dict <- rawToChar(as.raw(32:126)) } 
-    else if (preset == "letters")   { dict <- rawToChar(as.raw(c(65:90, 97:122))) } 
-    else if (preset == "lowercase") { dict <- rawToChar(as.raw(c(97:122))) } 
-    else if (preset == "uppercase") { dict <- rawToChar(as.raw(c(65:90))) } 
-    else {
-      stop("It looks like you may have a typo in your presets. 
-            You can double-check the presets by running ?caesar in your console.")
-    }
-  }
-
-  if (length(dict) == 1) { dict <- unlist(strsplit(dict, "")) }
-
-  if (!all(unlistX %in% dict)) {
-    stop("Not all values of x are in the character set. Please choose a different character set.")
-  }
-
-  ...
-}
-```
-
-## `caesar.R` {.smaller auto-animate="true"}
-
-Actually do the shifting.
-
-``` {.r code-line-numbers="4-25"}
-caesar <- function(x, n = 1, preserve_spaces = TRUE, dict = NULL, preset = NULL) {
-  ...
-
-  x <- lapply(x, function(y) {
-      # We need to preserve spaces as requested
-      if (preserve_spaces) {
-        isSpace <- which(dict == " ")
-        if (length(isSpace > 0)) { dict <- dict[-which(dict == " ")] }
-      }
-
-      # Do the shifting
-      y <- sapply(y, function(z) {
-          if (preserve_spaces & z == " ") { return(" ") }
-          hop <- which(z == dict) + n
-          hop <- hop %% length(dict)
-          if (hop == 0) { hop <- length(dict) }
-          return(dict[hop])
-        })
-      y <- paste0(y, collapse = "")
-      return(y)
-    })
-
-  x <- unlist(x, recursive = FALSE)
-
-  return(x)
-}
-```
-
-## `caesar.R` {.smaller auto-animate="true"}
-
-```{.r}
+```{.r code-line-numbers="1,67|3-22|24-43|45-66|"}
 caesar <- function(x, n = 1, preserve_spaces = TRUE, dict = NULL, preset = NULL) {
 
   # Catching errors
@@ -343,64 +235,9 @@ atbash(e2)
 atbash(e3)
 ```
 
-## `atbash.R` {auto-animate="true"}
+## `atbash.R` {.smaller}
 
-Set up the function.
-
-```{.r code-line-numbers="1,3"}
-atbash <- function(x) {
-  ...
-}
-```
-
-## `atbash.R` {.smaller auto-animate="true"}
-
-Handle any errors, make sure `x` is a character vector, and split `x` into individual characters.
-
-```{.r code-line-numbers="3-9"}
-atbash <- function(x) {
-
-  if (length(x) == 0) {
-    stop("Please provide a vector of length greater than zero.")
-  } else if (!is.atomic(x) & !is.character(x)) {
-    stop("x must be a character vector.")
-  }
-  
-  x <- strsplit(x, "")
-
-  ...
-}
-```
-
-## `atbash.R` {.smaller auto-animate="true"}
-
-Actually do the shifting.
-
-```{.r code-line-numbers="4-20"}
-atbash <- function(x) {
-  ...
-
-  x <- lapply(x, function(y) {
-    y <- sapply(y, function(z) {
-        if (z %in% c(letters, LETTERS)) {
-          if (grepl("[A-Z]", z)) { z <- LETTERS[27 - which(LETTERS == z)] } 
-          else { z <- letters[27 - which(letters == z)] }
-        }
-        return(z)
-      })
-    y <- paste0(y, collapse = "")
-    return(y)
-  })
-
-  x <- unlist(x, recursive = FALSE)
-
-  return(x)
-}
-```
-
-## `atbash.R` {.smaller auto-animate="true"}
-
-```{.r}
+```{.r code-line-numbers="1,26|3-9|11-25|"}
 atbash <- function(x) {
 
   if (length(x) == 0) {
@@ -491,133 +328,9 @@ railfence(e2, 4, decrypt = TRUE)
 railfence(e3, 3, decrypt = TRUE)
 ```
 
-## `railfence.R` {auto-animate="true"}
+## `railfence.R` {.smaller}
 
-Set up the user facing and internal functions.
-
-```{.r code-line-numbers="1,3,5-6,8,10-11,13"}
-railfence <- function(x, n = 1, decrypt = FALSE) {
-  ...
-}
-
-#' @keywords internal
-.railfence_encrypt <- function(x, n) {
-  ...
-}
-
-#' @keywords internal
-.railfence_decrypt <- function(x, n) {
-  ...
-}
-```
-
-## `railfence.R` {.smaller auto-animate="true"}
-
-Handle errors and direct to the appropriate internal function.
-
-```{.r code-line-numbers="1-16"}
-railfence <- function(x, n = 1, decrypt = FALSE) {
-
-  if (length(x) == 0) { stop("Please provide a vector of length greater than zero") } 
-  else if (!is.atomic(x) & !is.character(x)) { stop("x must be a character vector.") }
-
-  if (length(n) != 1 || n < 1 || n %% 1 != 0) { 
-    stop("n must be a single integer greater than or equal to 1") 
-  }
-
-  if (!is.logical(decrypt)) { stop("decrypt must be logical") }
-
-  if (!decrypt) { x <- .railfence_encrypt(x, n) } 
-  else { x <- .railfence_decrypt(x, n) }
-
-  return(x)
-}
-...
-```
-
-## `railfence.R` {.smaller auto-animate="true"}
-
-Handle encryption
-
-```{.r code-line-numbers="2-18"}
-...
-#' @keywords internal
-.railfence_encrypt <- function(x, n) {
-  x <- strsplit(x, "")
-
-  x <- lapply(x, function(y) {
-    nx <- length(y)
-    z <- c(1, rep_len(c(2:n, (n - 1):1), nx - 1))
-    y <- data.frame("x" = y, "pos" = z)
-    y <- y[order(y$pos), ]
-    y <- paste0(y$x, collapse = "")
-    return(y)
-  })
-
-  x <- unlist(x, recursive = FALSE)
-
-  return(x)
-}
-...
-```
-
-## `railfence.R` {.smaller auto-animate="true"}
-
-Handle decryption.
-
-```{.r code-line-numbers="2-47"}
-...
-#' @keywords internal
-.railfence_decrypt <- function(x, n) {
-  x <-
-    lapply(x, function(s) {
-      s <- unlist(strsplit(s, ""))
-      m <- matrix(NA, n, length(s))
-      j <- 1
-      dir <- 1
-      for (i in 1:length(s)) {
-        m[j, i] <- "*"
-
-        if (dir == 1) {
-          if (j == n) {
-            dir <- -1
-            j <- j - 1
-          } else {
-            j <- j + 1
-          }
-        } else {
-          if (j == 1) {
-            dir <- 1
-            j <- j + 1
-          } else {
-            j <- j - 1
-          }
-        }
-      }
-      k <- 1
-      for (j in 1:nrow(m)) {
-        for (i in 1:ncol(m)) {
-          if (!is.na(m[j, i])) {
-            m[j, i] <- s[k]
-            k <- k + 1
-          }
-        }
-      }
-      m <- as.vector(m)
-      m <- paste(m[!is.na(m)], collapse = "")
-
-      return(m)
-    })
-
-  x <- unlist(x, recursive = FALSE)
-
-  return(x)
-}
-```
-
-## `railfence.R` {.smaller auto-animate="true"}
-
-```{.r code-line-numbers=""}
+```{.r code-line-numbers="1-16|18-34|36-81|"}
 railfence <- function(x, n = 1, decrypt = FALSE) {
 
   if (length(x) == 0) { stop("Please provide a vector of length greater than zero") } 
@@ -758,11 +471,9 @@ vigenere(e2, "key", decrypt = TRUE)
 vigenere(e3, "key", decrypt = TRUE, keep_punctuation = TRUE)
 ```
 
-## `vigenere.R` {.smaller auto-animate="true"}
+## `vigenere.R` {.smaller}
 
-Handle errors
-
-```{.r code-line-numbers="1-20,23"}
+```{.r code-line-numbers="1,36|3-20|22-35|87-92|94-112|38-61|63-85|"}
 vigenere <- function(x, key, decrypt = FALSE, keep_punctuation = FALSE) {
 
   if (length(x) == 0) {
@@ -784,19 +495,6 @@ vigenere <- function(x, key, decrypt = FALSE, keep_punctuation = FALSE) {
     stop("decrypt must be logical")
   }
 
-  ...
-}
-...
-```
-
-## `vigenere.R` {.smaller auto-animate="true"}
-
-Prep for helper functions and dispatch.
-
-```{.r code-line-numbers="1,4-18"}
-vigenere <- function(x, key, decrypt = FALSE, keep_punctuation = FALSE) {
-  ...
-
   square <-
     suppressMessages(matrix(sapply(0:25, function(x) {
       caesar(letters, x)
@@ -812,61 +510,7 @@ vigenere <- function(x, key, decrypt = FALSE, keep_punctuation = FALSE) {
 
   return(x)
 }
-...
-```
 
-## Quick Note
-
-The following two functions, `.get_letter` and `.rep_key` are at the bottom of the source file, but are used in the encrypt and decrypt methods so it makes more sense to show them now.
-
-## `vigenere.R`
-
-A helper function to return the position of a letter.
-
-```{.r code-line-numbers="2-7"}
-...
-#' @keywords internal
-.get_letter <- function(y) {
-  y <- which(letters == y)
-  if (length(y) == 0) { return(0) }
-  else { return(y) }
-}
-...
-```
-
-## `vigenere.R` {.smaller}
-
-A helper function to recycle the key to match input length
-
-```{.r code-line-numbers="2-20"}
-...
-#' @keywords internal
-.rep_key <- function(x, key) {
-  rep_key <- c()
-  k <- 1
-  return_key <- sapply(1:length(x), function(i) {
-    ki <- k %% length(key)
-    if (ki == 0) { ki <- length(key) }
-
-    if (!grepl("[A-z]", x[i])) {
-      rep_key <- c(rep_key, "")
-    } else {
-      rep_key <- c(rep_key, key[ki])
-      k <<- k + 1
-    }
-    return(rep_key)
-  })
-
-  return(return_key)
-}
-```
-
-## `vigenere.R` {.smaller auto-animate="true"}
-
-A helper function for encryption
-
-```{.r code-line-numbers="2-25"}
-...
 #' @keywords internal
 .vigenere_encrypt <- function(x, key, square, keep_punctuation) {
   x <- lapply(x, function(x) {
@@ -891,15 +535,7 @@ A helper function for encryption
   x <- unlist(x, recursive = FALSE)
   return(x)
 }
-...
-```
 
-## `vigenere.R` {.smaller auto-animate="true"}
-
-A helper function for decryption
-
-```{.r code-line-numbers="2-24"}
-...
 #' @keywords internal
 .vigenere_decrypt <- function(x, key, square, keep_punctuation) {
   x <- lapply(x, function(x) {
@@ -918,109 +554,6 @@ A helper function for decryption
       return(i)
     }, r, x, lowerX)
     x <- paste0(x, collapse = "")
-    return(x)
-  })
-  x <- unlist(x, recursive = FALSE)
-  return(x)
-}
-...
-```
-
-## `vigenere.R` {.smaller auto-animate="true"}
-
-```{.r code-line-numbers=""}
-vigenere <- function(x, key, decrypt = FALSE, keep_punctuation = FALSE) {
-
-  if (length(x) == 0) {
-    stop("Please provide a vector of length greater than zero for x")
-  } else if (!is.atomic(x) & !is.character(x) & !is.matrix(x)) {
-    stop("x must be a character vector.")
-  }
-
-  if (length(key) != 1) {
-    stop("Please provide a vector of length one for key")
-  } else if (!is.character(key) & (is.matrix(key) | !is.atomic(key))) {
-    stop("key must be a character vector.")
-  }
-
-  if (!is.logical(decrypt)) {
-    stop("decrypt must be logical")
-  }
-  if (!is.logical(keep_punctuation)) {
-    stop("decrypt must be logical")
-  }
-
-  square <-
-    suppressMessages(matrix(sapply(0:25, function(x) {
-      caesar(letters, x)
-    }), 26, 26))
-
-  key <- tolower(key)
-
-  if (!decrypt) {
-    x <- .vigenere_encrypt(x, key, square, keep_punctuation)
-  } else {
-    x <- .vigenere_decrypt(x, key, square, keep_punctuation)
-  }
-
-  return(x)
-}
-
-#' @keywords internal
-.vigenere_encrypt <- function(x, key, square, keep_punctuation) {
-  x <- lapply(x, function(x) {
-    x <- unlist(strsplit(x, ""))
-
-    if (!keep_punctuation) { x <- x[grepl("[A-z]", x)] }
-    lowerX <- tolower(x)
-
-    key <- unlist(strsplit(key, ""))
-    key <- .rep_key(x, key)
-
-    r <- sapply(key, .get_letter)
-    c <- sapply(lowerX, .get_letter)
-
-    x <- sapply(1:length(x), function(i) {
-      if (c[i] == 0) {
-        y <- x[i]
-      } else {
-        y <- square[r[i], c[i]]
-      }
-
-      if (keep_punctuation & grepl("[A-Z]", x[i])) { return(toupper(y)) }
-      else { return(y) }
-    })
-
-    x <- paste0(x, collapse = "")
-    return(x)
-  })
-  x <- unlist(x, recursive = FALSE)
-  return(x)
-}
-
-#' @keywords internal
-.vigenere_decrypt <- function(x, key, square, keep_punctuation) {
-  x <- lapply(x, function(x) {
-    x <- unlist(strsplit(x, ""))
-
-    if (!keep_punctuation) { x <- x[grepl("[A-z]", x)] }
-    lowerX <- tolower(x)
-
-    key <- unlist(strsplit(key, ""))
-    key <- .rep_key(x, key)
-
-    r <- sapply(key, .get_letter)
-
-    x <- mapply(function(r, x, lowerX) {
-      i <- square[1, which(square[r, ] == lowerX)]
-
-      if (keep_punctuation & grepl("[A-Z]", x)) { i <- toupper(i) }
-      else if (keep_punctuation & length(i) == 0) { i <- x }
-      return(i)
-    }, r, x, lowerX)
-
-    x <- paste0(x, collapse = "")
-
     return(x)
   })
   x <- unlist(x, recursive = FALSE)
@@ -1101,7 +634,7 @@ test_that("keep_punctuation must be a boolean", {
 
 
 
-# Running Key Cipher
+# Running Key Cipher {.smaller}
 
 - Description: This can be used to create (encrypt) and solve (decrypt) a Running Key Vigenere Cipher. A Vigenere cipher uses a table of alphabetic Caesar shifts for one to twenty-six. The key is made to have an equal length to the text by adding the first letters of the text to the key. Each letter and corresponding key value determine the grid location to choose the obfuscated letter from.
 
@@ -1110,6 +643,12 @@ test_that("keep_punctuation must be a boolean", {
 | Plaintext    | R  |    | i  | s  |    | g  | r  | e  | a  | t |
 | Running key  | a  | l  | l  |    | a  | g  | r  | e  | e  | a |
 | Ciphertext   | R  |    | t  | d  |    | g  | x  | v  | e  | x |
+
+::: {.callout-note}
+
+Can we take a look at the description. Is there a more concise way to communicate this?
+
+:::
 
 ## Parameters
 
@@ -1137,9 +676,7 @@ running_key(e3, key, decrypt = TRUE, keep_punctuation = TRUE)
 
 ## `running_key.R` {.smaller}
 
-Handle errors then format the string and key to be passed to `vigenere()`
-
-```{.r code-line-numbers=""}
+```{.r code-line-numbers="1,25|2-10|12-24|"}
 running_key <- function(x, key, decrypt = FALSE, keep_punctuation = FALSE) {
   if (length(x) != 1) { stop("Please provide a vector of length one for x") 
   } else if (!is.atomic(x) & !is.character(x) & !is.matrix(x)) {
@@ -1190,4 +727,8 @@ Do your worst! Or best, constructive criticism is always good.
 -   Error handling (and if we have time, testing)
 -   UX and how best to work with vector inputs
 -   What kinds of code comments people expect in open source
+
+# Questions I have for you guys
+
+-   What is the best way to handle moving validation into their own functions? Do they get their own R file and they're all marked as internal?
 
