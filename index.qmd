@@ -39,7 +39,7 @@ If you want to learn more about me, feel free to poke around my site or [contact
 - **What:** An R library for simple text ciphers.
 - **Why:** I needed a Caesar Shift for an [Advent of Code](https://guslipkin.github.io/AdventOfCode/) puzzle and got a bit carried away!
 - **[How](https://github.com/guslipkin/cipher):** `R`
-- **Conclusion:** Check it out on [CRAN](https://cran.r-project.org/package=cipheR)
+- **Conclusion:** Check it out on [CRAN](https://cran.r-project.org/package=cipheR) or [watch me present](/presentations/2023-02-11-cipheR-page.html) it!
 :::
 :::
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
