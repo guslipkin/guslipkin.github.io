@@ -1,0 +1,19 @@
+---
+title: "cipheR"
+---
+
+<style>
+
+.slide-deck {
+  border: 3px solid #dee2e6;
+}
+
+</style>
+
+I presented cipheR to the R for Data Science Project Club on February 11, 2023.
+My goal was to present it to the group to work on my presenting skills as well
+as get some feedback on the project itself.
+
+<div class="ratio ratio-16x9">
+<iframe class="slide-deck" src="/presentations/2023-02-11-cipheR-presentation.html"></iframe>
+</div>
