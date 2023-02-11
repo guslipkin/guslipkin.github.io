@@ -478,140 +478,140 @@
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#parameters",
     "href": "presentations/2023-02-11-cipheR-presentation.html#parameters",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "Parameters",
     "text": "Parameters\n\nx A vector to be shifted\nn The number of places to shift by. This can be either positive or negative. Zero returns x as it was given to the function.\npreserve_spaces (Default: TRUE) A boolean describing if spaces should be preserved. This is helpful when working with sentences.\ndict The dictionary used for shifting. This defaults to NULL in which case a dictionary is built from the sorted unique values of x.\npreset A pre-made dictionary using ASCII codes from ascii-code.com. Note that delete is excluded as a character."
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#examples",
     "href": "presentations/2023-02-11-cipheR-presentation.html#examples",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "Examples",
     "text": "Examples\n\n(e1 <- caesar(\"abcde\", 1))\n\n[1] \"bcdea\"\n\ncaesar(e1, -1)\n\n[1] \"abcde\"\n\n(e2 <- caesar(\"cipheR is a great R package!\", -5))\n\n[1] \"Rae!sh ai r tgsrk h erRcrtsp\"\n\ncaesar(e2, 5)\n\n[1] \"cipheR is a great R package!\"\n\n(e3 <- caesar(\"Isn't this fun?\", 2, preserve_spaces = FALSE))\n\n[1] \"suth ' Inu'i?tf\"\n\ncaesar(e3, -2, preserve_spaces = FALSE)\n\n[1] \"Isn't this fun?\""
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#caesar.r",
     "href": "presentations/2023-02-11-cipheR-presentation.html#caesar.r",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "caesar.R",
     "text": "caesar.R\ncaesar <- function(x, n = 1, preserve_spaces = TRUE, dict = NULL, preset = NULL) {\n\n  # Catching errors\n  if (length(x) == 0) {\n    stop(\"Please provide a vector of length greater than zero to shift.\")\n  } else if (!is.atomic(x) | !(is.character(x) | is.numeric(x))) {\n    stop(\"x must be a numeric or character vector.\")\n  }\n\n  if (!is.null(dict) & !is.null(preset)) {\n    warning(\"Both a dict and a preset was provided, only the dict will be used.\")\n  }\n\n  if (n == 0) {\n    message(\"Shifting by zero doesn't do anything...\")\n    return(x)\n  }\n  \n  if (!is.character(x)) { x <- as.character(x) }\n  \n  x <- strsplit(x, \"\")\n  unlistX <- unlist(x)\n  \n  # Set the dictionary as needed\n  if (is.null(dict) & is.null(preset)) {\n    dict <- sort(unique(unlistX))\n  } else if (!is.null(preset)) {\n    if (preset == \"alphanumeric\")   { dict <- rawToChar(as.raw(c(48:57, 65:90, 97:122))) } \n    else if (preset == \"keyboard\")  { dict <- rawToChar(as.raw(32:126)) } \n    else if (preset == \"letters\")   { dict <- rawToChar(as.raw(c(65:90, 97:122))) } \n    else if (preset == \"lowercase\") { dict <- rawToChar(as.raw(c(97:122))) } \n    else if (preset == \"uppercase\") { dict <- rawToChar(as.raw(c(65:90))) } \n    else {\n      stop(\"It looks like you may have a typo in your presets. \n            You can double-check the presets by running ?caesar in your console.\")\n    }\n  }\n\n  if (length(dict) == 1) { dict <- unlist(strsplit(dict, \"\")) }\n\n  if (!all(unlistX %in% dict)) {\n    stop(\"Not all values of x are in the character set. Please choose a different character set.\")\n  }\n  \n  x <- lapply(x, function(y) {\n      # We need to preserve spaces as requested\n      if (preserve_spaces) {\n        isSpace <- which(dict == \" \")\n        if (length(isSpace > 0)) { dict <- dict[-which(dict == \" \")] }\n      }\n\n      # Do the shifting\n      y <- sapply(y, function(z) {\n          if (preserve_spaces & z == \" \") { return(\" \") }\n          hop <- which(z == dict) + n\n          hop <- hop %% length(dict)\n          if (hop == 0) { hop <- length(dict) }\n          return(dict[hop])\n        })\n      y <- paste0(y, collapse = \"\")\n      return(y)\n    })\n\n  x <- unlist(x, recursive = FALSE)\n\n  return(x)\n}"
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#test-caesar.r",
     "href": "presentations/2023-02-11-cipheR-presentation.html#test-caesar.r",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "test-caesar.R",
     "text": "test-caesar.R\ntest_that(\"Shift 0 warns and works\", {\n  expect_message(caesar(\"abcde\", 0))\n  expect_equal(caesar(\"abcde\", 0), \"abcde\")\n})\ntest_that(\"Shift 1 works\", {\n  expect_equal(caesar(\"abcde\", 1), \"bcdea\")\n})\ntest_that(\"Shift -1 works\", {\n  expect_equal(caesar(\"abcde\", -1), \"eabcd\")\n})\n\ntest_that(\"Spaces are preserved\", {\n  expect_equal(caesar(\"a b c\", 1), \"b c a\")\n})\ntest_that(\"Spaces are not preserved\", {\n  expect_equal(caesar(\"a b c\", 1, preserve_spaces = FALSE), \"baca \")\n})\n\ntest_that(\"Vector length is preserved\", {\n  expect_equal(caesar(c(\"a\", \"b\", \"c\"), 1), c(\"b\", \"c\", \"a\"))\n})\n\ntest_that(\"When no dictionary is provided, x is used\", {\n  expect_equal(caesar(\"abcde\", 1), \"bcdea\")\n})\n\ntest_that(\"Cannot provide both a dict and a preset\", {\n  expect_warning(caesar(\"abcde\", 1, dict = \"abcde\", preset = \"letters\"))\n})\n\ntest_that(\"The alphanumeric preset works\", {\n  expect_equal(caesar(\"abc123\", 1, preset = \"alphanumeric\"), \"bcd234\")\n})\ntest_that(\"The keyboard preset works\", {\n  expect_equal(caesar(\"abc123!@#\", 1, preset = \"keyboard\"), \"bcd234\\\"A$\")\n})\ntest_that(\"The letters preset works\", {\n  expect_equal(caesar(\"abcABC\", 1, preset = \"letters\"), \"bcdBCD\")\n})\ntest_that(\"The lowercase preset works\", {\n  expect_equal(caesar(\"abcde\", 1, preset = \"lowercase\"), \"bcdef\")\n})\ntest_that(\"The uppercase preset works\", {\n  expect_equal(caesar(\"ABCDE\", 1, preset = \"uppercase\"), \"BCDEF\")\n})\ntest_that(\"A typo in the preset gives an error\", {\n  expect_error(caesar(\"abc\", 1, preset = \"abc\"))\n})\n\ntest_that(\"dict must contain all values in x\", {\n  expect_error(caesar(\"abc\", 1, dict = \"def\"))\n})\n\ntest_that(\"x cannot be empty\", {\n  expect_error(caesar(c(), 1))\n})\ntest_that(\"x must be a vector\", {\n  expect_error(caesar(list(\"abc\"), 1))\n})\ntest_that(\"x must be a character or numeric vector\", {\n  expect_error(caesar(c(TRUE), 1))\n})"
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#parameter",
     "href": "presentations/2023-02-11-cipheR-presentation.html#parameter",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "Parameter",
     "text": "Parameter\n\nx A vector to be encoded or decoded"
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#examples-1",
     "href": "presentations/2023-02-11-cipheR-presentation.html#examples-1",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "Examples",
     "text": "Examples\n\n(e1 <- atbash(\"abcde\"))\n\n[1] \"zyxwv\"\n\natbash(e1)\n\n[1] \"abcde\"\n\n(e2 <- atbash(\"cipheR is a great R package!\"))\n\n[1] \"xrksvI rh z tivzg I kzxpztv!\"\n\natbash(e2)\n\n[1] \"cipheR is a great R package!\"\n\n(e3 <- atbash(\"Isn't this fun?\"))\n\n[1] \"Rhm'g gsrh ufm?\"\n\natbash(e3)\n\n[1] \"Isn't this fun?\""
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#atbash.r",
     "href": "presentations/2023-02-11-cipheR-presentation.html#atbash.r",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "atbash.R",
     "text": "atbash.R\natbash <- function(x) {\n\n  if (length(x) == 0) {\n    stop(\"Please provide a vector of length greater than zero.\")\n  } else if (!is.atomic(x) & !is.character(x)) {\n    stop(\"x must be a character vector.\")\n  }\n\n  x <- strsplit(x, \"\")\n\n  x <- lapply(x, function(y) {\n    y <- sapply(y, function(z) {\n        if (z %in% c(letters, LETTERS)) {\n          if (grepl(\"[A-Z]\", z)) { z <- LETTERS[27 - which(LETTERS == z)] } \n          else { z <- letters[27 - which(letters == z)] }\n        }\n        return(z)\n      })\n    y <- paste0(y, collapse = \"\")\n    return(y)\n  })\n\n  x <- unlist(x, recursive = FALSE)\n\n  return(x)\n}"
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#test-atbash.r",
     "href": "presentations/2023-02-11-cipheR-presentation.html#test-atbash.r",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "test-atbash.R",
     "text": "test-atbash.R\ntest_that(\"Letters are flipped\", {\n  expect_equal(atbash(\"az\"), \"za\")\n})\n\ntest_that(\"Spaces are preserved\", {\n  expect_equal(atbash(\"a b c\"), \"z y x\")\n})\ntest_that(\"Punctuation is preserved\", {\n  expect_equal(atbash(\"a.b\"), \"z.y\")\n})\n\ntest_that(\"Vector length is preserved\", {\n  expect_equal(atbash(c(\"a\", \"b\", \"c\")), c(\"z\", \"y\", \"x\"))\n})\n\ntest_that(\"Must be a character vector of length greater than zero\", {\n  expect_error(atbash(c(TRUE)))\n  expect_error(atbash(c(123)))\n  expect_error(atbash(c()))\n})"
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#parameters-1",
     "href": "presentations/2023-02-11-cipheR-presentation.html#parameters-1",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "Parameters",
     "text": "Parameters\n\nx A vector to be encoded or decoded\nn (Default: 1) The width of the rail to be used. A width of one will have no effect.\ndecrypt (Default: FALSE) The default FALSE will encrypt while using TRUE will decrypt a given value of x."
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#examples-2",
     "href": "presentations/2023-02-11-cipheR-presentation.html#examples-2",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "Examples",
     "text": "Examples\n\n(e1 <- railfence(\"abcde\", 2))\n\n[1] \"acebd\"\n\nrailfence(e1, 2, decrypt = TRUE)\n\n[1] \"abcde\"\n\n(e2 <- railfence(\"cipheR is a great R package!\", 4))\n\n[1] \"c gRaiRi r  kgpesaetpceh aa!\"\n\nrailfence(e2, 4, decrypt = TRUE)\n\n[1] \"cipheR is a great R package!\"\n\n(e3 <- railfence(\"Isn't this fun?\", 3))\n\n[1] \"Itius' hsfnnt ?\"\n\nrailfence(e3, 3, decrypt = TRUE)\n\n[1] \"Isn't this fun?\""
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#railfence.r",
     "href": "presentations/2023-02-11-cipheR-presentation.html#railfence.r",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "railfence.R",
     "text": "railfence.R\nrailfence <- function(x, n = 1, decrypt = FALSE) {\n\n  if (length(x) == 0) { stop(\"Please provide a vector of length greater than zero\") } \n  else if (!is.atomic(x) & !is.character(x)) { stop(\"x must be a character vector.\") }\n\n  if (length(n) != 1 || n < 1 || n %% 1 != 0) { \n    stop(\"n must be a single integer greater than or equal to 1\") \n  }\n\n  if (!is.logical(decrypt)) { stop(\"decrypt must be logical\") }\n\n  if (!decrypt) { x <- .railfence_encrypt(x, n) } \n  else { x <- .railfence_decrypt(x, n) }\n\n  return(x)\n}\n\n#' @keywords internal\n.railfence_encrypt <- function(x, n) {\n  x <- strsplit(x, \"\")\n\n  x <- lapply(x, function(y) {\n    nx <- length(y)\n    z <- c(1, rep_len(c(2:n, (n - 1):1), nx - 1))\n    y <- data.frame(\"x\" = y, \"pos\" = z)\n    y <- y[order(y$pos), ]\n    y <- paste0(y$x, collapse = \"\")\n    return(y)\n  })\n\n  x <- unlist(x, recursive = FALSE)\n\n  return(x)\n}\n\n#' @keywords internal\n.railfence_decrypt <- function(x, n) {\n  x <-\n    lapply(x, function(s) {\n      s <- unlist(strsplit(s, \"\"))\n      m <- matrix(NA, n, length(s))\n      j <- 1\n      dir <- 1\n      for (i in 1:length(s)) {\n        m[j, i] <- \"*\"\n\n        if (dir == 1) {\n          if (j == n) {\n            dir <- -1\n            j <- j - 1\n          } else {\n            j <- j + 1\n          }\n        } else {\n          if (j == 1) {\n            dir <- 1\n            j <- j + 1\n          } else {\n            j <- j - 1\n          }\n        }\n      }\n      k <- 1\n      for (j in 1:nrow(m)) {\n        for (i in 1:ncol(m)) {\n          if (!is.na(m[j, i])) {\n            m[j, i] <- s[k]\n            k <- k + 1\n          }\n        }\n      }\n      m <- as.vector(m)\n      m <- paste(m[!is.na(m)], collapse = \"\")\n\n      return(m)\n    })\n\n  x <- unlist(x, recursive = FALSE)\n\n  return(x)\n}"
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#test-railfence.r",
     "href": "presentations/2023-02-11-cipheR-presentation.html#test-railfence.r",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "test-railfence.R",
     "text": "test-railfence.R\ntest_that(\"encryption works\", {\n  expect_equal(railfence(\"abc def ghij\", 3), \"adgb e hjcfi\")\n  expect_equal(railfence(c(\"abc\", \"def\", \"ghij\"), 2), c(\"acb\", \"dfe\", \"gihj\"))\n})\ntest_that(\"decryption works\", {\n  expect_equal(railfence(\"adgb e hjcfi\", 3, decrypt = TRUE), \"abc def ghij\")\n  expect_equal(railfence(c(\"acb\", \"dfe\", \"gihj\"), 2, decrypt = TRUE),\n               c(\"abc\", \"def\", \"ghij\"))\n})\n\ntest_that(\"must be a vector with length > 0\", {\n  expect_error(railfence(c(), 3))\n  expect_error(railfence(matrix(NA, 1, 1), 3))\n})\n\ntest_that(\"n must be a single integer greater than or equal to 1\", {\n  expect_error(railfence(\"abc\", 0))\n  expect_error(railfence(\"abc\", 1.5))\n  expect_error(railfence(\"abc\", 0:3))\n})\n\ntest_that(\"decrypt must be logical\", {\n  expect_error(railfence(\"abc\", 3, \"true\"))\n})"
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#parameters-2",
     "href": "presentations/2023-02-11-cipheR-presentation.html#parameters-2",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "Parameters",
     "text": "Parameters\n\nx A vector to be encoded or decoded.\nkey A character vector of length one to use as a key\ndecrypt (Default: FALSE) The default FALSE will encrypt while using TRUE will decrypt a given value of x.\nkeep_punctuation (Default: FALSE) The default FALSE will ignore case and punctuation and return a lowercase result. TRUE will match the input’s case and punctuation."
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#examples-3",
     "href": "presentations/2023-02-11-cipheR-presentation.html#examples-3",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "Examples",
     "text": "Examples\n\n(e1 <- vigenere(\"abcde\", \"key\"))\n\n[1] \"kfani\"\n\nvigenere(e1, \"key\", decrypt = TRUE)\n\n[1] \"abcde\"\n\n(e2 <- vigenere(\"cipheR is a great R package!\", \"key\"))\n\n[1] \"mmnripswyqvckxpzeaueeo\"\n\nvigenere(e2, \"key\", decrypt = TRUE)\n\n[1] \"cipherisagreatrpackage\"\n\n(e3 <- vigenere(\"Isn't this fun?\", \"key\", keep_punctuation = TRUE))\n\n[1] \"Swl'd xfsw der?\"\n\nvigenere(e3, \"key\", decrypt = TRUE, keep_punctuation = TRUE)\n\n[1] \"Isn't this fun?\""
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#vigenere.r",
     "href": "presentations/2023-02-11-cipheR-presentation.html#vigenere.r",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "vigenere.R",
     "text": "vigenere.R\nvigenere <- function(x, key, decrypt = FALSE, keep_punctuation = FALSE) {\n\n  if (length(x) == 0) {\n    stop(\"Please provide a vector of length greater than zero for x\")\n  } else if (!is.atomic(x) & !is.character(x) & !is.matrix(x)) {\n    stop(\"x must be a character vector.\")\n  }\n\n  if (length(key) != 1) {\n    stop(\"Please provide a vector of length one for key\")\n  } else if (!is.character(key) & (is.matrix(key) | !is.atomic(key))) {\n    stop(\"key must be a character vector.\")\n  }\n\n  if (!is.logical(decrypt)) {\n    stop(\"decrypt must be logical\")\n  }\n  if (!is.logical(keep_punctuation)) {\n    stop(\"decrypt must be logical\")\n  }\n\n  square <-\n    suppressMessages(matrix(sapply(0:25, function(x) {\n      caesar(letters, x)\n    }), 26, 26))\n\n  key <- tolower(key)\n\n  if (!decrypt) {\n    x <- .vigenere_encrypt(x, key, square, keep_punctuation)\n  } else {\n    x <- .vigenere_decrypt(x, key, square, keep_punctuation)\n  }\n\n  return(x)\n}\n\n#' @keywords internal\n.vigenere_encrypt <- function(x, key, square, keep_punctuation) {\n  x <- lapply(x, function(x) {\n    x <- unlist(strsplit(x, \"\"))\n    if (!keep_punctuation) { x <- x[grepl(\"[A-z]\", x)] }\n    lowerX <- tolower(x)\n\n    key <- unlist(strsplit(key, \"\"))\n    key <- .rep_key(x, key)\n    r <- sapply(key, .get_letter)\n    c <- sapply(lowerX, .get_letter)\n    \n    x <- sapply(1:length(x), function(i) {\n      if (c[i] == 0) { y <- x[i] } \n      else { y <- square[r[i], c[i]] }\n      if (keep_punctuation & grepl(\"[A-Z]\", x[i])) { return(toupper(y)) }\n      else { return(y) }\n    })\n    x <- paste0(x, collapse = \"\")\n    return(x)\n  })\n  x <- unlist(x, recursive = FALSE)\n  return(x)\n}\n\n#' @keywords internal\n.vigenere_decrypt <- function(x, key, square, keep_punctuation) {\n  x <- lapply(x, function(x) {\n    x <- unlist(strsplit(x, \"\"))\n    if (!keep_punctuation) { x <- x[grepl(\"[A-z]\", x)] }\n    lowerX <- tolower(x)\n\n    key <- unlist(strsplit(key, \"\"))\n    key <- .rep_key(x, key)\n    r <- sapply(key, .get_letter)\n\n    x <- mapply(function(r, x, lowerX) {\n      i <- square[1, which(square[r, ] == lowerX)]\n      if (keep_punctuation & grepl(\"[A-Z]\", x)) { i <- toupper(i) }\n      else if (keep_punctuation & length(i) == 0) { i <- x }\n      return(i)\n    }, r, x, lowerX)\n    x <- paste0(x, collapse = \"\")\n    return(x)\n  })\n  x <- unlist(x, recursive = FALSE)\n  return(x)\n}\n\n#' @keywords internal\n.get_letter <- function(y) {\n  y <- which(letters == y)\n  if (length(y) == 0) { return(0) }\n  else { return(y) }\n}\n\n#' @keywords internal\n.rep_key <- function(x, key) {\n  rep_key <- c()\n  k <- 1\n  return_key <- sapply(1:length(x), function(i) {\n    ki <- k %% length(key)\n    if (ki == 0) { ki <- length(key) }\n\n    if (!grepl(\"[A-z]\", x[i])) {\n      rep_key <- c(rep_key, \"\")\n    } else {\n      rep_key <- c(rep_key, key[ki])\n      k <<- k + 1\n    }\n    return(rep_key)\n  })\n\n  return(return_key)\n}"
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#test-vigenere.r",
     "href": "presentations/2023-02-11-cipheR-presentation.html#test-vigenere.r",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "test-vigenere.R",
     "text": "test-vigenere.R\ntest_that(\"Punctuation is preserved for encryption\", {\n  expect_equal(vigenere(\"Test.message\", \"key\", keep_punctuation = TRUE), \"Diqd.qccwyqi\")\n  expect_equal(vigenere(\"testmessage\", \"key\", keep_punctuation = FALSE), \"diqdqccwyqi\")\n})\ntest_that(\"Punctuation is not preserved for encryption\", {\n  expect_equal(vigenere(\"Test.message\", \"key\", keep_punctuation = FALSE), \"diqdqccwyqi\")\n  expect_equal(vigenere(\"testmessage\", \"key\", keep_punctuation = FALSE), \"diqdqccwyqi\")\n})\n\ntest_that(\"Punctuation is preserved for decryption\", {\n  expect_equal(vigenere(\"Diqd.qccwyqi\", \"key\", decrypt = TRUE, keep_punctuation = TRUE), \"Test.message\")\n  expect_equal(vigenere(\"diqdqccwyqi\", \"key\", decrypt = TRUE, keep_punctuation = TRUE), \"testmessage\")\n})\ntest_that(\"Punctuation is not preserved for decryption\", {\n  expect_equal(vigenere(\"Diqd.qccwyqi\", \"key\", decrypt = TRUE, keep_punctuation = FALSE), \"testmessage\")\n  expect_equal(vigenere(\"diqdqccwyqi\", \"key\", decrypt = TRUE, keep_punctuation = TRUE), \"testmessage\")\n})\n\ntest_that(\"x must be a vector with length > 0\", {\n  expect_error(vigenere(c(), \"key\"))\n  expect_error(vigenere(matrix(NA, 1, 1), \"key\"))\n})\ntest_that(\"key must be a vector with length == 1\", {\n  expect_error(vigenere(\"testmessage\", c()))\n  expect_error(vigenere(\"testmessage\", matrix(NA, 1, 1)))\n})\n\ntest_that(\"decrypt must be a boolean\", {\n  expect_equal(vigenere(\"Test.message\", \"key\", decrypt = FALSE, keep_punctuation = TRUE), \"Diqd.qccwyqi\")\n  expect_equal(vigenere(\"Diqd.qccwyqi\", \"key\", decrypt = TRUE, keep_punctuation = TRUE), \"Test.message\")\n  expect_error(vigenere(\"testmessage\", \"key\", decrypt = 1))\n})\n\ntest_that(\"keep_punctuation must be a boolean\", {\n  expect_equal(vigenere(\"Test.message\", \"key\", decrypt = FALSE, keep_punctuation = TRUE), \"Diqd.qccwyqi\")\n  expect_equal(vigenere(\"Diqd.qccwyqi\", \"key\", decrypt = TRUE, keep_punctuation = FALSE), \"testmessage\")\n  expect_error(vigenere(\"testmessage\", \"key\", keep_punctuation = 1))\n})"
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#parameters-3",
     "href": "presentations/2023-02-11-cipheR-presentation.html#parameters-3",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "Parameters",
     "text": "Parameters\nThese are the same as the parameters for vigenere() because running_key() is just a modified version.\n\nx A vector to be encoded or decoded.\nkey A character vector of length one to use as a key\ndecrypt (Default: FALSE) The default FALSE will encrypt while using TRUE will decrypt a given value of x.\nkeep_punctuation (Default: FALSE) The default FALSE will ignore case and punctuation and return a lowercase result. TRUE will match the input’s case and punctuation."
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#examples-4",
     "href": "presentations/2023-02-11-cipheR-presentation.html#examples-4",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "Examples",
     "text": "Examples\n\nkey <- \"thisismysupersecurekey\"\n(e1 <- running_key(\"abcde\", key))\n\n[1] \"tikvm\"\n\nrunning_key(e1, key, decrypt = TRUE)\n\n[1] \"abcde\"\n\n(e2 <- running_key(\"cipheR is a great R package!\", key))\n\n[1] \"vpxzmjuqsagirlvrutokkc\"\n\nrunning_key(e2, key, decrypt = TRUE)\n\n[1] \"cipherisagreatrpackage\"\n\n(e3 <- running_key(\"Isn't this fun?\", key, keep_punctuation = TRUE))\n\n[1] \"Bzv'l bzuq xoc?\"\n\nrunning_key(e3, key, decrypt = TRUE, keep_punctuation = TRUE)\n\n[1] \"Isn't this fun?\""
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#running_key.r",
     "href": "presentations/2023-02-11-cipheR-presentation.html#running_key.r",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "running_key.R",
     "text": "running_key.R\nrunning_key <- function(x, key, decrypt = FALSE, keep_punctuation = FALSE) {\n  if (length(x) != 1) { stop(\"Please provide a vector of length one for x\") \n  } else if (!is.atomic(x) & !is.character(x) & !is.matrix(x)) {\n    stop(\"x must be a character vector.\")\n  }\n\n  if (length(key) != 1) { stop(\"Please provide a vector of length one for key\") \n  } else if (!is.character(key) & (is.matrix(key) | !is.atomic(key))) {\n    stop(\"key must be a character vector.\")\n  }\n\n  y <- unlist(strsplit(x, \"\"))\n  y <- y[grepl(\"[A-z]\", y)]\n\n  k <- unlist(strsplit(key, \"\"))\n  k <- k[grepl(\"[A-z]\", k)]\n\n  if(length(k) >= length(y)) {\n    x <- vigenere(x, paste0(k, collapse = \"\"), decrypt = decrypt, keep_punctuation = keep_punctuation)\n    return(x)\n  } else {\n    stop(paste(\"The key must have an equal or greater number of letters to the text. The key has\",\n               length(k), \"characters and the message has\", length(y), \"characters.\"))\n  }\n}"
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#test-running_key.r",
     "href": "presentations/2023-02-11-cipheR-presentation.html#test-running_key.r",
-    "title": "cipheR 📦",
+    "title": "",
     "section": "test-running_key.R",
     "text": "test-running_key.R\ntest_that(\"Encryption works\", {\n  expect_equal(running_key(\"testmessage\", \"thisisakeytothecipher\"), \"mlaluwsceex\")\n})\n\ntest_that(\"Decryption works\", {\n  expect_equal(running_key(\"mlaluwsceex\", \"thisisakeytothecipher\", decrypt = TRUE), \"testmessage\")\n})\n\ntest_that(\"Key must be longer than x\", {\n  expect_error(running_key(\"testmessage\", \"key\"))\n})"
   },
