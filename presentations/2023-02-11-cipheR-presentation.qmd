@@ -31,13 +31,14 @@ install.packages("cipheR")
 
 -   Some cool new text ciphers perfect for passing notes in class
 -   Base R methods to deal with text
--   Writing speedy code with `apply` and vectorization
+-   Writing speedy code with `apply`
 
 # What I'm hoping to get feedback on
 
 -   Error handling (and if we have time, testing)
 -   UX and how best to work with vector inputs
 -   What kinds of code comments people expect in open source
+-   Any spots where I can swap an `apply` for vectorization
 
 # Caesar Cipher
 
@@ -53,6 +54,7 @@ install.packages("cipheR")
 -   `preserve_spaces` (Default: `TRUE`) A boolean describing if spaces should be preserved. This is helpful when working with sentences.
 -   `dict` The dictionary used for shifting. This defaults to NULL in which case a dictionary is built from the sorted unique values of `x`.
 -   `preset` A pre-made dictionary using ASCII codes from [ascii-code.com](https://www.ascii-code.com/). Note that `delete` is excluded as a character.
+  - The options are to only use provided characters (`NULL`), `alphanumeric`, `keyboard`, `letters`, `lowercase`, `uppercase`. Characters are US English.
 
 ## Examples
 
@@ -727,6 +729,7 @@ Do your worst! Or best, constructive criticism is always good.
 -   Error handling (and if we have time, testing)
 -   UX and how best to work with vector inputs
 -   What kinds of code comments people expect in open source
+-   Any spots where I can swap an `apply` for vectorization
 
 # Questions I have for you guys
 
