@@ -1,5 +1,5 @@
 ---
-title: "cipheR 📦"
+title: "![](https://cipher.guslipkin.me/logo.png){width=40%}"
 author: "Gus Lipkin"
 date: "2022-10-29"
 format: 
