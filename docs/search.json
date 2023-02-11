@@ -480,7 +480,7 @@
     "href": "presentations/2023-02-11-cipheR-presentation.html#parameters",
     "title": "",
     "section": "Parameters",
-    "text": "Parameters\n\nx A vector to be shifted\nn The number of places to shift by. This can be either positive or negative. Zero returns x as it was given to the function.\npreserve_spaces (Default: TRUE) A boolean describing if spaces should be preserved. This is helpful when working with sentences.\ndict The dictionary used for shifting. This defaults to NULL in which case a dictionary is built from the sorted unique values of x.\npreset A pre-made dictionary using ASCII codes from ascii-code.com. Note that delete is excluded as a character."
+    "text": "Parameters\n\nx A vector to be shifted\nn The number of places to shift by. This can be either positive or negative. Zero returns x as it was given to the function.\npreserve_spaces (Default: TRUE) A boolean describing if spaces should be preserved. This is helpful when working with sentences.\ndict The dictionary used for shifting. This defaults to NULL in which case a dictionary is built from the sorted unique values of x.\npreset A pre-made dictionary using ASCII codes from ascii-code.com. Note that delete is excluded as a character.\nThe options are to only use provided characters (NULL), alphanumeric, keyboard, letters, lowercase, uppercase. Characters are US English."
   },
   {
     "objectID": "presentations/2023-02-11-cipheR-presentation.html#examples",
