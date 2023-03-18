@@ -24,8 +24,6 @@ website:
         icon: linkedin
       - href: https://www.github.com/guslipkin
         icon: github
-      - href: https://www.twitter.com/GusLipkin
-        icon: twitter
 
 format:
   html:
