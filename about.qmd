@@ -105,14 +105,26 @@ format:
 <br>
 I attended Florida Poly from Fall 2018 and graduated in May 2022. You can learn
 more about [my time at Florida
-Poly](https://floridapoly.edu/search/?q=gus+lipkin) and [projects here](/).
-Since graduating from Florida Poly, I've begun pursuing a Master's in Analytics
-through Georgia Tech and am excited to continue my learning while I build my
-career. You can learn more about what I've been up to by taking a peek at [my
-LinkedIn](https://www.linkedin.com/in/guslipkin/), looking at my
+Poly](https://floridapoly.edu/search/?q=gus+lipkin) and [projects here](/). You can learn more about what I've been up to since graduating by taking a peek at [my LinkedIn](https://www.linkedin.com/in/guslipkin/), looking at my
 [résumé](resume.html), or [just asking me](contact.html).
 
 ## Selected Interests
+
+### R for Data Science Online Learning Community
+
+I've become quite active in the very long named [R for Data Science Online Learning Community](https://www.rfordatasci.com/). I participate in several book clubs ranging across a variety of data science related topics. I am also honored to be considered a community mentor and do my best to answer a variety of questions from other community members about R, statistics, data science, and other associated topics.
+
+::: {.callout-note collapse="true"}
+#### My Book Clubs
+
+| Book                                                        | Bookclub Meetings                                                                          |
+|-------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| [Dev Ops for Data Science](https://do4ds.com/)              | [do4ds01](https://www.youtube.com/playlist?list=PL3x6DOfs2NGh_vdoVBZ0Tp3nOrOgY_XIZ)        |
+| [Econometrics with R](https://www.econometrics-with-r.org/) | [econometrics01](https://www.youtube.com/playlist?list=PL3x6DOfs2NGg-dZDvNIVm-rCDPkm1VKNu) |
+| [Efficient R](https://csgillespie.github.io/efficientR/)    | [efficientr01](https://www.youtube.com/playlist?list=PL3x6DOfs2NGiHng8tTFaQrPkJoJNgCJPu)   |
+| Project Club                                                | [proj01](https://www.youtube.com/playlist?list=PL3x6DOfs2NGgRuMQogeHX0UTrGY_Ri6Y_)         |
+
+:::
 
 ### Biking 🚴‍♂️🚵‍♂️
 

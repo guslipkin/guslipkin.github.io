@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -76,55 +76,47 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">Gus Lipkin’s Awesome Website</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page">
+    <a class="nav-link active" href="./about.html" rel="" target="" aria-current="page">
  <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./resume.html">
+    <a class="nav-link" href="./resume.html" rel="" target="">
  <span class="menu-text">My Résumé</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-blogs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-blogs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">My Blogs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-my-blogs">    
         <li>
-    <a class="dropdown-item" href="./professional-blog.html">
+    <a class="dropdown-item" href="./professional-blog.html" rel="" target="">
  <span class="dropdown-text">My Professional Blog</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./personal-blog.html">
+    <a class="dropdown-item" href="./personal-blog.html" rel="" target="">
  <span class="dropdown-text">My Personal Blog</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./contact.html">
+    <a class="nav-link" href="./contact.html" rel="" target="">
  <span class="menu-text">Contact Me</span></a>
   </li>  
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/guslipkin/"><i class="bi bi-linkedin" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://www.github.com/guslipkin"><i class="bi bi-github" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-</ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools ms-auto tools-wide">
+    <a href="https://www.linkedin.com/in/guslipkin/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="https://www.github.com/guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://guslipkin.medium.com/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-medium"></i></a>
+    <a href="https://fosstodon.org/@guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-mastodon"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -141,6 +133,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#a-brief-history" id="toc-a-brief-history" class="nav-link active" data-scroll-target="#a-brief-history">A Brief History</a></li>
   <li><a href="#selected-interests" id="toc-selected-interests" class="nav-link" data-scroll-target="#selected-interests">Selected Interests</a>
   <ul class="collapse">
+  <li><a href="#r-for-data-science-online-learning-community" id="toc-r-for-data-science-online-learning-community" class="nav-link" data-scroll-target="#r-for-data-science-online-learning-community">R for Data Science Online Learning Community</a></li>
   <li><a href="#biking" id="toc-biking" class="nav-link" data-scroll-target="#biking">Biking 🚴‍♂️🚵‍♂️</a></li>
   <li><a href="#speedsolving" id="toc-speedsolving" class="nav-link" data-scroll-target="#speedsolving">Speedsolving</a></li>
   </ul></li>
@@ -258,10 +251,55 @@ After graduating high school in 2015, I launched the archery program at a summer
 </center>
 </div>
 </div>
-<p><br> I attended Florida Poly from Fall 2018 and graduated in May 2022. You can learn more about <a href="https://floridapoly.edu/search/?q=gus+lipkin">my time at Florida Poly</a> and <a href="./">projects here</a>. Since graduating from Florida Poly, I’ve begun pursuing a Master’s in Analytics through Georgia Tech and am excited to continue my learning while I build my career. You can learn more about what I’ve been up to by taking a peek at <a href="https://www.linkedin.com/in/guslipkin/">my LinkedIn</a>, looking at my <a href="resume.html">résumé</a>, or <a href="contact.html">just asking me</a>.</p>
+<p><br> I attended Florida Poly from Fall 2018 and graduated in May 2022. You can learn more about <a href="https://floridapoly.edu/search/?q=gus+lipkin">my time at Florida Poly</a> and <a href="./">projects here</a>. You can learn more about what I’ve been up to since graduating by taking a peek at <a href="https://www.linkedin.com/in/guslipkin/">my LinkedIn</a>, looking at my <a href="resume.html">résumé</a>, or <a href="contact.html">just asking me</a>.</p>
 </section>
 <section id="selected-interests" class="level2">
 <h2 class="anchored" data-anchor-id="selected-interests">Selected Interests</h2>
+<section id="r-for-data-science-online-learning-community" class="level3">
+<h3 class="anchored" data-anchor-id="r-for-data-science-online-learning-community">R for Data Science Online Learning Community</h3>
+<p>I’ve become quite active in the very long named <a href="https://www.rfordatasci.com/">R for Data Science Online Learning Community</a>. I participate in several book clubs ranging across a variety of data science related topics. I am also honored to be considered a community mentor and do my best to answer a variety of questions from other community members about R, statistics, data science, and other associated topics.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+My Book Clubs
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<table class="table">
+<thead>
+<tr class="header">
+<th>Book</th>
+<th>Bookclub Meetings</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://do4ds.com/">Dev Ops for Data Science</a></td>
+<td><a href="https://www.youtube.com/playlist?list=PL3x6DOfs2NGh_vdoVBZ0Tp3nOrOgY_XIZ">do4ds01</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://www.econometrics-with-r.org/">Econometrics with R</a></td>
+<td><a href="https://www.youtube.com/playlist?list=PL3x6DOfs2NGg-dZDvNIVm-rCDPkm1VKNu">econometrics01</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://csgillespie.github.io/efficientR/">Efficient R</a></td>
+<td><a href="https://www.youtube.com/playlist?list=PL3x6DOfs2NGiHng8tTFaQrPkJoJNgCJPu">efficientr01</a></td>
+</tr>
+<tr class="even">
+<td>Project Club</td>
+<td><a href="https://www.youtube.com/playlist?list=PL3x6DOfs2NGgRuMQogeHX0UTrGY_Ri6Y_">proj01</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
 <section id="biking" class="level3">
 <h3 class="anchored" data-anchor-id="biking">Biking 🚴‍♂️🚵‍♂️</h3>
 <p>Many years ago, there was a summer that I was on my bike so much that I didn’t even take my helmet off for meals. While my passion for biking certainly hasn’t waned, I don’t have as much time as I did when my biggest worries were making it home before dark. Until I moved to Florida, I volunteered for many years with the <a href="https://www.pmc.org">Pan-Mass Challenge</a>, first as a tire pumper and then a mechanic as I developed my skills. More recently, I started a small mountain biking <a href="https://www.youtube.com/channel/UCxIYX617QqHZgZ2DmxmbS4A">YouTube channel</a> that I update when I can. I also participated in the 2021 <a href="https://www.horrible-hundred.com">Horrible Hundred</a> and it was exactly as horrible as you might imagine.</p>
@@ -437,9 +475,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -504,6 +556,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

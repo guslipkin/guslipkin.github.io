@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,9 +20,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -49,43 +50,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -142,55 +113,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">Gus Lipkin’s Awesome Website</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../about.html">
+    <a class="nav-link" href="../about.html" rel="" target="">
  <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../resume.html">
+    <a class="nav-link" href="../resume.html" rel="" target="">
  <span class="menu-text">My Résumé</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-blogs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-blogs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">My Blogs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-my-blogs">    
         <li>
-    <a class="dropdown-item" href="../professional-blog.html">
+    <a class="dropdown-item" href="../professional-blog.html" rel="" target="">
  <span class="dropdown-text">My Professional Blog</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../personal-blog.html">
+    <a class="dropdown-item" href="../personal-blog.html" rel="" target="">
  <span class="dropdown-text">My Personal Blog</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../contact.html">
+    <a class="nav-link" href="../contact.html" rel="" target="">
  <span class="menu-text">Contact Me</span></a>
   </li>  
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/guslipkin/"><i class="bi bi-linkedin" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://www.github.com/guslipkin"><i class="bi bi-github" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-</ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools ms-auto tools-wide">
+    <a href="https://www.linkedin.com/in/guslipkin/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="https://www.github.com/guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://guslipkin.medium.com/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-medium"></i></a>
+    <a href="https://fosstodon.org/@guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-mastodon"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -226,7 +189,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#pivot-wider-with-two-or-more-name-columns" id="toc-pivot-wider-with-two-or-more-name-columns" class="nav-link" data-scroll-target="#pivot-wider-with-two-or-more-name-columns">Pivot Wider with Two or More Name Columns</a></li>
   <li><a href="#pivot-wider-with-mutiple-id-and-name-columns" id="toc-pivot-wider-with-mutiple-id-and-name-columns" class="nav-link" data-scroll-target="#pivot-wider-with-mutiple-id-and-name-columns">Pivot Wider with Mutiple ID and Name Columns</a></li>
   </ul></li>
-  <li><a href="#pivot-longer-from-wider" id="toc-pivot-longer-from-wider" class="nav-link" data-scroll-target="#pivot-longer-from-wider">Pivot Longer (from Wider)</a></li>
   <li><a href="#wrapping-things-up" id="toc-wrapping-things-up" class="nav-link" data-scroll-target="#wrapping-things-up">Wrapping Things Up</a>
   <ul class="collapse">
   <li><a href="#a-quick-benchmark" id="toc-a-quick-benchmark" class="nav-link" data-scroll-target="#a-quick-benchmark">A quick benchmark</a></li>
@@ -293,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-giraffe" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/giraffe.jpg" class="img-fluid figure-img" data-ref-parent="fig-giraffe-manta"></p>
-<p></p><figcaption class="figure-caption">(a) A giraffe (longer)</figcaption><p></p>
+<figcaption class="figure-caption">(a) A giraffe (longer)</figcaption>
 </figure>
 </div>
 </div>
@@ -301,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-manta" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/mantaray.jpg" class="img-fluid figure-img" data-ref-parent="fig-giraffe-manta"></p>
-<p></p><figcaption class="figure-caption">(b) A manta ray (wider)</figcaption><p></p>
+<figcaption class="figure-caption">(b) A manta ray (wider)</figcaption>
 </figure>
 </div>
 </div>
@@ -311,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
-<p>As usual, the first thing we want to do is load our libraries. We’ll be using <code>pivot_wider</code> and <code>pivot_longer</code> from <code>tidyverse</code> as well as the pipe operator, <code>|&gt;</code> from <code>magrittr</code> which is loaded through <code>tidyverse</code>. We’re also using <code>dcast</code> and <code>melt</code> from <code>data.table</code> as they are twins to <code>pivot_wider</code> and <code>pivot_longer</code>, respectively. While they are not identical, they perform the same functions are operate somewhat similarly.</p>
+<p>As usual, the first thing we want to do is load our libraries. We’ll be using <code>pivot_wider</code> and <code>pivot_longer</code> from <code>tidyverse</code> as well as the pipe operator, <code>%&gt;%</code> from <code>magrittr</code> which is loaded through <code>tidyverse</code>. We’re also using <code>dcast</code> and <code>melt</code> from <code>data.table</code> as they are twins to <code>pivot_wider</code> and <code>pivot_longer</code>, respectively. While they are not identical, they perform the same functions are operate somewhat similarly.</p>
 <div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/LoadLibraries_990bc044ff8d9cd01bbe85e965be2783">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -365,22 +327,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/CreateDummyData_72c0a45de023c306d56161eecbe9ba1a">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/CreateDummyData_be5c5a147296375bda5debb453a66e5b">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2022</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>rideName <span class="ot">&lt;-</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"The Amulet from Below"</span>, <span class="st">"The Strong Key Mystery"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"The Punishment of Bane"</span>, <span class="st">"The Mage Beyond the Grave"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"The Fury from Beyond"</span>), </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="dv">108</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>shortName <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"amulet"</span>, <span class="st">"key"</span>, <span class="st">"punishment"</span>, <span class="st">"mage"</span>, <span class="st">"fury"</span>), <span class="dv">108</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="fu">as.ITime</span>(<span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">8</span><span class="sc">*</span><span class="dv">3600</span>, <span class="dv">17</span><span class="sc">*</span><span class="dv">3600-1</span>, <span class="at">by =</span> <span class="dv">60</span><span class="sc">*</span><span class="dv">5</span>), <span class="at">times =</span> <span class="dv">1</span>, <span class="at">each =</span> <span class="dv">5</span>))</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>attendance <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">108</span>, <span class="dv">5000</span>, <span class="dv">100</span>)), <span class="at">times =</span> <span class="dv">1</span>, <span class="at">each =</span> <span class="dv">5</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>estimatedWait <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(rideName), <span class="dv">50</span>, <span class="dv">10</span>))</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>actualWait <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(rideName), estimatedWait, <span class="dv">5</span>))</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  rideName, shortName, time, attendance, estimatedWait, actualWait</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>rideName <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"The Amulet from Below"</span>, <span class="st">"The Strong Key Mystery"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"The Punishment of Bane"</span>, <span class="st">"The Mage Beyond the Grave"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"The Fury from Beyond"</span>), <span class="dv">108</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>shortName <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"amulet"</span>, <span class="st">"key"</span>, <span class="st">"punishment"</span>, <span class="st">"mage"</span>, <span class="st">"fury"</span>), <span class="dv">108</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>time <span class="ot">&lt;-</span> <span class="fu">as.ITime</span>(<span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">8</span><span class="sc">*</span><span class="dv">3600</span>, <span class="dv">17</span><span class="sc">*</span><span class="dv">3600-1</span>, <span class="at">by =</span> <span class="dv">60</span><span class="sc">*</span><span class="dv">5</span>), <span class="at">times =</span> <span class="dv">1</span>, <span class="at">each =</span> <span class="dv">5</span>))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>attendance <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">108</span>, <span class="dv">5000</span>, <span class="dv">100</span>)), <span class="at">times =</span> <span class="dv">1</span>, <span class="at">each =</span> <span class="dv">5</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>estimatedWait <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(rideName), <span class="dv">50</span>, <span class="dv">10</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>actualWait <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(rideName), estimatedWait, <span class="dv">5</span>))</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(rideName, shortName, time, attendance, </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                 estimatedWait, actualWait)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once created, the data looks like this:</p>
 <div class="table-wrapper" data-markdown="block">
@@ -470,7 +429,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-original" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/original.png" class="img-fluid figure-img" data-ref-parent="fig-original-wider"></p>
-<p></p><figcaption class="figure-caption">(a) The original data</figcaption><p></p>
+<figcaption class="figure-caption">(a) The original data</figcaption>
 </figure>
 </div>
 </div>
@@ -478,7 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-wider" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/wider.png" class="img-fluid figure-img" data-ref-parent="fig-original-wider"></p>
-<p></p><figcaption class="figure-caption">(b) The wider data</figcaption><p></p>
+<figcaption class="figure-caption">(b) The wider data</figcaption>
 </figure>
 </div>
 </div>
@@ -499,7 +458,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-original" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/original.png" class="img-fluid figure-img" data-ref-parent="fig-original-longer"></p>
-<p></p><figcaption class="figure-caption">(a) The original data</figcaption><p></p>
+<figcaption class="figure-caption">(a) The original data</figcaption>
 </figure>
 </div>
 </div>
@@ -507,7 +466,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-longer" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/longer.png" class="img-fluid figure-img" data-ref-parent="fig-original-longer"></p>
-<p></p><figcaption class="figure-caption">(b) The longer data</figcaption><p></p>
+<figcaption class="figure-caption">(b) The longer data</figcaption>
 </figure>
 </div>
 </div>
@@ -596,27 +555,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>That’s okay if you’re expecting multiple values, you’ll just need to remember use use <code>values_fn</code> for <code>pivot_wider</code> or <code>fun.aggregate</code> for <code>dcast</code> to make sure they are being handled appropriately. A common use-case would be something similar to pivot tables in Excel where you want to count each item. In that case, your function argument would be <code>count</code>.</p>
 <p>The basic format to check for for duplicates is <code>x[duplicated(x)]</code>. However, <code>duplicated()</code> only returns <code>TRUE</code> for the second or more occurrence of an item in <code>x</code>. In order to check for all duplicates, we need to also check <code>fromLast</code> like this: <code>x[duplicated(x) | duplicated(x), fromLast = TRUE]</code>. Once you have identified your duplicate rows, it is up to you what to do. In some cases, you might be okay using <code>unique(x)</code> to get only unique items, or you might want to discard all duplicated items altogether with <code>x[!duplicated(x) &amp; !duplicated(x, fromLast = TRUE)]</code>.</p>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/DuplicatedData_16edbe02ea0a520fc9c0158f24ea4b7b">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/DuplicatedData_7f05b528591e44bf422f5d3a920bbf7a">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create duplicated data</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dtDuplicated <span class="ot">&lt;-</span> <span class="fu">rbind</span>(dt, dt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># DuplicatedData.csv</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dtDuplicated <span class="sc">|&gt;</span> </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance, estimatedWait), </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> shortName, </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> actualWait</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># DuplicatedOnly.csv</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># show all duplicated rows</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>dtDuplicated <span class="sc">|&gt;</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">duplicated</span>(dtDuplicated) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">duplicated</span>(dtDuplicated, <span class="at">fromLast =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rideName, time)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># DuplicatedDropped.csv</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># drop duplicated rows</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>dtDuplicated <span class="sc">|&gt;</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dtDuplicated <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance, estimatedWait), </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">names_from =</span> shortName, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">values_from =</span> actualWait)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># DuplicatedOnly.csv</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># show all duplicated rows</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>dtDuplicated <span class="sc">%&gt;%</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">duplicated</span>(dtDuplicated) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">duplicated</span>(dtDuplicated, <span class="at">fromLast =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rideName, time)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># DuplicatedDropped.csv</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># drop duplicated rows</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>dtDuplicated <span class="sc">%&gt;%</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="pivot-wider" class="level1">
@@ -626,31 +582,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this example, we want to know how long the <code>actualWait</code> is for each ride throughout the day with each recording time as a row, and each ride as a column.</p>
 <p>In the <code>pivot_wider</code>, we want our new column <code>names_from</code> to be the <code>shortName</code> and our <code>values_from</code> <code>actualWait</code>. The tricky bit here is the <code>id_cols</code> argument. <code>id_cols</code> are columns whose values should uniquely identify each row in the data. We need to use it because the <code>rideName</code> and <code>shortName</code> columns are perfectly correlated, that is, for each row the value of both columns will always be the same. Any column that is not in the <code>names_from</code> or <code>values_from</code> argument will be part of the default <code>id_cols</code> argument. We can use the argument two ways; we can use a numeric vector to select the columns that we want to be used as identifiers, or we can specify columns that we do not want used as a character or column name vector. In the example below, I’ve included both methods. For the rest of the post, I’ll be using the second method.</p>
 <p>As mentioned previously, the biggest difference for <code>dcast</code> is that it uses a formula instead of the <code>id_cols</code> and <code>names_from</code> arguments. The left hand side of the formula is the columns that you want to stay as columns to be used as the unique identifier for each row. The right hand side of the formula is the column whose values will be used as the new column names. Lastly, <code>value.var</code> defines the column with the desired values.</p>
-<div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWider_1d37490d5eba4e090ef10502c3f996d7">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWider_03b62e0f5cbbe127e30b5b4ceefb50a3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with one value column</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">|&gt;</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> shortName,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> actualWait</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">|&gt;</span> </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance, estimatedWait),</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> shortName,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> actualWait</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">names_from =</span> shortName, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">values_from =</span> actualWait)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance, estimatedWait), </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">names_from =</span> shortName, </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">values_from =</span> actualWait)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-1_f6deea773a726f1b5c7e291338174f9e">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-1_cd6787f034abe456905f6c35595a93bc">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with one value column</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">|&gt;</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dcast</span>(time <span class="sc">~</span> shortName, <span class="at">value.var =</span> <span class="st">"actualWait"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">~</span> shortName, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">value.var =</span> <span class="st">"actualWait"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -723,25 +673,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="wider-with-two-or-more-value-columns" class="level2">
 <h2 class="anchored" data-anchor-id="wider-with-two-or-more-value-columns">Wider with Two or More Value Columns</h2>
 <p>Wider data with more than one value column is very similar to one value column. The only changes you need to make in <code>pivot_wider</code> are changing your <code>id_cols</code> argument if using the column name method and adding the new column to the <code>values_from</code> argument. The only change needed in <code>dcast</code> is adding to the <code>value.var</code> argument. One important thing to note is that the column names will now be a combination of the <code>names_from</code>/right hand side argument and the <code>values_from</code>/<code>value.var</code> argument. The column name order in the <code>value*</code> argument determines the column order in the resulting data.</p>
-<div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderTwoRight_c5f4020f941db059899b4c744c1717cc">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderTwoRight_b93b18f246f00ce6c6dd1cedd3c78c0e">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with two value columns</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">|&gt;</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance), </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> shortName, </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="fu">c</span>(estimatedWait, actualWait)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance), </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">names_from =</span> shortName, </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">values_from =</span> <span class="fu">c</span>(estimatedWait, actualWait))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-2_ca51ecfdaa3dc4da2ce7bedcd89b0c50">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-2_9894048d3f47b0dd3808ae27a7c9a240">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with two value columns</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">|&gt;</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dcast</span>(time <span class="sc">~</span> shortName, <span class="at">value.var =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">~</span> shortName, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">value.var =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -862,25 +809,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="pivot-wider-two-or-more-id-columns" class="level2">
 <h2 class="anchored" data-anchor-id="pivot-wider-two-or-more-id-columns">Pivot Wider Two or More ID Columns</h2>
 <p>Again, this is pretty similar to a “normal” wider operation. With <code>pivot_wider</code> you expand your <code>id_cols</code> to include the new columns, or, in my case, drop the <code>attendance</code> column so that it is now included. With <code>dcast</code>, you simply add the new column to the left hand side of the formula.</p>
-<div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderTwoLeft_fb458e3fe3d88d32cb7cab5c75fd49fd">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderTwoLeft_3f27671548b74fd2e1000726f3e6c7e7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with two id columns</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">|&gt;</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, estimatedWait),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> shortName,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> actualWait</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, estimatedWait),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">names_from =</span> shortName,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">values_from =</span> actualWait)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-3_b248d5aa06198af9493bb707cd4574ce">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-3_a6dbe9e6dc6decda0138a49ef1d4b851">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with two id columns</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">|&gt;</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dcast</span>(time <span class="sc">+</span> attendance <span class="sc">~</span> shortName, <span class="at">value.var =</span> <span class="st">"actualWait"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">+</span> attendance <span class="sc">~</span> shortName,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">value.var =</span> <span class="st">"actualWait"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -962,33 +906,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Pivot Longer</h1>
 <p><code>pivot_longer</code> and <code>melt</code> are very similar. The largest differences are the argument names and where they require argument values to be in quotes. <code>cols</code>/<code>measure.vars</code> are the columns that you want to be aggregated into a single new column. This argument must be in quotes for <code>melt</code>, but does not have to be for <code>pivot_longer</code> and should be the names of existing columns. <code>names_to</code>/<code>values_to</code> is the name of the column that will say which column was used for that row and <code>values_to</code>/<code>value.name</code> are the corresponding values. The name for each of these new columns is up to you. I have decided on <code>waitType</code> to describe if it is an <code>estimatedWait</code> or <code>actualWait</code> and <code>waitTime</code> to hold the value.</p>
 <p>I’ve saved a copy of the longer data as <code>dtLonger</code> so that we can explore <code>pivot_wider</code> and <code>dcast</code> a bit more.</p>
-<div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotLonger_5dddcde638d7bb5162a84491f9ff5ecc">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotLonger_e913c4be861fc1ba3fc4c88a6d686ae6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot longer</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="ot">&lt;-</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  dt <span class="sc">|&gt;</span> </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(estimatedWait, actualWait), </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"waitType"</span>, </span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"waitTime"</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(estimatedWait, actualWait), </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">names_to =</span> <span class="st">"waitType"</span>, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">values_to =</span> <span class="st">"waitTime"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="ot">-&gt;</span> dtLonger</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-4_281211e22312e88d1885bed912e760a3">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-4_d952829637a8b98718cb8e38519699cf">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot longer</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="ot">&lt;-</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  dt <span class="sc">|&gt;</span> </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">melt</span>(</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">measure.vars =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>),</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">variable.name =</span> <span class="st">"waitType"</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">value.name =</span> <span class="st">"waitTime"</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">melt</span>(<span class="at">measure.vars =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">variable.name =</span> <span class="st">"waitType"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">value.name =</span> <span class="st">"waitTime"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="ot">-&gt;</span> dtLonger</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1073,25 +1009,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We want to take our new longer data and change it to wider data where we want to know how long the <code>actualWait</code> and <code>estimatedWait</code> are for each ride throughout the day with each recording time as a row, and each ride as a column and <code>waitType</code> and <code>shortName</code>.</p>
 <p>For <code>pivot_wider</code>, we want our column names to use both the <code>waitType</code> and <code>shortName</code> and our values from <code>waitTime</code>. <code>id_cols</code> is then the remaining columns that we don’t want. With <code>dcast</code>, we want to add <code>waitType</code> and <code>shortName</code> to the right hand side of the formula so they are used as the column names, and <code>time</code> to the left hand side for the row identifiers. For both, <code>values_from</code> and <code>value.var</code> are our <code>waitTime</code> column.</p>
 <p>Like when using multiple values in <code>value_from</code>/<code>value.var</code>, the new column names are all combinations of values in <code>names_from</code> or right hand side. The combinations will be given in the order the column names are specified.</p>
-<div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderFromLonger_c7f3d0fbbfe17601130bc6058b0b5278">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderFromLonger_4a19dc92cb361a0da01b61b4a5fbfc9d">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with more than one right hand column</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">|&gt;</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance), </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="fu">c</span>(waitType, shortName), </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> waitTime</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance), </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names_from =</span> <span class="fu">c</span>(waitType, shortName), </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">values_from =</span> waitTime)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-5_45348a392403b7d45906b1286e56bdea">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-5_ea825afac20a92b9a2be52bef0ef2cb9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with more than one right hand column</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">|&gt;</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dcast</span>(time <span class="sc">~</span> waitType <span class="sc">+</span> shortName, <span class="at">value.var =</span> <span class="st">"waitTime"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">~</span> waitType <span class="sc">+</span> shortName, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">value.var =</span> <span class="st">"waitTime"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1212,25 +1145,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="pivot-wider-with-mutiple-id-and-name-columns" class="level2">
 <h2 class="anchored" data-anchor-id="pivot-wider-with-mutiple-id-and-name-columns">Pivot Wider with Mutiple ID and Name Columns</h2>
 <p>If you’ve been following along so far, the code below should make sense. We want to use <code>time</code> and <code>attendance</code> as the row identifiers and the <code>estimatedWait</code> and <code>actualWait</code> as the values for each ride.</p>
-<div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderTwoLeftRight_5327f24fc7060dd96074183574247949">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderTwoLeftRight_3971dcee81080d89d8f819f03f8db2e8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with more than one left and right hand column</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">|&gt;</span> </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="sc">!</span>rideName, </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="fu">c</span>(waitType, shortName), </span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> waitTime</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span>rideName, </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names_from =</span> <span class="fu">c</span>(waitType, shortName), </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">values_from =</span> waitTime)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-6_6306ae7fcdc93bd40e06040acd986dad">
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-6_ead21d49a4c7d6323be80bb59e4c29a1">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with more than one left and right hand column</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">|&gt;</span> </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dcast</span>(time <span class="sc">+</span> attendance <span class="sc">~</span> waitType <span class="sc">+</span> shortName, <span class="at">value.var =</span> <span class="st">"waitTime"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">+</span> attendance <span class="sc">~</span> waitType <span class="sc">+</span> shortName, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">value.var =</span> <span class="st">"waitTime"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1357,158 +1287,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 </section>
-<section id="pivot-longer-from-wider" class="level1">
-<h1>Pivot Longer (from Wider)</h1>
-<p>Let’s say that instead of our original table, we get our data formatted like our output from Pivot Wider. We have a time and attendance for each row, and a pair of <code>estimatedWait_*</code> and <code>actualWait_*</code> columns for each ride. How can we convert this back to a format where we have rows for each ride, time, and attendance, and columns for the <code>estimatedWait</code> and <code>actualWait</code>? Let’s call that data.table <code>dtWider</code>.</p>
-<p>There are a few key changes here, compared to the previous section on <code>pivot_longer</code>. Since we now have 10 columns that we want to pivot (2 types of waits for each of the five rides), it would be annoying to name every column and so we can turn to <code>tidyselect</code> for help. We can use <code>contains</code> to select every column that contains “Wait” in it. The next key difference is the <code>names_pattern</code> argument that takes the place of <code>values_to</code>. We supply a <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expression</a> where each capture group (the bits between parentheses) represents how we want the column names split. We want either “estimatedwait” or “actualWait” and any character that comes after the “_” because those are the ride short names. We then supply two values in a vector to <code>names_to</code>. The new <code>".value"</code> item represents the <code>values_to</code> argument and its placement in the vector is important as it must match the capture group from <code>names_pattern</code> that you want to use as the value columns. In this case, we want our wait columns to be our value columns and since that is the first capture group, we place <code>".value"</code> first. Our second name, <code>"shortName"</code> is then matched to the second capture group which is the ride names. Lastly, just to get everything in the same order as our original data, we arrange by <code>time</code>.</p>
-<p>Unfortunately, the solution for <code>melt</code> isn’t as clean. Instead of supplying <code>measure.vars</code> with column names with <code>contains</code>, we need to supply a function call to <code>patterns</code>. Similar to the <code>names_pattern</code> argument, we need to supply a regular expression. However, here we need to distinguish our different wait types so we supply one pattern each for each of the two wait types. We can then supply a vector to <code>value.name</code> with our two wait column names. Like with <code>pivot_longer</code>, we need to make sure that our <code>patterns</code> arguments are in the same order as the vector supplied to <code>value.name</code>. Lastly, we can supply our <code>variable.name</code>. Unfortunately, <code>melt</code> can’t grab our ride names from our regular expressions like <code>pivot_longer</code> can and so our <code>shortName</code> column is now a factor with numbers. Thankfully, this is a relatively easy fix with <code>forcats::lvls_revalue</code> that helps us re-assign our factors to their original names. Then, just like with <code>pivot_longer</code>, we arrange by <code>time</code> to get back to our original format.</p>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false"><code>data.table</code></a></li></ul>
-<div class="tab-content">
-<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-8_5f0ccdcbff0543b8a6058b348245d0be">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dtWider <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">"Wait"</span>),</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_pattern =</span> <span class="st">"(estimatedWait|actualWait)_(.+)"</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">".value"</span>, <span class="st">"shortName"</span>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-9_390a458edc856f1fb700af4390aeae66">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dtWider <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">melt</span>(</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">measure.vars =</span> <span class="fu">patterns</span>(<span class="st">"(estimatedWait)_(.+)"</span>, <span class="st">"(actualWait)_(.+)"</span>),</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">value.name =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>),</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">variable.name =</span> <span class="st">"shortName"</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">shortName =</span> forcats<span class="sc">::</span><span class="fu">lvls_revalue</span>(</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>      shortName, <span class="fu">c</span>(<span class="st">"amulet"</span>, <span class="st">"key"</span>, <span class="st">"punishment"</span>, <span class="st">"mage"</span>, <span class="st">"fury"</span>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-<table class="table">
-<thead>
-<tr class="header">
-<th>time</th>
-<th>attendance</th>
-<th>shortName</th>
-<th>estimatedWait</th>
-<th>actualWait</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>08:00:00</td>
-<td>5090</td>
-<td>amulet</td>
-<td>53</td>
-<td>54</td>
-</tr>
-<tr class="even">
-<td>08:00:00</td>
-<td>5090</td>
-<td>key</td>
-<td>30</td>
-<td>19</td>
-</tr>
-<tr class="odd">
-<td>08:00:00</td>
-<td>5090</td>
-<td>punishment</td>
-<td>62</td>
-<td>64</td>
-</tr>
-<tr class="even">
-<td>08:00:00</td>
-<td>5090</td>
-<td>mage</td>
-<td>40</td>
-<td>33</td>
-</tr>
-<tr class="odd">
-<td>08:00:00</td>
-<td>5090</td>
-<td>fury</td>
-<td>56</td>
-<td>55</td>
-</tr>
-<tr class="even">
-<td>08:05:00</td>
-<td>4883</td>
-<td>amulet</td>
-<td>45</td>
-<td>48</td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="wrapping-things-up" class="level1">
 <h1>Wrapping Things Up</h1>
 <section id="a-quick-benchmark" class="level2">
 <h2 class="anchored" data-anchor-id="a-quick-benchmark">A quick benchmark</h2>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/Benchmark_4d61f317c578bdd8cc6bcb69a3e60ae8">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rbenchmark<span class="sc">::</span><span class="fu">benchmark</span>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pivot_wider"</span> <span class="ot">=</span> {</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">|&gt;</span> </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pivot_wider</span>(</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance, estimatedWait), </span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_from =</span> shortName, </span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_from =</span> actualWait</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dcast"</span> <span class="ot">=</span> {</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">|&gt;</span> </span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">dcast</span>(time <span class="sc">~</span> shortName, <span class="at">value.var =</span> <span class="st">"actualWait"</span>)</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">order =</span> <span class="st">"user.self"</span>)</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>rbenchmark<span class="sc">::</span><span class="fu">benchmark</span>(</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pivot_longer"</span> <span class="ot">=</span> {</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">|&gt;</span> </span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pivot_longer</span>(</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">cols =</span> <span class="fu">c</span>(estimatedWait, actualWait), </span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_to =</span> <span class="st">"waitType"</span>, </span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_to =</span> <span class="st">"waitTime"</span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"melt"</span> <span class="ot">=</span> {</span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">|&gt;</span> </span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">melt</span>(</span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">measure.vars =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>),</span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">variable.name =</span> <span class="st">"waitType"</span>,</span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">value.name =</span> <span class="st">"waitTime"</span></span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">order =</span> <span class="st">"user.self"</span>)</span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>rbenchmark<span class="sc">::</span><span class="fu">benchmark</span>(</span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pivot_longer_from_wider"</span> <span class="ot">=</span> {</span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dtWider <span class="sc">|&gt;</span></span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pivot_longer</span>(</span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">"Wait"</span>),</span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_pattern =</span> <span class="st">"(estimatedWait|actualWait)_(.+)"</span>,</span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">".value"</span>, <span class="st">"shortName"</span>)</span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>  <span class="st">"melt_from_wider"</span> <span class="ot">=</span> {</span>
-<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dtWider <span class="sc">|&gt;</span></span>
-<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">melt</span>(</span>
-<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">measure.vars =</span> <span class="fu">patterns</span>(<span class="st">"(estimatedWait)_(.+)"</span>, <span class="st">"(actualWait)_(.+)"</span>),</span>
-<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>        <span class="at">value.name =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>),</span>
-<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">variable.name =</span> <span class="st">"shortName"</span></span>
-<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">|&gt;</span></span>
-<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
-<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>        <span class="at">shortName =</span> forcats<span class="sc">::</span><span class="fu">lvls_revalue</span>(</span>
-<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>          shortName, <span class="fu">c</span>(<span class="st">"amulet"</span>, <span class="st">"key"</span>, <span class="st">"punishment"</span>, <span class="st">"mage"</span>, <span class="st">"fury"</span>)</span>
-<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">order =</span> <span class="st">"user.self"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/Benchmark_715ff8b10ff8dc20066ecf2888731838">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rbenchmark<span class="sc">::</span><span class="fu">benchmark</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pivot_wider"</span> <span class="ot">=</span> {</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance, estimatedWait), </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">names_from =</span> shortName, </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">values_from =</span> actualWait)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dcast"</span> <span class="ot">=</span> {</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">~</span> shortName, </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">value.var =</span> <span class="st">"actualWait"</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">order =</span> <span class="st">"user.self"</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>rbenchmark<span class="sc">::</span><span class="fu">benchmark</span>(</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pivot_longer"</span> <span class="ot">=</span> {</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(estimatedWait, actualWait), </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>                               <span class="at">names_to =</span> <span class="st">"waitType"</span>, </span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>                               <span class="at">values_to =</span> <span class="st">"waitTime"</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"melt"</span> <span class="ot">=</span> {</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span> <span class="fu">melt</span>(<span class="at">measure.vars =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>),</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>                       <span class="at">variable.name =</span> <span class="st">"waitType"</span>,</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>                       <span class="at">value.name =</span> <span class="st">"waitTime"</span>)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">order =</span> <span class="st">"user.self"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="table-wrapper" data-markdown="block">
 <table class="table">
@@ -1600,54 +1405,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td>30.4</td>
 <td>0.149</td>
 <td>0.003</td>
-<td>0</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="table-wrapper" data-markdown="block">
-<table class="table">
-<colgroup>
-<col style="width: 24%">
-<col style="width: 13%">
-<col style="width: 8%">
-<col style="width: 9%">
-<col style="width: 10%">
-<col style="width: 9%">
-<col style="width: 11%">
-<col style="width: 10%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>test</th>
-<th>replications</th>
-<th>elapsed</th>
-<th>relative</th>
-<th>user.self</th>
-<th>sys.self</th>
-<th>user.child</th>
-<th>sys.child</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>melt_from_wider</td>
-<td>100</td>
-<td>0.118</td>
-<td>1.000</td>
-<td>0.117</td>
-<td>0.001</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>pivot_longer_from_wider</td>
-<td>100</td>
-<td>0.306</td>
-<td>2.593</td>
-<td>0.300</td>
-<td>0.006</td>
 <td>0</td>
 <td>0</td>
 </tr>
@@ -1812,9 +1569,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1879,6 +1650,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

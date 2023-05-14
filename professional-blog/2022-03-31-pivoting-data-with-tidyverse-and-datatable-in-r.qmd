@@ -36,7 +36,7 @@ Longer and wider animals
 
 ## Getting Started
 
-As usual, the first thing we want to do is load our libraries. We'll be using `pivot_wider` and `pivot_longer` from `tidyverse` as well as the pipe operator, `|>` from `magrittr` which is loaded through `tidyverse`. We're also using `dcast` and `melt` from `data.table` as they are twins to `pivot_wider` and `pivot_longer`, respectively. While they are not identical, they perform the same functions are operate somewhat similarly.
+As usual, the first thing we want to do is load our libraries. We'll be using `pivot_wider` and `pivot_longer` from `tidyverse` as well as the pipe operator, `%>%` from `magrittr` which is loaded through `tidyverse`. We're also using `dcast` and `melt` from `data.table` as they are twins to `pivot_wider` and `pivot_longer`, respectively. While they are not identical, they perform the same functions are operate somewhat similarly.
 
 ```{r LoadLibraries}
 #| message: FALSE
@@ -62,20 +62,17 @@ Next we want to create our dummy data. I've been working with theme park data a 
 
 ```{r CreateDummyData}
 set.seed(2022)
-rideName <- 
-  rep(c("The Amulet from Below", "The Strong Key Mystery",
-        "The Punishment of Bane", "The Mage Beyond the Grave",
-        "The Fury from Beyond"), 
-      108)
+rideName <- rep(c("The Amulet from Below", "The Strong Key Mystery",
+                  "The Punishment of Bane", "The Mage Beyond the Grave",
+                  "The Fury from Beyond"), 108)
 shortName <- rep(c("amulet", "key", "punishment", "mage", "fury"), 108)
 time <- as.ITime(rep(seq(8*3600, 17*3600-1, by = 60*5), times = 1, each = 5))
 attendance <- rep(round(rnorm(108, 5000, 100)), times = 1, each = 5)
 estimatedWait <- round(rnorm(length(rideName), 50, 10))
 actualWait <- round(rnorm(length(rideName), estimatedWait, 5))
 
-dt <- data.table(
-  rideName, shortName, time, attendance, estimatedWait, actualWait
-  )
+dt <- data.table(rideName, shortName, time, attendance, 
+                 estimatedWait, actualWait)
 ```
 
 Once created, the data looks like this:
@@ -108,7 +105,6 @@ Once created, the data looks like this:
 ![The wider data](../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/wider.png){#fig-wider}
 
 Wider data expands columns and decreases length
-
 :::
 
 In the example above, I've pivoted the `actualWait` using the `time` and `shortName` columns. We can see that the first five rows of values in `actualWait` have become the first row of values in the wider data. The last row with *The Amulet from Below* at 8:05 becomes the value for `amulet` in the second row of the wider data where the `time` is 8:05.
@@ -126,7 +122,6 @@ While `pivot_wider` and `dcast` perform the same function, they behave a little 
 ![The longer data](../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/longer.png){#fig-longer}
 
 Longer data combines columns and decreases width
-
 :::
 
 In the example above, the `estimatedWait` and `actualWait` columns are consolidated into the `waitType` column where each row specifies if the corresponding `waitTime` column is an estimated or actual wait time.
@@ -158,22 +153,19 @@ The basic format to check for for duplicates is `x[duplicated(x)]`. However, `du
 # create duplicated data
 dtDuplicated <- rbind(dt, dt[1:5])
 # DuplicatedData.csv
-dtDuplicated |> 
-  pivot_wider(
-    id_cols = !c(rideName, attendance, estimatedWait), 
-    names_from = shortName, 
-    values_from = actualWait
-  )
+dtDuplicated %>% pivot_wider(id_cols = !c(rideName, attendance, estimatedWait), 
+                              names_from = shortName, 
+                              values_from = actualWait)
 
 # DuplicatedOnly.csv
 # show all duplicated rows
-dtDuplicated |>
-  filter(!duplicated(dtDuplicated) & !duplicated(dtDuplicated, fromLast = TRUE)) |>
+dtDuplicated %>%
+  filter(!duplicated(dtDuplicated) & !duplicated(dtDuplicated, fromLast = TRUE)) %>%
   arrange(rideName, time)
 
 # DuplicatedDropped.csv
 # drop duplicated rows
-dtDuplicated |>
+dtDuplicated %>%
   unique()
 ```
 
@@ -193,26 +185,20 @@ As mentioned previously, the biggest difference for `dcast` is that it uses a fo
 
 ```{r PivotWider}
 # pivot wider with one value column
-dt |> 
-  pivot_wider(
-    id_cols = 2:3,
-    names_from = shortName,
-    values_from = actualWait
-  )
-dt |> 
-  pivot_wider(
-    id_cols = !c(rideName, attendance, estimatedWait),
-    names_from = shortName,
-    values_from = actualWait
-  )
+dt %>% pivot_wider(id_cols = 2:3, 
+                   names_from = shortName, 
+                   values_from = actualWait)
+dt %>% pivot_wider(id_cols = !c(rideName, attendance, estimatedWait), 
+                   names_from = shortName, 
+                   values_from = actualWait)
 ```
 
 ### `data.table`
 
 ```{r}
 # pivot wider with one value column
-dt |> 
-  dcast(time ~ shortName, value.var = "actualWait")
+dt %>% dcast(time ~ shortName, 
+             value.var = "actualWait")
 ```
 
 :::
@@ -240,20 +226,17 @@ Wider data with more than one value column is very similar to one value column. 
 
 ```{r PivotWiderTwoRight}
 # pivot wider with two value columns
-dt |> 
-  pivot_wider(
-    id_cols = !c(rideName, attendance), 
-    names_from = shortName, 
-    values_from = c(estimatedWait, actualWait)
-  )
+dt %>% pivot_wider(id_cols = !c(rideName, attendance), 
+                   names_from = shortName, 
+                   values_from = c(estimatedWait, actualWait))
 ```
 
 ### `data.table`
 
 ```{r}
 # pivot wider with two value columns
-dt |> 
-  dcast(time ~ shortName, value.var = c("estimatedWait", "actualWait"))
+dt %>% dcast(time ~ shortName, 
+             value.var = c("estimatedWait", "actualWait"))
 ```
 
 :::
@@ -281,20 +264,17 @@ Again, this is pretty similar to a "normal" wider operation. With `pivot_wider` 
 
 ```{r PivotWiderTwoLeft}
 # pivot wider with two id columns
-dt |> 
-  pivot_wider(
-    id_cols = !c(rideName, estimatedWait),
-    names_from = shortName,
-    values_from = actualWait
-  )
+dt %>% pivot_wider(id_cols = !c(rideName, estimatedWait),
+                   names_from = shortName,
+                   values_from = actualWait)
 ```
 
 ### `data.table`
 
 ```{r}
 # pivot wider with two id columns
-dt |> 
-  dcast(time + attendance ~ shortName, value.var = "actualWait")
+dt %>% dcast(time + attendance ~ shortName,
+             value.var = "actualWait")
 ```
 
 :::
@@ -324,28 +304,20 @@ I've saved a copy of the longer data as `dtLonger` so that we can explore `pivot
 
 ```{r PivotLonger}
 # pivot longer
-dtLonger <-
-  dt |> 
-  pivot_longer(
-    cols = c(estimatedWait, actualWait), 
-    names_to = "waitType", 
-    values_to = "waitTime"
-  ) |>
-  print()
+dt %>% pivot_longer(cols = c(estimatedWait, actualWait), 
+                    names_to = "waitType", 
+                    values_to = "waitTime") %>%
+  print() -> dtLonger
 ```
 
 ### `data.table`
 
 ```{r}
 # pivot longer
-dtLonger <-
-  dt |> 
-  melt(
-    measure.vars = c("estimatedWait", "actualWait"),
-    variable.name = "waitType",
-    value.name = "waitTime"
-  ) |>
-  print()
+dt %>% melt(measure.vars = c("estimatedWait", "actualWait"),
+            variable.name = "waitType",
+            value.name = "waitTime") %>%
+  print() -> dtLonger
 ```
 
 :::
@@ -379,20 +351,17 @@ Like when using multiple values in `value_from`/`value.var`, the new column name
 
 ```{r PivotWiderFromLonger}
 # pivot wider with more than one right hand column
-dtLonger |> 
-  pivot_wider(
-    id_cols = !c(rideName, attendance), 
-    names_from = c(waitType, shortName), 
-    values_from = waitTime
-  )
+dtLonger %>% pivot_wider(id_cols = !c(rideName, attendance), 
+                         names_from = c(waitType, shortName), 
+                         values_from = waitTime)
 ```
 
 ### `data.table`
 
 ```{r}
 # pivot wider with more than one right hand column
-dtLonger |> 
-  dcast(time ~ waitType + shortName, value.var = "waitTime")
+dtLonger %>% dcast(time ~ waitType + shortName, 
+                   value.var = "waitTime")
 ```
 
 :::
@@ -420,20 +389,17 @@ If you've been following along so far, the code below should make sense. We want
 
 ```{r PivotWiderTwoLeftRight}
 # pivot wider with more than one left and right hand column
-dtLonger |> 
-  pivot_wider(
-    id_cols = !rideName, 
-    names_from = c(waitType, shortName), 
-    values_from = waitTime
-  )
+dtLonger %>% pivot_wider(id_cols = !rideName, 
+                         names_from = c(waitType, shortName), 
+                         values_from = waitTime)
 ```
 
 ### `data.table`
 
 ```{r}
 # pivot wider with more than one left and right hand column
-dtLonger |> 
-  dcast(time + attendance ~ waitType + shortName, value.var = "waitTime")
+dtLonger %>% dcast(time + attendance ~ waitType + shortName, 
+                   value.var = "waitTime")
 ```
 
 :::
@@ -451,65 +417,6 @@ dtLonger |>
 
 </div>
 
-# Pivot Longer (from Wider)
-
-```{r}
-#| include: false
-dtWider <-
-  dtLonger |> 
-  dcast(time + attendance ~ waitType + shortName, value.var = "waitTime")
-```
-
-Let's say that instead of our original table, we get our data formatted like our output from Pivot Wider. We have a time and attendance for each row, and a pair of `estimatedWait_*` and `actualWait_*` columns for each ride. How can we convert this back to a format where we have rows for each ride, time, and attendance, and columns for the `estimatedWait` and `actualWait`? Let's call that data.table `dtWider`.
-
-There are a few key changes here, compared to the previous section on `pivot_longer`. Since we now have 10 columns that we want to pivot (2 types of waits for each of the five rides), it would be annoying to name every column and so we can turn to `tidyselect` for help. We can use `contains` to select every column that contains "Wait" in it. The next key difference is the `names_pattern` argument that takes the place of `values_to`. We supply a [regular expression](https://en.wikipedia.org/wiki/Regular_expression) where each capture group (the bits between parentheses) represents how we want the column names split. We want either "estimatedwait" or "actualWait" and any character that comes after the "_" because those are the ride short names. We then supply two values in a vector to `names_to`. The new `".value"` item represents the `values_to` argument and its placement in the vector is important as it must match the capture group from `names_pattern` that you want to use as the value columns. In this case, we want our wait columns to be our value columns and since that is the first capture group, we place `".value"` first. Our second name, `"shortName"` is then matched to the second capture group which is the ride names. Lastly, just to get everything in the same order as our original data, we arrange by `time`.
-
-Unfortunately, the solution for `melt` isn't as clean. Instead of supplying `measure.vars` with column names with `contains`, we need to supply a function call to `patterns`. Similar to the `names_pattern` argument, we need to supply a regular expression. However, here we need to distinguish our different wait types so we supply one pattern each for each of the two wait types. We can then supply a vector to `value.name` with our two wait column names. Like with `pivot_longer`, we need to make sure that our `patterns` arguments are in the same order as the vector supplied to `value.name`. Lastly, we can supply our `variable.name`. Unfortunately, `melt` can't grab our ride names from our regular expressions like `pivot_longer` can and so our `shortName` column is now a factor with numbers. Thankfully, this is a relatively easy fix with `forcats::lvls_revalue` that helps us re-assign our factors to their original names. Then, just like with `pivot_longer`, we arrange by `time` to get back to our original format.
-
-::: {.panel-tabset}
-
-### `tidyverse`
-
-```{r}
-dtWider |>
-  pivot_longer(
-    cols = contains("Wait"),
-    names_pattern = "(estimatedWait|actualWait)_(.+)",
-    names_to = c(".value", "shortName")
-  ) |>
-  arrange(time)
-```
-
-### `data.table`
-
-```{r}
-dtWider |>
-  melt(
-    measure.vars = patterns("(estimatedWait)_(.+)", "(actualWait)_(.+)"),
-    value.name = c("estimatedWait", "actualWait"),
-    variable.name = "shortName"
-  ) |>
-  mutate(
-    shortName = forcats::lvls_revalue(
-      shortName, c("amulet", "key", "punishment", "mage", "fury")
-    )
-  ) |>
-  arrange(time)
-```
-
-
-:::
-
-| time     | attendance | shortName  | estimatedWait | actualWait |
-|----------|------------|------------|---------------|------------|
-| 08:00:00 | 5090       | amulet     | 53            | 54         |
-| 08:00:00 | 5090       | key        | 30            | 19         |
-| 08:00:00 | 5090       | punishment | 62            | 64         |
-| 08:00:00 | 5090       | mage       | 40            | 33         |
-| 08:00:00 | 5090       | fury       | 56            | 55         |
-| 08:05:00 | 4883       | amulet     | 45            | 48         |
-
-
 # Wrapping Things Up
 
 ## A quick benchmark
@@ -517,57 +424,25 @@ dtWider |>
 ```{r Benchmark}
 rbenchmark::benchmark(
   "pivot_wider" = {
-    tmp <- dt |> 
-      pivot_wider(
-        id_cols = !c(rideName, attendance, estimatedWait), 
-        names_from = shortName, 
-        values_from = actualWait
-      )
+    tmp <- dt %>% pivot_wider(id_cols = !c(rideName, attendance, estimatedWait), 
+                              names_from = shortName, 
+                              values_from = actualWait)
   },
   "dcast" = {
-    tmp <- dt |> 
-      dcast(time ~ shortName, value.var = "actualWait")
+    tmp <- dt %>% dcast(time ~ shortName, 
+                        value.var = "actualWait")
   }, order = "user.self")
 
 rbenchmark::benchmark(
   "pivot_longer" = {
-    tmp <- dt |> 
-      pivot_longer(
-        cols = c(estimatedWait, actualWait), 
-        names_to = "waitType", 
-        values_to = "waitTime"
-      )
+    tmp <- dt %>% pivot_longer(cols = c(estimatedWait, actualWait), 
+                               names_to = "waitType", 
+                               values_to = "waitTime")
   },
   "melt" = {
-    tmp <- dt |> 
-      melt(
-        measure.vars = c("estimatedWait", "actualWait"),
-        variable.name = "waitType",
-        value.name = "waitTime"
-      )
-  }, order = "user.self")
-
-rbenchmark::benchmark(
-  "pivot_longer_from_wider" = {
-    tmp <- dtWider |>
-      pivot_longer(
-        cols = contains("Wait"),
-        names_pattern = "(estimatedWait|actualWait)_(.+)",
-        names_to = c(".value", "shortName")
-      )
-  },
-  "melt_from_wider" = {
-    tmp <- dtWider |>
-      melt(
-        measure.vars = patterns("(estimatedWait)_(.+)", "(actualWait)_(.+)"),
-        value.name = c("estimatedWait", "actualWait"),
-        variable.name = "shortName"
-      ) |>
-      mutate(
-        shortName = forcats::lvls_revalue(
-          shortName, c("amulet", "key", "punishment", "mage", "fury")
-        )
-      )
+    tmp <- dt %>% melt(measure.vars = c("estimatedWait", "actualWait"),
+                       variable.name = "waitType",
+                       value.name = "waitTime")
   }, order = "user.self")
 ```
 
@@ -586,15 +461,6 @@ rbenchmark::benchmark(
 | -------------- | ------------ | ------- | -------- | --------- | -------- | ---------- | --------- |
 | `melt`         | 100          | 0.005   | 1.0      | 0.005     | 0.000    | 0          | 0         |
 | `pivot_longer` | 100          | 0.152   | 30.4     | 0.149     | 0.003    | 0          | 0         |
-
-</div>
-
-<div class="table-wrapper" markdown="block">
-
-| test                    | replications | elapsed | relative | user.self | sys.self | user.child | sys.child |
-|-------------------------|--------------|---------|----------|-----------|----------|------------|-----------|
-| melt_from_wider         | 100          | 0.118   | 1.000    | 0.117     | 0.001    | 0          | 0         |
-| pivot_longer_from_wider | 100          | 0.306   | 2.593    | 0.300     | 0.006    | 0          | 0         |
 
 </div>
 

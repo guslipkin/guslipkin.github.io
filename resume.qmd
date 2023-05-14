@@ -148,7 +148,7 @@ $enable-cssgrid: true
 ----
 <h3 style="margin-bottom: 0px; color:#404040;">What Drives Me</h3>
 <div>
-<p style="font-size: 14px; color:#666666; padding-left: 20px; padding-right: 20px; text-align: justify; text-justify: auto;">I’ve always loved asking ‘how?’ and ‘why?’ Since starting my journey as a data scientist, I’ve been able to answer ‘how?’ by architecting long-term reporting solutions and developing tools to support my teammates, while answering ‘why?’ with analyses to support data driven decision making. I’m looking for a position where I can put my skills to the test and help answer my two favorite questions.</p>
+<p style="font-size: 14px; color:#666666; padding-left: 20px; padding-right: 20px; text-align: justify; text-justify: auto;">I’ve always loved asking ‘how?’ and ‘why?’ Since starting my journey as a data scientist, I’ve been able to answer ‘how?’ by developing tools to support my teammates, while answering ‘why?’ with analyses to support data driven decision making. I’m looking for a position where I can build a career using my skills to help my team and conduct meaningful analyses that inform business decisions and contribute to achieving company goals.</p>
 </div>
 
 <h3 style="margin-bottom: 0px; color:#404040;">Experience</h3>
@@ -160,22 +160,10 @@ $enable-cssgrid: true
 <div class="time">May 2022 - Present</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
-	<li>Create and implement a  data ETL process from the ground up including designing input and output tables</li>
-	<li>Develop novel analyses and models to provide useful insights to key stakeholders including store managers</li>
+	<li>Develop novel analyses and models to provide key insights to business stakeholders including store managers</li>
+	<li>Build and maintain internal <b>R</b> packages to aid in analysis such as ‘publixdate’ for working with Publix’s system of dates or ‘pubsub’ for general utilities and a streamlined database connection interface</li>
 	<li>Seek out and participate in strategic initiatives which require analytic support from across corporate</li>
-</ul>
-
-<div class="grid-job">
-<div class="job">
-<span><b>Software Quality Assurance Analyst</b></span>
-<span style="color:#2e4440"><em> – AssistRx</em></span>
-</div>
-<div class="time">Jan 2022 - May 2022</div>
-</div>
-<ul style="font-size: 14px; color:#666666;">
-	<li>Create and execute test plans to discover software problems and their causes using qTest and Jira</li>
-	<li>Investigate patterns in bugs reported using JQL and causal inference</li>
-	<li>Document and demonstrate software features to internal and external users in Confluence</li>
+  <li>Visualize data and create reports in <b>Power BI</b> to display model performance and facilitate data-driven decisions</li>
 </ul>
 
 <div class="grid-job">
@@ -186,9 +174,9 @@ $enable-cssgrid: true
 <div class="time">Aug 2021 - May 2022</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
-	<li>Correlate patient feedback to readmissions and patient experience using linear regression and decision trees</li>
-	<li>Create a training tool for nurses using significant results found in the analysis</li>
-	<li>Work with capstone sponsor to define project timeline and goals and write a report on project findings</li>
+	<li>Correlate patient feedback to readmissions and patient experience using <b>linear regression</b> and <b>decision trees</b></li>
+	<li>Create an interactive training tool for nurses using results found in the analysis with <b>HTML</b> and <b>JavaScript</b></li>
+	<li>Work with capstone sponsor to define project timeline and goals and author a report on project findings</li>
 </ul>
 
 <div class="grid-job">
@@ -200,7 +188,7 @@ $enable-cssgrid: true
 </div>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Gather and process time series data of geospatial climate variables and SARS-CoV-2 data</li>
-	<li>Analyze data in R, Excel, and ArcGIS to investigate relationships with time series analysis and linear regressions</li>
+	<li>Analyze data in R, <b>Excel</b>, and <b>ArcGIS</b> to investigate relationships with <b>time series analysis</b> and linear regressions</li>
 </ul>
 
 <div class="grid-job">
@@ -212,8 +200,8 @@ $enable-cssgrid: true
 </div>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Oversee a team of interns and supervise data migration efforts including cleaning source data before transfer</li>
-	<li>Use text mining and sentiment analysis to correlate jet system failure reports and maintenance repairs</li>
-	<li>Create and run weekly parts availability analysis and reports using R and RStudio</li>
+	<li>Use <b>text mining</b> and <b>sentiment analysis</b> with <b>tidytext</b> to correlate radar system failure reports and repairs</li>
+	<li>Create and run weekly parts availability analysis and reports in <b>R Markdown</b> using R and <b>RStudio</b></li>
 </ul>
 
 <h3 style="margin-bottom: 0px; color:#404040;">Projects</h3>
@@ -225,32 +213,26 @@ $enable-cssgrid: true
 <div class="time">May 2022 - Aug 2022</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
-	<li>Created a fully automated reporting pipeline with R and Python in a Databricks environment that delivers monthly PDF reports to all Publix stores</li>
-	<li>Shipped the project four months early and saved $85k per year in contracting costs</li>
+	<li>Built a fully automated reporting pipeline with R and <b>Python</b> in for <b>Spark</b> in a <b>Databricks</b> environment that delivers monthly PDF reports to all Publix stores to support goals to reduce retail shrink</li>
 	<li>Analyzes store shrink metrics and provides actionable insights through targeted operations suggestions</li>
-	<li>Built and implemented a SQL translation function leveraging existing R packages to expedite writing new targeted operations suggestions as operations leaders see demand</li>
+	<li>Built and implemented a <b>SQL</b> translation function leveraging existing R packages to expedite writing new targeted operations suggestions as operations leaders see demand</li>
+	<li>We finished the project four months ahead of schedule and saved $85k per year in contracting costs</li>
 </ul>
 <div class="grid-job">
 <div class="job">
-<span><b>cipheR</b></span>
-<span style="color:#2e4440"><em> – Personal Project</em></span>
+<span><b>Store/Item Activation Recommendations</b></span>
+<span style="color:#2e4440"><em> – Publix Super Markets</em></span>
 </div>
-<div class="time">Oct 2022 - Present</div>
+<div class="time">April 2023 - Present</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
-	<li>Created, implemented, and publish an open source R package for ciphertext encoding and decoding on CRAN</li>
-	<li>Ciphertext methods are implemented in Base R with no external dependencies</li>
+	<li>Implemented a recommendation system for store/item combinations to better cater to customer needs</li>
+	<li>Accepts any combination of stores and items and imputes data for missing combinations</li>
+	<li>Uses the <b>tidymodels</b> suite to cluster stores based on similar latent features from the recommendation process</li>
+	<li>Pioneered “project as a package” for easier documentation, maintenance, legibility, requirements, and usability</li>
 </ul>
 
 <h3 style="margin-bottom: 0px; color:#404040;">Education</h3>
-
-<div class="grid-job">
-<div class="job"><b>Georgia Institute of Technology</b></div>
-<div class="time">Jan 2023 - May 2025</div>
-</div>
-<div style="text-indent: -1.5em; padding-left: 1.5em;">
-<span style="color:#2e4440; padding-left: 1.5em;"><em>– Master of Science, Analytics with Focuses in Business Analytics and Computational Data Analysis</em></span>
-</div>
 
 <div class="grid-job">
 <div class="job"><b>Florida Polytechnic University</b></div>
