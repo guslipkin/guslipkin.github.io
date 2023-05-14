@@ -1,0 +1,9 @@
+---
+title: "My Blog"
+listing:
+  contents: professional-blog
+  sort: "date desc"
+  type: default
+  categories: true
+  fields: [image, date, title, subtitle, categories, reading-time, reading-time]
+---

@@ -19,13 +19,15 @@ website:
             text: My Personal Blog
       - href: contact.qmd
         text: Contact Me
-    right:
+    tools:
       - href: https://www.linkedin.com/in/guslipkin/
         icon: linkedin
       - href: https://www.github.com/guslipkin
         icon: github
-      - href: https://www.twitter.com/GusLipkin
-        icon: twitter
+      - href: https://guslipkin.medium.com/
+        icon: medium
+      - href: https://fosstodon.org/@guslipkin
+        icon: mastodon
 
 format:
   html:

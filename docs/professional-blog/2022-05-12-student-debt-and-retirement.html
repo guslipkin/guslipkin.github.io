@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,9 +20,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -49,43 +50,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -130,6 +101,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
@@ -146,60 +118,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">Gus Lipkin’s Awesome Website</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../about.html">
+    <a class="nav-link" href="../about.html" rel="" target="">
  <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../resume.html">
+    <a class="nav-link" href="../resume.html" rel="" target="">
  <span class="menu-text">My Résumé</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-blogs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-blogs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">My Blogs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-my-blogs">    
         <li>
-    <a class="dropdown-item" href="../professional-blog.html">
+    <a class="dropdown-item" href="../professional-blog.html" rel="" target="">
  <span class="dropdown-text">My Professional Blog</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../personal-blog.html">
+    <a class="dropdown-item" href="../personal-blog.html" rel="" target="">
  <span class="dropdown-text">My Personal Blog</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../contact.html">
+    <a class="nav-link" href="../contact.html" rel="" target="">
  <span class="menu-text">Contact Me</span></a>
   </li>  
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/guslipkin/"><i class="bi bi-linkedin" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://www.github.com/guslipkin"><i class="bi bi-github" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://www.twitter.com/GusLipkin"><i class="bi bi-twitter" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-</ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools ms-auto tools-wide">
+    <a href="https://www.linkedin.com/in/guslipkin/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="https://www.github.com/guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://guslipkin.medium.com/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-medium"></i></a>
+    <a href="https://fosstodon.org/@guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-mastodon"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -267,12 +226,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -284,12 +243,12 @@ Note
 <section id="pre-intro" class="level1">
 <h1>Pre-Intro</h1>
 <p>I graduated with my BS in Business Analytics a few days ago. My mom came to visit for graduation and stayed for a few days. I wanted to show her some of what I learned at school through a hands on activity so we found a Tidy Tuesday dataset and did some exploring. There’s no particular rhyme or reason to this, but I wanted to share my passion for data with her and thought it would be cool to share with the rest of you as well. While I did provide some guidance, most of the exploration is what she thought might be interesting and wanted to explore.</p>
-<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -302,9 +261,6 @@ Important
 <section id="intro" class="level1">
 <h1>Intro</h1>
 <p><em>First we load our packages and data.</em></p>
-<div class="cell" data-hash="2022-05-12-student-debt-and-retirement_cache/html/unnamed-chunk-1_13452089aa77bce9e189756242708865">
-
-</div>
 <p><em>Do you want to preview the data?</em></p>
 <div class="cell" data-hash="2022-05-12-student-debt-and-retirement_cache/html/unnamed-chunk-2_082471fa690ef5fce12946419a5c5288">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(debt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -703,221 +659,224 @@ colnames(df)[c(1:4, : Missing 'multi' argument. Defaulting to FALSE.</code></pre
 [1] "Running regressions..."</code></pre>
 </div>
 <div class="cell-output-display">
-
-<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:250px; "><table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 14px; margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> formula </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> aic </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> bic </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> rSquare </th>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> warn </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> xIntercept </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> year </th>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> race </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt_pct </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median_wealth </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceHispanic </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceWhite </th>
-  </tr>
- </thead>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:250px; ">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">formula</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">aic</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">bic</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">rSquare</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">warn</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">xIntercept</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">year</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">race</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">loan_debt</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">loan_debt_pct</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">average_wealth</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">median_wealth</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">raceHispanic</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">raceWhite</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth </td>
-   <td style="text-align:right;"> 650.2739 </td>
-   <td style="text-align:right;"> 654.4775 </td>
-   <td style="text-align:right;"> 0.93199 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.1895266 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + median_wealth </td>
-   <td style="text-align:right;"> 686.7959 </td>
-   <td style="text-align:right;"> 690.9995 </td>
-   <td style="text-align:right;"> 0.77025 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.3351785 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth + median_wealth </td>
-   <td style="text-align:right;"> 629.9331 </td>
-   <td style="text-align:right;"> 635.5379 </td>
-   <td style="text-align:right;"> 0.96771 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0036909 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0.0000088 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + median_wealth + year </td>
-   <td style="text-align:right;"> 670.4355 </td>
-   <td style="text-align:right;"> 676.0403 </td>
-   <td style="text-align:right;"> 0.87542 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0000571 </td>
-   <td style="text-align:right;"> 0.0000559 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + loan_debt + median_wealth </td>
-   <td style="text-align:right;"> 673.2736 </td>
-   <td style="text-align:right;"> 678.8784 </td>
-   <td style="text-align:right;"> 0.86306 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.1440991 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0002116 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt_pct </td>
-   <td style="text-align:right;"> 638.7578 </td>
-   <td style="text-align:right;"> 644.3626 </td>
-   <td style="text-align:right;"> 0.95666 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0003023 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0005465 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt </td>
-   <td style="text-align:right;"> 639.8237 </td>
-   <td style="text-align:right;"> 645.4284 </td>
-   <td style="text-align:right;"> 0.95509 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0030143 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0009078 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth + year </td>
-   <td style="text-align:right;"> 640.3430 </td>
-   <td style="text-align:right;"> 645.9478 </td>
-   <td style="text-align:right;"> 0.95431 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0011340 </td>
-   <td style="text-align:right;"> 0.0011635 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + loan_debt_pct + median_wealth </td>
-   <td style="text-align:right;"> 676.7298 </td>
-   <td style="text-align:right;"> 682.3345 </td>
-   <td style="text-align:right;"> 0.84633 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0215718 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0010906 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt_pct + median_wealth </td>
-   <td style="text-align:right;"> 624.0222 </td>
-   <td style="text-align:right;"> 631.0282 </td>
-   <td style="text-align:right;"> 0.97519 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0001792 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0094886 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0.0001608 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt + loan_debt_pct + median_wealth </td>
-   <td style="text-align:right;"> 621.5912 </td>
-   <td style="text-align:right;"> 629.9984 </td>
-   <td style="text-align:right;"> 0.97860 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0002454 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0570795 </td>
-   <td style="text-align:right;"> 0.0087417 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0.0000324 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt + median_wealth </td>
-   <td style="text-align:right;"> 628.0037 </td>
-   <td style="text-align:right;"> 635.0097 </td>
-   <td style="text-align:right;"> 0.97167 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0007230 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0675575 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 0.0006058 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">retirement ~ + average_wealth</td>
+<td style="text-align: right;">650.2739</td>
+<td style="text-align: right;">654.4775</td>
+<td style="text-align: right;">0.93199</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.1895266</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">retirement ~ + median_wealth</td>
+<td style="text-align: right;">686.7959</td>
+<td style="text-align: right;">690.9995</td>
+<td style="text-align: right;">0.77025</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.3351785</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">retirement ~ + average_wealth + median_wealth</td>
+<td style="text-align: right;">629.9331</td>
+<td style="text-align: right;">635.5379</td>
+<td style="text-align: right;">0.96771</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0036909</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0000088</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">retirement ~ + median_wealth + year</td>
+<td style="text-align: right;">670.4355</td>
+<td style="text-align: right;">676.0403</td>
+<td style="text-align: right;">0.87542</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0000571</td>
+<td style="text-align: right;">0.0000559</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">retirement ~ + loan_debt + median_wealth</td>
+<td style="text-align: right;">673.2736</td>
+<td style="text-align: right;">678.8784</td>
+<td style="text-align: right;">0.86306</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.1440991</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0002116</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">retirement ~ + average_wealth + loan_debt_pct</td>
+<td style="text-align: right;">638.7578</td>
+<td style="text-align: right;">644.3626</td>
+<td style="text-align: right;">0.95666</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0003023</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0005465</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">retirement ~ + average_wealth + loan_debt</td>
+<td style="text-align: right;">639.8237</td>
+<td style="text-align: right;">645.4284</td>
+<td style="text-align: right;">0.95509</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0030143</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0009078</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">retirement ~ + average_wealth + year</td>
+<td style="text-align: right;">640.3430</td>
+<td style="text-align: right;">645.9478</td>
+<td style="text-align: right;">0.95431</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0011340</td>
+<td style="text-align: right;">0.0011635</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">retirement ~ + loan_debt_pct + median_wealth</td>
+<td style="text-align: right;">676.7298</td>
+<td style="text-align: right;">682.3345</td>
+<td style="text-align: right;">0.84633</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0215718</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0010906</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">retirement ~ + average_wealth + loan_debt_pct + median_wealth</td>
+<td style="text-align: right;">624.0222</td>
+<td style="text-align: right;">631.0282</td>
+<td style="text-align: right;">0.97519</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0001792</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0094886</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0001608</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">retirement ~ + average_wealth + loan_debt + loan_debt_pct + median_wealth</td>
+<td style="text-align: right;">621.5912</td>
+<td style="text-align: right;">629.9984</td>
+<td style="text-align: right;">0.97860</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0002454</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0570795</td>
+<td style="text-align: right;">0.0087417</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0000324</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">retirement ~ + average_wealth + loan_debt + median_wealth</td>
+<td style="text-align: right;">628.0037</td>
+<td style="text-align: right;">635.0097</td>
+<td style="text-align: right;">0.97167</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0007230</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0675575</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.0006058</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
 </tbody>
-</table></div>
+</table>
+</div>
+</div>
 
 </div>
 </div>
@@ -949,663 +908,666 @@ colnames(df)[c(1:4, : Missing 'multi' argument. Defaulting to FALSE.</code></pre
 [1] "Running regressions..."</code></pre>
 </div>
 <div class="cell-output-display">
-
-<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:250px; "><table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 14px; margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> formula </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> aic </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> bic </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> rSquare </th>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> warn </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> xIntercept </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> year </th>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> race </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt_pct </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median_wealth </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth.loan_debt </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth.loan_debt_pct </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth.median_wealth </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceHispanic </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceWhite </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth.raceHispanic </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth.raceWhite </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> average_wealth.year </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt.loan_debt_pct </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt.median_wealth </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt.raceHispanic </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt.raceWhite </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt.year </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt_pct.median_wealth </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt_pct.raceHispanic </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt_pct.raceWhite </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt_pct.year </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median_wealth.raceHispanic </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median_wealth.raceWhite </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median_wealth.year </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceHispanic.year </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceWhite.year </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> loan_debt_pct.loan_debt </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median_wealth.loan_debt </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> median_wealth.loan_debt_pct </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceHispanic.loan_debt </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceWhite.loan_debt </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceHispanic.loan_debt_pct </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceWhite.loan_debt_pct </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceHispanic.median_wealth </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> raceWhite.median_wealth </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> year.loan_debt </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> year.loan_debt_pct </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> year.median_wealth </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> year.raceHispanic </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> year.raceWhite </th>
-  </tr>
- </thead>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:250px; ">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">formula</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">aic</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">bic</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">rSquare</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">warn</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">xIntercept</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">year</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">race</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">loan_debt</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">loan_debt_pct</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">average_wealth</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">median_wealth</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">average_wealth.loan_debt</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">average_wealth.loan_debt_pct</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">average_wealth.median_wealth</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">raceHispanic</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">raceWhite</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">average_wealth.raceHispanic</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">average_wealth.raceWhite</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">average_wealth.year</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">loan_debt.loan_debt_pct</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">loan_debt.median_wealth</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">loan_debt.raceHispanic</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">loan_debt.raceWhite</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">loan_debt.year</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">loan_debt_pct.median_wealth</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">loan_debt_pct.raceHispanic</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">loan_debt_pct.raceWhite</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">loan_debt_pct.year</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">median_wealth.raceHispanic</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">median_wealth.raceWhite</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">median_wealth.year</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">raceHispanic.year</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">raceWhite.year</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">loan_debt_pct.loan_debt</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">median_wealth.loan_debt</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">median_wealth.loan_debt_pct</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">raceHispanic.loan_debt</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">raceWhite.loan_debt</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">raceHispanic.loan_debt_pct</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">raceWhite.loan_debt_pct</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">raceHispanic.median_wealth</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">raceWhite.median_wealth</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">year.loan_debt</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">year.loan_debt_pct</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">year.median_wealth</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">year.raceHispanic</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">year.raceWhite</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth </td>
-   <td style="text-align:right;"> 650.2739 </td>
-   <td style="text-align:right;"> 654.4775 </td>
-   <td style="text-align:right;"> 0.93199 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.1895266 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + median_wealth </td>
-   <td style="text-align:right;"> 686.7959 </td>
-   <td style="text-align:right;"> 690.9995 </td>
-   <td style="text-align:right;"> 0.77025 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.3351785 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth + median_wealth </td>
-   <td style="text-align:right;"> 629.9331 </td>
-   <td style="text-align:right;"> 635.5379 </td>
-   <td style="text-align:right;"> 0.96771 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0036909 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:right;"> 0.0000088 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + median_wealth + year </td>
-   <td style="text-align:right;"> 670.4355 </td>
-   <td style="text-align:right;"> 676.0403 </td>
-   <td style="text-align:right;"> 0.87542 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0000571 </td>
-   <td style="text-align:right;"> 0.0000559 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + loan_debt + median_wealth </td>
-   <td style="text-align:right;"> 673.2736 </td>
-   <td style="text-align:right;"> 678.8784 </td>
-   <td style="text-align:right;"> 0.86306 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.1440991 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0002116 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt_pct </td>
-   <td style="text-align:right;"> 638.7578 </td>
-   <td style="text-align:right;"> 644.3626 </td>
-   <td style="text-align:right;"> 0.95666 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0003023 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0005465 </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt </td>
-   <td style="text-align:right;"> 639.8237 </td>
-   <td style="text-align:right;"> 645.4284 </td>
-   <td style="text-align:right;"> 0.95509 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0030143 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0009078 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth + year </td>
-   <td style="text-align:right;"> 640.3430 </td>
-   <td style="text-align:right;"> 645.9478 </td>
-   <td style="text-align:right;"> 0.95431 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0011340 </td>
-   <td style="text-align:right;"> 0.0011635 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + loan_debt_pct + median_wealth </td>
-   <td style="text-align:right;"> 676.7298 </td>
-   <td style="text-align:right;"> 682.3345 </td>
-   <td style="text-align:right;"> 0.84633 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0215718 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0010906 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth*loan_debt_pct + average_wealth*median_wealth + average_wealth*race + average_wealth*year </td>
-   <td style="text-align:right;"> 576.6673 </td>
-   <td style="text-align:right;"> 594.8828 </td>
-   <td style="text-align:right;"> 0.99700 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0004973 </td>
-   <td style="text-align:right;"> 0.0004812 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0004864 </td>
-   <td style="text-align:right;"> 0.0000061 </td>
-   <td style="text-align:right;"> 0.0008194 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0004452 </td>
-   <td style="text-align:right;"> 2.50e-06 </td>
-   <td style="text-align:right;"> 0.0020289 </td>
-   <td style="text-align:right;"> 0.0045869 </td>
-   <td style="text-align:right;"> 0.0087832 </td>
-   <td style="text-align:right;"> 0.0120152 </td>
-   <td style="text-align:right;"> 5.8e-06 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth + loan_debt_pct + median_wealth </td>
-   <td style="text-align:right;"> 624.0222 </td>
-   <td style="text-align:right;"> 631.0282 </td>
-   <td style="text-align:right;"> 0.97519 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0001792 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0094886 </td>
-   <td style="text-align:right;"> 0.0000000 </td>
-   <td style="text-align:right;"> 0.0001608 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> retirement ~ + average_wealth*median_wealth + median_wealth*year + loan_debt_pct </td>
-   <td style="text-align:right;"> 590.8267 </td>
-   <td style="text-align:right;"> 602.0363 </td>
-   <td style="text-align:right;"> 0.99328 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> 0.0081282 </td>
-   <td style="text-align:right;"> 0.0076968 </td>
-   <td style="text-align:left;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 0.0126352 </td>
-   <td style="text-align:right;"> 0.0004052 </td>
-   <td style="text-align:right;"> 0.0000001 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 2.14e-05 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> 1e-07 </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-   <td style="text-align:right;"> NA </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">retirement ~ + average_wealth</td>
+<td style="text-align: right;">650.2739</td>
+<td style="text-align: right;">654.4775</td>
+<td style="text-align: right;">0.93199</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.1895266</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">retirement ~ + median_wealth</td>
+<td style="text-align: right;">686.7959</td>
+<td style="text-align: right;">690.9995</td>
+<td style="text-align: right;">0.77025</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.3351785</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">retirement ~ + average_wealth + median_wealth</td>
+<td style="text-align: right;">629.9331</td>
+<td style="text-align: right;">635.5379</td>
+<td style="text-align: right;">0.96771</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0036909</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">0.0000088</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">retirement ~ + median_wealth + year</td>
+<td style="text-align: right;">670.4355</td>
+<td style="text-align: right;">676.0403</td>
+<td style="text-align: right;">0.87542</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0000571</td>
+<td style="text-align: right;">0.0000559</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">retirement ~ + loan_debt + median_wealth</td>
+<td style="text-align: right;">673.2736</td>
+<td style="text-align: right;">678.8784</td>
+<td style="text-align: right;">0.86306</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.1440991</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0002116</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">retirement ~ + average_wealth + loan_debt_pct</td>
+<td style="text-align: right;">638.7578</td>
+<td style="text-align: right;">644.3626</td>
+<td style="text-align: right;">0.95666</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0003023</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0005465</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">retirement ~ + average_wealth + loan_debt</td>
+<td style="text-align: right;">639.8237</td>
+<td style="text-align: right;">645.4284</td>
+<td style="text-align: right;">0.95509</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0030143</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0009078</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">retirement ~ + average_wealth + year</td>
+<td style="text-align: right;">640.3430</td>
+<td style="text-align: right;">645.9478</td>
+<td style="text-align: right;">0.95431</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0011340</td>
+<td style="text-align: right;">0.0011635</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">retirement ~ + loan_debt_pct + median_wealth</td>
+<td style="text-align: right;">676.7298</td>
+<td style="text-align: right;">682.3345</td>
+<td style="text-align: right;">0.84633</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0215718</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0010906</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">retirement ~ + average_wealth*loan_debt_pct + average_wealth*median_wealth + average_wealth*race + average_wealth*year</td>
+<td style="text-align: right;">576.6673</td>
+<td style="text-align: right;">594.8828</td>
+<td style="text-align: right;">0.99700</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0004973</td>
+<td style="text-align: right;">0.0004812</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0004864</td>
+<td style="text-align: right;">0.0000061</td>
+<td style="text-align: right;">0.0008194</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0004452</td>
+<td style="text-align: right;">2.50e-06</td>
+<td style="text-align: right;">0.0020289</td>
+<td style="text-align: right;">0.0045869</td>
+<td style="text-align: right;">0.0087832</td>
+<td style="text-align: right;">0.0120152</td>
+<td style="text-align: right;">5.8e-06</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">retirement ~ + average_wealth + loan_debt_pct + median_wealth</td>
+<td style="text-align: right;">624.0222</td>
+<td style="text-align: right;">631.0282</td>
+<td style="text-align: right;">0.97519</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0001792</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0094886</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">0.0001608</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">retirement ~ + average_wealth*median_wealth + median_wealth*year + loan_debt_pct</td>
+<td style="text-align: right;">590.8267</td>
+<td style="text-align: right;">602.0363</td>
+<td style="text-align: right;">0.99328</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.0081282</td>
+<td style="text-align: right;">0.0076968</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0126352</td>
+<td style="text-align: right;">0.0004052</td>
+<td style="text-align: right;">0.0000001</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2.14e-05</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1e-07</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
 </tbody>
-</table></div>
+</table>
+</div>
+</div>
 
 </div>
 </div>
@@ -1766,9 +1728,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1833,6 +1809,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

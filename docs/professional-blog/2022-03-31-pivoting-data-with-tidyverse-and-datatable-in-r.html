@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,9 +20,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -49,43 +50,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -142,60 +113,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">Gus Lipkin’s Awesome Website</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../about.html">
+    <a class="nav-link" href="../about.html" rel="" target="">
  <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../resume.html">
+    <a class="nav-link" href="../resume.html" rel="" target="">
  <span class="menu-text">My Résumé</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-blogs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-blogs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">My Blogs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-my-blogs">    
         <li>
-    <a class="dropdown-item" href="../professional-blog.html">
+    <a class="dropdown-item" href="../professional-blog.html" rel="" target="">
  <span class="dropdown-text">My Professional Blog</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../personal-blog.html">
+    <a class="dropdown-item" href="../personal-blog.html" rel="" target="">
  <span class="dropdown-text">My Personal Blog</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../contact.html">
+    <a class="nav-link" href="../contact.html" rel="" target="">
  <span class="menu-text">Contact Me</span></a>
   </li>  
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/guslipkin/"><i class="bi bi-linkedin" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://www.github.com/guslipkin"><i class="bi bi-github" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://www.twitter.com/GusLipkin"><i class="bi bi-twitter" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-</ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools ms-auto tools-wide">
+    <a href="https://www.linkedin.com/in/guslipkin/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="https://www.github.com/guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://guslipkin.medium.com/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-medium"></i></a>
+    <a href="https://fosstodon.org/@guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-mastodon"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -297,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-giraffe" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/giraffe.jpg" class="img-fluid figure-img" data-ref-parent="fig-giraffe-manta"></p>
-<p></p><figcaption class="figure-caption">(a) A giraffe (longer)</figcaption><p></p>
+<figcaption class="figure-caption">(a) A giraffe (longer)</figcaption>
 </figure>
 </div>
 </div>
@@ -305,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-manta" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/mantaray.jpg" class="img-fluid figure-img" data-ref-parent="fig-giraffe-manta"></p>
-<p></p><figcaption class="figure-caption">(b) A manta ray (wider)</figcaption><p></p>
+<figcaption class="figure-caption">(b) A manta ray (wider)</figcaption>
 </figure>
 </div>
 </div>
@@ -471,7 +429,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-original" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/original.png" class="img-fluid figure-img" data-ref-parent="fig-original-wider"></p>
-<p></p><figcaption class="figure-caption">(a) The original data</figcaption><p></p>
+<figcaption class="figure-caption">(a) The original data</figcaption>
 </figure>
 </div>
 </div>
@@ -479,7 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-wider" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/wider.png" class="img-fluid figure-img" data-ref-parent="fig-original-wider"></p>
-<p></p><figcaption class="figure-caption">(b) The wider data</figcaption><p></p>
+<figcaption class="figure-caption">(b) The wider data</figcaption>
 </figure>
 </div>
 </div>
@@ -500,7 +458,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-original" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/original.png" class="img-fluid figure-img" data-ref-parent="fig-original-longer"></p>
-<p></p><figcaption class="figure-caption">(a) The original data</figcaption><p></p>
+<figcaption class="figure-caption">(a) The original data</figcaption>
 </figure>
 </div>
 </div>
@@ -508,7 +466,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-longer" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/longer.png" class="img-fluid figure-img" data-ref-parent="fig-original-longer"></p>
-<p></p><figcaption class="figure-caption">(b) The longer data</figcaption><p></p>
+<figcaption class="figure-caption">(b) The longer data</figcaption>
 </figure>
 </div>
 </div>
@@ -624,7 +582,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this example, we want to know how long the <code>actualWait</code> is for each ride throughout the day with each recording time as a row, and each ride as a column.</p>
 <p>In the <code>pivot_wider</code>, we want our new column <code>names_from</code> to be the <code>shortName</code> and our <code>values_from</code> <code>actualWait</code>. The tricky bit here is the <code>id_cols</code> argument. <code>id_cols</code> are columns whose values should uniquely identify each row in the data. We need to use it because the <code>rideName</code> and <code>shortName</code> columns are perfectly correlated, that is, for each row the value of both columns will always be the same. Any column that is not in the <code>names_from</code> or <code>values_from</code> argument will be part of the default <code>id_cols</code> argument. We can use the argument two ways; we can use a numeric vector to select the columns that we want to be used as identifiers, or we can specify columns that we do not want used as a character or column name vector. In the example below, I’ve included both methods. For the rest of the post, I’ll be using the second method.</p>
 <p>As mentioned previously, the biggest difference for <code>dcast</code> is that it uses a formula instead of the <code>id_cols</code> and <code>names_from</code> arguments. The left hand side of the formula is the columns that you want to stay as columns to be used as the unique identifier for each row. The right hand side of the formula is the column whose values will be used as the new column names. Lastly, <code>value.var</code> defines the column with the desired values.</p>
-<div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
@@ -715,7 +673,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="wider-with-two-or-more-value-columns" class="level2">
 <h2 class="anchored" data-anchor-id="wider-with-two-or-more-value-columns">Wider with Two or More Value Columns</h2>
 <p>Wider data with more than one value column is very similar to one value column. The only changes you need to make in <code>pivot_wider</code> are changing your <code>id_cols</code> argument if using the column name method and adding the new column to the <code>values_from</code> argument. The only change needed in <code>dcast</code> is adding to the <code>value.var</code> argument. One important thing to note is that the column names will now be a combination of the <code>names_from</code>/right hand side argument and the <code>values_from</code>/<code>value.var</code> argument. The column name order in the <code>value*</code> argument determines the column order in the resulting data.</p>
-<div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
@@ -851,7 +809,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="pivot-wider-two-or-more-id-columns" class="level2">
 <h2 class="anchored" data-anchor-id="pivot-wider-two-or-more-id-columns">Pivot Wider Two or More ID Columns</h2>
 <p>Again, this is pretty similar to a “normal” wider operation. With <code>pivot_wider</code> you expand your <code>id_cols</code> to include the new columns, or, in my case, drop the <code>attendance</code> column so that it is now included. With <code>dcast</code>, you simply add the new column to the left hand side of the formula.</p>
-<div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
@@ -948,7 +906,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Pivot Longer</h1>
 <p><code>pivot_longer</code> and <code>melt</code> are very similar. The largest differences are the argument names and where they require argument values to be in quotes. <code>cols</code>/<code>measure.vars</code> are the columns that you want to be aggregated into a single new column. This argument must be in quotes for <code>melt</code>, but does not have to be for <code>pivot_longer</code> and should be the names of existing columns. <code>names_to</code>/<code>values_to</code> is the name of the column that will say which column was used for that row and <code>values_to</code>/<code>value.name</code> are the corresponding values. The name for each of these new columns is up to you. I have decided on <code>waitType</code> to describe if it is an <code>estimatedWait</code> or <code>actualWait</code> and <code>waitTime</code> to hold the value.</p>
 <p>I’ve saved a copy of the longer data as <code>dtLonger</code> so that we can explore <code>pivot_wider</code> and <code>dcast</code> a bit more.</p>
-<div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
@@ -1051,7 +1009,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We want to take our new longer data and change it to wider data where we want to know how long the <code>actualWait</code> and <code>estimatedWait</code> are for each ride throughout the day with each recording time as a row, and each ride as a column and <code>waitType</code> and <code>shortName</code>.</p>
 <p>For <code>pivot_wider</code>, we want our column names to use both the <code>waitType</code> and <code>shortName</code> and our values from <code>waitTime</code>. <code>id_cols</code> is then the remaining columns that we don’t want. With <code>dcast</code>, we want to add <code>waitType</code> and <code>shortName</code> to the right hand side of the formula so they are used as the column names, and <code>time</code> to the left hand side for the row identifiers. For both, <code>values_from</code> and <code>value.var</code> are our <code>waitTime</code> column.</p>
 <p>Like when using multiple values in <code>value_from</code>/<code>value.var</code>, the new column names are all combinations of values in <code>names_from</code> or right hand side. The combinations will be given in the order the column names are specified.</p>
-<div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
@@ -1187,7 +1145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="pivot-wider-with-mutiple-id-and-name-columns" class="level2">
 <h2 class="anchored" data-anchor-id="pivot-wider-with-mutiple-id-and-name-columns">Pivot Wider with Mutiple ID and Name Columns</h2>
 <p>If you’ve been following along so far, the code below should make sense. We want to use <code>time</code> and <code>attendance</code> as the row identifiers and the <code>estimatedWait</code> and <code>actualWait</code> as the values for each ride.</p>
-<div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
@@ -1611,9 +1569,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1678,6 +1650,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
