@@ -215,8 +215,8 @@ $enable-cssgrid: true
 <ul style="font-size: 14px; color:#666666;">
 	<li>Built a fully automated reporting pipeline with R and <b>Python</b> in for <b>Spark</b> in a <b>Databricks</b> environment that delivers monthly PDF reports to all Publix stores to support goals to reduce retail shrink</li>
 	<li>Analyzes store shrink metrics and provides actionable insights through targeted operations suggestions</li>
-	<li>Built and implemented a <b>SQL</b> translation function leveraging existing R packages to expedite writing new targeted operations suggestions as operations leaders see demand</li>
-	<li>We finished the project four months ahead of schedule and saved $85k per year in contracting costs</li>
+	<li>Built and implemented a <b>SQL</b> translation function leveraging the <b>tidyverse</b>, <b>dbplyr</b>, and <b>sparklyr</b> to expedite writing new targeted operations suggestions as operations leaders see demand</li>
+	<li>Completed the project four months ahead of schedule and saved $85k per year in contracting costs</li>
 </ul>
 <div class="grid-job">
 <div class="job">
@@ -226,7 +226,7 @@ $enable-cssgrid: true
 <div class="time">April 2023 - Present</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
-	<li>Implemented a recommendation system for store/item combinations to better cater to customer needs</li>
+	<li>Implemented a <b>machine learning</b> recommendation system to optimize store/item availability combinations</li>
 	<li>Accepts any combination of stores and items and imputes data for missing combinations</li>
 	<li>Uses the <b>tidymodels</b> suite to cluster stores based on similar latent features from the recommendation process</li>
 	<li>Pioneered “project as a package” for easier documentation, maintenance, legibility, requirements, and usability</li>
