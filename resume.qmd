@@ -155,7 +155,7 @@ $enable-cssgrid: true
 <div class="grid-job">
 <div class="job">
 <span><b>Data Analyst</b></span>
-<span style="color:#2e4440"><em> – Publix Supermarkets</em></span>
+<span style="color:#2e4440"><em> – Publix Super Markets</em></span>
 </div>
 <div class="time">May 2022 - May 2023</div>
 </div>

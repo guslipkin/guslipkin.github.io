@@ -27,7 +27,7 @@ If you want to learn more about me, feel free to poke around my site or [contact
 ----
 
 ::: {.column-page}
-<h2>Selected Projects</h2>
+## Selected Projects
 :::
 ::: {.grid .column-page}
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
@@ -174,5 +174,41 @@ If you want to learn more about me, feel free to poke around my site or [contact
 source("post-packages.R")
 
 cat("guslipkin.me", file = "docs/CNAME")
+```
+
+```{r}
+#| eval: false
+#| echo: false
+#| output: false
+y <- yaml::read_yaml("_quarto.yml")
+if (is.null(y[["quarto-version"]])) {
+  y[["quarto-version"]] <- paste0('>=', quarto::quarto_version())
+} else {
+  cur_ver <-
+    y[["quarto-version"]] |>
+    strsplit("[\\.<>=]") |>
+    unlist()
+  cur_ver <- as.integer(cur_ver[cur_ver != ""])
+  quarto_ver <- 
+    quarto::quarto_version() |>
+    as.character() |>
+    strsplit("\\.") |>
+    unlist() |>
+    as.integer()
+  if (all(quarto_ver >= cur_ver)) { 
+    y[["quarto-version"]] <- paste0('>=', quarto::quarto_version())
+  }
+}
+yaml::write_yaml(
+  y, 
+  "_quarto2.yml", 
+  handlers = list(
+    logical = \(x) {
+      x <- ifelse(x, "true", "false")
+      class(x) <- "verbatim"
+      return(x)
+    }
+  )
+)
 ```
 
