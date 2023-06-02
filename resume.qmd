@@ -157,7 +157,7 @@ $enable-cssgrid: true
 <span><b>Data Analyst</b></span>
 <span style="color:#2e4440"><em> – Publix Supermarkets</em></span>
 </div>
-<div class="time">May 2022 - Present</div>
+<div class="time">May 2022 - May 2023</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Develop novel analyses and models to provide key insights to business stakeholders including store managers</li>
