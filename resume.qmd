@@ -223,7 +223,7 @@ $enable-cssgrid: true
 <span><b>Store/Item Activation Recommendations</b></span>
 <span style="color:#2e4440"><em> – Publix Super Markets</em></span>
 </div>
-<div class="time">April 2023 - Present</div>
+<div class="time">April 2023 - May 2023</div>
 </div>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Implemented a <b>machine learning</b> recommendation system to optimize store/item availability combinations</li>
