@@ -154,6 +154,14 @@ $enable-cssgrid: true
 <h3 style="margin-bottom: 0px; color:#404040;">Experience</h3>
 <div class="grid-job">
 <div class="job">
+<span><b>Data Scientist</b></span>
+<span style="color:#2e4440"><em> – Lander Analytics</em></span>
+</div>
+<div class="time">July 2023 - Present</div>
+</div>
+
+<div class="grid-job">
+<div class="job">
 <span><b>Data Analyst</b></span>
 <span style="color:#2e4440"><em> – Publix Super Markets</em></span>
 </div>
@@ -177,18 +185,6 @@ $enable-cssgrid: true
 	<li>Correlate patient feedback to readmissions and patient experience using <b>linear regression</b> and <b>decision trees</b></li>
 	<li>Create an interactive training tool for nurses using results found in the analysis with <b>HTML</b> and <b>JavaScript</b></li>
 	<li>Work with capstone sponsor to define project timeline and goals and author a report on project findings</li>
-</ul>
-
-<div class="grid-job">
-<div class="job">
-<span><b>Research Intern</b></span>
-<span style="color:#2e4440"><em> – iCompBio</em></span>
-</div>
-<div class="time">May 2021 - Aug 2021</div>
-</div>
-<ul style="font-size: 14px; color:#666666;">
-	<li>Gather and process time series data of geospatial climate variables and SARS-CoV-2 data</li>
-	<li>Analyze data in R, <b>Excel</b>, and <b>ArcGIS</b> to investigate relationships with <b>time series analysis</b> and linear regressions</li>
 </ul>
 
 <div class="grid-job">
