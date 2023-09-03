@@ -9,8 +9,10 @@ website:
     left:
       - href: about.qmd
         text: About Me
-      - href: resume.qmd
-        text: My Résumé
+      - href: talks.qmd
+        text: My Talks
+      # - href: resume.qmd
+      #   text: Résumé
       - text: My Blogs
         menu:
           - href: professional-blog.qmd

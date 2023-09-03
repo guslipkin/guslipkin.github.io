@@ -12,6 +12,12 @@
     ]
   },
   {
+    "listing": "/talks.html",
+    "items": [
+      "/talks/2023-08-25-ml-for-people.html"
+    ]
+  },
+  {
     "listing": "/personal-blog.html",
     "items": []
   },

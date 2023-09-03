@@ -1,0 +1,23 @@
+---
+title: "Machine Learning for People"
+description: "How can I create a model that is easy to use and understand?"
+abstract: "Through a practical example, we explore the strategic art of selecting machine learning models tailored to specific situational needs, shifting the focus beyond pure accuracy. We take into account both computational expense and ease of understanding when sharing models with others to build a balanced approach to model selection that combines both functional effectiveness and interpretability."
+image: "../assets/talk-assets/2023-08-25-ml-for-people/ml_for_people.png"
+author: "Gus Lipkin"
+date: "2023/08/25"
+categories:
+  - "Machine Learning"
+  - "Model Selection"
+format:
+  html:
+    theme: default
+    toc: true
+---
+
+[🚗 Print a copy](../assets/talk-assets/2023-08-25-ml-for-people/ml_for_people.pdf) or a copy [with speaker notes](../assets/talk-assets/2023-08-25-ml-for-people/ml_for_people_speaker_notes.pdf)
+
+:::{.column-page}
+
+<iframe src="../assets/talk-assets/2023-08-25-ml-for-people/ml_for_people.pdf" width="100%" height="580px"></iframe>
+
+:::
