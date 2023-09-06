@@ -159,6 +159,11 @@ $enable-cssgrid: true
 </div>
 <div class="time">July 2023 - Present</div>
 </div>
+<ul style="font-size: 14px; color:#666666;">
+  <li>Build and maintain data science infrastructure with <b>Docker</b>, <b>Kubernetes</b>, <b>GitHub Actions</b>, and <b>Ansible Playbooks</b> according to customer needs and design specifications</li>
+  <li>Construct rigorous analyses in <b>R</b> and thorough and interactive reports and dashboards using <b>Shiny for R</b></li>
+  <li>Bring the joys of R and data science to others through tailored workshops and talks at conferences</li>
+</ul>
 
 <div class="grid-job">
 <div class="job">
@@ -169,7 +174,7 @@ $enable-cssgrid: true
 </div>
 <ul style="font-size: 14px; color:#666666;">
 	<li>Develop novel analyses and models to provide key insights to business stakeholders including store managers</li>
-	<li>Build and maintain internal <b>R</b> packages to aid in analysis such as ‘publixdate’ for working with Publix’s system of dates or ‘pubsub’ for general utilities and a streamlined database connection interface</li>
+	<li>Build and maintain internal R packages to aid in analysis such as ‘publixdate’ for working with Publix’s system of dates or ‘pubsub’ for general utilities and a streamlined database connection interface</li>
 	<li>Seek out and participate in strategic initiatives which require analytic support from across corporate</li>
   <li>Visualize data and create reports in <b>Power BI</b> to display model performance and facilitate data-driven decisions</li>
 </ul>
@@ -185,19 +190,6 @@ $enable-cssgrid: true
 	<li>Correlate patient feedback to readmissions and patient experience using <b>linear regression</b> and <b>decision trees</b></li>
 	<li>Create an interactive training tool for nurses using results found in the analysis with <b>HTML</b> and <b>JavaScript</b></li>
 	<li>Work with capstone sponsor to define project timeline and goals and author a report on project findings</li>
-</ul>
-
-<div class="grid-job">
-<div class="job">
-<span><b>Data Analyst and Assistant Project Manager</b></span>
-<span style="color:#2e4440"><em> – Draken International</em></span>
-</div>
-<div class="time">Dec 2020 - Sep 2021</div>
-</div>
-<ul style="font-size: 14px; color:#666666;">
-	<li>Oversee a team of interns and supervise data migration efforts including cleaning source data before transfer</li>
-	<li>Use <b>text mining</b> and <b>sentiment analysis</b> with <b>tidytext</b> to correlate radar system failure reports and repairs</li>
-	<li>Create and run weekly parts availability analysis and reports in <b>R Markdown</b> using R and <b>RStudio</b></li>
 </ul>
 
 <h3 style="margin-bottom: 0px; color:#404040;">Projects</h3>
