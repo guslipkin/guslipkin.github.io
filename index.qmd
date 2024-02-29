@@ -32,14 +32,13 @@ If you want to learn more about me, feel free to poke around my site or [contact
 ::: {.grid .column-page}
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
 ::: {.g-col-12}
-### Published on CRAN
-#### [{cipheR}![](assets/cipher.png){height=40}](https://guslipkin.github.io/cipheR/)
+### [{ClimbWith} ![](https://raw.githubusercontent.com/guslipkin/ClimbWith/main/inst/app/www/favicon.ico){height=40}](https://climbwith.guslipkin.me/)
 :::
 ::: {.g-col-12 .text-wrap}
-- **What:** An R library for simple text ciphers.
-- **Why:** I needed a Caesar Shift for an [Advent of Code](https://guslipkin.github.io/AdventOfCode/) puzzle and got a bit carried away!
-- **[How](https://github.com/guslipkin/cipher):** `R`
-- **Conclusion:** Check it out on [CRAN](https://cran.r-project.org/package=cipheR) or [watch me present](/presentations/2023-02-11-cipheR-page.html) it!
+- **What:** A climbing gym directory made in R Shiny.
+- **Why:** I wanted to know which gyms near me had which [Standardized Interactive Climbing Training Board](https://gearjunkie.com/climbing/kilter-moon-grasshopper-more-interactive-climbing-training-boards-explained) and there was no easy way to find that information already.
+- **[How](https://github.com/guslipkin/ClimbWith):** `R: {shiny, bs4Dash, leaflet, DT}`
+- **Conclusion:** Check it out at [climbwith.guslipkin.me](https://climbwith.guslipkin.me)!
 :::
 :::
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
@@ -51,6 +50,62 @@ If you want to learn more about me, feel free to poke around my site or [contact
 - **Why:** I have a lot to offer you and your company in a variety of fields.
 - **How:** If you'd like to work with me but, you're not sure where I might fit in, this page and [my résumé](resume.html) are a great place to start
 - **Conclusion:** It's time to [contact me](contact.html) and get the ball rolling!
+:::
+:::
+:::
+
+::: {.column-page}
+### R Packages
+:::
+::: {.grid .column-page}
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+#### [{cipheR} ![](https://raw.githubusercontent.com/guslipkin/cipheR/main/pkgdown/favicon/apple-touch-icon.png){height=40}](https://guslipkin.github.io/cipheR/)
+:::
+::: {.g-col-12 .d-flex .align-items-start}
+- **What:** An R library for simple text ciphers.
+- **Why:** I needed a Caesar Shift for an [Advent of Code](https://guslipkin.github.io/AdventOfCode/) puzzle and got a bit carried away!
+- **[How](https://github.com/guslipkin/cipher):** `R`
+- **Conclusion:** Check it out on [CRAN](https://cran.r-project.org/package=cipheR) or [watch me present](/presentations/2023-02-11-cipheR-page.html) it!
+:::
+:::
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+#### [{dewey} ![](https://raw.githubusercontent.com/guslipkin/dewey/main/pkgdown/favicon/apple-touch-icon.png){height=40}](https://guslipkin.github.io/dewey/)
+:::
+::: {.g-col-12}
+- **What:** A collection of useful `R` functions for data analysis.
+- **Why:** There were some things I wanted to do and they didn't exist yet, so I made them.
+- **[How](https://github.com/guslipkin/dewey):** `R: {data.table, parallel, pkgdown, stats}`
+- **Conclusion:** Development is difficult, but I'm proud of it and it's super useful.
+:::
+:::
+:::
+
+::: {.column-page}
+### Programming Puzzles
+:::
+::: {.grid .column-page}
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+#### [Advent of Code](https://guslipkin.github.io/AdventOfCode/)
+:::
+::: {.g-col-12 .text-wrap}
+- **What:** A series of programming puzzles to help save Christmas.
+- **Why:** Christmas must be saved! But also, it's a lot of fun and requires a variety of different solution styles.
+- **[How](https://github.com/guslipkin/AdventOfCode):** `R: {`[`mistlecode`](https://guslipkin.github.io/mistlecode/)`, *puzzle dependent* }`, `Quarto`
+- **Conclusion:** I highly recommend joining if you like a good challenge.
+:::
+:::
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+#### [{mistlecode}](https://guslipkin.github.io/mistlecode/)
+:::
+::: {.g-col-12}
+- **What:** Help me (or you!) out a bit with Advent of Code.
+- **Why:** A lot of puzzles are very similar and you can get ahead of the competition by building general solutions.
+- **[How](https://github.com/guslipkin/dewey):** `R: {tidyverse, data.table, R6, and more!}`
+- **Conclusion:** Development is difficult, but I'm proud of it and it's super useful
 :::
 :::
 :::
@@ -108,34 +163,6 @@ If you want to learn more about me, feel free to poke around my site or [contact
 - **Why:** It's a final project for GEB 3373 – International and Comparative Dimensions of Business.
 - **[How](https://github.com/guslipkin/Spring2021/blob/main/GEB%203373%20%7E%20International%20Comparative%20Dimensions/GEB%203373%20Final%20Project):**`Economic Analysis` and `Game Theory`
 - **Conclusion:** Trader Joe's has the potential to be a smash hit in the Canadian Supermarket industry.
-:::
-:::
-:::
-
-::: {.column-page}
-### Assorted Programming
-:::
-::: {.grid .column-page}
-::: {.g-col-12 .g-col-sm-6 .d-grid}
-::: {.g-col-12}
-#### [{dewey}![](assets/dewey.svg){height=40}](https://guslipkin.github.io/dewey/)
-:::
-::: {.g-col-12 .text-wrap}
-- **What:** A collection of useful `R` functions for data analysis
-- **Why:** There were some things I wanted to do and they didn't exist yet, so I made them
-- **[How](https://github.com/guslipkin/dewey):** `R: {data.table, parallel, pkgdown, stats}`
-- **Conclusion:** Development is difficult, but I'm proud of it and it's super useful
-:::
-:::
-::: {.g-col-12 .g-col-sm-6 .d-grid}
-::: {.g-col-12}
-#### [Advent of Code](https://guslipkin.github.io/AdventOfCode/)
-:::
-::: {.g-col-12}
-- **What:** A series of programming puzzles to help save Christmas.
-- **Why:** Christmas must be saved! But also, it's a lot of fun and requires a variety of different solution styles.
-- **[How](https://github.com/guslipkin/AdventOfCode):** `R: {`[`mistlecode`](https://guslipkin.github.io/mistlecode/)`, *puzzle dependent* }`, `Quarto`
-- **Conclusion:** I highly recommend joining if you like a good challenge.
 :::
 :::
 :::
