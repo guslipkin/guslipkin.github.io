@@ -10,7 +10,6 @@ categories:
   - "R: ggplot2"
 format:
   html:
-    theme: default
     toc: true
 ---
 

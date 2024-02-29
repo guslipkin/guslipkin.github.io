@@ -9,7 +9,6 @@ categories:
   - "R: data.table"
 format:
   html:
-    theme: default
     toc: true
 execute: 
   eval: false

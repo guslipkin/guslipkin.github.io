@@ -10,7 +10,6 @@ categories:
   - "Model Selection"
 format:
   html:
-    theme: default
     toc: true
 ---
 
@@ -19,5 +18,13 @@ format:
 :::{.column-page}
 
 <iframe src="../assets/talk-assets/2023-08-25-ml-for-people/ml_for_people.pdf" width="100%" height="580px"></iframe>
+
+:::
+
+## Watch me present
+
+:::{.column-page .embed-response .embed-responsive-16by9}
+
+<iframe class="embed-responsive-item" width="100%" height="560px" src="https://www.youtube-nocookie.com/embed/X-G1oPPi_tw" allowfullscreen></iframe>
 
 :::

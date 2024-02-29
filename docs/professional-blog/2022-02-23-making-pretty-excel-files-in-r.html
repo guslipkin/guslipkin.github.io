@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -25,7 +25,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -84,7 +84,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -93,6 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -107,9 +114,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Gus Lipkin’s Awesome Website</span>
     </a>
@@ -121,41 +128,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
- <span class="menu-text">About Me</span></a>
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../talks.html" rel="" target="">
- <span class="menu-text">My Talks</span></a>
+    <a class="nav-link" href="../talks.html"> 
+<span class="menu-text">My Talks</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-blogs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-blogs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">My Blogs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-my-blogs">    
         <li>
-    <a class="dropdown-item" href="../professional-blog.html" rel="" target="">
+    <a class="dropdown-item" href="../professional-blog.html">
  <span class="dropdown-text">My Professional Blog</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../personal-blog.html" rel="" target="">
+    <a class="dropdown-item" href="../personal-blog.html">
  <span class="dropdown-text">My Personal Blog</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../contact.html" rel="" target="">
- <span class="menu-text">Contact Me</span></a>
+    <a class="nav-link" href="../contact.html"> 
+<span class="menu-text">Contact Me</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto tools-wide">
-    <a href="https://www.linkedin.com/in/guslipkin/" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
-    <a href="https://www.github.com/guslipkin" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
-    <a href="https://guslipkin.medium.com/" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-medium"></i></a>
-    <a href="https://fosstodon.org/@guslipkin" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-mastodon"></i></a>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools tools-wide">
+    <a href="https://www.linkedin.com/in/guslipkin/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="https://www.github.com/guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://guslipkin.medium.com/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-medium"></i></a>
+    <a href="https://fosstodon.org/@guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-mastodon"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -217,7 +224,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p><a href="https://guslipkin.medium.com/making-pretty-excel-files-in-r-46a15c7a2ee8"><em>Link to the Medium post</em></a></p>
 <section id="intro" class="level1">
@@ -225,26 +234,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It’s a tale as old as time. Your boss gave you a bunch of Excel files and you painstakingly made a bot that will import and display them in a Shiny dashboard. Proud of your work, you take it to your boss and they say “I don’t know what a ‘Shiny’ is, can’t you just give me one of those Excels back?” <code>openxlsx</code> makes this easy.</p>
 <p>Today we’re going to recreate an existing workbook with <code>openxlsx.</code> To get started, I made a small <code>.xlsx</code> file for us to work with that can be downloaded <a href="../assets/post-assets/2022-02-23-making-pretty-excel-files-in-r/bbq.xlsx">here</a>. It’s an attendance list and some notes on supplies you’ll need for a company barbecue. Feel free to get familiar with it then come back here when you’re ready.</p>
 <div id="fig-grouped-stacked" class="quarto-layout-panel">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-attendancePreview" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="../assets/post-assets/2022-02-23-making-pretty-excel-files-in-r/attendancePreview.png" class="img-fluid figure-img" data-ref-parent="fig-grouped-stacked"></p>
-<figcaption class="figure-caption">(a) The <code>attendance</code> sheet</figcaption>
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-grouped-stacked-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-grouped-stacked" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-attendancePreview" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-attendancePreview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/post-assets/2022-02-23-making-pretty-excel-files-in-r/attendancePreview.png" class="img-fluid figure-img" data-ref-parent="fig-grouped-stacked">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-attendancePreview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) The <code>attendance</code> sheet
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-suppliesPreview" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="../assets/post-assets/2022-02-23-making-pretty-excel-files-in-r/suppliesPreview.png" class="img-fluid figure-img" data-ref-parent="fig-grouped-stacked"></p>
-<figcaption class="figure-caption">(b) The <code>supplies</code> sheet</figcaption>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-grouped-stacked" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-suppliesPreview" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-suppliesPreview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/post-assets/2022-02-23-making-pretty-excel-files-in-r/suppliesPreview.png" class="img-fluid figure-img" data-ref-parent="fig-grouped-stacked">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-suppliesPreview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) The <code>supplies</code> sheet
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: A preview of the Attendance and Supplies sheets</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-grouped-stacked-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: A preview of the Attendance and Supplies sheets
+</figcaption>
 </figure>
 </div>
 <hr>
@@ -252,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="reading-an-existing-workbook" class="level1">
 <h1>Reading an Existing Workbook</h1>
 <p>As usual, the first thing to do is load our library with <code>library(openxlsx)</code>. We can try and load the workbook, the Excel file, with <code>read.xlsx</code>, but for now we’re going to use <code>loadWorkbook</code>. This loads a workbook object and exposes some workbook properties to us rather than just the raw data like with <code>read.xlsx</code>.</p>
-<div class="cell" data-hash="2022-02-23-making-pretty-excel-files-in-r_cache/html/unnamed-chunk-2_a48aa732011426017966806540d3581c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load openxlsx</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># get the sheet names</span></span>
@@ -375,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <em style="color: grey;">The supplies data.frame</em>
 </center>
 <p>Because we loaded the data as a workbook object, we can use <code>getStyles</code> to load the styles and preview them. Unfortunately, the styles can’t pull conditional formatting and don’t keep track of which cells use which styles. By cross referencing the list of styles and <code>bbq.xlsx</code>, we can identify some styles to use and them assign them each to a variable.</p>
-<div class="cell" data-hash="2022-02-23-making-pretty-excel-files-in-r_cache/html/unnamed-chunk-3_1a3663095f689c255445a8ea6c3ea2fa">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># getStyles and set them appropriately</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>styles <span class="ot">&lt;-</span> <span class="fu">getStyles</span>(bbq)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>styles</span>
@@ -405,7 +426,7 @@ A custom cell style.
 <section id="creating-a-workbook" class="level1">
 <h1>Creating a Workbook</h1>
 <p>First thing we have to do is create a workbook object that we’ll call <code>wb</code>. We can quickly preview it by just typing <code>wb</code> into our chunk or the console.</p>
-<div class="cell" data-hash="2022-02-23-making-pretty-excel-files-in-r_cache/html/unnamed-chunk-4_a649e5575c1ee9e9b68be3b4e051bafe">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create workbook and check contents</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">createWorkbook</span>()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>wb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -417,7 +438,7 @@ Worksheets:
 </div>
 </div>
 <p>We’re going to make the <code>Supplies</code> sheet first as it’s a little bit easier. We first add a new worksheet named <code>Supplies</code> to the workbook, then we can write the relevant data to that sheet along with styling our column headers using <code>headerStyle</code> from earlier.</p>
-<div class="cell" data-hash="2022-02-23-making-pretty-excel-files-in-r_cache/html/unnamed-chunk-5_2ff1be158cc51cd04dac4ae07f2cc98b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create the supplies sheet and check for it</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addWorksheet</span>(<span class="at">wb =</span> wb, <span class="at">sheetName =</span> <span class="st">"Supplies"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># write supplies to the worksheet using headerStyle</span></span>
@@ -427,25 +448,25 @@ Worksheets:
 <section id="adding-styles" class="level1">
 <h1>Adding Styles</h1>
 <p>All of the numbers in the <code>Supplies</code> sheet are centered both horizontally and vertically. We can achieve this by adding the <code>numberStyle</code> from before to those cells. <code>rows</code> and <code>cols</code> both start at 2 because row one is the header row and column one is the supply type. <code>rows</code> goes to 5 because there are 4 rows of numbers (remember the header row) and <code>cols</code> goes to 5 because there are 4 columns of numbers. <code>gridExpand = TRUE</code> makes sure that all cell reference combinations possible with <code>rows</code> and <code>cols</code> are used, rather than doing an entire row or column.</p>
-<div class="cell" data-hash="2022-02-23-making-pretty-excel-files-in-r_cache/html/unnamed-chunk-6_15babbb7ddd8ac924164ad54c3459585">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add numberStyle</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addStyle</span>(<span class="at">wb =</span> wb, <span class="at">sheet =</span> <span class="st">"Supplies"</span>, <span class="at">style =</span> numberStyle, <span class="at">rows =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>, </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">gridExpand =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If we go back to our data in R, the <code>Quantity</code> for Hotdog buns and Hamburger buns is empty. A bit further back, we see that that’s because those cells were merged with the <code>Quantity</code> of Hotdogs and Hamburgers respectively. We can replicate this using <code>mergeCells</code>. Unlike <code>addStyle</code>, we don’t need to use <code>gridExpand</code> to merge all the cells as it is implied. <code>cols</code> will be 2 for both and we want <code>rows</code> 2 and 3 for Hotdogs and <code>rows</code> 4 and 5 for Hamburgers.</p>
-<div class="cell" data-hash="2022-02-23-making-pretty-excel-files-in-r_cache/html/unnamed-chunk-7_e0c380e93fdc0fec5d719a067342190b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge the hamburger and hotdog quantity cells</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mergeCells</span>(<span class="at">wb =</span> wb, <span class="at">sheet =</span> <span class="st">"Supplies"</span>, <span class="at">cols =</span> <span class="dv">2</span>, <span class="at">rows =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mergeCells</span>(<span class="at">wb =</span> wb, <span class="at">sheet =</span> <span class="st">"Supplies"</span>, <span class="at">cols =</span> <span class="dv">2</span>, <span class="at">rows =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Our last step on this worksheet is to set the column widths to auto. We again need to specify <code>cols</code> and can just do <code>1:5</code> so that all columns are affected.</p>
-<div class="cell" data-hash="2022-02-23-making-pretty-excel-files-in-r_cache/html/unnamed-chunk-8_2b722dbd3384f2ab976ccb1702cbd99e">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set column widths to auto</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setColWidths</span>(<span class="at">wb =</span> wb, <span class="at">sheet =</span> <span class="st">"Supplies"</span>, <span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">widths =</span> <span class="st">"auto"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ou <code>Supplies</code> sheet is now complete, but we’re not going to write it just yet because we still need to do the <code>Attendance</code> sheet.</p>
 <p>Like before, we first add the <code>Attendance</code> worksheet and write the data to it.</p>
-<div class="cell" data-hash="2022-02-23-making-pretty-excel-files-in-r_cache/html/unnamed-chunk-9_1a63a583fdb40ee4a5232ea714707451">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create the attendance sheet and check for it</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addWorksheet</span>(<span class="at">wb =</span> wb, <span class="at">sheetName =</span> <span class="st">"Attendance"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -458,7 +479,7 @@ Worksheets:
 <section id="conditional-formatting" class="level1">
 <h1>Conditional Formatting</h1>
 <p>The <code>RSVPed</code> and <code>Status</code> columns each have some conditional formatting. We can reuse the color formatting from the <code>RSVPed</code> column on the <code>Status</code> column, so we’re going to separate the color style from the alignment style. It was easy to see how many rows we have in the <code>Supplies</code> sheet but not here so we’re going to create a new variable that has the <code>rowNumbers</code>. Again, we start on row 2 because of the header row and will end at our last data row plus 1.</p>
-<div class="cell" data-hash="2022-02-23-making-pretty-excel-files-in-r_cache/html/unnamed-chunk-10_1096a7a98f7e2dc499acc00e7b3c0450">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create color styles for rsvp and status</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>goodStyle <span class="ot">&lt;-</span> <span class="fu">createStyle</span>(<span class="at">fontColour =</span> <span class="st">"#006100"</span>, <span class="at">bgFill =</span> <span class="st">"#C6EFCE"</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>badStyle <span class="ot">&lt;-</span> <span class="fu">createStyle</span>(<span class="at">fontColour =</span> <span class="st">"#9C0006"</span>, <span class="at">bgFill =</span> <span class="st">"#FFC7CE"</span>)</span>
@@ -469,7 +490,7 @@ Worksheets:
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>rowNumbers <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="fu">nrow</span>(attendance) <span class="sc">+</span> <span class="dv">1</span>, <span class="at">by =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Our first step is to center the values in the <code>RSVPed</code> column with an <code>addStyle</code>. Next, while we could manually color each cell using a <code>for</code> loop, it’s more efficient to use <code>conditionalFormatting</code>. This also has the added bonus of showing in Excel and responding to any changes. The rule argument may be a little strange, and that’s because it must match how the same formatting rule would be written in Excel. In this case, we use our top-leftmost cell as the reference cell in the rule, <code>B2</code>, then we check if it is <code>TRUE</code> or <code>FALSE</code>. When the rule is applied down the cells in column <code>B</code>, the row number will change to match the current row.</p>
-<div class="cell" data-hash="2022-02-23-making-pretty-excel-files-in-r_cache/html/unnamed-chunk-11_65a0cb723cbe2678256ecad3c8844cf9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># center the column values</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addStyle</span>(<span class="at">wb =</span> wb, <span class="at">sheet =</span> <span class="st">"Attendance"</span>, </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">style =</span> centerStyle, <span class="at">cols =</span> <span class="dv">2</span>, <span class="at">rows =</span> rowNumbers)</span>
@@ -481,7 +502,7 @@ Worksheets:
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">rows =</span> rowNumbers, <span class="at">rule =</span> <span class="st">"B2==FALSE"</span>, <span class="at">style =</span> badStyle)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>Status</code> column is very similar to the <code>RSVPed</code> column, but we add a style for <code>Tentative</code> responses and then need a third <code>conditionalFormatting</code>. The newest part here is in the <code>rule</code> argument. We need to put quotes around <code>Yes</code> so that Excel knows that it is a string and need to use <code>\"</code> so that R knows that the quote is part of the string. Once our formatting has been applied, we set the column widths as we did before.</p>
-<div class="cell" data-hash="2022-02-23-making-pretty-excel-files-in-r_cache/html/unnamed-chunk-12_4b8abfd441d3ad2c78f830b9b41c05d9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add style for status and tentative</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>maybeStyle <span class="ot">&lt;-</span> <span class="fu">createStyle</span>(<span class="at">fontColour =</span> <span class="st">"#9C6500"</span>, <span class="at">bgFill =</span> <span class="st">"#FFEB9C"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -503,7 +524,7 @@ Worksheets:
 <section id="writing-the-workbook" class="level1">
 <h1>Writing the Workbook</h1>
 <p>The last thing we need to do is reorder the worksheets so that <code>Attendance</code> is first because when we created the workbook in R, we created the <code>Supplies</code> worksheet first. Unfortunately, <code>worksheetOrder</code> only supports integer vectors. We can check our worksheet numbers by calling the object again through either the chunk or console. Then we set the worksheet order and save the workbook to an <code>.xlsx</code> file.</p>
-<div class="cell" data-hash="2022-02-23-making-pretty-excel-files-in-r_cache/html/unnamed-chunk-13_d7eb5ab34ca4c1b10f2d69fd82f1d5f3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the workbook sheet order</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>wb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -588,6 +609,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
   }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
   const toggleColorMode = (alternate) => {
     // Switch the stylesheets
     const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
@@ -654,13 +702,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -739,10 +789,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -752,8 +801,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -766,6 +824,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -809,6 +986,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -834,6 +1012,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -894,6 +1098,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

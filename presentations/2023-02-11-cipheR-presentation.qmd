@@ -4,7 +4,6 @@ author: "Gus Lipkin"
 date: "2023-02-11"
 format: 
   revealjs:
-    theme: default
     controls: true
     self-contained: true
     navigation-mode: vertical

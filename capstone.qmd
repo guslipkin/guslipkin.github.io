@@ -3,7 +3,6 @@ title: "Patient Readmission Rates with Tallahassee Memorial Healthcare"
 site-path: "/capstone"
 format:
   html:
-    theme: default
     toc: true
 ---
 

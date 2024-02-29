@@ -8,7 +8,6 @@ categories:
   - "R: apply"
 format:
   html:
-    theme: default
     toc: true
 ---
 

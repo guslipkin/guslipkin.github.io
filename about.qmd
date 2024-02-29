@@ -3,7 +3,6 @@ title: "About Me"
 site-path: "/about"
 format:
   html:
-    theme: default
     toc: true
     toc-location: right
 ---

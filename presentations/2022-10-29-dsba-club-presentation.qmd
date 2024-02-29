@@ -5,7 +5,6 @@ Author: "Gus Lipkin"
 date: "2022-10-29"
 format: 
   revealjs:
-    theme: default
     controls: true
     self-contained: true
 ---

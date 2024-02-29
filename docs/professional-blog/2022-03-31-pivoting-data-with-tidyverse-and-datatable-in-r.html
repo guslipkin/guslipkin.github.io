@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -25,7 +25,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -84,7 +84,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -93,6 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -107,9 +114,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Gus Lipkin’s Awesome Website</span>
     </a>
@@ -121,41 +128,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
- <span class="menu-text">About Me</span></a>
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../talks.html" rel="" target="">
- <span class="menu-text">My Talks</span></a>
+    <a class="nav-link" href="../talks.html"> 
+<span class="menu-text">My Talks</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-blogs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-blogs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">My Blogs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-my-blogs">    
         <li>
-    <a class="dropdown-item" href="../professional-blog.html" rel="" target="">
+    <a class="dropdown-item" href="../professional-blog.html">
  <span class="dropdown-text">My Professional Blog</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../personal-blog.html" rel="" target="">
+    <a class="dropdown-item" href="../personal-blog.html">
  <span class="dropdown-text">My Personal Blog</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../contact.html" rel="" target="">
- <span class="menu-text">Contact Me</span></a>
+    <a class="nav-link" href="../contact.html"> 
+<span class="menu-text">Contact Me</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto tools-wide">
-    <a href="https://www.linkedin.com/in/guslipkin/" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
-    <a href="https://www.github.com/guslipkin" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
-    <a href="https://guslipkin.medium.com/" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-medium"></i></a>
-    <a href="https://fosstodon.org/@guslipkin" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-mastodon"></i></a>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools tools-wide">
+    <a href="https://www.linkedin.com/in/guslipkin/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="https://www.github.com/guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://guslipkin.medium.com/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-medium"></i></a>
+    <a href="https://fosstodon.org/@guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-mastodon"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -238,6 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
 
@@ -250,32 +258,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Intro</h1>
 <p>Pivoting data can be a little scary sometimes, even if you know exactly what you want to do. But it doesn’t need to be. I’m hoping that by the end of this post, you’ll feel like the pivot pro you always knew you could be.</p>
 <div id="fig-giraffe-manta" class="quarto-layout-panel">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-giraffe" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/giraffe.jpg" class="img-fluid figure-img" data-ref-parent="fig-giraffe-manta"></p>
-<figcaption class="figure-caption">(a) A giraffe (longer)</figcaption>
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-giraffe-manta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-giraffe-manta" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-giraffe" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-giraffe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/giraffe.jpg" class="img-fluid figure-img" data-ref-parent="fig-giraffe-manta">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-giraffe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) A giraffe (longer)
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-manta" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/mantaray.jpg" class="img-fluid figure-img" data-ref-parent="fig-giraffe-manta"></p>
-<figcaption class="figure-caption">(b) A manta ray (wider)</figcaption>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-giraffe-manta" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-manta" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-manta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/mantaray.jpg" class="img-fluid figure-img" data-ref-parent="fig-giraffe-manta">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-manta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) A manta ray (wider)
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: Longer and wider animals</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-giraffe-manta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Longer and wider animals
+</figcaption>
 </figure>
 </div>
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
 <p>As usual, the first thing we want to do is load our libraries. We’ll be using <code>pivot_wider</code> and <code>pivot_longer</code> from <code>tidyverse</code> as well as the pipe operator, <code>%&gt;%</code> from <code>magrittr</code> which is loaded through <code>tidyverse</code>. We’re also using <code>dcast</code> and <code>melt</code> from <code>data.table</code> as they are twins to <code>pivot_wider</code> and <code>pivot_longer</code>, respectively. While they are not identical, they perform the same functions are operate somewhat similarly.</p>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/LoadLibraries_990bc044ff8d9cd01bbe85e965be2783">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -328,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </div>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/CreateDummyData_be5c5a147296375bda5debb453a66e5b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2022</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>rideName <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"The Amulet from Below"</span>, <span class="st">"The Strong Key Mystery"</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"The Punishment of Bane"</span>, <span class="st">"The Mage Beyond the Grave"</span>,</span>
@@ -424,26 +444,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="pivot_wider-and-dcast"><code>pivot_wider</code> and <code>dcast</code></h2>
 <p><code>pivot_wider</code> and <code>dcast</code> take data and reshapes it so that there are more columns and fewer rows than the input data. It allows you to specify a column as a unique identifier and use the values in one or more columns as new column names. The last column is the values that you want placed in the proper intersection between the identifier column value and each new column value.</p>
 <div id="fig-original-wider" class="quarto-layout-panel">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-original" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/original.png" class="img-fluid figure-img" data-ref-parent="fig-original-wider"></p>
-<figcaption class="figure-caption">(a) The original data</figcaption>
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-original-wider-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-original-wider" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-original" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-original-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/original.png" class="img-fluid figure-img" data-ref-parent="fig-original-wider">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-original-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) The original data
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-wider" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/wider.png" class="img-fluid figure-img" data-ref-parent="fig-original-wider"></p>
-<figcaption class="figure-caption">(b) The wider data</figcaption>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-original-wider" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-wider" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-wider-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/wider.png" class="img-fluid figure-img" data-ref-parent="fig-original-wider">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-wider-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) The wider data
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: Wider data expands columns and decreases length</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-original-wider-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Wider data expands columns and decreases length
+</figcaption>
 </figure>
 </div>
 <p>In the example above, I’ve pivoted the <code>actualWait</code> using the <code>time</code> and <code>shortName</code> columns. We can see that the first five rows of values in <code>actualWait</code> have become the first row of values in the wider data. The last row with <em>The Amulet from Below</em> at 8:05 becomes the value for <code>amulet</code> in the second row of the wider data where the <code>time</code> is 8:05.</p>
@@ -453,26 +485,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="pivot_longer-and-melt"><code>pivot_longer</code> and <code>melt</code></h2>
 <p><code>pivot_longer</code> and <code>melt</code> take data and reshape it so that there are more rows and fewer columns than the input data. It allows you to specify specify columns that you want aggregated and the new column names for what was the column names and the values column.</p>
 <div id="fig-original-longer" class="quarto-layout-panel">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-original" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/original.png" class="img-fluid figure-img" data-ref-parent="fig-original-longer"></p>
-<figcaption class="figure-caption">(a) The original data</figcaption>
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-original-longer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-original-longer" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-original" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-original-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/original.png" class="img-fluid figure-img" data-ref-parent="fig-original-longer">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-original-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) The original data
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-longer" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/longer.png" class="img-fluid figure-img" data-ref-parent="fig-original-longer"></p>
-<figcaption class="figure-caption">(b) The longer data</figcaption>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-original-longer" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-longer" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-longer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/longer.png" class="img-fluid figure-img" data-ref-parent="fig-original-longer">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-longer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) The longer data
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3: Longer data combines columns and decreases width</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-original-longer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Longer data combines columns and decreases width
+</figcaption>
 </figure>
 </div>
 <p>In the example above, the <code>estimatedWait</code> and <code>actualWait</code> columns are consolidated into the <code>waitType</code> column where each row specifies if the corresponding <code>waitTime</code> column is an estimated or actual wait time.</p>
@@ -556,7 +600,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>That’s okay if you’re expecting multiple values, you’ll just need to remember use use <code>values_fn</code> for <code>pivot_wider</code> or <code>fun.aggregate</code> for <code>dcast</code> to make sure they are being handled appropriately. A common use-case would be something similar to pivot tables in Excel where you want to count each item. In that case, your function argument would be <code>count</code>.</p>
 <p>The basic format to check for for duplicates is <code>x[duplicated(x)]</code>. However, <code>duplicated()</code> only returns <code>TRUE</code> for the second or more occurrence of an item in <code>x</code>. In order to check for all duplicates, we need to also check <code>fromLast</code> like this: <code>x[duplicated(x) | duplicated(x), fromLast = TRUE]</code>. Once you have identified your duplicate rows, it is up to you what to do. In some cases, you might be okay using <code>unique(x)</code> to get only unique items, or you might want to discard all duplicated items altogether with <code>x[!duplicated(x) &amp; !duplicated(x, fromLast = TRUE)]</code>.</p>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/DuplicatedData_7f05b528591e44bf422f5d3a920bbf7a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create duplicated data</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dtDuplicated <span class="ot">&lt;-</span> <span class="fu">rbind</span>(dt, dt[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># DuplicatedData.csv</span></span>
@@ -587,7 +631,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWider_03b62e0f5cbbe127e30b5b4ceefb50a3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with one value column</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">names_from =</span> shortName, </span>
@@ -598,7 +642,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-1_cd6787f034abe456905f6c35595a93bc">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with one value column</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">~</span> shortName, </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">value.var =</span> <span class="st">"actualWait"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -678,7 +722,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderTwoRight_b93b18f246f00ce6c6dd1cedd3c78c0e">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with two value columns</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance), </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">names_from =</span> shortName, </span>
@@ -686,7 +730,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-2_9894048d3f47b0dd3808ae27a7c9a240">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with two value columns</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">~</span> shortName, </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">value.var =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -814,7 +858,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderTwoLeft_3f27671548b74fd2e1000726f3e6c7e7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with two id columns</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, estimatedWait),</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">names_from =</span> shortName,</span>
@@ -822,7 +866,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-3_a6dbe9e6dc6decda0138a49ef1d4b851">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with two id columns</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">+</span> attendance <span class="sc">~</span> shortName,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">value.var =</span> <span class="st">"actualWait"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -911,7 +955,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotLonger_e913c4be861fc1ba3fc4c88a6d686ae6">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot longer</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(estimatedWait, actualWait), </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">names_to =</span> <span class="st">"waitType"</span>, </span>
@@ -920,7 +964,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-4_d952829637a8b98718cb8e38519699cf">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot longer</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span> <span class="fu">melt</span>(<span class="at">measure.vars =</span> <span class="fu">c</span>(<span class="st">"estimatedWait"</span>, <span class="st">"actualWait"</span>),</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">variable.name =</span> <span class="st">"waitType"</span>,</span>
@@ -1014,7 +1058,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderFromLonger_4a19dc92cb361a0da01b61b4a5fbfc9d">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with more than one right hand column</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance), </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names_from =</span> <span class="fu">c</span>(waitType, shortName), </span>
@@ -1022,7 +1066,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-5_ea825afac20a92b9a2be52bef0ef2cb9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with more than one right hand column</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">~</span> waitType <span class="sc">+</span> shortName, </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">value.var =</span> <span class="st">"waitTime"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1150,7 +1194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true"><code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false"><code>data.table</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/PivotWiderTwoLeftRight_3971dcee81080d89d8f819f03f8db2e8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with more than one left and right hand column</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span>rideName, </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names_from =</span> <span class="fu">c</span>(waitType, shortName), </span>
@@ -1158,7 +1202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/unnamed-chunk-6_ead21d49a4c7d6323be80bb59e4c29a1">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot wider with more than one left and right hand column</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>dtLonger <span class="sc">%&gt;%</span> <span class="fu">dcast</span>(time <span class="sc">+</span> attendance <span class="sc">~</span> waitType <span class="sc">+</span> shortName, </span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">value.var =</span> <span class="st">"waitTime"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1292,7 +1336,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Wrapping Things Up</h1>
 <section id="a-quick-benchmark" class="level2">
 <h2 class="anchored" data-anchor-id="a-quick-benchmark">A quick benchmark</h2>
-<div class="cell" data-hash="2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r_cache/html/Benchmark_715ff8b10ff8dc20066ecf2888731838">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rbenchmark<span class="sc">::</span><span class="fu">benchmark</span>(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pivot_wider"</span> <span class="ot">=</span> {</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> dt <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="sc">!</span><span class="fu">c</span>(rideName, attendance, estimatedWait), </span>
@@ -1471,6 +1515,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
   }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
   const toggleColorMode = (alternate) => {
     // Switch the stylesheets
     const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
@@ -1537,13 +1608,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1622,10 +1695,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1635,8 +1707,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1649,6 +1730,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1692,6 +1892,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1717,6 +1918,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1777,6 +2004,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

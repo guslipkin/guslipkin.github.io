@@ -9,7 +9,6 @@ categories:
   - Excel
 format:
   html:
-    theme: default
     toc: true
 ---
 

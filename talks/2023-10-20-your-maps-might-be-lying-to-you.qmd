@@ -1,0 +1,30 @@
+---
+title: "Your Maps Might Be Lying to You"
+# description: "How can I create a model that is easy to use and understand?"
+# abstract: ""
+image: "../assets/talk-assets/2023-10-20-your-maps-might-be-lying-to-you/your_maps_might_by_lying_to_you.png"
+author: "Gus Lipkin"
+date: "2023/10/20"
+categories:
+  - "Geospatial Data"
+  - "Mapping"
+format:
+  html:
+    toc: true
+---
+
+[🚗 Print a copy](../assets/talk-assets/2023-10-20-your-maps-might-be-lying-to-you/your_maps_might_by_lying_to_you.pdf) or a copy [with speaker notes](../assets/talk-assets/2023-10-20-your-maps-might-be-lying-to-you/your_maps_might_by_lying_to_you_speaker_notes.pdf)
+
+:::{.column-page}
+
+<iframe src="../assets/talk-assets/2023-10-20-your-maps-might-be-lying-to-you/your_maps_might_by_lying_to_you.pdf" width="100%" height="580px"></iframe>
+
+:::
+
+## Watch me present
+
+:::{.column-page .embed-response .embed-responsive-16by9}
+
+<iframe class="embed-responsive-item" width="100%" height="560px" src="https://www.youtube-nocookie.com/embed/xnxLmld4M-A" allowfullscreen></iframe>
+
+:::

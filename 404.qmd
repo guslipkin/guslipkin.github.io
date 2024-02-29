@@ -1,8 +1,6 @@
 ---
 title: "404: Page Not Found"
-format:
-  html:
-    theme: default
+format: html
 ---
 
 This is embarrassing! I don't seem to have the page you were looking for.

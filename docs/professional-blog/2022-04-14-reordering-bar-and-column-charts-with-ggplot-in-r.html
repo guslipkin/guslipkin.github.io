@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -25,7 +25,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -84,7 +84,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -93,6 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -107,9 +114,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Gus Lipkin’s Awesome Website</span>
     </a>
@@ -121,41 +128,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
- <span class="menu-text">About Me</span></a>
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../talks.html" rel="" target="">
- <span class="menu-text">My Talks</span></a>
+    <a class="nav-link" href="../talks.html"> 
+<span class="menu-text">My Talks</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-blogs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-blogs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">My Blogs</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-my-blogs">    
         <li>
-    <a class="dropdown-item" href="../professional-blog.html" rel="" target="">
+    <a class="dropdown-item" href="../professional-blog.html">
  <span class="dropdown-text">My Professional Blog</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../personal-blog.html" rel="" target="">
+    <a class="dropdown-item" href="../personal-blog.html">
  <span class="dropdown-text">My Personal Blog</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../contact.html" rel="" target="">
- <span class="menu-text">Contact Me</span></a>
+    <a class="nav-link" href="../contact.html"> 
+<span class="menu-text">Contact Me</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto tools-wide">
-    <a href="https://www.linkedin.com/in/guslipkin/" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
-    <a href="https://www.github.com/guslipkin" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
-    <a href="https://guslipkin.medium.com/" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-medium"></i></a>
-    <a href="https://fosstodon.org/@guslipkin" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-mastodon"></i></a>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools tools-wide">
+    <a href="https://www.linkedin.com/in/guslipkin/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="https://www.github.com/guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://guslipkin.medium.com/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-medium"></i></a>
+    <a href="https://fosstodon.org/@guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-mastodon"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -219,32 +226,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="intro" class="level1">
 <h1>Intro</h1>
 <p>Like grammar in English, the grammar of graphics (<code>ggplot2</code>) can be somewhat confusing at times. Usually you know what you want your chart to look like but you’re not sure exactly how to get there. A common issue is trying to get your discrete axis to show up in the order you want, whether it’s getting your days of the week in order or ordering columns in ascending or descending order.</p>
 <div id="fig-days-monthly-ascending" class="quarto-layout-panel">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-days-in-order" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="../assets/post-assets/2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r/days_in_order.png" class="img-fluid figure-img" data-ref-parent="fig-days-monthly-ascending"></p>
-<figcaption class="figure-caption">(a) In order by day of the week</figcaption>
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-days-monthly-ascending-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-days-monthly-ascending" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-days-in-order" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-days-in-order-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/post-assets/2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r/days_in_order.png" class="img-fluid figure-img" data-ref-parent="fig-days-monthly-ascending">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-days-in-order-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) In order by day of the week
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-monthly-ascending" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="../assets/post-assets/2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r/monthly_ascending.png" class="img-fluid figure-img" data-ref-parent="fig-days-monthly-ascending"></p>
-<figcaption class="figure-caption">(b) In ascending order grouped by month</figcaption>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-days-monthly-ascending" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-monthly-ascending" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-monthly-ascending-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/post-assets/2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r/monthly_ascending.png" class="img-fluid figure-img" data-ref-parent="fig-days-monthly-ascending">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-monthly-ascending-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) In ascending order grouped by month
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: Bar charts organized by day of the week and descending order, respectively</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-days-monthly-ascending-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Bar charts organized by day of the week and descending order, respectively
+</figcaption>
 </figure>
 </div>
 </section>
@@ -252,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Creating the Data</h1>
 <p>As usual, we want to load the <code>tidyverse</code> first since it gives us <code>%&gt;%</code> from <code>magrittr</code> and <code>ggplot2</code> and everything that comes with it.</p>
 <p>The dummy data for this post is painting sales. You’re a starving artist who hasn’t taken any days off selling paintings in the past year and you’re trying to start taking a day to yourself every week. Our data has the day of the month (only 28 days per month), the month, the day of the week, and the number of paintings you sold each day. R has a constant built in for the name of the month, <code>month.name</code>, but not one for the days of the week, so we’ll have to make that ourselves. In addition, we start our week on a Sunday.</p>
-<div class="cell" data-hash="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_cache/html/unnamed-chunk-2_7a89327731ae66ae143854341962abbf">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2022</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>days_of_the_week <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Sunday"</span>, <span class="st">"Monday"</span>, <span class="st">"Tuesday"</span>, <span class="st">"Wednesday"</span>, </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"Thursday"</span>, <span class="st">"Friday"</span>, <span class="st">"Saturday"</span>)</span>
@@ -292,7 +313,7 @@ Note
 <p>The only aspects of <code>geom_bar()</code> that will change are the values used for <code>x</code> and <code>y</code> in <code>aes()</code>.</p>
 </div>
 </div>
-<div class="cell" data-hash="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_cache/html/unnamed-chunk-3_1cbf2598ddd6ef0ff61741cb9e3771a7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sales <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(weekday) <span class="sc">%&gt;%</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">weekdaySales =</span> <span class="fu">mean</span>(paintings)) <span class="sc">%&gt;%</span></span>
@@ -304,11 +325,15 @@ Note
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> weekday, <span class="at">y =</span> weekdaySales, <span class="at">fill =</span> weekday), </span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" alt="A column chart of mean painting sales vs days of the week with the days of the week out of order" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" alt="A column chart of mean painting sales vs days of the week with the days of the week out of order" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Unfortunately, our days of the week are not in order. Lots of people would be very sad if Monday came directly after Friday.</p>
-<div class="cell" data-hash="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_cache/html/unnamed-chunk-4_29dc86d2cfb00d487a17047f59a4f9b4">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sales <span class="sc">%&gt;%</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(weekday) <span class="sc">%&gt;%</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">weekdaySales =</span> <span class="fu">mean</span>(paintings)) <span class="sc">%&gt;%</span></span>
@@ -320,7 +345,11 @@ Note
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(weekday, days_of_the_week), <span class="at">y =</span> weekdaySales, </span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> weekday), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" alt="A column chart of mean painting sales vs days of the week with the days of the week in order" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" alt="A column chart of mean painting sales vs days of the week with the days of the week in order" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>By changing <code>x = weekday</code> to <code>x = factor(weekday, days_of_the_week)</code>, we can get the days in order. The key here is that <code>factor()</code> takes two arguments; a vector of data and a vector defining the levels of the data in order. In this case, <code>days_of_the_week</code> defines the levels in order.</p>
@@ -328,7 +357,7 @@ Note
 <section id="ascending-or-descending-order" class="level1">
 <h1>Ascending or Descending Order</h1>
 <p>While the graph we just got does the job, we want to see how big the jumps are in order between days of the week. Similarly to getting our days of the week in order, we need to change <code>x = weekday</code> to something else to get our <code>x</code> axis sorted in ascending or descending order. While <code>factor()</code> lets us reorder them by <code>factor</code> levels, <code>reorder</code> allows us to reorder by numeric value. The first argument is the vector we want to change, in this case, <code>weekday</code>, and we want to change it to match the order of the second argument, <code>weekdaySales</code>. In fact, <code>reorder(weekday, weekdaySales)</code> is the same as <code>sales$weekday[order(sales$weekdaySales)]</code>.</p>
-<div class="cell" data-hash="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_cache/html/unnamed-chunk-5_2ba65e93ad194d0ef928d512d6ff3ad8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sales <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(weekday) <span class="sc">%&gt;%</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">weekdaySales =</span> <span class="fu">mean</span>(paintings)) <span class="sc">%&gt;%</span></span>
@@ -340,11 +369,15 @@ Note
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(weekday, weekdaySales), <span class="at">y =</span> weekdaySales, </span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> weekday), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" alt="A column chart of mean painting sales vs days of the week with the days of the week in ascending order by mean painting sales" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" alt="A column chart of mean painting sales vs days of the week with the days of the week in ascending order by mean painting sales" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The default order is ascending order, smallest to largest. To reverse the order, we can add a minus sign before the second argument so that it reads <code>reorder(weekday, -weekdaySales)</code>.</p>
-<div class="cell" data-hash="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_cache/html/unnamed-chunk-6_ed51fdc974e6ffb7315ac38cc17b2ff7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sales <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(weekday) <span class="sc">%&gt;%</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">weekdaySales =</span> <span class="fu">mean</span>(paintings)) <span class="sc">%&gt;%</span></span>
@@ -356,18 +389,22 @@ Note
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(weekday, <span class="sc">-</span>weekdaySales), <span class="at">y =</span> weekdaySales, </span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> weekday), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" alt="A column chart of mean painting sales vs days of the week with the days of the week in descending order by mean painting sales" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" alt="A column chart of mean painting sales vs days of the week with the days of the week in descending order by mean painting sales" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="attempting-to-order-within-facets" class="level1">
 <h1>Attempting to Order Within Facets</h1>
 <p>Before we get started on facets, I want to change the data a little so that the examples are a little clearer. By adding some variation into the <code>paintings</code> variable, the differences between days of different months will be more apparent.</p>
-<div class="cell" data-hash="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_cache/html/unnamed-chunk-7_f315589eb5bb4dfda46c67ccfef4cb61">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sales<span class="sc">$</span>paintings <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">28</span><span class="sc">*</span><span class="dv">12</span>, <span class="fu">c</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">28</span>, <span class="dv">28</span><span class="sc">*</span><span class="dv">12</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Thinking that maybe we’d like to switch up our day off every month, we want to see how our sales change over the course of the year, but still <code>group_by(weekday)</code>. However, since we want to know the mean for each <code>weekday</code> for each <code>month</code>, we need to add that so we have <code>group_by(month, weekday)</code>. We also add <code>facet_wrap(~ month)</code> to the end of the <code>ggplot</code> chain. Essentially, this means that we want to have a mini plot for each <code>month</code>. In this case, we’ve ordered our <code>y</code> axis so that the days of the week are in order from top to bottom.</p>
-<div class="cell" data-hash="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_cache/html/unnamed-chunk-8_f3f1db7ffc891c81a8d11cc212ef7104">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sales <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(month, weekday) <span class="sc">%&gt;%</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">weekdaySales =</span> <span class="fu">mean</span>(paintings)) <span class="sc">%&gt;%</span></span>
@@ -380,11 +417,15 @@ Note
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> weekday), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> month)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" alt="One column chart for each month in alphabetical order with days of the week in proper order" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" alt="One column chart for each month in alphabetical order with days of the week in proper order" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>That’s all well and good, but what if we want each month ordered in descending order like we had the chart before? We can try changing <code>y = factor()</code> to <code>y = reorder()</code>. We also add <code>scales = "free_y"</code> to <code>facet_wrap</code> so that each chart’s <code>y</code> axis is calculated independently. It’s quickly apparent that this doesn’t work the way we were expecting it to. The facets are not sorted properly and all of them are sorted the same way.</p>
-<div class="cell" data-hash="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_cache/html/unnamed-chunk-9_29f2f37a40b63ef396aa76c0af0e4f14">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sales <span class="sc">%&gt;%</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(month, weekday) <span class="sc">%&gt;%</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">weekdaySales =</span> <span class="fu">mean</span>(paintings)) <span class="sc">%&gt;%</span></span>
@@ -397,13 +438,21 @@ Note
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> weekday), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> month, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" alt="One column chart for each month in alphabetical order with days of the week in an unknown order" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" alt="One column chart for each month in alphabetical order with days of the week in an unknown order" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Not sure what happened, we try to investigate. If we re-run the earlier <em>Mean Weekly Painting Sales in Descending Order</em> chart with the new data and grouped by <code>weekday</code>, we find that the <code>y</code> axis in each facet is, in fact, in order with Sunday with the highest sales and Friday with the lowest, but the order hasn’t been recalculated for each month.</p>
-<div class="cell" data-hash="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_cache/html/unnamed-chunk-10_1cebfbb7a53701a2ff2c437a39398303">
+<div class="cell">
 <div class="cell-output-display">
-<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" alt="Column chart of mean painting sales vs day of the week in order of descending mean painting sales" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" alt="Column chart of mean painting sales vs day of the week in order of descending mean painting sales" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -423,11 +472,10 @@ Tip
 <p>Julia Silge writes about <code>reorder_within</code> on her blog <a href="https://juliasilge.com/blog/reorder-within/">here</a> and has some information on its creation and how it came to live in <code>tidytext</code> in the first paragraph of the “Enter <code>reorder_within()</code>” section.</p>
 </div>
 </div>
-<div class="cell" data-hash="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_cache/html/unnamed-chunk-11_7d0e78f2f76ac702064ebdf96065c24b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Instead of using <code>factor()</code> and <code>reorder()</code>, we change the <code>y</code> axis argument in <code>aes()</code> to use <code>reorder_within</code>: <code>y = reorder_within(weekday, weekdaySales, month)</code>. Our first argument, <code>weekday</code> is the vector we want to reorder. The second argument, <code>weekdaySales</code> is the variable we want to use for reordering. The last argument, <code>month</code>, is the variable we want to use for grouping. The third argument could be a vector of column names if we wanted to group by multiple variables. Like with <code>reorder()</code>, we can set the direction to ascending with a minus sign before the ordering argument, <code>weekdaySales</code>. We keep <code>scales = "free_y"</code> in <code>facet_wrap()</code> so that each facet has its own order, and then use <code>scale_y_reordered()</code> to make sure that the new order from <code>reorder_within()</code> is used.</p>
-<div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sales <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(month, weekday) <span class="sc">%&gt;%</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">weekdaySales =</span> <span class="fu">mean</span>(paintings)) <span class="sc">%&gt;%</span></span>
@@ -454,14 +502,13 @@ Tip
 <span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> weekday), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> month, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
 <span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reordered</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-hash="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_cache/html/unnamed-chunk-12_56f07d8452b94d7803caa28e791cd848">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" width="672"></p>
-</div>
 </div>
 </div>
 </div>
@@ -469,7 +516,7 @@ Tip
 <section id="ordering-facets-and-an-easier-way-to-order-by-day" class="level1">
 <h1>Ordering Facets and an Easier Way to Order by Day</h1>
 <p>At this point, you might be staring at your screen in disbelief and thinking, “But Gus, the facets aren’t in order! The months are in alphabetical order and not calendar order!” You’re not wrong. When we were setting the order of <code>y</code> with <code>factor()</code>, we were doing something that we could have done much earlier in our data creation stage. If we redefine the <code>month</code> and <code>weekday</code> variables using the <code>factor(variable, levels)</code> syntax, we don’t need to use <code>y = factor(weekday)</code> to make sure our days are in order. In addition, the facets will now be in calendar order like they appear in the <code>month.name</code> constant. I’ve chosen to reverse the <code>days_of_the_week</code> so that Sunday appears at the top, rather than at the bottom of the <code>y</code> axis.</p>
-<div class="cell" data-hash="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_cache/html/unnamed-chunk-13_5e56a30803f43f22c44a0912e4996c64">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sales<span class="sc">$</span>month <span class="ot">&lt;-</span> <span class="fu">factor</span>(sales<span class="sc">$</span>month, <span class="at">levels =</span> month.name)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sales<span class="sc">$</span>weekday <span class="ot">&lt;-</span> <span class="fu">factor</span>(sales<span class="sc">$</span>weekday, <span class="at">levels =</span> <span class="fu">rev</span>(days_of_the_week))</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -485,7 +532,11 @@ Tip
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> month)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" alt="Column charts of day of the week vs mean painting sales with both the months and days of the week in order" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" alt="Column charts of day of the week vs mean painting sales with both the months and days of the week in order" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <hr>
@@ -539,6 +590,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -607,13 +685,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -692,10 +772,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -705,8 +784,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -719,6 +807,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -762,6 +969,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -787,6 +995,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -847,6 +1081,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

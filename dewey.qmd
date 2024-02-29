@@ -5,7 +5,6 @@ format:
     toc-title: dewey
     toc: true
     toc-location: right
-    theme: default
 ---
 
 <style>

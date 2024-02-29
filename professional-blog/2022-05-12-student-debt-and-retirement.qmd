@@ -9,7 +9,6 @@ categories:
   - "R: Tidy Tuesday"
 format:
   html:
-    theme: default
     toc: true
 ---
 
