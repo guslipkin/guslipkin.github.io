@@ -13,7 +13,7 @@ format:
     toc: true
 ---
 
-[🚗 Print a copy](../assets/talk-assets/2023-10-20-your-maps-might-be-lying-to-you/your_maps_might_by_lying_to_you.pdf) or a copy [with speaker notes](../assets/talk-assets/2023-10-20-your-maps-might-be-lying-to-you/your_maps_might_by_lying_to_you_speaker_notes.pdf)
+[🗺️ Print a copy](../assets/talk-assets/2023-10-20-your-maps-might-be-lying-to-you/your_maps_might_by_lying_to_you.pdf) or a copy [with speaker notes](../assets/talk-assets/2023-10-20-your-maps-might-be-lying-to-you/your_maps_might_by_lying_to_you_speaker_notes.pdf)
 
 :::{.column-page}
 
