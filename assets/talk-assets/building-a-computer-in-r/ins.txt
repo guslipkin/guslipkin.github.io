@@ -1,0 +1,15 @@
+add b 8
+sub e 29
+add d 1
+sub d 16
+sub a 21
+add b 28
+add b 5
+add d 16
+add a 10
+add c 61
+add e 14
+sub c 15
+add a 41
+add e 15
+sub c 12

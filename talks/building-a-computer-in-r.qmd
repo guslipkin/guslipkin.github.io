@@ -1,0 +1,488 @@
+---
+title: "Building a Computer in R"
+author: "Gus Lipkin"
+format: 
+  revealjs:
+    controls: true
+    self-contained: true
+    incremental: true
+execute: 
+  echo: true
+draft: true
+---
+
+## About Me
+
+- At work:
+  - I love R
+  - Data scientist at Lander Analytics
+  - BS in Business Analytics
+  
+## About Me
+
+- Not at work:
+  - Mentor in the Data Science Learning Community
+    - Talk to Jon Harmon to learn more!
+  - Hiking, biking, rock climbing
+    - Volunteer at USA Climbing events
+  - Work on random projects
+
+## What are we doing?
+
+- "R is a language and environment for statistical computing and graphics" The R Project
+- What if we ignored that and made a computer?
+
+## What is a computer?
+
+- A computer can:
+  - Store data
+  - Retrieve data
+  - "Carry out sequences of arithmetic or logical operations" Wikipedia (It's a great source!)
+
+## Why?
+
+- Advent of Code!
+  - 25 programming puzzles to save Christmas
+
+## What is our puzzle?
+
+- Follow these instructions to get a secret phrase that is the solution to this year's puzzle to help save NYR 10. 
+- You have five registers that start with a value of `"0"`. 
+- Because the computer can only process integers, the characters are stored in `UTF8` as integers. 
+- Each character is stored in a register `a` through `e`. 
+- The instructions are `add` and `sub`, which `add` to a register and assign it back to that register and or `sub`tract a value from that register's value and assign it back to that register.
+
+## What are our instructions? {auto-animate=true}
+
+```{r}
+#| echo: false
+#| include: false
+"add b 8
+sub e 29
+add d 1
+sub d 16
+sub a 21
+add b 28
+add b 5
+add d 16
+add a 10
+add c 61
+add e 14
+sub c 15
+add a 41
+add e 15
+sub c 12" |>
+  writeLines('../assets/talk-assets/building-a-computer-in-r/ins.txt')
+ins_txt <- '../assets/talk-assets/building-a-computer-in-r/ins.txt'
+```
+
+
+```{r}
+#| eval: false
+readLines(ins_txt) |>
+  paste0(collapse = '\n') |>
+  cat()
+```
+
+## What are our instructions?
+
+```{r}
+readLines(ins_txt) |>
+  paste0(collapse = '\n') |>
+  cat()
+```
+
+## Making a plan
+
+- Parse the instructions from a text file
+- An R object that is self-referenceable
+  - A list of registers
+  - A list of instructions
+  - A way to step through the instructions in order
+
+## Processing Our Instructions {auto-animate=true}
+
+:::{.nonincremental}
+- Read in the file
+:::
+
+```{r}
+readLines(ins_txt)
+```
+
+## Processing Our Instructions {auto-animate=true}
+
+:::{.nonincremental}
+- Split each line into words
+:::
+
+```{r}
+readLines(ins_txt) |>
+  stringr::str_split(' ')
+```
+
+## Processing Our Instructions {auto-animate=true}
+
+:::{.nonincremental}
+- Name the `f`unction, `r`egister, and `y`alues
+:::
+
+```{r}
+instructions <-
+  readLines(ins_txt) |>
+  stringr::str_split(' ') |>
+  purrr::map(\(x) { names(x) <- c('f', 'r', 'y'); return(x); }) |>
+  print()
+```
+  
+## Choosing an OOP System
+
+
+
+## Starting with an `R6` object {auto-animate=true}
+
+- Can modify itself using the `self` object
+- Provides `public` and `private` methods (functions)
+
+## Starting with an `R6` object {auto-animate=true}
+
+:::{.nonincremental}
+- Can modify itself using the `self` object
+- Provides `public` and `private` methods (functions)
+:::
+
+```{r}
+#| code-line-numbers: '|1,5|2|3|4|'
+R6::R6Class(
+  'classname' = 'nyr10',
+  'public' = list(),
+  'private' = list()
+)
+```
+
+## Creating Registers
+
+- You have five registers that start with a value of `"0"`. 
+- Because the computer can only process integers, the characters are stored in `UTF8` as integers. 
+- Each character is stored in a register `a` through `e`. 
+
+## Creating Registers {auto-animate=true}
+
+:::{.nonincremental}
+- You have five registers that start with a value of `"0"`. 
+- Because the computer can only process integers, the characters are stored in `UTF8` as integers. 
+- Each character is stored in a register `a` through `e`. 
+:::
+
+```{r}
+(zeroAsUTF8 <- utf8ToInt('0'))
+```
+
+## Creating Registers {auto-animate=true}
+
+:::{.nonincremental}
+- You have five registers that start with a value of `"0"`. 
+- Because the computer can only process integers, the characters are stored in `UTF8` as integers. 
+- Each character is stored in a register `a` through `e`. 
+:::
+
+```{r}
+#| code-line-numbers: '|2-9|3-8|'
+zeroAsUTF8 <- utf8ToInt('0')
+registers <- 
+  list(
+    'a' = zeroAsUTF8,
+    'b' = zeroAsUTF8,
+    'c' = zeroAsUTF8,
+    'd' = zeroAsUTF8,
+    'e' = zeroAsUTF8
+  )
+```
+
+## Creating Functions
+
+- The instructions are `add` and `sub`, which `add` to a register and assign it back to that register and or `sub`tract a value from that register's value and assign it back to that register.
+
+## Creating Functions {auto-animate=true}
+
+:::{.nonincremental}
+- The instructions are `add` and `sub`, which `add` to a register and assign it back to that register and or `sub`tract a value from that register's value and assign it back to that register.
+:::
+
+```{r}
+#| code-line-numbers: '|1-2,6|3|4|5|'
+functions <-
+  list(
+    'add' = \(r, y) { self[[r]] <- self[[r]] + y },
+    'sub' = \(r, y) { self[[r]] <- self[[r]] - y }
+  )
+```
+
+## Creating an Empty Computer
+
+```{r}
+#| eval: false
+R6::R6Class(
+  'classname' = 'nyr10',
+  'public' = list(),
+  'private' = list()
+)
+```
+
+## Adding a System Clock {auto-animate=true}
+
+```{r}
+#| eval: false
+R6::R6Class(
+  'classname' = 'nyr10',
+  'public' = list(),
+  'private' = list()
+)
+```
+
+- We need an index for the clock
+- It needs to increment
+
+## Adding a System Clock {auto-animate=true}
+
+:::{.nonincremental}
+- We need an index for the clock
+- It needs to increment
+:::
+
+```{r}
+#| eval: false
+#| code-line-numbers: '4,7|4|7|'
+R6::R6Class(
+  'classname' = 'nyr10',
+  'public' = list(
+    'index' = 1
+  ),
+  'private' = list(
+    '.inc' = \() { self$index <- self$index + 1; return(self); }
+  )
+)
+```
+
+## Calling Our Functions {auto-animate=true}
+
+```{r}
+#| eval: false
+R6::R6Class(
+  'classname' = 'nyr10',
+  'public' = list(
+    'index' = 1
+  ),
+  'private' = list(
+    '.inc' = \() { self$index <- self$index + 1; return(self); }
+  )
+)
+```
+
+- We need a way to call our functions
+- We'll increment our clock after each function
+
+## Calling Our Functions {auto-animate=true}
+
+:::{.nonincremental}
+- We need a way to call our functions
+- We'll increment our clock after each function
+:::
+
+```{r}
+#| eval: false
+#| code-line-numbers: '|5-8|5,8|6|7|5-8|'
+R6::R6Class(
+  'classname' = 'nyr10',
+  'public' = list(
+    ...,
+    'call' = \(fun, reg, y) {
+      self[[fun]](reg, y)
+      private$.inc()
+    }
+  ),
+  'private' = list(
+    ...
+  )
+)
+```
+
+## Running Through the Instructions  {auto-animate=true .smaller}
+
+```{r}
+#| eval: false
+R6::R6Class(
+  'classname' = 'nyr10',
+  'public' = list(
+    'index' = 1,
+    'call' = \(fun, reg, y) {
+      self[[fun]](reg, y)
+      private$.inc()
+    }
+  ),
+  'private' = list(
+    '.inc' = \() { self$index <- self$index + 1; return(self); }
+  )
+)
+```
+
+- We need to step through our instructions
+- Return the computer's state when we reach the end of the list
+
+## Running Through the Instructions  {auto-animate=true .smaller}
+
+:::{.nonincremental}
+- We need to step through our instructions
+- Return the computer's state when we reach the end of the list
+:::
+
+```{r}
+#| eval: false
+#| code-line-numbers: '|5-11|5,10-11|6,9|7|8|5-11|'
+R6::R6Class(
+  'classname' = 'nyr10',
+  'public' = list(
+    ...,
+    'run' = \(insructions) {
+      while(self$index <= length(insructions)) { 
+        ins <- instructions[[self$index]]
+        self$call(ins['f'], ins['r'], as.integer(ins['y']))
+      }
+      return(self)
+    }
+  ),
+  'private' = list(
+    ...
+  )
+)
+```
+
+## Adding in Our Registers and Functions {auto-animate=true .smaller}
+
+```{r}
+#| eval: false
+R6::R6Class(
+  'classname' = 'nyr10',
+  'public' = list(
+    'index' = 1,
+    'call' = \(fun, reg, y) {
+      self[[fun]](reg, y)
+      private$.inc()
+    },
+    'run' = \(insructions) {
+      while(self$index <= length(insructions)) { 
+        ins <- instructions[[self$index]]
+        self$call(ins['f'], ins['r'], as.integer(ins['y']))
+      }
+      return(self)
+    }
+  ),
+  'private' = list(
+    '.inc' = \() { self$index <- self$index + 1; return(self); }
+  )
+)
+```
+
+- We need to add our registers and functions
+
+## Adding in Our Registers and Functions {auto-animate=true .smaller}
+
+:::{.nonincremental}
+- We need to add our registers and functions
+:::
+
+```{r}
+#| eval: false
+#| code-line-numbers: '|3-4,6|'
+R6::R6Class(
+  'nyr10',
+  'public' = unlist(list(
+    as.list(c(registers, functions)),
+    ...
+  )),
+  'private' = list(
+    ...
+  )
+)
+```
+
+## Building the Computer Class {auto-animate=true .smaller}
+
+```{r}
+#| code-line-numbers: '|1,21|'
+computer <- R6::R6Class(
+  'nyr10',
+  'public' = unlist(list(
+    as.list(c(registers, functions)),
+    'index' = 1,
+    'call' = \(fun, reg, y) {
+      self[[fun]](reg, y)
+      private$.inc()
+    },
+    'run' = \(insructions) {
+      while(self$index <= length(insructions)) { 
+        ins <- instructions[[self$index]]
+        self$call(ins['f'], ins['r'], as.integer(ins['y']))
+      }
+      return(self)
+    }
+  )),
+  'private' = list(
+    '.inc' = \() { self$index <- self$index + 1; return(self); }
+  )
+)
+```
+
+## Creating a Computer {auto-animate=true}
+
+## Creating a Computer {auto-animate=true}
+
+```{r}
+comp <- computer$new()
+```
+
+## Creating a Computer {auto-animate=true}
+
+```{r}
+comp <- computer$new()
+print(comp)
+```
+
+## Running the Instructions {auto-animate=true}
+
+```{r}
+end <- comp$run(instructions)
+```
+
+## Running the Instructions {auto-animate=true}
+
+```{r}
+end <- comp$run(instructions)
+print(end)
+```
+
+## Translating the Secret Message {auto-animate=true}
+
+```{r}
+#| eval: false
+#| code-line-numbers: '|1|1-2|'
+letters[1:5] |>
+  purrr::map_chr(\(l) intToUtf8(end[[l]])) |>
+  paste0(collapse = '') |>
+  cat()
+```
+
+## Translating the Secret Message {auto-animate=true}
+
+```{r}
+letters[1:5] |>
+  purrr::map_chr(\(l) intToUtf8(end[[l]])) |>
+  paste0(collapse = '') |>
+  cat()
+```
+
+## Where to Find Me
+
+- Upstairs!
+- Online at [guslipkin.me](https://guslipkin.me/)
+  - Links to everywhere else from there
