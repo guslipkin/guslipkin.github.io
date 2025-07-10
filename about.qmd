@@ -109,6 +109,36 @@ Poly](https://floridapoly.edu/search/?q=gus+lipkin) and [projects here](/). You 
 
 ## Selected Interests
 
+### ~~Climbing~~ Belaying
+
+Like many people my age in a technical field, I enjoy touching plastic holds in
+climbing gyms instead of going outside and touching real rocks like a normal
+person. Although sometimes I do go outside. One day, soon into my climbing
+career, I saw an advert for a competition belay clinic in a local gym. I was
+relatively new to belaying at the time and thought it would be a great
+opportunity to sharpen my skills. Little did I know that at the clinic I would
+get roped into volunteering at my first [USA Climbing](https://usaclimbing.org/)
+youth regional qualifier event. I quickly fell in love with competition belaying
+as a way to develop my skills and give back to my community. I'm proud to have
+earned my [L3
+endorsement](https://docs.google.com/document/d/1BE-_bm84IE-HGkBfD4HPkBqys-KO0bZPGkh4wvomNhY/edit?tab=t.0)
+and am currently working on my L4. I'm also honored to have served as a Head and
+Assistant Head Belayer for youth events and a line belayer for multiple elite
+events. When I'm not belaying competitions, I'm active with my local
+paraclimbing community and am working on developing standards for paraclimbers
+to belay in competition.
+
+::: {.callout-note collapse="true"}
+#### Gus' Belay Reflections
+
+[2025 IFSC Paraclimbing World Cup](https://www.instagram.com/p/DJ2pgH8SxaM/?utm_source=ig_web_copy_link&igsh=OXd5ODk4NnJ3ajMy) and [Reflections](https://www.instagram.com/p/DKKvg_YOvOG/?utm_source=ig_web_copy_link&igsh=MXIxbmViZDJ0eDJmZw==)
+
+[2025 USA Climbing Collegiate Nationals](https://www.instagram.com/p/DJImLDdNxwT/?utm_source=ig_web_copy_link&igsh=MXZpbThlOGY2YjQxbA==) and [Reflections](https://www.instagram.com/p/DKKbguNOJPA/?utm_source=ig_web_copy_link&igsh=MTFodjJ3cmdpMzJjcQ==)
+
+:::
+
+I've also been known to judge competitions and have achieved my [L1 TR/Lead and L2 Boulder Certification](https://docs.google.com/document/d/e/2PACX-1vS5OWrgpSJuJ4SR3KWVC3a6vwEB9sRqct6krb9kQwd5B_yayUeOKR6AtL10b2Se7cI9DI7Q5IgQJsVF/pub).
+
 ### R for Data Science Online Learning Community
 
 I've become quite active in the very long named [R for Data Science Online Learning Community](https://www.rfordatasci.com/). I participate in several book clubs ranging across a variety of data science related topics. I am also honored to be considered a community mentor and do my best to answer a variety of questions from other community members about R, statistics, data science, and other associated topics.

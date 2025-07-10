@@ -30,6 +30,8 @@ website:
         icon: medium
       - href: https://fosstodon.org/@guslipkin
         icon: mastodon
+      - href: https://www.instagram.com/gus_is_tall
+        icon: instagram
 
 format:
   html:

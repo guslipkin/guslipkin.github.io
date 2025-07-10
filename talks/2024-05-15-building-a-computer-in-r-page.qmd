@@ -1,0 +1,38 @@
+---
+title: "Building a Computer in R"
+# description: ""
+# abstract: ""
+# image: ""
+author: "Gus Lipkin"
+date: "2024/05/15"
+categories:
+  - "R"
+  - "Programming"
+format:
+  html:
+    toc: true
+---
+
+<style>
+
+.slide-deck {
+  border: 3px solid #dee2e6;
+}
+
+</style>
+
+<!-- [🚗 Print a copy](../assets/talk-assets/REPLACE.pdf) or a copy [with speaker notes](../assets/talk-assets/REPLACE.pdf) -->
+
+I wrote this as a backup talk for NYR10, an R and Data Science Conference. Unfortunately, (or fortunately) I never had the opportunity to actually present it.
+
+<div class="ratio ratio-16x9">
+<iframe class="slide-deck" src="/talks/building-a-computer-in-r.html"></iframe>
+</div>
+
+<!-- ## Watch me present -->
+
+<!-- :::{.column-page .embed-response .embed-responsive-16by9} -->
+
+<!-- <iframe class="embed-responsive-item" width="100%" height="560px" src="https://youtube.com" allowfullscreen></iframe> -->
+
+<!-- ::: -->

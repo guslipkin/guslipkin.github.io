@@ -32,13 +32,13 @@ If you want to learn more about me, feel free to poke around my site or [contact
 ::: {.grid .column-page}
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
 ::: {.g-col-12}
-### [{ClimbWith} ![](https://raw.githubusercontent.com/guslipkin/ClimbWith/main/inst/app/www/favicon.ico){height=40}](https://climbwith.info/)
+### [AEDify ![](https://static.wixstatic.com/media/b716a8_6e6e8e16396a4989a2bd4b01f4cc1f42~mv2.jpg/v1/fill/w_156,h_133,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/aedify.jpg){height=40}](https://www.landeranalytics.com/aedify)
 :::
 ::: {.g-col-12 .text-wrap}
-- **What:** A climbing gym directory made in R Shiny.
-- **Why:** I wanted to know which gyms near me had which [Standardized Interactive Climbing Training Board](https://gearjunkie.com/climbing/kilter-moon-grasshopper-more-interactive-climbing-training-boards-explained) and there was no easy way to find that information already.
-- **[How](https://github.com/guslipkin/ClimbWith):** `R: {shiny, bs4Dash, leaflet, DT}`
-- **Conclusion:** Check it out at [climbwith.info](https://climbwith.info)!
+- **What:** A custom occupancy forecasting tool leveraging AI and machine learning technologies to help inform building operations decisions allowing for significant operational adjustments turned cost savings
+- **Why:** We at [Lander Analytics](https://www.landeranalytics.com) saw a need in the building management field
+- **[How](https://github.com/guslipkin/ClimbWith):** `R: {shiny, bslib, leaflet}`, `Python`, `prefect`, `MLflow`, `PostGIS`
+- **Conclusion:** Check it out at [Lander Analytics](https://www.landeranalytics.com/aedify)!
 :::
 :::
 ::: {.g-col-12 .g-col-sm-6 .d-grid}
@@ -50,6 +50,34 @@ If you want to learn more about me, feel free to poke around my site or [contact
 - **Why:** I have a lot to offer you and your company in a variety of fields.
 - **How:** If you'd like to work with me but, you're not sure where I might fit in, this page and [my résumé](resume.html) are a great place to start
 - **Conclusion:** It's time to [contact me](contact.html) and get the ball rolling!
+:::
+:::
+:::
+
+::: {.column-page}
+### Shiny for R
+:::
+::: {.grid .column-page}
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+#### [{ClimbWith} ![](https://raw.githubusercontent.com/guslipkin/ClimbWith/main/inst/app/www/favicon.ico){height=40}](https://climbwith.info/)
+:::
+::: {.g-col-12 .text-wrap}
+- **What:** A climbing gym directory made in R Shiny.
+- **Why:** I wanted to know which gyms near me had which [Standardized Interactive Climbing Training Board](https://gearjunkie.com/climbing/kilter-moon-grasshopper-more-interactive-climbing-training-boards-explained) and there was no easy way to find that information already.
+- **[How](https://github.com/guslipkin/ClimbWith):** `R: {shiny, bs4Dash, leaflet, DT}`
+- **Conclusion:** Check it out at [climbwith.info](https://climbwith.info)!
+:::
+:::
+::: {.g-col-12 .g-col-sm-6 .d-grid}
+::: {.g-col-12}
+#### [{jotto}](https://jotto.guslipkin.me)
+:::
+::: {.g-col-12 .text-wrap}
+- **What:** A fun little word game where you try to guess the five letter words
+- **Why:** I was introduced to the game during a game night and had some time to kill the next night
+- **[How](https://github.com/guslipkin/jotto):** `R: {shiny, bslib, golem}`, `[SCOWL](http://wordlist.aspell.net/)`
+- **Conclusion:** It's a fun little game with difficulty from Easy to Scrabble, and beyond!
 :::
 :::
 :::
@@ -106,63 +134,6 @@ If you want to learn more about me, feel free to poke around my site or [contact
 - **Why:** A lot of puzzles are very similar and you can get ahead of the competition by building general solutions.
 - **[How](https://github.com/guslipkin/dewey):** `R: {tidyverse, data.table, R6, and more!}`
 - **Conclusion:** Development is difficult, but I'm proud of it and it's super useful
-:::
-:::
-:::
-
-
-::: {.column-page}
-### Data Focused Projects
-:::
-::: {.grid .column-page}
-::: {.g-col-12 .g-col-sm-6 .d-grid}
-::: {.g-col-12}
-#### [Disney World Ride Wait Times](../presentations/disney_world_ride_wait_times.html)
-:::
-::: {.g-col-12 .d-flex .align-items-start}
-- **What:** Can I find the best time to visit Disney World 🏰 based on ride wait times?
-- **Why:** Going to Disney can be lots of fun, but waiting in lines is not.
-- **[How](https://github.com/guslipkin/disney_ds):** `R: {forcats, lubridate, reshape2, tidyverse}`
-- **Conclusion:** Try going to Epcot on a Wednesday in September.
-:::
-:::
-::: {.g-col-12 .g-col-sm-6 .d-grid}
-::: {.g-col-12}
-#### [Investigating a relationship between climate variables and the spread of COVID-19](../presentations/covid_time_series_gis.html)
-:::
-::: {.g-col-12}
-- **What:** Since COVID-19 🦠 is spread through close contact, do any climate variables influence spread?
-- **Why:** Human behavior is affected by the weather. If there is adverse weather, is there an increase in spread?
-- **[How](https://github.com/guslipkin/COVID-TimeSeries-GIS):** `ArcGIS`, `Excel`, `R: {data.table, tidyverse}`
-- **Conclusion:** Some counties can be modelled very well such as Cook County, Illinois while others, such as Tift County, Georgia, not so much.
-:::
-:::
-:::
-
-::: {.column-page}
-### Economic Analysis Focused Projects
-:::
-::: {.grid .column-page}
-::: {.g-col-12 .g-col-sm-6 .d-grid}
-::: {.g-col-12}
-#### [Improving Tutoring at Florida Poly](../presentations/tutoring_at_poly.html)
-:::
-::: {.g-col-12 .text-wrap}
-- **What:** How can we make tutoring more available to students?
-- **Why:** Getting tutoring for the classes you need can be difficult, especially when trying to fit it into your schedule.
-- **[How](https://github.com/guslipkin/Fall2021/tree/main/ECO%203930%20%7E%20Contemporary%20Economics/Final%20Paper):** `✨Math✨`
-- **Conclusion:** A hybrid model where high demand classes offer group tutoring and all classes have one-on-one tutoring would be most efficient.
-:::
-:::
-::: {.g-col-12 .g-col-sm-6 .d-grid}
-::: {.g-col-12}
-#### [Trader Joe's Cultural and Marketing Plan](../presentations/trader_joes_cultural_marketing_plan.html)
-:::
-::: {.g-col-12}
-- **What:** Let's help Trader Joe's enter the Canadian supermarket industry.
-- **Why:** It's a final project for GEB 3373 – International and Comparative Dimensions of Business.
-- **[How](https://github.com/guslipkin/Spring2021/blob/main/GEB%203373%20%7E%20International%20Comparative%20Dimensions/GEB%203373%20Final%20Project):**`Economic Analysis` and `Game Theory`
-- **Conclusion:** Trader Joe's has the potential to be a smash hit in the Canadian Supermarket industry.
 :::
 :::
 :::
