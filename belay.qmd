@@ -1,0 +1,40 @@
+---
+title: "Belay"
+site-path: "/belay"
+---
+
+## About My Belaying
+
+Like many people my age in a technical field, I enjoy touching plastic holds in
+climbing gyms instead of going outside and touching real rocks like a normal
+person (although sometimes I do go outside). One day, soon into my climbing
+career, I saw an advert for a competition belay clinic in a local gym. I was
+relatively new to belaying at the time and thought it would be a great
+opportunity to sharpen my skills. Little did I know that at the clinic I would
+get roped into volunteering at my first [USA Climbing](https://usaclimbing.org/)
+youth regional qualifier event where I would quickly fall in love with
+competition belaying as a way to develop my skills and give back to my
+community. I'm proud to have
+earned my [L3
+endorsement](https://docs.google.com/document/d/1BE-_bm84IE-HGkBfD4HPkBqys-KO0bZPGkh4wvomNhY/edit?tab=t.0)
+and am currently working on my L4. I'm also honored to have served as belayer,
+Assistant Head Belayer, or Head Belayer at all levels of competition. When I'm
+not belaying competitions, I'm active with my local paraclimbing community and
+am working on developing standards for paraclimbers to belay in competition.
+
+::: {.callout-note collapse="true"}
+#### Gus' Belay Reflections
+
+[2026 USAC Paraclimbing National Championships](https://www.instagram.com/p/DVL9P4oDp7N/) and [Reflections](https://www.instagram.com/p/DV4ddxDIBVY/)
+
+[2025 IFSC Paraclimbing World Cup](https://www.instagram.com/p/DJ2pgH8SxaM/) and [Reflections](https://www.instagram.com/p/DKKvg_YOvOG/)
+
+[2025 USA Climbing Collegiate Nationals](https://www.instagram.com/p/DJImLDdNxwT/) and [Reflections](https://www.instagram.com/p/DKKbguNOJPA/)
+
+:::
+
+I've also been known to judge competitions and have achieved my [L1 TR/Lead and L2 Boulder Certification](https://docs.google.com/document/d/e/2PACX-1vS5OWrgpSJuJ4SR3KWVC3a6vwEB9sRqct6krb9kQwd5B_yayUeOKR6AtL10b2Se7cI9DI7Q5IgQJsVF/pub).
+
+## Belay Résumé
+
+To see all the competitions I've belayed, take a look at [my belay résumé](/belay-resume.html).

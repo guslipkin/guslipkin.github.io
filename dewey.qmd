@@ -21,8 +21,8 @@ A small collection of functions that may be helpful for STATA users or regular h
 
 ```{R}
 #| eval: false
-install.packages("devtools")
-devtools::install_github("guslipkin/dewey")
+install.packages("pak")
+pak::pkg_install("guslipkin/dewey")
 ```
 
 # `regsearch`

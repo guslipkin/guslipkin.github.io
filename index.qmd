@@ -169,8 +169,6 @@ If you want to learn more about me, feel free to poke around my site or [contact
 ```{r}
 #| echo: false
 #| output: false
-source("post-packages.R")
-
 cat("guslipkin.me", file = "docs/CNAME")
 # file.copy("talks", "docs", recursive = TRUE)
 ```

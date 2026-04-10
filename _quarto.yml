@@ -9,6 +9,8 @@ website:
     left:
       - href: about.qmd
         text: About Me
+      - href: belay.qmd
+        text: Belay
       - href: talks.qmd
         text: My Talks
       # - href: resume.qmd
