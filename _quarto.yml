@@ -42,6 +42,8 @@ format:
       light: flatly
       dark: darkly
     css: styles.css
+    include-in-header:
+      - text: '<meta name="color-scheme" content="light dark">'
 
 execute:
   freeze: auto
