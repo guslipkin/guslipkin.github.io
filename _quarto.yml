@@ -4,6 +4,7 @@ project:
 
 website:
   title: "Gus Lipkin's Awesome Website"
+  favicon: assets/favicon.svg
   navbar:
     background: primary
     left:
