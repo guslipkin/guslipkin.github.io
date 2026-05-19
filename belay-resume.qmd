@@ -360,7 +360,7 @@ format:
 
 ::: {.callout-note collapse="false" title="All Seasons"}
 
-- 2026 Paraclimbing World Cup, SLC, UT — Line Belayer
+- 2026 World Climbing Para Series Salt Lake City, SLC, UT — Line Belayer
 - 2025 Paraclimbing World Cup, SLC, UT — Line Belayer
   - Also belayed the Training Camp and began developing Adaptive Belaying standards
 
