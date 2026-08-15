@@ -425,7 +425,7 @@ format:
 
 :::
 
-## Non-Sanctioned Events
+## Independent Events
 
 ::: {.callout-note collapse="false" title="All Events"}
 
