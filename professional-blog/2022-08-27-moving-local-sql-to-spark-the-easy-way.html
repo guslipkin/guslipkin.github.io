@@ -209,9 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 class="title">Moving Local Data Pipelines to Spark: The Easy Way with R and&nbsp;Python</h1>
   <div class="quarto-categories">
     <div class="quarto-category">R</div>
-    <div class="quarto-category">R: sparklyr</div>
     <div class="quarto-category">Python</div>
-    <div class="quarto-category">Python: PySpark</div>
     <div class="quarto-category">Spark</div>
   </div>
   </div>
@@ -285,19 +283,27 @@ Tip
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href=""><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href=""><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/LibrariesConnect.R_af4f04c81b5a9261b1db97dadb6ed84d">
+<div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparklyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sc <span class="ot">&lt;-</span> <span class="fu">spark_connect</span>(<span class="at">master =</span> <span class="st">"local"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sc <span class="ot">&lt;-</span> <span class="fu">spark_connect</span>(<span class="at">master =</span> <span class="st">"local"</span>, <span class="at">version =</span> <span class="st">'4.1'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>DBI<span class="sc">::</span><span class="fu">dbExecute</span>(sc, <span class="st">"SET spark.sql.ansi.enabled = false"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/LibrariesConnect.py_f0aca692b05276cfbccce0a9c4713d1a">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> col</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>sc <span class="op">=</span> SparkSession.builder.getOrCreate()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> col</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sc <span class="op">=</span> (</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    SparkSession.builder</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">"spark.sql.ansi.enabled"</span>, <span class="st">"false"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    .getOrCreate()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -310,56 +316,56 @@ Tip
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href=""><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href=""><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/ReadCSV.R_6763e6e51db196b0b7523e46bdafa50d">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio <span class="ot">&lt;-</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"athlete_bio"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympic_Athlete_Bio.csv"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>tbl_athlete_results <span class="ot">&lt;-</span> </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"athlete_results"</span>, </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympic_Athlete_Event_Results.csv"</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>tbl_results <span class="ot">&lt;-</span> </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"results"</span>,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympic_Athlete_Event_Results.csv"</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>tbl_medal_tally <span class="ot">&lt;-</span> </span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"medal_tally"</span>,</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympic_Games_Medal_Tally.csv"</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>tbl_games <span class="ot">&lt;-</span> </span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"games"</span>,</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympics_Games.csv"</span>)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>tbl_country <span class="ot">&lt;-</span> <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"country"</span>,</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                              <span class="at">path =</span> <span class="st">"../assets/data/Olympics_Country.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio <span class="ot">&lt;-</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"athlete_bio"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympic_Athlete_Bio.csv"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>tbl_athlete_results <span class="ot">&lt;-</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"athlete_results"</span>, </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympic_Athlete_Event_Results.csv"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>tbl_results <span class="ot">&lt;-</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"results"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympic_Athlete_Event_Results.csv"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>tbl_medal_tally <span class="ot">&lt;-</span> </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"medal_tally"</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympic_Games_Medal_Tally.csv"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>tbl_games <span class="ot">&lt;-</span> </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"games"</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="st">"../assets/data/Olympics_Games.csv"</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>tbl_country <span class="ot">&lt;-</span> <span class="fu">spark_read_csv</span>(sc, <span class="at">name =</span> <span class="st">"country"</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                              <span class="at">path =</span> <span class="st">"../assets/data/Olympics_Country.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/ReadCSV.py_f07d398b8a3dc80b706dd360288ed8cb">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio <span class="op">=</span> sc.read.csv(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympic_Athlete_Bio.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio.createOrReplaceTempView(<span class="st">"athlete_bio"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>tbl_athlete_results <span class="op">=</span> sc.read.csv(</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"../assets/data/Olympic_Athlete_Event_Results.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>tbl_athlete_results.createOrReplaceTempView(<span class="st">"athlete_results"</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>tbl_results <span class="op">=</span> sc.read.csv(</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympic_Athlete_Event_Results.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>tbl_results.createOrReplaceTempView(<span class="st">"results"</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>tbl_medal_tally <span class="op">=</span> sc.read.csv(</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympic_Games_Medal_Tally.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>tbl_medal_tally.createOrReplaceTempView(<span class="st">"medal_tally"</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>tbl_games <span class="op">=</span> sc.read.csv(</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympics_Games.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>tbl_games.createOrReplaceTempView(<span class="st">"games"</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>tbl_country <span class="op">=</span> sc.read.csv(</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympics_Country.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>tbl_country.createOrReplaceTempView(<span class="st">"country"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio <span class="op">=</span> sc.read.csv(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympic_Athlete_Bio.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio.createOrReplaceTempView(<span class="st">"athlete_bio"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>tbl_athlete_results <span class="op">=</span> sc.read.csv(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"../assets/data/Olympic_Athlete_Event_Results.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>tbl_athlete_results.createOrReplaceTempView(<span class="st">"athlete_results"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>tbl_results <span class="op">=</span> sc.read.csv(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympic_Athlete_Event_Results.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>tbl_results.createOrReplaceTempView(<span class="st">"results"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>tbl_medal_tally <span class="op">=</span> sc.read.csv(</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympic_Games_Medal_Tally.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>tbl_medal_tally.createOrReplaceTempView(<span class="st">"medal_tally"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>tbl_games <span class="op">=</span> sc.read.csv(</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympics_Games.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>tbl_games.createOrReplaceTempView(<span class="st">"games"</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>tbl_country <span class="op">=</span> sc.read.csv(</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"../assets/data/Olympics_Country.csv"</span>, header <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>tbl_country.createOrReplaceTempView(<span class="st">"country"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -369,14 +375,15 @@ Tip
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href=""><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href=""><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tbl_country)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># SQL</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sdf_sql</span>(sc, <span class="st">'SELECT * FROM country LIMIT 6'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell quarto-layout-panel" data-tbl-subcap="[&quot;sparklyr&quot;,&quot;SQL&quot;]" data-layout-ncol="2" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/PreviewTable.R_810dff5d6c5d6eff9f0c2fa085adc46f">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tbl_country)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># SQL</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sdf_sql</span>(sc, <span class="st">'SELECT * FROM country LIMIT 6'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2" data-tbl-subcap="[&quot;sparklyr&quot;,&quot;SQL&quot;]">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<pre><code># Source: spark&lt;?&gt; [?? x 2]
+<pre><code># A query:  ?? x 2
+# Database: spark_connection
   country_noc country       
   &lt;chr&gt;       &lt;chr&gt;         
 1 AFG         Afghanistan   
@@ -387,7 +394,8 @@ Tip
 6 ANG         Angola        </code></pre>
 </div>
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<pre><code># Source: spark&lt;?&gt; [?? x 2]
+<pre><code># A query:  ?? x 2
+# Database: spark_connection
   country_noc country       
   &lt;chr&gt;       &lt;chr&gt;         
 1 AFG         Afghanistan   
@@ -401,11 +409,11 @@ Tip
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tbl_country.show(<span class="dv">6</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># SQL</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="st">'SELECT * FROM country LIMIT 6'</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell quarto-layout-panel" data-tbl-subcap="[&quot;PySpark&quot;,&quot;SQL&quot;]" data-layout-ncol="2" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/PreviewTable.py_7a571b644843ab35ea4a66518b160638">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tbl_country.show(<span class="dv">6</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># SQL</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="st">'SELECT * FROM country LIMIT 6'</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2" data-tbl-subcap="[&quot;PySpark&quot;,&quot;SQL&quot;]">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <pre><code>+-----------+--------------+
@@ -441,73 +449,73 @@ only showing top 6 rows</code></pre>
 <section id="working-with-views" class="level1">
 <h1>Working With Views</h1>
 <p>Let’s say your database administrators (if they aren’t also you) are kind and have done a small amount of data cleaning and you usually access the data from a mount point which provides a view. You pull the schema for the <code>athlete_bio_vw</code> table and get the following SQL that references <code>athlete_bio</code>.</p>
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/View.sql_546c8e682bfdbe4aa920349907772eb9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  athlete_id, name, sex, <span class="fu">CAST</span>(born <span class="kw">AS</span> <span class="dt">DATE</span>), </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">CAST</span>(height <span class="kw">AS</span> <span class="dt">DOUBLE</span>), <span class="fu">CAST</span>(weight <span class="kw">AS</span> <span class="dt">DOUBLE</span>), </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  country, country_noc</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> athlete_bio </span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> </span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  height <span class="op">!=</span> <span class="ot">"na"</span> <span class="kw">AND</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  weight <span class="op">!=</span> <span class="ot">"na"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  athlete_id, name, sex, <span class="fu">CAST</span>(born <span class="kw">AS</span> <span class="dt">DATE</span>), </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">CAST</span>(height <span class="kw">AS</span> <span class="dt">DOUBLE</span>), <span class="fu">CAST</span>(weight <span class="kw">AS</span> <span class="dt">DOUBLE</span>), </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  country, country_noc</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> athlete_bio </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  height <span class="op">!=</span> <span class="ot">"na"</span> <span class="kw">AND</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  weight <span class="op">!=</span> <span class="ot">"na"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can re-create the views three ways. We can use R or Python to recreate the view from scratch by referencing the table variable name, not the internal Spark name. We can also wrap a SQL statement in our language of choice and use the internal Spark name. We then assign this new data frame to <code>tbl_athlete_bio_vw</code>. However, because the new data frame has been assigned as a variable, we no longer have direct and easy access to the view inside further SQL queries, and would have to use R or Python to do any more analysis.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href=""><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href=""><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/View.R_a39b05d6b4823cb2ab9b0e0f49801214">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  tbl_athlete_bio <span class="sc">|&gt;</span> </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(height <span class="sc">!=</span> <span class="st">"na"</span>, weight <span class="sc">!=</span> <span class="st">"na"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">born =</span> <span class="fu">as.Date</span>(born), </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">height =</span> <span class="fu">as.double</span>(height), </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">weight =</span> <span class="fu">as.double</span>(weight)) <span class="sc">|&gt;</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(athlete_id, name, sex, born, height, weight, country, country_noc)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># SQL</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span> <span class="fu">sdf_sql</span>(sc, <span class="st">'</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT </span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="st">    athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), </span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="st">    CAST(weight AS DOUBLE), country, country_noc</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_bio </span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE </span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="st">    height != "na" AND</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="st">    weight != "na"'</span>)</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tbl_athlete_bio_vw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  tbl_athlete_bio <span class="sc">|&gt;</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(height <span class="sc">!=</span> <span class="st">"na"</span>, weight <span class="sc">!=</span> <span class="st">"na"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">born =</span> <span class="fu">as.Date</span>(born), </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">height =</span> <span class="fu">as.double</span>(height), </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">weight =</span> <span class="fu">as.double</span>(weight)) <span class="sc">|&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(athlete_id, name, sex, born, height, weight, country, country_noc)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># SQL</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span> <span class="fu">sdf_sql</span>(sc, <span class="st">'</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT </span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="st">    athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), </span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="st">    CAST(weight AS DOUBLE), country, country_noc</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_bio </span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE </span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="st">    height != "na" AND</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="st">    weight != "na"'</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tbl_athlete_bio_vw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Source: spark&lt;?&gt; [?? x 8]
-  athlete_id name                sex    born       height weight country count…¹
-       &lt;int&gt; &lt;chr&gt;               &lt;chr&gt;  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  
-1      43737 Andrzej Socharski   Male   1947-08-31    173     72 " Pola… POL    
-2      50147 Nathalie Wunderlich Female 1971-06-03    170     50 " Swit… SUI    
-3       5085 Miha Lokar          Male   1935-09-10    182     76 " Yugo… YUG    
-4     136329 Austin Hack         Male   1992-05-17    203    100 " Unit… USA    
-5      38633 Tsuneo Ogasawara    Male   1942-07-30    181     80 " Japa… JPN    
-6      77095 Fulgence Rwabu      Male   1947-11-23    165     51 " Ugan… UGA    
-# … with abbreviated variable name ¹​country_noc</code></pre>
+<pre><code># A query:  ?? x 8
+# Database: spark_connection
+  athlete_id name             sex   born       height weight country country_noc
+       &lt;int&gt; &lt;chr&gt;            &lt;chr&gt; &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      
+1      43737 Andrzej Sochars… Male  1947-08-31    173     72 " Pola… POL        
+2      50147 Nathalie Wunder… Fema… 1971-06-03    170     50 " Swit… SUI        
+3       5085 Miha Lokar       Male  1935-09-10    182     76 " Yugo… YUG        
+4     136329 Austin Hack      Male  1992-05-17    203    100 " Unit… USA        
+5      38633 Tsuneo Ogasawara Male  1942-07-30    181     80 " Japa… JPN        
+6      77095 Fulgence Rwabu   Male  1947-11-23    165     51 " Ugan… UGA        </code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/View.py_93f9ab07a22c6dfd33cbd32a7ba24908">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="op">=</span> tbl_athlete_bio.<span class="bu">filter</span>(<span class="st">'height != "na" AND weight != "na"'</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    ).select([<span class="st">'athlete_id'</span>, <span class="st">'name'</span>, <span class="st">'sex'</span>, col(<span class="st">'born'</span>).cast(<span class="st">'date'</span>), </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>              col(<span class="st">'height'</span>).cast(<span class="st">'double'</span>), col(<span class="st">'weight'</span>).cast(<span class="st">'double'</span>), </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>              <span class="st">'country'</span>, <span class="st">'country_noc'</span>])</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># SQL</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="op">=</span> sc.sql(<span class="st">'''</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT </span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="st">    athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), </span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="st">    CAST(weight AS DOUBLE), country, country_noc</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_bio </span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE </span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="st">    height != "na" AND</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="st">    weight != "na"'''</span>)</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw.show(<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="op">=</span> tbl_athlete_bio.<span class="bu">filter</span>(<span class="st">'height != "na" AND weight != "na"'</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    ).select([<span class="st">'athlete_id'</span>, <span class="st">'name'</span>, <span class="st">'sex'</span>, col(<span class="st">'born'</span>).cast(<span class="st">'date'</span>), </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>              col(<span class="st">'height'</span>).cast(<span class="st">'double'</span>), col(<span class="st">'weight'</span>).cast(<span class="st">'double'</span>), </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>              <span class="st">'country'</span>, <span class="st">'country_noc'</span>])</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># SQL</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="op">=</span> sc.sql(<span class="st">'''</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT </span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="st">    athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), </span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="st">    CAST(weight AS DOUBLE), country, country_noc</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_bio </span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE </span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="st">    height != "na" AND</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="st">    weight != "na"'''</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw.show(<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>+----------+-------------------+------+----------+------+------+--------------+-----------+
 |athlete_id|               name|   sex|      born|height|weight|       country|country_noc|
@@ -531,45 +539,45 @@ only showing top 6 rows</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href=""><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href=""><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/ViewQuery.R_8ee97a475ff6a6909bbda8be5567fd4e">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>athlete_bio_vw_qry <span class="ot">&lt;-</span> <span class="st">'</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT </span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="st">    athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), </span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">    CAST(weight AS DOUBLE), country, country_noc</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_bio </span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE </span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="st">    height != "na" AND</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="st">    weight != "na"'</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span> <span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">"{athlete_bio_vw_qry}"</span>))</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tbl_athlete_bio_vw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>athlete_bio_vw_qry <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT </span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="st">    athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), </span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="st">    CAST(weight AS DOUBLE), country, country_noc</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_bio </span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE </span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="st">    height != "na" AND</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="st">    weight != "na"'</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span> <span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">"{athlete_bio_vw_qry}"</span>))</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tbl_athlete_bio_vw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Source: spark&lt;?&gt; [?? x 8]
-  athlete_id name                sex    born       height weight country count…¹
-       &lt;int&gt; &lt;chr&gt;               &lt;chr&gt;  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  
-1      43737 Andrzej Socharski   Male   1947-08-31    173     72 " Pola… POL    
-2      50147 Nathalie Wunderlich Female 1971-06-03    170     50 " Swit… SUI    
-3       5085 Miha Lokar          Male   1935-09-10    182     76 " Yugo… YUG    
-4     136329 Austin Hack         Male   1992-05-17    203    100 " Unit… USA    
-5      38633 Tsuneo Ogasawara    Male   1942-07-30    181     80 " Japa… JPN    
-6      77095 Fulgence Rwabu      Male   1947-11-23    165     51 " Ugan… UGA    
-# … with abbreviated variable name ¹​country_noc</code></pre>
+<pre><code># A query:  ?? x 8
+# Database: spark_connection
+  athlete_id name             sex   born       height weight country country_noc
+       &lt;int&gt; &lt;chr&gt;            &lt;chr&gt; &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      
+1      43737 Andrzej Sochars… Male  1947-08-31    173     72 " Pola… POL        
+2      50147 Nathalie Wunder… Fema… 1971-06-03    170     50 " Swit… SUI        
+3       5085 Miha Lokar       Male  1935-09-10    182     76 " Yugo… YUG        
+4     136329 Austin Hack      Male  1992-05-17    203    100 " Unit… USA        
+5      38633 Tsuneo Ogasawara Male  1942-07-30    181     80 " Japa… JPN        
+6      77095 Fulgence Rwabu   Male  1947-11-23    165     51 " Ugan… UGA        </code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/ViewQuery.py_77be1297253f079be5ee27dccef5f939">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>athlete_bio_vw_qry <span class="op">=</span> <span class="st">'''</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT </span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="st">    athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), </span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="st">    CAST(weight AS DOUBLE), country, country_noc</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_bio </span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE </span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="st">    height != "na" AND</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="st">    weight != "na"'''</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="op">=</span> sc.sql(<span class="ss">f'''</span><span class="sc">{</span>athlete_bio_vw_qry<span class="sc">}</span><span class="ss">'''</span>)</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw.show(<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>athlete_bio_vw_qry <span class="op">=</span> <span class="st">'''</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT </span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="st">    athlete_id, name, sex, CAST(born AS DATE), CAST(height AS DOUBLE), </span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="st">    CAST(weight AS DOUBLE), country, country_noc</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_bio </span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE </span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="st">    height != "na" AND</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="st">    weight != "na"'''</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="op">=</span> sc.sql(<span class="ss">f'''</span><span class="sc">{</span>athlete_bio_vw_qry<span class="sc">}</span><span class="ss">'''</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw.show(<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>+----------+-------------------+------+----------+------+------+--------------+-----------+
 |athlete_id|               name|   sex|      born|height|weight|       country|country_noc|
@@ -595,40 +603,40 @@ only showing top 6 rows</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href=""><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href=""><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Subquery.R_7bff04ac0fe340d18e4ded2a71bd4c92">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>athlete_results_qry <span class="ot">&lt;-</span> <span class="st">'</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT athlete_id </span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_results</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE medal != "na"'</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">'</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT *</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ({athlete_bio_vw_qry})</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE athlete_id IN ({athlete_results_qry})'</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>athlete_results_qry <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT athlete_id </span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_results</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE medal != "na"'</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">'</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT *</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ({athlete_bio_vw_qry})</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE athlete_id IN ({athlete_results_qry})'</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Source: spark&lt;?&gt; [?? x 8]
-  athlete_id name             sex    born       height weight country    count…¹
-       &lt;int&gt; &lt;chr&gt;            &lt;chr&gt;  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;  
-1    1700071 Lee Myung-Hwa    Female 1964-09-07    168     57 " Republi… KOR    
-2      58599 István Kozma     Male   1939-11-27    198    125 " Hungary" HUN    
-3      31969 Valter Matošević Male   1970-06-11    194     99 " Croatia" CRO    
-4      91237 Volha Puzhevich  Female 1983-03-17    167     43 " Belarus" BLR    
-5     104818 Marko Kemppainen Male   1976-07-13    184    100 " Finland" FIN    
-6       5695 Lew Beck         Male   1922-04-19    183     75 " United … USA    
-# … with abbreviated variable name ¹​country_noc</code></pre>
+<pre><code># A query:  ?? x 8
+# Database: spark_connection
+  athlete_id name             sex   born       height weight country country_noc
+       &lt;int&gt; &lt;chr&gt;            &lt;chr&gt; &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      
+1    1700071 Lee Myung-Hwa    Fema… 1964-09-07    168     57 " Repu… KOR        
+2      58599 István Kozma     Male  1939-11-27    198    125 " Hung… HUN        
+3      31969 Valter Matošević Male  1970-06-11    194     99 " Croa… CRO        
+4      91237 Volha Puzhevich  Fema… 1983-03-17    167     43 " Bela… BLR        
+5     104818 Marko Kemppainen Male  1976-07-13    184    100 " Finl… FIN        
+6       5695 Lew Beck         Male  1922-04-19    183     75 " Unit… USA        </code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Subquery.py_ebd6f2d8e1d5dcb59feb2546d462219f">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>athlete_results_qry <span class="op">=</span> <span class="st">'''</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT athlete_id </span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_results</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE medal != "na"'''</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="ss">f'''</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  SELECT *</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM (</span><span class="sc">{</span>athlete_bio_vw_qry<span class="sc">}</span><span class="ss">)</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  WHERE athlete_id IN (</span><span class="sc">{</span>athlete_results_qry<span class="sc">}</span><span class="ss">)'''</span>).show(<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>athlete_results_qry <span class="op">=</span> <span class="st">'''</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT athlete_id </span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_results</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE medal != "na"'''</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="ss">f'''</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  SELECT *</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM (</span><span class="sc">{</span>athlete_bio_vw_qry<span class="sc">}</span><span class="ss">)</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  WHERE athlete_id IN (</span><span class="sc">{</span>athlete_results_qry<span class="sc">}</span><span class="ss">)'''</span>).show(<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>+----------+----------------+------+----------+------+------+------------------+-----------+
 |athlete_id|            name|   sex|      born|height|weight|           country|country_noc|
@@ -651,20 +659,21 @@ only showing top 6 rows</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href=""><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href=""><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/SubSubquery.R_38579b07aa44b6c5ac5158f039bd36a4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>medal_athlete_qry <span class="ot">&lt;-</span> <span class="fu">glue</span>(<span class="st">'</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT *</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ({athlete_bio_vw_qry})</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE athlete_id IN ({athlete_results_qry})'</span>)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>tbl_country_medal <span class="ot">&lt;-</span> <span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">'</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT country, COUNT(country) AS medal_count</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ({medal_athlete_qry})</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="st">  GROUP BY country</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="st">  ORDER BY medal_count DESC'</span>))</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tbl_country_medal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>medal_athlete_qry <span class="ot">&lt;-</span> <span class="fu">glue</span>(<span class="st">'</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT *</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ({athlete_bio_vw_qry})</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE athlete_id IN ({athlete_results_qry})'</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>tbl_country_medal <span class="ot">&lt;-</span> <span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">'</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT country, COUNT(country) AS medal_count</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM ({medal_athlete_qry})</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="st">  GROUP BY country</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="st">  ORDER BY medal_count DESC'</span>))</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tbl_country_medal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Source: spark&lt;?&gt; [?? x 2]
+<pre><code># A query:  ?? x 2
+# Database: spark_connection
   country          medal_count
   &lt;chr&gt;                  &lt;dbl&gt;
 1 " United States"        3116
@@ -677,18 +686,18 @@ only showing top 6 rows</code></pre>
 </div>
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/SubSubquery.py_5b8893a5943da37df4d4c57642082448">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>medal_athlete_qry <span class="op">=</span> <span class="ss">f'''</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ss">  SELECT *</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM (</span><span class="sc">{</span>athlete_bio_vw_qry<span class="sc">}</span><span class="ss">)</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  WHERE athlete_id IN (</span><span class="sc">{</span>athlete_results_qry<span class="sc">}</span><span class="ss">)'''</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>tbl_country_medal <span class="op">=</span> sc.sql(<span class="ss">f'''</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  SELECT country, COUNT(country) AS medal_count</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM (</span><span class="sc">{</span>medal_athlete_qry<span class="sc">}</span><span class="ss">)</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  GROUP BY country</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  ORDER BY medal_count DESC'''</span>)</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>                   </span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>tbl_country_medal.show(<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>medal_athlete_qry <span class="op">=</span> <span class="ss">f'''</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ss">  SELECT *</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM (</span><span class="sc">{</span>athlete_bio_vw_qry<span class="sc">}</span><span class="ss">)</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="ss">  WHERE athlete_id IN (</span><span class="sc">{</span>athlete_results_qry<span class="sc">}</span><span class="ss">)'''</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>tbl_country_medal <span class="op">=</span> sc.sql(<span class="ss">f'''</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  SELECT country, COUNT(country) AS medal_count</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM (</span><span class="sc">{</span>medal_athlete_qry<span class="sc">}</span><span class="ss">)</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  GROUP BY country</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  ORDER BY medal_count DESC'''</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>                   </span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>tbl_country_medal.show(<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>+--------------+-----------+
 |       country|medal_count|
@@ -714,34 +723,34 @@ only showing top 6 rows</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href=""><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href=""><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/SparkAgain.R_46dd8fa7510fba10bb04919ca7432a7f">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, tbl_athlete_bio_vw, <span class="st">'athlete_bio_vw'</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">src_tbls</span>(sc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, tbl_athlete_bio_vw, <span class="st">'athlete_bio_vw'</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">src_tbls</span>(sc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "athlete_bio"     "athlete_bio_vw"  "athlete_results" "country"        
 [5] "games"           "medal_tally"     "results"        </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sdf_sql</span>(sc, <span class="st">'SELECT * FROM athlete_bio_vw LIMIT 6'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sdf_sql</span>(sc, <span class="st">'SELECT * FROM athlete_bio_vw LIMIT 6'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Source: spark&lt;?&gt; [?? x 8]
-  athlete_id name                sex    born       height weight country count…¹
-       &lt;int&gt; &lt;chr&gt;               &lt;chr&gt;  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  
-1      43737 Andrzej Socharski   Male   1947-08-31    173     72 " Pola… POL    
-2      50147 Nathalie Wunderlich Female 1971-06-03    170     50 " Swit… SUI    
-3       5085 Miha Lokar          Male   1935-09-10    182     76 " Yugo… YUG    
-4     136329 Austin Hack         Male   1992-05-17    203    100 " Unit… USA    
-5      38633 Tsuneo Ogasawara    Male   1942-07-30    181     80 " Japa… JPN    
-6      77095 Fulgence Rwabu      Male   1947-11-23    165     51 " Ugan… UGA    
-# … with abbreviated variable name ¹​country_noc</code></pre>
+<pre><code># A query:  ?? x 8
+# Database: spark_connection
+  athlete_id name             sex   born       height weight country country_noc
+       &lt;int&gt; &lt;chr&gt;            &lt;chr&gt; &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      
+1      43737 Andrzej Sochars… Male  1947-08-31    173     72 " Pola… POL        
+2      50147 Nathalie Wunder… Fema… 1971-06-03    170     50 " Swit… SUI        
+3       5085 Miha Lokar       Male  1935-09-10    182     76 " Yugo… YUG        
+4     136329 Austin Hack      Male  1992-05-17    203    100 " Unit… USA        
+5      38633 Tsuneo Ogasawara Male  1942-07-30    181     80 " Japa… JPN        
+6      77095 Fulgence Rwabu   Male  1947-11-23    165     51 " Ugan… UGA        </code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/SparkAgain.py_ba7301a58f579331bdbae35f759f0c27">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw.createOrReplaceTempView(<span class="st">'athlete_bio_vw'</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="st">"show tables"</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tbl_athlete_bio_vw.createOrReplaceTempView(<span class="st">'athlete_bio_vw'</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="st">"show tables"</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>+---------+---------------+-----------+
 |namespace|      tableName|isTemporary|
@@ -755,7 +764,7 @@ only showing top 6 rows</code></pre>
 |         |        results|       true|
 +---------+---------------+-----------+</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="st">'SELECT * FROM athlete_bio_vw LIMIT 6'</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="st">'SELECT * FROM athlete_bio_vw LIMIT 6'</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>+----------+-------------------+------+----------+------+------+--------------+-----------+
 |athlete_id|               name|   sex|      born|height|weight|       country|country_noc|
@@ -780,52 +789,52 @@ only showing top 6 rows</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href=""><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href=""><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Dynamic.R_72583a1c49a56262295135bed16f38e2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>thirtyYears <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="fu">Sys.Date</span>()) <span class="sc">-</span> <span class="fu">years</span>(<span class="dv">30</span>)</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">'</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT *</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_bio_vw</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE born &gt;= "{thirtyYears}"</span></span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="st">  LIMIT 6'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>thirtyYears <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="fu">Sys.Date</span>()) <span class="sc">-</span> <span class="fu">years</span>(<span class="dv">30</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sdf_sql</span>(sc, <span class="fu">glue</span>(<span class="st">'</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT *</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM athlete_bio_vw</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE born &gt;= "{thirtyYears}"</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="st">  LIMIT 6'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Source: spark&lt;?&gt; [?? x 8]
-  athlete_id name               sex    born       height weight country  count…¹
-       &lt;int&gt; &lt;chr&gt;              &lt;chr&gt;  &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  
-1     136346 Pedro Pascual      Male   1996-03-15    185     70 " Unite… USA    
-2     131521 Ana Dascăl         Female 2002-09-12    183     60 " Roman… ROU    
-3     137091 Saskia Alusalu     Female 1994-04-14    175     64 " Eston… EST    
-4     134220 Jason Osborne      Male   1994-03-20    178     72 " Germa… GER    
-5     143729 C. A. Bhavani Devi Female 1993-08-27    168     58 " India" IND    
-6     138162 Oskar Svensson     Male   1995-09-07    190     86 " Swede… SWE    
-# … with abbreviated variable name ¹​country_noc</code></pre>
+<pre><code># A query:  ?? x 8
+# Database: spark_connection
+  athlete_id name             sex   born       height weight country country_noc
+       &lt;int&gt; &lt;chr&gt;            &lt;chr&gt; &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      
+1     131521 Ana Dascăl       Fema… 2002-09-12    183     60 " Roma… ROU        
+2     143519 Dimitrios Markos Male  2001-09-13    186     75 " Gree… GRE        
+3     133124 Francisco Ducas… Male  1996-12-03    175     68 " Chil… CHI        
+4    1800056 Hwang Sol-Gyong  Fema… 1997-01-09    160     59 " Kore… COR        
+5     137840 Liana Ganeyeva   Fema… 1997-12-20    165     63 " ROC"  ROC        
+6     137179 Lou Barin        Fema… 1999-01-26    162     48 " Fran… FRA        </code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Dynamic.py_100c8ade8792dcf8d22744650c60a4a0">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dateutil.relativedelta <span class="im">import</span> relativedelta</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>thirtyYears <span class="op">=</span> date.today() <span class="op">-</span> relativedelta(years <span class="op">=</span> <span class="dv">30</span>)</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="ss">f'''</span></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  SELECT *</span></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM athlete_bio_vw</span></span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  WHERE born &gt;= "</span><span class="sc">{</span>thirtyYears<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  LIMIT 6'''</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> date</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dateutil.relativedelta <span class="im">import</span> relativedelta</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>thirtyYears <span class="op">=</span> date.today() <span class="op">-</span> relativedelta(years <span class="op">=</span> <span class="dv">30</span>)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>sc.sql(<span class="ss">f'''</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  SELECT *</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="ss">  FROM athlete_bio_vw</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  WHERE born &gt;= "</span><span class="sc">{</span>thirtyYears<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  LIMIT 6'''</span>).show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>+----------+------------------+------+----------+------+------+--------------+-----------+
-|athlete_id|              name|   sex|      born|height|weight|       country|country_noc|
-+----------+------------------+------+----------+------+------+--------------+-----------+
-|    136346|     Pedro Pascual|  Male|1996-03-15| 185.0|  70.0| United States|        USA|
-|    131521|        Ana Dascăl|Female|2002-09-12| 183.0|  60.0|       Romania|        ROU|
-|    137091|    Saskia Alusalu|Female|1994-04-14| 175.0|  64.0|       Estonia|        EST|
-|    134220|     Jason Osborne|  Male|1994-03-20| 178.0|  72.0|       Germany|        GER|
-|    143729|C. A. Bhavani Devi|Female|1993-08-27| 168.0|  58.0|         India|        IND|
-|    138162|    Oskar Svensson|  Male|1995-09-07| 190.0|  86.0|        Sweden|        SWE|
-+----------+------------------+------+----------+------+------+--------------+-----------+</code></pre>
+<pre><code>+----------+-----------------+------+----------+------+------+-----------+-----------+
+|athlete_id|             name|   sex|      born|height|weight|    country|country_noc|
++----------+-----------------+------+----------+------+------+-----------+-----------+
+|    131521|       Ana Dascăl|Female|2002-09-12| 183.0|  60.0|    Romania|        ROU|
+|    143519| Dimitrios Markos|  Male|2001-09-13| 186.0|  75.0|     Greece|        GRE|
+|    133124|Francisco Ducasse|  Male|1996-12-03| 175.0|  68.0|      Chile|        CHI|
+|   1800056|  Hwang Sol-Gyong|Female|1997-01-09| 160.0|  59.0| Korea Team|        COR|
+|    137840|   Liana Ganeyeva|Female|1997-12-20| 165.0|  63.0|        ROC|        ROC|
+|    137179|        Lou Barin|Female|1999-01-26| 162.0|  48.0|     France|        FRA|
++----------+-----------------+------+----------+------+------+-----------+-----------+</code></pre>
 </div>
 </div>
 </div>
@@ -839,13 +848,13 @@ only showing top 6 rows</code></pre>
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href=""><code>R</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false" href=""><code>Python</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Disconnect.R_6f03ffc2b5d6369e3c6e8afba6b6915b">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spark_disconnect</span>(sc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spark_disconnect</span>(sc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
-<div class="cell" data-hash="2022-08-27-moving-local-sql-to-spark-the-easy-way_cache/html/Disconnect.py_a6d66ff19244ba7f10ebb5877816454b">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sc.stop()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sc.stop()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>

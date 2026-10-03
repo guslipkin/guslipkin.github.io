@@ -407,7 +407,7 @@ window.Quarto = {
 <h1 class="title">Does Student Debt Correlate with Retirement Funds?</h1>
   <div class="quarto-categories">
     <div class="quarto-category">R</div>
-    <div class="quarto-category">R: Tidy Tuesday</div>
+    <div class="quarto-category">Analysis</div>
   </div>
   </div>
 
@@ -507,23 +507,23 @@ Important
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(debt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      year          race             loan_debt       loan_debt_pct    
- Min.   :1989   Length:30          Min.   :  793.1   Min.   :0.09146  
- 1st Qu.:1995   Class :character   1st Qu.: 1406.8   1st Qu.:0.13887  
- Median :2002   Mode  :character   Median : 2992.6   Median :0.16049  
- Mean   :2002                      Mean   : 4119.4   Mean   :0.19388  
- 3rd Qu.:2010                      3rd Qu.: 5899.2   3rd Qu.:0.21823  
- Max.   :2016                      Max.   :14224.8   Max.   :0.41836  </code></pre>
+<pre><code>      year             race      loan_debt       loan_debt_pct    
+ Min.   :1989   Length   :30   Min.   :  793.1   Min.   :0.09146  
+ 1st Qu.:1995   N.unique : 3   1st Qu.: 1406.8   1st Qu.:0.13887  
+ Median :2002   N.blank  : 0   Median : 2992.6   Median :0.16049  
+ Mean   :2002   Min.nchar: 5   Mean   : 4119.4   Mean   :0.19388  
+ 3rd Qu.:2010   Max.nchar: 8   3rd Qu.: 5899.2   3rd Qu.:0.21823  
+ Max.   :2016                  Max.   :14224.8   Max.   :0.41836  </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(retirement)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      year          race             retirement    
- Min.   :1989   Length:30          Min.   :  5249  
- 1st Qu.:1995   Class :character   1st Qu.: 15021  
- Median :2002   Mode  :character   Median : 21809  
- Mean   :2002                      Mean   : 41411  
- 3rd Qu.:2010                      3rd Qu.: 44936  
- Max.   :2016                      Max.   :157884  </code></pre>
+<pre><code>      year             race      retirement    
+ Min.   :1989   Length   :30   Min.   :  5249  
+ 1st Qu.:1995   N.unique : 3   1st Qu.: 15021  
+ Median :2002   N.blank  : 0   Median : 21809  
+ Mean   :2002   Min.nchar: 5   Mean   : 41411  
+ 3rd Qu.:2010   Max.nchar: 8   3rd Qu.: 44936  
+ Max.   :2016                  Max.   :157884  </code></pre>
 </div>
 </div>
 </section>
@@ -729,14 +729,14 @@ F-statistic: 23.29 on 5 and 24 DF,  p-value: 1.738e-08</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(wealth)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> wealth_type             year          race           wealth_family   
- Length:96          Min.   :1963   Length:96          Min.   :  2467  
- Class :character   1st Qu.:1991   Class :character   1st Qu.: 19559  
- Mode  :character   Median :2000   Mode  :character   Median : 97209  
-                    Mean   :1998                      Mean   :158020  
-                    3rd Qu.:2008                      3rd Qu.:156895  
-                    Max.   :2016                      Max.   :919336  
-                                                      NA's   :24      </code></pre>
+<pre><code>    wealth_type      year             race    wealth_family   
+ Length   :96   Min.   :1963   Length   :96   Min.   :  2467  
+ N.unique : 2   1st Qu.:1991   N.unique : 4   1st Qu.: 19559  
+ N.blank  : 0   Median :2000   N.blank  : 0   Median : 97209  
+ Min.nchar: 6   Mean   :1998   Min.nchar: 5   Mean   :158020  
+ Max.nchar: 7   3rd Qu.:2008   Max.nchar: 9   3rd Qu.:156895  
+                Max.   :2016                  Max.   :919336  
+                                              NAs    :24      </code></pre>
 </div>
 </div>
 <div class="cell">
