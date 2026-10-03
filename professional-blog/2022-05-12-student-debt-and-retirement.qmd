@@ -6,7 +6,7 @@ author: "Gus Lipkin"
 date: "2022/05/12"
 categories:
   - R
-  - "R: Tidy Tuesday"
+  - Analysis
 format:
   html:
     toc: true

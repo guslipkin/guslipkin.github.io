@@ -6,15 +6,21 @@ author: "Gus Lipkin"
 date: "2022/08/27"
 categories:
   - R
-  - "R: sparklyr"
   - Python
-  - "Python: PySpark"
   - Spark
 format:
   html:
     theme: default
     toc: true
+execute:
+  cache: false
 ---
+
+```{r setup}
+#| include: false
+#| cache: false
+reticulate::py_require(c("pyspark", "python-dateutil"))
+```
 
 ::: {.callout-note}
 
@@ -44,19 +50,26 @@ Our first step is to load our packages and connect to spark. We'll also create a
 
 ```{r LibrariesConnect.R}
 #| message: false
+#| cache: false
 library(sparklyr)
 library(glue)
 
-sc <- spark_connect(master = "local")
+sc <- spark_connect(master = "local", version = '4.1')
+DBI::dbExecute(sc, "SET spark.sql.ansi.enabled = false")
 ```
 
 ##### `Python`
 
 ```{python LibrariesConnect.py}
+#| cache: false
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 
-sc = SparkSession.builder.getOrCreate()
+sc = (
+    SparkSession.builder
+    .config("spark.sql.ansi.enabled", "false")
+    .getOrCreate()
+)
 ```
 
 :::
@@ -162,7 +175,7 @@ sc.sql('SELECT * FROM country LIMIT 6').show()
 Let's say your database administrators (if they aren't also you) are kind and have done a small amount of data cleaning and you usually access the data from a mount point which provides a view. You pull the schema for the `athlete_bio_vw` table and get the following SQL that references `athlete_bio`.
 
 ```{sql View.sql}
-#| eval: false
+--| eval: false
 SELECT 
   athlete_id, name, sex, CAST(born AS DATE), 
   CAST(height AS DOUBLE), CAST(weight AS DOUBLE), 

@@ -5,8 +5,6 @@ author: "Gus Lipkin"
 date: "2022/03/31"
 categories:
   - R
-  - "R: tidyverse"
-  - "R: data.table"
 format:
   html:
     toc: true

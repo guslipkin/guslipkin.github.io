@@ -5,7 +5,6 @@ author: "Gus Lipkin"
 date: "2022/02/23"
 categories:
   - R
-  - "R: openxlsx"
   - Excel
 format:
   html:

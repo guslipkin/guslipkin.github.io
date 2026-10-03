@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,16 @@
 
 <title>Does Student Debt Correlate with Retirement Funds? – Gus Lipkin’s Awesome Website</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -71,19 +77,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../assets/favicon.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f59cc608e70ce16b384b3e6fc30ca698.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-223a4d25e70bf6005a455c54fa72832d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-f59cc608e70ce16b384b3e6fc30ca698.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-b653a8c7f8c78f0e3d4cc36e98f1d7c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7e7f8027abe3fc5cb3d6f77f2f67968e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-b653a8c7f8c78f0e3d4cc36e98f1d7c7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -116,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="color-scheme" content="light dark">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -402,7 +407,7 @@ window.Quarto = {
 <h1 class="title">Does Student Debt Correlate with Retirement Funds?</h1>
   <div class="quarto-categories">
     <div class="quarto-category">R</div>
-    <div class="quarto-category">R: Tidy Tuesday</div>
+    <div class="quarto-category">Analysis</div>
   </div>
   </div>
 
@@ -502,23 +507,23 @@ Important
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(debt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      year          race             loan_debt       loan_debt_pct    
- Min.   :1989   Length:30          Min.   :  793.1   Min.   :0.09146  
- 1st Qu.:1995   Class :character   1st Qu.: 1406.8   1st Qu.:0.13887  
- Median :2002   Mode  :character   Median : 2992.6   Median :0.16049  
- Mean   :2002                      Mean   : 4119.4   Mean   :0.19388  
- 3rd Qu.:2010                      3rd Qu.: 5899.2   3rd Qu.:0.21823  
- Max.   :2016                      Max.   :14224.8   Max.   :0.41836  </code></pre>
+<pre><code>      year             race      loan_debt       loan_debt_pct    
+ Min.   :1989   Length   :30   Min.   :  793.1   Min.   :0.09146  
+ 1st Qu.:1995   N.unique : 3   1st Qu.: 1406.8   1st Qu.:0.13887  
+ Median :2002   N.blank  : 0   Median : 2992.6   Median :0.16049  
+ Mean   :2002   Min.nchar: 5   Mean   : 4119.4   Mean   :0.19388  
+ 3rd Qu.:2010   Max.nchar: 8   3rd Qu.: 5899.2   3rd Qu.:0.21823  
+ Max.   :2016                  Max.   :14224.8   Max.   :0.41836  </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(retirement)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      year          race             retirement    
- Min.   :1989   Length:30          Min.   :  5249  
- 1st Qu.:1995   Class :character   1st Qu.: 15021  
- Median :2002   Mode  :character   Median : 21809  
- Mean   :2002                      Mean   : 41411  
- 3rd Qu.:2010                      3rd Qu.: 44936  
- Max.   :2016                      Max.   :157884  </code></pre>
+<pre><code>      year             race      retirement    
+ Min.   :1989   Length   :30   Min.   :  5249  
+ 1st Qu.:1995   N.unique : 3   1st Qu.: 15021  
+ Median :2002   N.blank  : 0   Median : 21809  
+ Mean   :2002   Min.nchar: 5   Mean   : 41411  
+ 3rd Qu.:2010   Max.nchar: 8   3rd Qu.: 44936  
+ Max.   :2016                  Max.   :157884  </code></pre>
 </div>
 </div>
 </section>
@@ -724,14 +729,14 @@ F-statistic: 23.29 on 5 and 24 DF,  p-value: 1.738e-08</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(wealth)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> wealth_type             year          race           wealth_family   
- Length:96          Min.   :1963   Length:96          Min.   :  2467  
- Class :character   1st Qu.:1991   Class :character   1st Qu.: 19559  
- Mode  :character   Median :2000   Mode  :character   Median : 97209  
-                    Mean   :1998                      Mean   :158020  
-                    3rd Qu.:2008                      3rd Qu.:156895  
-                    Max.   :2016                      Max.   :919336  
-                                                      NA's   :24      </code></pre>
+<pre><code>    wealth_type      year             race    wealth_family   
+ Length   :96   Min.   :1963   Length   :96   Min.   :  2467  
+ N.unique : 2   1st Qu.:1991   N.unique : 4   1st Qu.: 19559  
+ N.blank  : 0   Median :2000   N.blank  : 0   Median : 97209  
+ Min.nchar: 6   Mean   :1998   Min.nchar: 5   Mean   :158020  
+ Max.nchar: 7   3rd Qu.:2008   Max.nchar: 9   3rd Qu.:156895  
+                Max.   :2016                  Max.   :919336  
+                                              NAs    :24      </code></pre>
 </div>
 </div>
 <div class="cell">
