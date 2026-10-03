@@ -8,12 +8,6 @@
     ]
   },
   {
-    "listing": "/personal-blog.html",
-    "items": [
-      "/personal-blog/coming-soon.html"
-    ]
-  },
-  {
     "listing": "/blog.html",
     "items": [
       "/professional-blog/2022-08-27-moving-local-sql-to-spark-the-easy-way.html",
@@ -35,6 +29,12 @@
       "/professional-blog/2022-03-14-writing-faster-r-with-vectorization-and-the-apply-family.html",
       "/professional-blog/2022-02-23-making-pretty-excel-files-in-r.html",
       "/professional-blog/2022-02-16-grouped-and-stacked-bar-charts-in-r.html"
+    ]
+  },
+  {
+    "listing": "/personal-blog.html",
+    "items": [
+      "/personal-blog/coming-soon.html"
     ]
   }
 ]
