@@ -1,7 +1,38 @@
 ---
 title: "My Professional Blog"
 listing:
-  contents: professional-blog
+  contents: 
+    - professional-blog
+    - path: "https://www.landeranalytics.com/post/analyzing-competitive-bouldering-s-new-scoring-system"
+      title: "Analyzing Competitive Bouldering’s New Scoring System"
+      description: "How the point-based rules change rankings and what they reward"
+      date: "2026-08-18"
+      categories: [Lander Analytics,Analysis]
+      image: "https://static.wixstatic.com/media/4e1346_fcc06c5eebb24289a5362bae1462d470~mv2.png/v1/fill/w_740,h_416,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4e1346_fcc06c5eebb24289a5362bae1462d470~mv2.png"
+    - path: "https://www.landeranalytics.com/post/orchestrating-the-messy-stuff-why-we-use-kestra"
+      title: "Orchestrating the Messy Stuff: Why We Use Kestra"
+      description: "When scheduled jobs become full workflows"
+      date: "2026-07-14"
+      categories: [Lander Analytics,Infrastructure,Orchestration]
+      image: "https://static.wixstatic.com/media/4e1346_a9b481b06e9143948934251e62bfabfe~mv2.png/v1/fill/w_740,h_416,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4e1346_a9b481b06e9143948934251e62bfabfe~mv2.png"
+    - path: "https://www.landeranalytics.com/post/duckdb-s-quack-protocol-solves-the-problem-i-kept-working-around"
+      title: "DuckDB's Quack Protocol Solves the Problem I kept Working Around"
+      description: "Why multi-process writes may finally stop sending me back to Postgres or folders full of Parquet files"
+      date: "2026-06-23"
+      categories: [Lander Analytics,Databases,duckdb]
+      image: "https://static.wixstatic.com/media/4e1346_d1adec26d42645f8864a40dd2513482b~mv2.png/v1/fill/w_740,h_416,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4e1346_d1adec26d42645f8864a40dd2513482b~mv2.png"
+    - path: "https://www.landeranalytics.com/post/building-a-computer-in-r"
+      title: "Building a Computer in R"
+      description: "One Time When R Wasn't a Language for Statistical Computing and Graphics"
+      date: "2026-05-26"
+      categories: [Lander Analytics,R]
+      image: "https://static.wixstatic.com/media/4e1346_dba5e1d334d24c0e97b380c90e1b3740~mv2.png/v1/fill/w_740,h_413,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4e1346_dba5e1d334d24c0e97b380c90e1b3740~mv2.png"
+    - path: "https://www.landeranalytics.com/post/rpeat-a-better-way-to-schedule-jobs"
+      title: "rpeat: A Better Way to Schedule Jobs"
+      description: "A cron alternative for a more civilized age"
+      date: "2026-04-14"
+      categories: [Lander Analytics,Infrastructure,Orchestration]
+      image: "https://static.wixstatic.com/media/4e1346_d74f30527067460d89b5b51b229687e5~mv2.png/v1/fill/w_740,h_413,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4e1346_d74f30527067460d89b5b51b229687e5~mv2.png"
   sort: "date desc"
   type: default
   categories: true
