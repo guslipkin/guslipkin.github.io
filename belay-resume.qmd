@@ -368,7 +368,15 @@ format:
 
 ## [USA Climbing](https://usaclimbing.org/)
 
-::: {.callout-note collapse="false" title="2025–2026 Season"}
+::: {.callout-note collapse="false" title="2026-2027 Season"}
+
+### <span class="badge badge-regional">Regional</span>
+
+- R91 Central Rock Gym Glastonbury QE, Glastonbury, CT — Line Belayer
+
+:::
+
+::: {.callout-note collapse="true" title="2025–2026 Season"}
 
 ### <span class="badge badge-national">National</span>
 
@@ -429,6 +437,7 @@ format:
 
 ::: {.callout-note collapse="false" title="All Events"}
 
+- 2026 Glastonbury Slam, Glastonbury, CT — Line Belayer
 - 2025 Suns Out Guns Out Momentum Millcreek, Millcreek, UT — Head Belayer
 
 :::
