@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -41,18 +41,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-447e42e69aaa9833c0ba1b986f430b20.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e8a51b7917113a6e75f0405e5179fea3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-08a202ac67dc47d2a29d4774ebb26b6c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-e8a51b7917113a6e75f0405e5179fea3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c01cc8f646cb504cfcca280090608b2f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-8450cb64e828ab057ed29eb442398b1c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-c01cc8f646cb504cfcca280090608b2f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,12 +103,6 @@ ul.task-list li input[type="checkbox"] {
       window['quarto-listing-loaded']();
     }
   });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
   </script>
 <meta name="color-scheme" content="light dark">
 
@@ -144,7 +139,7 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -167,6 +162,7 @@ window.Quarto = {
       for (let i=0; i < toggles.length; i++) {
         const toggle = toggles[i];
         if (toggle) {
+          toggle.setAttribute("aria-checked", alternate ? "true" : "false");
           if (alternate) {
             toggle.classList.add("alternate");
           } else {
@@ -196,13 +192,19 @@ window.Quarto = {
       manageTransitions('#quarto-margin-sidebar .nav-link', true);
       // Switch the toggles
       setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455).
+    // Not run on load: stylesheets are set before first paint there, and
+    // scrolling would undo the scroll to a URL fragment (#14973).
+    // The one pixel nudge keeps the reader where they were.
+    const refreshSafariScrollbar = () => {
       if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
         manageTransitions("body", false);
-        window.scrollTo(0, 1);
+        const scrollY = window.scrollY;
+        window.scrollTo(0, scrollY > 0 ? scrollY - 1 : 1);
         setTimeout(() => {
-          window.scrollTo(0, 0);
+          window.scrollTo(0, scrollY);
           manageTransitions("body", true);
         }, 40);
       }
@@ -296,6 +298,7 @@ window.Quarto = {
       // Read the current dark / light value
       let toAlternate = !hasAlternateSentinel();
       toggleColorMode(toAlternate);
+      refreshSafariScrollbar();
       setStyleSentinel(toAlternate);
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
@@ -310,15 +313,14 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Gus Lipkin’s Awesome Website</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -362,8 +364,9 @@ window.Quarto = {
     <a href="https://guslipkin.medium.com/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-medium"></i></a>
     <a href="https://fosstodon.org/@guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-mastodon"></i></a>
     <a href="https://www.instagram.com/guslipkin" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-instagram"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <button type="button" role="switch" aria-checked="false" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode" aria-label="Toggle dark mode"><i class="bi"></i></button>
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -375,7 +378,7 @@ window.Quarto = {
         
     <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(12)</span></div><div class="category" data-category="QW5hbHlzaXM=">Analysis <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RGF0YWJhc2Vz">Databases <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZHVja2Ri">duckdb <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RXhjZWw=">Excel <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SW5mcmFzdHJ1Y3R1cmU=">Infrastructure <span class="quarto-category-count">(2)</span></div><div class="category" data-category="S2VzdHJh">Kestra <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGFuZGVyJTIwQW5hbHl0aWNz">Lander Analytics <span class="quarto-category-count">(5)</span></div><div class="category" data-category="T3JjaGVzdHJhdGlvbg==">Orchestration <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(8)</span></div><div class="category" data-category="U3Bhcms=">Spark <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content" tabindex="-1">
 
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -404,18 +407,15 @@ window.Quarto = {
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
 <div class="quarto-post image-right" data-index="0" data-categories="TGFuZGVyJTIwQW5hbHl0aWNzJTJDQW5hbHlzaXM=" data-listing-date-sort="1787011200000">
-<div class="thumbnail"><a href="https://www.landeranalytics.com/post/analyzing-competitive-bouldering-s-new-scoring-system" class="no-external">
+<div class="thumbnail"><a href="https://www.landeranalytics.com/post/analyzing-competitive-bouldering-s-new-scoring-system" class="no-external-icon">
 
 <img loading="lazy" src="https://static.wixstatic.com/media/4e1346_fcc06c5eebb24289a5362bae1462d470~mv2.png/v1/fill/w_740,h_416,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4e1346_fcc06c5eebb24289a5362bae1462d470~mv2.png" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="https://www.landeranalytics.com/post/analyzing-competitive-bouldering-s-new-scoring-system" class="no-external">Analyzing Competitive Bouldering’s New Scoring System</a>
+<a href="https://www.landeranalytics.com/post/analyzing-competitive-bouldering-s-new-scoring-system" class="no-external-icon">Analyzing Competitive Bouldering’s New Scoring System</a>
 </h3>
-<div class="listing-subtitle">
-<a href="https://www.landeranalytics.com/post/analyzing-competitive-bouldering-s-new-scoring-system" class="no-external"></a>
-</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('TGFuZGVyJTIwQW5hbHl0aWNz'); return false;">Lander Analytics</div>
@@ -425,7 +425,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="metadata">
-<a href="https://www.landeranalytics.com/post/analyzing-competitive-bouldering-s-new-scoring-system" class="no-external">
+<a href="https://www.landeranalytics.com/post/analyzing-competitive-bouldering-s-new-scoring-system" class="no-external-icon">
 <div class="listing-date">
 Aug 18, 2026
 </div>
@@ -433,18 +433,15 @@ Aug 18, 2026
 </div>
 </div>
 <div class="quarto-post image-right" data-index="1" data-categories="TGFuZGVyJTIwQW5hbHl0aWNzJTJDSW5mcmFzdHJ1Y3R1cmUlMkNPcmNoZXN0cmF0aW9uJTJDS2VzdHJh" data-listing-date-sort="1783987200000">
-<div class="thumbnail"><a href="https://www.landeranalytics.com/post/orchestrating-the-messy-stuff-why-we-use-kestra" class="no-external">
+<div class="thumbnail"><a href="https://www.landeranalytics.com/post/orchestrating-the-messy-stuff-why-we-use-kestra" class="no-external-icon">
 
 <img loading="lazy" src="https://static.wixstatic.com/media/4e1346_a9b481b06e9143948934251e62bfabfe~mv2.png/v1/fill/w_740,h_416,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4e1346_a9b481b06e9143948934251e62bfabfe~mv2.png" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="https://www.landeranalytics.com/post/orchestrating-the-messy-stuff-why-we-use-kestra" class="no-external">Orchestrating the Messy Stuff: Why We Use Kestra</a>
+<a href="https://www.landeranalytics.com/post/orchestrating-the-messy-stuff-why-we-use-kestra" class="no-external-icon">Orchestrating the Messy Stuff: Why We Use Kestra</a>
 </h3>
-<div class="listing-subtitle">
-<a href="https://www.landeranalytics.com/post/orchestrating-the-messy-stuff-why-we-use-kestra" class="no-external"></a>
-</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('TGFuZGVyJTIwQW5hbHl0aWNz'); return false;">Lander Analytics</div>
@@ -458,7 +455,7 @@ Aug 18, 2026
 </div>
 </div>
 <div class="metadata">
-<a href="https://www.landeranalytics.com/post/orchestrating-the-messy-stuff-why-we-use-kestra" class="no-external">
+<a href="https://www.landeranalytics.com/post/orchestrating-the-messy-stuff-why-we-use-kestra" class="no-external-icon">
 <div class="listing-date">
 Jul 14, 2026
 </div>
@@ -466,18 +463,15 @@ Jul 14, 2026
 </div>
 </div>
 <div class="quarto-post image-right" data-index="2" data-categories="TGFuZGVyJTIwQW5hbHl0aWNzJTJDRGF0YWJhc2VzJTJDZHVja2Ri" data-listing-date-sort="1782172800000">
-<div class="thumbnail"><a href="https://www.landeranalytics.com/post/duckdb-s-quack-protocol-solves-the-problem-i-kept-working-around" class="no-external">
+<div class="thumbnail"><a href="https://www.landeranalytics.com/post/duckdb-s-quack-protocol-solves-the-problem-i-kept-working-around" class="no-external-icon">
 
 <img loading="lazy" src="https://static.wixstatic.com/media/4e1346_d1adec26d42645f8864a40dd2513482b~mv2.png/v1/fill/w_740,h_416,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4e1346_d1adec26d42645f8864a40dd2513482b~mv2.png" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="https://www.landeranalytics.com/post/duckdb-s-quack-protocol-solves-the-problem-i-kept-working-around" class="no-external">DuckDB’s Quack Protocol Solves the Problem I kept Working Around</a>
+<a href="https://www.landeranalytics.com/post/duckdb-s-quack-protocol-solves-the-problem-i-kept-working-around" class="no-external-icon">DuckDB’s Quack Protocol Solves the Problem I kept Working Around</a>
 </h3>
-<div class="listing-subtitle">
-<a href="https://www.landeranalytics.com/post/duckdb-s-quack-protocol-solves-the-problem-i-kept-working-around" class="no-external"></a>
-</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('TGFuZGVyJTIwQW5hbHl0aWNz'); return false;">Lander Analytics</div>
@@ -489,7 +483,7 @@ Jul 14, 2026
 </div>
 </div>
 <div class="metadata">
-<a href="https://www.landeranalytics.com/post/duckdb-s-quack-protocol-solves-the-problem-i-kept-working-around" class="no-external">
+<a href="https://www.landeranalytics.com/post/duckdb-s-quack-protocol-solves-the-problem-i-kept-working-around" class="no-external-icon">
 <div class="listing-date">
 Jun 23, 2026
 </div>
@@ -497,18 +491,15 @@ Jun 23, 2026
 </div>
 </div>
 <div class="quarto-post image-right" data-index="3" data-categories="TGFuZGVyJTIwQW5hbHl0aWNzJTJDUg==" data-listing-date-sort="1779753600000">
-<div class="thumbnail"><a href="https://www.landeranalytics.com/post/building-a-computer-in-r" class="no-external">
+<div class="thumbnail"><a href="https://www.landeranalytics.com/post/building-a-computer-in-r" class="no-external-icon">
 
 <img loading="lazy" src="https://static.wixstatic.com/media/4e1346_dba5e1d334d24c0e97b380c90e1b3740~mv2.png/v1/fill/w_740,h_413,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4e1346_dba5e1d334d24c0e97b380c90e1b3740~mv2.png" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="https://www.landeranalytics.com/post/building-a-computer-in-r" class="no-external">Building a Computer in R</a>
+<a href="https://www.landeranalytics.com/post/building-a-computer-in-r" class="no-external-icon">Building a Computer in R</a>
 </h3>
-<div class="listing-subtitle">
-<a href="https://www.landeranalytics.com/post/building-a-computer-in-r" class="no-external"></a>
-</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('TGFuZGVyJTIwQW5hbHl0aWNz'); return false;">Lander Analytics</div>
@@ -518,7 +509,7 @@ Jun 23, 2026
 </div>
 </div>
 <div class="metadata">
-<a href="https://www.landeranalytics.com/post/building-a-computer-in-r" class="no-external">
+<a href="https://www.landeranalytics.com/post/building-a-computer-in-r" class="no-external-icon">
 <div class="listing-date">
 May 26, 2026
 </div>
@@ -526,18 +517,15 @@ May 26, 2026
 </div>
 </div>
 <div class="quarto-post image-right" data-index="4" data-categories="TGFuZGVyJTIwQW5hbHl0aWNzJTJDSW5mcmFzdHJ1Y3R1cmUlMkNPcmNoZXN0cmF0aW9u" data-listing-date-sort="1776124800000">
-<div class="thumbnail"><a href="https://www.landeranalytics.com/post/rpeat-a-better-way-to-schedule-jobs" class="no-external">
+<div class="thumbnail"><a href="https://www.landeranalytics.com/post/rpeat-a-better-way-to-schedule-jobs" class="no-external-icon">
 
 <img loading="lazy" src="https://static.wixstatic.com/media/4e1346_d74f30527067460d89b5b51b229687e5~mv2.png/v1/fill/w_740,h_413,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4e1346_d74f30527067460d89b5b51b229687e5~mv2.png" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="https://www.landeranalytics.com/post/rpeat-a-better-way-to-schedule-jobs" class="no-external">rpeat: A Better Way to Schedule Jobs</a>
+<a href="https://www.landeranalytics.com/post/rpeat-a-better-way-to-schedule-jobs" class="no-external-icon">rpeat: A Better Way to Schedule Jobs</a>
 </h3>
-<div class="listing-subtitle">
-<a href="https://www.landeranalytics.com/post/rpeat-a-better-way-to-schedule-jobs" class="no-external"></a>
-</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('TGFuZGVyJTIwQW5hbHl0aWNz'); return false;">Lander Analytics</div>
@@ -549,26 +537,23 @@ May 26, 2026
 </div>
 </div>
 <div class="metadata">
-<a href="https://www.landeranalytics.com/post/rpeat-a-better-way-to-schedule-jobs" class="no-external">
+<a href="https://www.landeranalytics.com/post/rpeat-a-better-way-to-schedule-jobs" class="no-external-icon">
 <div class="listing-date">
 Apr 14, 2026
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="UiUyQ1B5dGhvbiUyQ1NwYXJr" data-listing-date-sort="1661558400000" data-listing-file-modified-sort="1791002437265" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2046">
-<div class="thumbnail"><a href="./professional-blog/2022-08-27-moving-local-sql-to-spark-the-easy-way.html" class="no-external">
+<div class="quarto-post image-right" data-index="5" data-categories="UiUyQ1B5dGhvbiUyQ1NwYXJr" data-listing-date-sort="1661558400000" data-listing-file-modified-sort="1794830081124" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2046">
+<div class="thumbnail"><a href="./professional-blog/2022-08-27-moving-local-sql-to-spark-the-easy-way.html" class="no-external-icon">
 
 <img loading="lazy" src="./assets/post-assets/2022-08-27-moving-local-sql-to-spark-the-easy-way/Little_Green_Men.jpg" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./professional-blog/2022-08-27-moving-local-sql-to-spark-the-easy-way.html" class="no-external">Moving Local Data Pipelines to Spark: The Easy Way with R and&nbsp;Python</a>
+<a href="./professional-blog/2022-08-27-moving-local-sql-to-spark-the-easy-way.html" class="no-external-icon">Moving Local Data Pipelines to Spark: The Easy Way with R and&nbsp;Python</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./professional-blog/2022-08-27-moving-local-sql-to-spark-the-easy-way.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
@@ -580,7 +565,7 @@ Apr 14, 2026
 </div>
 </div>
 <div class="metadata">
-<a href="./professional-blog/2022-08-27-moving-local-sql-to-spark-the-easy-way.html" class="no-external">
+<a href="./professional-blog/2022-08-27-moving-local-sql-to-spark-the-easy-way.html" class="no-external-icon">
 <div class="listing-date">
 Aug 27, 2022
 </div>
@@ -588,19 +573,16 @@ Aug 27, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="UiUyQ0FuYWx5c2lz" data-listing-date-sort="1652313600000" data-listing-file-modified-sort="1791002437260" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1201">
-<div class="thumbnail"><a href="./professional-blog/2022-05-12-student-debt-and-retirement.html" class="no-external">
+<div class="quarto-post image-right" data-index="6" data-categories="UiUyQ0FuYWx5c2lz" data-listing-date-sort="1652313600000" data-listing-file-modified-sort="1794830081120" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1201">
+<div class="thumbnail"><a href="./professional-blog/2022-05-12-student-debt-and-retirement.html" class="no-external-icon">
 
 <img loading="lazy" src="./assets/post-assets/2022-05-12-student-debt-and-retirement/alexander-sinn-KgLtFCgfC28-unsplash.jpg" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./professional-blog/2022-05-12-student-debt-and-retirement.html" class="no-external">Does Student Debt Correlate with Retirement Funds?</a>
+<a href="./professional-blog/2022-05-12-student-debt-and-retirement.html" class="no-external-icon">Does Student Debt Correlate with Retirement Funds?</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./professional-blog/2022-05-12-student-debt-and-retirement.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
@@ -610,7 +592,7 @@ Aug 27, 2022
 </div>
 </div>
 <div class="metadata">
-<a href="./professional-blog/2022-05-12-student-debt-and-retirement.html" class="no-external">
+<a href="./professional-blog/2022-05-12-student-debt-and-retirement.html" class="no-external-icon">
 <div class="listing-date">
 May 12, 2022
 </div>
@@ -618,19 +600,16 @@ May 12, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="Ug==" data-listing-date-sort="1649894400000" data-listing-file-modified-sort="1791002437253" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2508">
-<div class="thumbnail"><a href="./professional-blog/2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r.html" class="no-external">
+<div class="quarto-post image-right" data-index="7" data-categories="Ug==" data-listing-date-sort="1649894400000" data-listing-file-modified-sort="1794830081116" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2508">
+<div class="thumbnail"><a href="./professional-blog/2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r.html" class="no-external-icon">
 
 <p class="card-img-top"><img loading='lazy' src="assets/post-assets/2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r/days_in_order.png"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./professional-blog/2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r.html" class="no-external">Reordering Bar and Column Charts with ggplot2 in R</a>
+<a href="./professional-blog/2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r.html" class="no-external-icon">Reordering Bar and Column Charts with ggplot2 in R</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./professional-blog/2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
@@ -638,7 +617,7 @@ May 12, 2022
 </div>
 </div>
 <div class="metadata">
-<a href="./professional-blog/2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r.html" class="no-external">
+<a href="./professional-blog/2022-04-14-reordering-bar-and-column-charts-with-ggplot-in-r.html" class="no-external-icon">
 <div class="listing-date">
 Apr 14, 2022
 </div>
@@ -646,19 +625,16 @@ Apr 14, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="Ug==" data-listing-date-sort="1648684800000" data-listing-file-modified-sort="1791002437251" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="41" data-listing-word-count-sort="8032">
-<div class="thumbnail"><a href="./professional-blog/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r.html" class="no-external">
+<div class="quarto-post image-right" data-index="8" data-categories="Ug==" data-listing-date-sort="1648684800000" data-listing-file-modified-sort="1794830081115" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="41" data-listing-word-count-sort="8032">
+<div class="thumbnail"><a href="./professional-blog/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r.html" class="no-external-icon">
 
 <p class="card-img-top"><img loading='lazy' src="assets/post-assets/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r/giraffe.jpg"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./professional-blog/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r.html" class="no-external">Pivoting Data with tidyverse and data.table in R</a>
+<a href="./professional-blog/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r.html" class="no-external-icon">Pivoting Data with tidyverse and data.table in R</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./professional-blog/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
@@ -666,7 +642,7 @@ Apr 14, 2022
 </div>
 </div>
 <div class="metadata">
-<a href="./professional-blog/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r.html" class="no-external">
+<a href="./professional-blog/2022-03-31-pivoting-data-with-tidyverse-and-datatable-in-r.html" class="no-external-icon">
 <div class="listing-date">
 Mar 31, 2022
 </div>
@@ -674,19 +650,16 @@ Mar 31, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="Ug==" data-listing-date-sort="1647216000000" data-listing-file-modified-sort="1791002437249" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3062">
-<div class="thumbnail"><a href="./professional-blog/2022-03-14-writing-faster-r-with-vectorization-and-the-apply-family.html" class="no-external">
+<div class="quarto-post image-right" data-index="9" data-categories="Ug==" data-listing-date-sort="1647216000000" data-listing-file-modified-sort="1794830081114" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3062">
+<div class="thumbnail"><a href="./professional-blog/2022-03-14-writing-faster-r-with-vectorization-and-the-apply-family.html" class="no-external-icon">
 
 <p class="card-img-top"><img loading='lazy' src="assets/post-assets/2022-03-14-writing-faster-r-with-vectorization-and-the-apply-family/sonic.jpeg" alt="A hand drawn Sonic the Hedgehog saying “Gotta go fast”"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./professional-blog/2022-03-14-writing-faster-r-with-vectorization-and-the-apply-family.html" class="no-external">Writing Faster R With Vectorization and the Apply Family</a>
+<a href="./professional-blog/2022-03-14-writing-faster-r-with-vectorization-and-the-apply-family.html" class="no-external-icon">Writing Faster R With Vectorization and the Apply Family</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./professional-blog/2022-03-14-writing-faster-r-with-vectorization-and-the-apply-family.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
@@ -694,7 +667,7 @@ Mar 31, 2022
 </div>
 </div>
 <div class="metadata">
-<a href="./professional-blog/2022-03-14-writing-faster-r-with-vectorization-and-the-apply-family.html" class="no-external">
+<a href="./professional-blog/2022-03-14-writing-faster-r-with-vectorization-and-the-apply-family.html" class="no-external-icon">
 <div class="listing-date">
 Mar 14, 2022
 </div>
@@ -702,19 +675,16 @@ Mar 14, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="UiUyQ0V4Y2Vs" data-listing-date-sort="1645574400000" data-listing-file-modified-sort="1791002437246" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2082">
-<div class="thumbnail"><a href="./professional-blog/2022-02-23-making-pretty-excel-files-in-r.html" class="no-external">
+<div class="quarto-post image-right" data-index="10" data-categories="UiUyQ0V4Y2Vs" data-listing-date-sort="1645574400000" data-listing-file-modified-sort="1794830081111" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2082">
+<div class="thumbnail"><a href="./professional-blog/2022-02-23-making-pretty-excel-files-in-r.html" class="no-external-icon">
 
 <p class="card-img-top"><img loading='lazy' src="assets/post-assets/2022-02-23-making-pretty-excel-files-in-r/attendancePreview.png"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./professional-blog/2022-02-23-making-pretty-excel-files-in-r.html" class="no-external">Making Pretty Excel Files in R</a>
+<a href="./professional-blog/2022-02-23-making-pretty-excel-files-in-r.html" class="no-external-icon">Making Pretty Excel Files in R</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./professional-blog/2022-02-23-making-pretty-excel-files-in-r.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
@@ -724,7 +694,7 @@ Mar 14, 2022
 </div>
 </div>
 <div class="metadata">
-<a href="./professional-blog/2022-02-23-making-pretty-excel-files-in-r.html" class="no-external">
+<a href="./professional-blog/2022-02-23-making-pretty-excel-files-in-r.html" class="no-external-icon">
 <div class="listing-date">
 Feb 23, 2022
 </div>
@@ -732,19 +702,16 @@ Feb 23, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="Ug==" data-listing-date-sort="1644969600000" data-listing-file-modified-sort="1791002437237" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="849">
-<div class="thumbnail"><a href="./professional-blog/2022-02-16-grouped-and-stacked-bar-charts-in-r.html" class="no-external">
+<div class="quarto-post image-right" data-index="11" data-categories="Ug==" data-listing-date-sort="1644969600000" data-listing-file-modified-sort="1794830081105" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="849">
+<div class="thumbnail"><a href="./professional-blog/2022-02-16-grouped-and-stacked-bar-charts-in-r.html" class="no-external-icon">
 
 <img loading="lazy" src="./assets/post-assets/2022-02-16-grouped-and-stacked-bar-charts-in-r/stackAndDodge.png" class="thumbnail-image">
 
 </a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./professional-blog/2022-02-16-grouped-and-stacked-bar-charts-in-r.html" class="no-external">Grouped and Stacked Bar Charts in R</a>
+<a href="./professional-blog/2022-02-16-grouped-and-stacked-bar-charts-in-r.html" class="no-external-icon">Grouped and Stacked Bar Charts in R</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./professional-blog/2022-02-16-grouped-and-stacked-bar-charts-in-r.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
@@ -752,7 +719,7 @@ Feb 23, 2022
 </div>
 </div>
 <div class="metadata">
-<a href="./professional-blog/2022-02-16-grouped-and-stacked-bar-charts-in-r.html" class="no-external">
+<a href="./professional-blog/2022-02-16-grouped-and-stacked-bar-charts-in-r.html" class="no-external-icon">
 <div class="listing-date">
 Feb 16, 2022
 </div>
@@ -767,15 +734,50 @@ Feb 16, 2022
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const toggle = window.document.createElement('button');
+      toggle.type = "button";
+      toggle.setAttribute("role", "switch");
+      toggle.setAttribute("aria-checked", "false");
+      toggle.classList.add('top-right');
+      toggle.classList.add('quarto-color-scheme-toggle');
+      toggle.setAttribute("aria-label", "Toggle dark mode");
+      toggle.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
       const i = window.document.createElement("i");
       i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
+      toggle.appendChild(i);
+      // Put the toggle in a landmark of its own, so that landmark navigation
+      // can reach it.
+      //
+      // The container is always a fresh direct child of body, and the toggle is
+      // never moved into page furniture that the theme or the author controls.
+      // The toggle is positioned against the page, so any ancestor that
+      // establishes a containing block captures it: a positioned element or a
+      // grid for position: absolute, and transform, filter, will-change or
+      // contain for position: fixed. A direct child of body has none of these
+      // to inherit, and the shift when one appears is silent and visual.
+      //
+      // ARIA says a document should have at most one banner, and axe reports a
+      // duplicate whether or not the banners carry distinct labels. So use a
+      // header when the page has no banner yet, and a named region otherwise.
+      //
+      // A header is a banner wherever it sits, unless it is inside sectioning
+      // content, so this cannot just look at the children of body: a custom
+      // page layout wraps the title block header in a plain div. An explicit
+      // role="banner" always counts.
+      const sectioning = 'article, aside, main, nav, section, [role="article"], [role="complementary"], [role="main"], [role="navigation"], [role="region"]';
+      const hasBanner = Array.from(
+        window.document.querySelectorAll('header:not([role]), [role="banner"]')
+      ).some(function(el) {
+        return el.hasAttribute("role") || el.closest(sectioning) === null;
+      });
+      const container = window.document.createElement(hasBanner ? "div" : "header");
+      if (hasBanner) {
+        container.setAttribute("role", "region");
+        container.setAttribute("aria-label", "Toggle dark mode");
+      }
+      container.classList.add('quarto-color-scheme-toggle-container');
+      container.appendChild(toggle);
+      window.document.body.appendChild(container);
     }
     setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
@@ -854,7 +856,8 @@ Feb 16, 2022
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -863,8 +866,69 @@ Feb 16, 2022
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -878,6 +942,7 @@ Feb 16, 2022
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -1040,44 +1105,54 @@ Feb 16, 2022
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -1175,6 +1250,9 @@ Feb 16, 2022
       }
     }
   });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script>
 </div> <!-- /content -->
 
